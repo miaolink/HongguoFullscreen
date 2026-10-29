@@ -61,6 +61,17 @@
 
 本项目仅供学习与个人研究使用。涉及 Root、无障碍与进程注入等能力，可能不符合目标应用的用户协议或当地法律法规，请自行判断风险。因使用本项目产生的任何问题，作者不承担责任。本项目与红果短剧、抖音集团无任何官方合作或关联。
 
+## 给 AI / WorkBuddy 自动安装
+
+把项目地址和机读手册发给 WorkBuddy（或其他能操作电脑 / adb 的 AI），即可全自动下载安装并配置：
+
+- 项目：https://github.com/miaolink/HongguoFullscreen  
+- 手册：[WORKBUDDY.md](WORKBUDDY.md)
+
+示例提示词：
+
+> 按 https://github.com/miaolink/HongguoFullscreen 里的 WORKBUDDY.md，在我已连接的模拟器上全自动安装配置红果短剧全屏，完成后按检查清单回报。
+
 ## 给开发者
 
 日常使用请直接从 [发布页](https://github.com/miaolink/HongguoFullscreen/releases/latest) 下载 APK。
