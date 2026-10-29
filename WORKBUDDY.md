@@ -15,10 +15,11 @@ user_action_required: 仅在 Root 弹窗、无障碍确认等系统对话框无�
 
 # WorkBuddy / AI 全自动安装配置手册
 
-把本文件 + 项目地址发给 WorkBuddy（或任意可执行 shell/adb 的 AI）：
+把下面提示词发给 WorkBuddy（或任意可执行 shell/adb 的 AI）：
 
-> 项目：https://github.com/miaolink/HongguoFullscreen  
-> 按仓库内 `WORKBUDDY.md` 全自动安装配置，完成后回报检查清单结果。
+```text
+请按 https://github.com/miaolink/HongguoFullscreen 里的 WORKBUDDY.md，在我电脑的模拟器上全自动安装配置红果短剧全屏，完成后按检查清单回报。
+```
 
 Agent **必须按顺序执行**，每步可重复执行；已成功则跳过。不要让用户手动编译。
 

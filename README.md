@@ -68,9 +68,11 @@
 - 项目：https://github.com/miaolink/HongguoFullscreen  
 - 手册：[WORKBUDDY.md](WORKBUDDY.md)
 
-示例提示词：
+AI 安装提示词（可直接复制发给 WorkBuddy / AI）：
 
-> 按 https://github.com/miaolink/HongguoFullscreen 里的 WORKBUDDY.md，在我已连接的模拟器上全自动安装配置红果短剧全屏，完成后按检查清单回报。
+```text
+请按 https://github.com/miaolink/HongguoFullscreen 里的 WORKBUDDY.md，在我电脑的模拟器上全自动安装配置红果短剧全屏，完成后按检查清单回报。
+```
 
 ## 给开发者
 
