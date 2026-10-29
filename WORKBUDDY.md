@@ -32,7 +32,7 @@ Agent **必须按顺序执行**，每步可重复执行；已成功则跳过。�
 | # | 检查项 | 判定命令 / 方式 |
 |---|--------|-----------------|
 | 1 | 已安装本应用 | `adb shell pm path com.allinpol.hgfloat` 有输出 |
-| 2 | 已安装红果短剧 | `adb shell pm path com.phoenix.read` 有输出（没有则安装 Releases 中的「官方最新红果短剧apk」`hongguo-official-latest.apk`） |
+| 2 | 已安装红果短剧 | `adb shell pm path com.phoenix.read` 有输出（没有则打开官网下载安装：https://applink.novelquickapp.com/dppHr ） |
 | 3 | 悬浮窗已授权 | `adb shell appops get com.allinpol.hgfloat SYSTEM_ALERT_WINDOW` 含 `allow` |
 | 4 | frida-inject 可用 | `adb shell su -c 'test -x /data/local/tmp/frida-inject && echo OK'` 输出 `OK` |
 | 5 | 应用可启动 | `adb shell am start -n com.allinpol.hgfloat/.MainActivity` 无 Activity 找不到错误 |
@@ -180,22 +180,19 @@ $ADB shell am start -n com.allinpol.hgfloat/.MainActivity
 
 ---
 
-## 8. 目标应用（官方最新红果短剧）
+## 8. 目标应用（官方红果短剧）
 
 ```bash
 $ADB shell pm path com.phoenix.read
 ```
 
-未安装时，自动安装官方包（不要破解/重打包）：
+未安装时：打开官网下载页，引导用户安装官方红果短剧（不要破解/重打包，不要托管大型 APK）：
 
-```bash
-# 优先 Release 资源「官方最新红果短剧apk」
-curl -L -o hongguo-official-latest.apk \
-  "https://github.com/miaolink/HongguoFullscreen/releases/latest/download/hongguo-official-latest.apk"
-# 若仓库 apk/ 目录已有本地副本亦可：
-# apk/hongguo-official-latest.apk
-$ADB install -r hongguo-official-latest.apk
+```text
+https://applink.novelquickapp.com/dppHr
 ```
+
+可用浏览器打开该链接，或回报用户自行安装后再继续后续步骤。
 
 ---
 

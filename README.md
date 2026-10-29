@@ -25,19 +25,13 @@
 
 **👉 [点此下载最新版 APK](https://github.com/miaolink/HongguoFullscreen/releases/latest)**
 
-发布页提供两类安装包：
-
-| 资源 | 说明 |
-|------|------|
-| `HongguoFullscreen.apk` | 本工具（红果短剧全屏） |
-| `hongguo-official-latest.apk` | **官方最新红果短剧 APK**（本地亦在 `apk/` 目录） |
-
-1. 进入发布页，下载上述安装包（若模拟器里还没有红果，先装官方红果短剧）
-2. 传到手机或模拟器后安装（示例：`adb install -r HongguoFullscreen.apk`）
-3. 打开应用 **红果全屏**，允许「显示在其他应用上层」
-4. 按需勾选「开机自动开启」「自动跳过」
-5. 点击 **开启悬浮球**
-6. 打开红果短剧，点悬浮球或按 **F9**，即可横屏全屏
+1. 进入发布页，下载本工具 `HongguoFullscreen.apk`
+2. 若还没有红果短剧，请先从官网安装：https://applink.novelquickapp.com/dppHr
+3. 传到手机或模拟器后安装本工具（示例：`adb install -r HongguoFullscreen.apk`）
+4. 打开应用 **红果全屏**，允许「显示在其他应用上层」
+5. 按需勾选「开机自动开启」「自动跳过」
+6. 点击 **开启悬浮球**
+7. 打开红果短剧，点悬浮球或按 **F9**，即可横屏全屏
 
 其他按钮说明：
 
@@ -60,7 +54,7 @@
 | Root | 设备需已 Root，能正常使用超级用户权限 |
 | 注入工具 | 将 `frida-inject` 放到 `/data/local/tmp/frida-inject`，并赋予执行权限 |
 | 权限 | 需要悬浮窗权限；使用 F9 时建议开启本应用的无障碍服务 |
-| 红果短剧 | 请先安装官方红果短剧应用 |
+| 红果短剧 | 请先安装官方红果短剧：[官网下载](https://applink.novelquickapp.com/dppHr) |
 
 适用于**雷电、夜神、MuMu、逍遥、腾讯手游助手、蓝叠**等国内常用安卓模拟器，以及已 Root 的真机；不限定某一家，满足 Root 与准备条件即可。
 

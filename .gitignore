@@ -5,8 +5,6 @@
 *.apk
 !apk/
 !apk/HongguoFullscreen.apk
-# 官方红果短剧 APK 体积过大（>100MB），不进 Git；请从 Releases 下载
-apk/hongguo-official-latest.apk
 !app/src/main/assets/**
 
 # IDE / local
