@@ -19,19 +19,24 @@
 
 只要模拟器已 Root，并满足下文准备条件，上述常见模拟器**均可使用**。本工具提供一键（悬浮球 / F9）横屏全屏，并可自动跳过「继续观看」类提示，少打断、少动手。
 
-## 下载安装
+## 下载安装（闭环）
 
-普通用户**不用编译**，直接下载安装包即可：
+从零开始也可以按下面顺序搞定：**模拟器 → 红果短剧 → 本工具**。普通用户**不用编译**。
 
-**👉 [点此下载最新版 APK](https://github.com/miaolink/HongguoFullscreen/releases/latest)**
+| 步骤 | 下载 | 说明 |
+|------|------|------|
+| 1 | [雷电模拟器安装包](https://lddl01.ldmnq.com/downloader/ldplayerinst14.exe?n=ldplayer14_ld_112_ld.exe) | 推荐用雷电；其他已 Root 模拟器同样可用 |
+| 2 | [红果短剧官网](https://applink.novelquickapp.com/dppHr) | 官方应用，装进模拟器 |
+| 3 | [本工具 APK（Releases）](https://github.com/miaolink/HongguoFullscreen/releases/latest) | 下载 `HongguoFullscreen.apk` |
 
-1. 进入发布页，下载本工具 `HongguoFullscreen.apk`
-2. 若还没有红果短剧，请先从官网安装：https://applink.novelquickapp.com/dppHr
-3. 传到手机或模拟器后安装本工具（示例：`adb install -r HongguoFullscreen.apk`）
-4. 打开应用 **红果全屏**，允许「显示在其他应用上层」
-5. 按需勾选「开机自动开启」「自动跳过」
-6. 点击 **开启悬浮球**
-7. 打开红果短剧，点悬浮球或按 **F9**，即可横屏全屏
+配置步骤：
+
+1. 安装并打开雷电模拟器，开启 **Root**
+2. 安装红果短剧，再安装本工具（示例：`adb install -r HongguoFullscreen.apk`）
+3. 打开应用 **红果全屏**，允许「显示在其他应用上层」
+4. 按需勾选「开机自动开启」「自动跳过」
+5. 点击 **开启悬浮球**
+6. 打开红果短剧，点悬浮球或按 **F9**，即可横屏全屏
 
 其他按钮说明：
 
@@ -54,9 +59,10 @@
 | Root | 设备需已 Root，能正常使用超级用户权限 |
 | 注入工具 | 将 `frida-inject` 放到 `/data/local/tmp/frida-inject`，并赋予执行权限 |
 | 权限 | 需要悬浮窗权限；使用 F9 时建议开启本应用的无障碍服务 |
+| 模拟器 | 推荐 [雷电模拟器](https://lddl01.ldmnq.com/downloader/ldplayerinst14.exe?n=ldplayer14_ld_112_ld.exe)；夜神 / MuMu / 逍遥 / 腾讯手游助手 / 蓝叠等已 Root 亦可 |
 | 红果短剧 | 请先安装官方红果短剧：[官网下载](https://applink.novelquickapp.com/dppHr) |
 
-适用于**雷电、夜神、MuMu、逍遥、腾讯手游助手、蓝叠**等国内常用安卓模拟器，以及已 Root 的真机；不限定某一家，满足 Root 与准备条件即可。
+适用于上述国内常用安卓模拟器及已 Root 真机；不限定某一家，满足 Root 与准备条件即可。
 
 ## 免责声明
 

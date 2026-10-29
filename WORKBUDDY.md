@@ -4,13 +4,15 @@ project: HongguoFullscreen
 project_cn: 红果短剧全屏
 repo: https://github.com/miaolink/HongguoFullscreen
 release_apk: https://github.com/miaolink/HongguoFullscreen/releases/latest/download/HongguoFullscreen.apk
+ldplayer_installer: https://lddl01.ldmnq.com/downloader/ldplayerinst14.exe?n=ldplayer14_ld_112_ld.exe
+hongguo_official: https://applink.novelquickapp.com/dppHr
 package: com.allinpol.hgfloat
 activity: com.allinpol.hgfloat/.MainActivity
 target_app: com.phoenix.read
 audience: WorkBuddy / AI agent / 自动化助手
-goal: 在已连接的 Root 安卓设备或模拟器上，全自动完成下载、安装、权限、依赖配置并启动应用
+goal: 在已连接的 Root 安卓设备或模拟器上，全自动完成下载、安装、权限、依赖配置并启动应用；若无模拟器可先引导安装雷电
 idempotent: true
-user_action_required: 仅在 Root 弹窗、无障碍确认等系统对话框无法自动点击时，请求用户点一次「允许」
+user_action_required: 仅在 Root 弹窗、无障碍确认、安装模拟器/红果需人工确认时，请求用户操作
 ---
 
 # WorkBuddy / AI 全自动安装配置手册
@@ -44,6 +46,14 @@ Agent **必须按顺序执行**，每步可重复执行；已成功则跳过。�
 
 ## 1. 前置探测（失败则停止并说明）
 
+闭环资源（需要时下载，勿把大型安装包塞进本仓库）：
+
+| 资源 | URL |
+|------|-----|
+| 雷电模拟器 | https://lddl01.ldmnq.com/downloader/ldplayerinst14.exe?n=ldplayer14_ld_112_ld.exe |
+| 红果短剧官网 | https://applink.novelquickapp.com/dppHr |
+| 本工具 APK | https://github.com/miaolink/HongguoFullscreen/releases/latest/download/HongguoFullscreen.apk |
+
 ```bash
 adb devices
 ```
@@ -57,6 +67,7 @@ adb devices
   - `adb connect 127.0.0.1:62001`
   - `adb connect 127.0.0.1:7555`
   - 或用户提供的 IP:端口
+- 仍无设备：下载并引导安装雷电模拟器（上表 URL），启动模拟器并开启 Root 后重试连接。
 - Root 探测：`adb shell su -c id` 须含 `uid=0`。失败则停止，提示开启模拟器 Root。
 
 下文用 `$ADB` 表示 `adb` 或 `adb -s <serial>`。
