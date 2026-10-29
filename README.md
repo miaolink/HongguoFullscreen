@@ -25,8 +25,15 @@
 
 **👉 [点此下载最新版 APK](https://github.com/miaolink/HongguoFullscreen/releases/latest)**
 
-1. 进入发布页，下载安装包
-2. 传到手机或模拟器里安装（也可用命令：`adb install -r HongguoFullscreen.apk`）
+发布页提供两类安装包：
+
+| 资源 | 说明 |
+|------|------|
+| `HongguoFullscreen.apk` | 本工具（红果短剧全屏） |
+| `hongguo-official-latest.apk` | **官方最新红果短剧 APK**（本地亦在 `apk/` 目录） |
+
+1. 进入发布页，下载上述安装包（若模拟器里还没有红果，先装官方红果短剧）
+2. 传到手机或模拟器后安装（示例：`adb install -r HongguoFullscreen.apk`）
 3. 打开应用 **红果全屏**，允许「显示在其他应用上层」
 4. 按需勾选「开机自动开启」「自动跳过」
 5. 点击 **开启悬浮球**
