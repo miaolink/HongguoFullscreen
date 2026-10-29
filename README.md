@@ -4,7 +4,7 @@
 [![系统要求](https://img.shields.io/badge/系统-Android%208.0%2B-green.svg)](#使用前准备)
 [![下载安装包](https://img.shields.io/github/v/release/miaolink/HongguoFullscreen?label=%E4%B8%8B%E8%BD%BD%20APK&color=orange)](https://github.com/miaolink/HongguoFullscreen/releases/latest)
 
-**红果短剧全屏**工具：在已 Root 的安卓手机或模拟器上，点悬浮球或按键盘 **F9**，一键进入红果短剧横屏全屏，并可自动跳过「继续观看」提示。
+**红果短剧全屏**工具：主要面向 **PC 电脑上的安卓模拟器 / 虚拟机**（需开启 Root），点悬浮球或按键盘 **F9**，一键进入红果短剧横屏全屏，并可自动跳过「继续观看」提示。
 
 项目英文名：HongguoFullscreen · 应用显示名：红果全屏 · 包名：`com.allinpol.hgfloat`
 
