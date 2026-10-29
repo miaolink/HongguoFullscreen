@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">红果全屏</string>
+    <string name="app_desc">点悬浮球或按 F9，一键进入红果横屏全屏；可自动跳过「继续观看」提示。</string>
+    <string name="btn_float">全</string>
+    <string name="notif_title">红果全屏运行中</string>
+    <string name="notif_text">点悬浮球或按 F9 即可全屏</string>
+    <string name="need_overlay">请先允许「显示在其他应用上层」</string>
+    <string name="start_float">开启悬浮球</string>
+    <string name="stop_float">关闭悬浮球</string>
+    <string name="boot_auto">开机自动开启</string>
+    <string name="auto_skip">自动跳过「继续观看」提示</string>
+    <string name="open_su">打开授权管理</string>
+    <string name="su_silent">关闭授权弹窗</string>
+    <string name="a11y_desc">监听 F9，一键进入红果横屏全屏</string>
+    <string name="log_title">运行日志</string>
+    <string name="log_empty">暂无记录</string>
+    <string name="status_overlay_on">悬浮窗权限：已允许</string>
+    <string name="status_overlay_off">悬浮窗权限：未开启</string>
+    <string name="status_boot_on">开机自启：开</string>
+    <string name="status_boot_off">开机自启：关</string>
+    <string name="status_skip_on">自动跳过：开</string>
+    <string name="status_skip_off">自动跳过：关</string>
+    <string name="status_f9_on">快捷键 F9：可用</string>
+    <string name="status_f9_off">快捷键 F9：未就绪</string>
+    <string name="float_on">悬浮球已开启</string>
+    <string name="float_off">悬浮球已关闭</string>
+</resources>

@@ -1,0 +1,24 @@
+# Build
+/build/
+/app/build/
+/manual_build/
+*.apk
+!apk/
+!apk/*.apk
+!app/src/main/assets/**
+
+# IDE / local
+.idea/
+.cursor/
+.vscode/
+AGENTS.md
+*.iml
+.gradle/
+local.properties
+.DS_Store
+*.log
+
+# Keystore / secrets
+*.keystore
+*.jks
+*.pem
