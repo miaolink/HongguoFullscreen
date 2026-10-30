@@ -1,4 +1,4095 @@
-(()=>{var ms=Object.create;var vt=Object.defineProperty;var gs=Object.getOwnPropertyDescriptor;var bs=Object.getOwnPropertyNames;var ys=Object.getPrototypeOf,vs=Object.prototype.hasOwnProperty;var Es=(t,e,n)=>e in t?vt(t,e,{enumerable:!0,configurable:!0,writable:!0,value:n}):t[e]=n;var Zt=(t,e)=>()=>{try{return e||t((e={exports:{}}).exports,e),e.exports}catch(n){throw e=0,n}},Ss=(t,e)=>{for(var n in e)vt(t,n,{get:e[n],enumerable:!0})},ws=(t,e,n,r)=>{if(e&&typeof e=="object"||typeof e=="function")for(let o of bs(e))!vs.call(t,o)&&o!==n&&vt(t,o,{get:()=>e[o],enumerable:!(r=gs(e,o))||r.enumerable});return t};var Cs=(t,e,n)=>(n=t!=null?ms(ys(t)):{},ws(e||!t||!t.__esModule?vt(n,"default",{value:t,enumerable:!0}):n,t));var me=(t,e,n)=>Es(t,typeof e!="symbol"?e+"":e,n);var yo=Zt(Vt=>{"use strict";Vt.byteLength=Vc;Vt.toByteArray=Jc;Vt.fromByteArray=Hc;var Ae=[],ve=[],Uc=typeof Uint8Array<"u"?Uint8Array:Array,Qn="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";for(Be=0,go=Qn.length;Be<go;++Be)Ae[Be]=Qn[Be],ve[Qn.charCodeAt(Be)]=Be;var Be,go;ve[45]=62;ve[95]=63;function bo(t){var e=t.length;if(e%4>0)throw new Error("Invalid string. Length must be a multiple of 4");var n=t.indexOf("=");n===-1&&(n=e);var r=n===e?0:4-n%4;return[n,r]}function Vc(t){var e=bo(t),n=e[0],r=e[1];return(n+r)*3/4-r}function zc(t,e,n){return(e+n)*3/4-n}function Jc(t){var e,n=bo(t),r=n[0],o=n[1],s=new Uc(zc(t,r,o)),i=0,l=o>0?r-4:r,a;for(a=0;a<l;a+=4)e=ve[t.charCodeAt(a)]<<18|ve[t.charCodeAt(a+1)]<<12|ve[t.charCodeAt(a+2)]<<6|ve[t.charCodeAt(a+3)],s[i++]=e>>16&255,s[i++]=e>>8&255,s[i++]=e&255;return o===2&&(e=ve[t.charCodeAt(a)]<<2|ve[t.charCodeAt(a+1)]>>4,s[i++]=e&255),o===1&&(e=ve[t.charCodeAt(a)]<<10|ve[t.charCodeAt(a+1)]<<4|ve[t.charCodeAt(a+2)]>>2,s[i++]=e>>8&255,s[i++]=e&255),s}function Bc(t){return Ae[t>>18&63]+Ae[t>>12&63]+Ae[t>>6&63]+Ae[t&63]}function Gc(t,e,n){for(var r,o=[],s=e;s<n;s+=3)r=(t[s]<<16&16711680)+(t[s+1]<<8&65280)+(t[s+2]&255),o.push(Bc(r));return o.join("")}function Hc(t){for(var e,n=t.length,r=n%3,o=[],s=16383,i=0,l=n-r;i<l;i+=s)o.push(Gc(t,i,i+s>l?l:i+s));return r===1?(e=t[n-1],o.push(Ae[e>>2]+Ae[e<<4&63]+"==")):r===2&&(e=(t[n-2]<<8)+t[n-1],o.push(Ae[e>>10]+Ae[e>>4&63]+Ae[e<<2&63]+"=")),o.join("")}});var vo=Zt(Yn=>{Yn.read=function(t,e,n,r,o){var s,i,l=o*8-r-1,a=(1<<l)-1,c=a>>1,d=-7,p=n?o-1:0,f=n?-1:1,u=t[e+p];for(p+=f,s=u&(1<<-d)-1,u>>=-d,d+=l;d>0;s=s*256+t[e+p],p+=f,d-=8);for(i=s&(1<<-d)-1,s>>=-d,d+=r;d>0;i=i*256+t[e+p],p+=f,d-=8);if(s===0)s=1-c;else{if(s===a)return i?NaN:(u?-1:1)*(1/0);i=i+Math.pow(2,r),s=s-c}return(u?-1:1)*i*Math.pow(2,s-r)};Yn.write=function(t,e,n,r,o,s){var i,l,a,c=s*8-o-1,d=(1<<c)-1,p=d>>1,f=o===23?Math.pow(2,-24)-Math.pow(2,-77):0,u=r?0:s-1,_=r?1:-1,h=e<0||e===0&&1/e<0?1:0;for(e=Math.abs(e),isNaN(e)||e===1/0?(l=isNaN(e)?1:0,i=d):(i=Math.floor(Math.log(e)/Math.LN2),e*(a=Math.pow(2,-i))<1&&(i--,a*=2),i+p>=1?e+=f/a:e+=f*Math.pow(2,1-p),e*a>=2&&(i++,a/=2),i+p>=d?(l=0,i=d):i+p>=1?(l=(e*a-1)*Math.pow(2,o),i=i+p):(l=e*Math.pow(2,p-1)*Math.pow(2,o),i=0));o>=8;t[n+u]=l&255,u+=_,l/=256,o-=8);for(i=i<<o|l,c+=o;c>0;t[n+u]=i&255,u+=_,i/=256,c-=8);t[n+u-_]|=h*128}});var Oo=Zt(Xe=>{"use strict";var Xn=yo(),Ye=vo(),Eo=typeof Symbol=="function"&&typeof Symbol.for=="function"?Symbol.for("nodejs.util.inspect.custom"):null;Xe.Buffer=b;Xe.SlowBuffer=Qc;Xe.INSPECT_MAX_BYTES=50;var zt=2147483647;Xe.kMaxLength=zt;b.TYPED_ARRAY_SUPPORT=$c();!b.TYPED_ARRAY_SUPPORT&&typeof console<"u"&&typeof console.error=="function"&&console.error("This browser lacks typed array (Uint8Array) support which is required by `buffer` v5.x. Use `buffer` v4.x if you require old browser support.");function $c(){try{var t=new Uint8Array(1),e={foo:function(){return 42}};return Object.setPrototypeOf(e,Uint8Array.prototype),Object.setPrototypeOf(t,e),t.foo()===42}catch{return!1}}Object.defineProperty(b.prototype,"parent",{enumerable:!0,get:function(){if(b.isBuffer(this))return this.buffer}});Object.defineProperty(b.prototype,"offset",{enumerable:!0,get:function(){if(b.isBuffer(this))return this.byteOffset}});function Me(t){if(t>zt)throw new RangeError('The value "'+t+'" is invalid for option "size"');var e=new Uint8Array(t);return Object.setPrototypeOf(e,b.prototype),e}function b(t,e,n){if(typeof t=="number"){if(typeof e=="string")throw new TypeError('The "string" argument must be of type string. Received type number');return rr(t)}return Co(t,e,n)}b.poolSize=8192;function Co(t,e,n){if(typeof t=="string")return Wc(t,e);if(ArrayBuffer.isView(t))return qc(t);if(t==null)throw new TypeError("The first argument must be one of type string, Buffer, ArrayBuffer, Array, or Array-like Object. Received type "+typeof t);if(Le(t,ArrayBuffer)||t&&Le(t.buffer,ArrayBuffer)||typeof SharedArrayBuffer<"u"&&(Le(t,SharedArrayBuffer)||t&&Le(t.buffer,SharedArrayBuffer)))return tr(t,e,n);if(typeof t=="number")throw new TypeError('The "value" argument must not be of type number. Received type number');var r=t.valueOf&&t.valueOf();if(r!=null&&r!==t)return b.from(r,e,n);var o=Kc(t);if(o)return o;if(typeof Symbol<"u"&&Symbol.toPrimitive!=null&&typeof t[Symbol.toPrimitive]=="function")return b.from(t[Symbol.toPrimitive]("string"),e,n);throw new TypeError("The first argument must be one of type string, Buffer, ArrayBuffer, Array, or Array-like Object. Received type "+typeof t)}b.from=function(t,e,n){return Co(t,e,n)};Object.setPrototypeOf(b.prototype,Uint8Array.prototype);Object.setPrototypeOf(b,Uint8Array);function To(t){if(typeof t!="number")throw new TypeError('"size" argument must be of type number');if(t<0)throw new RangeError('The value "'+t+'" is invalid for option "size"')}function Zc(t,e,n){return To(t),t<=0?Me(t):e!==void 0?typeof n=="string"?Me(t).fill(e,n):Me(t).fill(e):Me(t)}b.alloc=function(t,e,n){return Zc(t,e,n)};function rr(t){return To(t),Me(t<0?0:or(t)|0)}b.allocUnsafe=function(t){return rr(t)};b.allocUnsafeSlow=function(t){return rr(t)};function Wc(t,e){if((typeof e!="string"||e==="")&&(e="utf8"),!b.isEncoding(e))throw new TypeError("Unknown encoding: "+e);var n=Io(t,e)|0,r=Me(n),o=r.write(t,e);return o!==n&&(r=r.slice(0,o)),r}function er(t){for(var e=t.length<0?0:or(t.length)|0,n=Me(e),r=0;r<e;r+=1)n[r]=t[r]&255;return n}function qc(t){if(Le(t,Uint8Array)){var e=new Uint8Array(t);return tr(e.buffer,e.byteOffset,e.byteLength)}return er(t)}function tr(t,e,n){if(e<0||t.byteLength<e)throw new RangeError('"offset" is outside of buffer bounds');if(t.byteLength<e+(n||0))throw new RangeError('"length" is outside of buffer bounds');var r;return e===void 0&&n===void 0?r=new Uint8Array(t):n===void 0?r=new Uint8Array(t,e):r=new Uint8Array(t,e,n),Object.setPrototypeOf(r,b.prototype),r}function Kc(t){if(b.isBuffer(t)){var e=or(t.length)|0,n=Me(e);return n.length===0||t.copy(n,0,0,e),n}if(t.length!==void 0)return typeof t.length!="number"||sr(t.length)?Me(0):er(t);if(t.type==="Buffer"&&Array.isArray(t.data))return er(t.data)}function or(t){if(t>=zt)throw new RangeError("Attempt to allocate Buffer larger than maximum size: 0x"+zt.toString(16)+" bytes");return t|0}function Qc(t){return+t!=t&&(t=0),b.alloc(+t)}b.isBuffer=function(e){return e!=null&&e._isBuffer===!0&&e!==b.prototype};b.compare=function(e,n){if(Le(e,Uint8Array)&&(e=b.from(e,e.offset,e.byteLength)),Le(n,Uint8Array)&&(n=b.from(n,n.offset,n.byteLength)),!b.isBuffer(e)||!b.isBuffer(n))throw new TypeError('The "buf1", "buf2" arguments must be one of type Buffer or Uint8Array');if(e===n)return 0;for(var r=e.length,o=n.length,s=0,i=Math.min(r,o);s<i;++s)if(e[s]!==n[s]){r=e[s],o=n[s];break}return r<o?-1:o<r?1:0};b.isEncoding=function(e){switch(String(e).toLowerCase()){case"hex":case"utf8":case"utf-8":case"ascii":case"latin1":case"binary":case"base64":case"ucs2":case"ucs-2":case"utf16le":case"utf-16le":return!0;default:return!1}};b.concat=function(e,n){if(!Array.isArray(e))throw new TypeError('"list" argument must be an Array of Buffers');if(e.length===0)return b.alloc(0);var r;if(n===void 0)for(n=0,r=0;r<e.length;++r)n+=e[r].length;var o=b.allocUnsafe(n),s=0;for(r=0;r<e.length;++r){var i=e[r];if(Le(i,Uint8Array))s+i.length>o.length?b.from(i).copy(o,s):Uint8Array.prototype.set.call(o,i,s);else if(b.isBuffer(i))i.copy(o,s);else throw new TypeError('"list" argument must be an Array of Buffers');s+=i.length}return o};function Io(t,e){if(b.isBuffer(t))return t.length;if(ArrayBuffer.isView(t)||Le(t,ArrayBuffer))return t.byteLength;if(typeof t!="string")throw new TypeError('The "string" argument must be one of type string, Buffer, or ArrayBuffer. Received type '+typeof t);var n=t.length,r=arguments.length>2&&arguments[2]===!0;if(!r&&n===0)return 0;for(var o=!1;;)switch(e){case"ascii":case"latin1":case"binary":return n;case"utf8":case"utf-8":return nr(t).length;case"ucs2":case"ucs-2":case"utf16le":case"utf-16le":return n*2;case"hex":return n>>>1;case"base64":return Mo(t).length;default:if(o)return r?-1:nr(t).length;e=(""+e).toLowerCase(),o=!0}}b.byteLength=Io;function Yc(t,e,n){var r=!1;if((e===void 0||e<0)&&(e=0),e>this.length||((n===void 0||n>this.length)&&(n=this.length),n<=0)||(n>>>=0,e>>>=0,n<=e))return"";for(t||(t="utf8");;)switch(t){case"hex":return ld(this,e,n);case"utf8":case"utf-8":return Lo(this,e,n);case"ascii":return id(this,e,n);case"latin1":case"binary":return ad(this,e,n);case"base64":return od(this,e,n);case"ucs2":case"ucs-2":case"utf16le":case"utf-16le":return cd(this,e,n);default:if(r)throw new TypeError("Unknown encoding: "+t);t=(t+"").toLowerCase(),r=!0}}b.prototype._isBuffer=!0;function Ge(t,e,n){var r=t[e];t[e]=t[n],t[n]=r}b.prototype.swap16=function(){var e=this.length;if(e%2!==0)throw new RangeError("Buffer size must be a multiple of 16-bits");for(var n=0;n<e;n+=2)Ge(this,n,n+1);return this};b.prototype.swap32=function(){var e=this.length;if(e%4!==0)throw new RangeError("Buffer size must be a multiple of 32-bits");for(var n=0;n<e;n+=4)Ge(this,n,n+3),Ge(this,n+1,n+2);return this};b.prototype.swap64=function(){var e=this.length;if(e%8!==0)throw new RangeError("Buffer size must be a multiple of 64-bits");for(var n=0;n<e;n+=8)Ge(this,n,n+7),Ge(this,n+1,n+6),Ge(this,n+2,n+5),Ge(this,n+3,n+4);return this};b.prototype.toString=function(){var e=this.length;return e===0?"":arguments.length===0?Lo(this,0,e):Yc.apply(this,arguments)};b.prototype.toLocaleString=b.prototype.toString;b.prototype.equals=function(e){if(!b.isBuffer(e))throw new TypeError("Argument must be a Buffer");return this===e?!0:b.compare(this,e)===0};b.prototype.inspect=function(){var e="",n=Xe.INSPECT_MAX_BYTES;return e=this.toString("hex",0,n).replace(/(.{2})/g,"$1 ").trim(),this.length>n&&(e+=" ... "),"<Buffer "+e+">"};Eo&&(b.prototype[Eo]=b.prototype.inspect);b.prototype.compare=function(e,n,r,o,s){if(Le(e,Uint8Array)&&(e=b.from(e,e.offset,e.byteLength)),!b.isBuffer(e))throw new TypeError('The "target" argument must be one of type Buffer or Uint8Array. Received type '+typeof e);if(n===void 0&&(n=0),r===void 0&&(r=e?e.length:0),o===void 0&&(o=0),s===void 0&&(s=this.length),n<0||r>e.length||o<0||s>this.length)throw new RangeError("out of range index");if(o>=s&&n>=r)return 0;if(o>=s)return-1;if(n>=r)return 1;if(n>>>=0,r>>>=0,o>>>=0,s>>>=0,this===e)return 0;for(var i=s-o,l=r-n,a=Math.min(i,l),c=this.slice(o,s),d=e.slice(n,r),p=0;p<a;++p)if(c[p]!==d[p]){i=c[p],l=d[p];break}return i<l?-1:l<i?1:0};function Ao(t,e,n,r,o){if(t.length===0)return-1;if(typeof n=="string"?(r=n,n=0):n>2147483647?n=2147483647:n<-2147483648&&(n=-2147483648),n=+n,sr(n)&&(n=o?0:t.length-1),n<0&&(n=t.length+n),n>=t.length){if(o)return-1;n=t.length-1}else if(n<0)if(o)n=0;else return-1;if(typeof e=="string"&&(e=b.from(e,r)),b.isBuffer(e))return e.length===0?-1:So(t,e,n,r,o);if(typeof e=="number")return e=e&255,typeof Uint8Array.prototype.indexOf=="function"?o?Uint8Array.prototype.indexOf.call(t,e,n):Uint8Array.prototype.lastIndexOf.call(t,e,n):So(t,[e],n,r,o);throw new TypeError("val must be string, number or Buffer")}function So(t,e,n,r,o){var s=1,i=t.length,l=e.length;if(r!==void 0&&(r=String(r).toLowerCase(),r==="ucs2"||r==="ucs-2"||r==="utf16le"||r==="utf-16le")){if(t.length<2||e.length<2)return-1;s=2,i/=2,l/=2,n/=2}function a(u,_){return s===1?u[_]:u.readUInt16BE(_*s)}var c;if(o){var d=-1;for(c=n;c<i;c++)if(a(t,c)===a(e,d===-1?0:c-d)){if(d===-1&&(d=c),c-d+1===l)return d*s}else d!==-1&&(c-=c-d),d=-1}else for(n+l>i&&(n=i-l),c=n;c>=0;c--){for(var p=!0,f=0;f<l;f++)if(a(t,c+f)!==a(e,f)){p=!1;break}if(p)return c}return-1}b.prototype.includes=function(e,n,r){return this.indexOf(e,n,r)!==-1};b.prototype.indexOf=function(e,n,r){return Ao(this,e,n,r,!0)};b.prototype.lastIndexOf=function(e,n,r){return Ao(this,e,n,r,!1)};function Xc(t,e,n,r){n=Number(n)||0;var o=t.length-n;r?(r=Number(r),r>o&&(r=o)):r=o;var s=e.length;r>s/2&&(r=s/2);for(var i=0;i<r;++i){var l=parseInt(e.substr(i*2,2),16);if(sr(l))return i;t[n+i]=l}return i}function ed(t,e,n,r){return Jt(nr(e,t.length-n),t,n,r)}function td(t,e,n,r){return Jt(pd(e),t,n,r)}function nd(t,e,n,r){return Jt(Mo(e),t,n,r)}function rd(t,e,n,r){return Jt(fd(e,t.length-n),t,n,r)}b.prototype.write=function(e,n,r,o){if(n===void 0)o="utf8",r=this.length,n=0;else if(r===void 0&&typeof n=="string")o=n,r=this.length,n=0;else if(isFinite(n))n=n>>>0,isFinite(r)?(r=r>>>0,o===void 0&&(o="utf8")):(o=r,r=void 0);else throw new Error("Buffer.write(string, encoding, offset[, length]) is no longer supported");var s=this.length-n;if((r===void 0||r>s)&&(r=s),e.length>0&&(r<0||n<0)||n>this.length)throw new RangeError("Attempt to write outside buffer bounds");o||(o="utf8");for(var i=!1;;)switch(o){case"hex":return Xc(this,e,n,r);case"utf8":case"utf-8":return ed(this,e,n,r);case"ascii":case"latin1":case"binary":return td(this,e,n,r);case"base64":return nd(this,e,n,r);case"ucs2":case"ucs-2":case"utf16le":case"utf-16le":return rd(this,e,n,r);default:if(i)throw new TypeError("Unknown encoding: "+o);o=(""+o).toLowerCase(),i=!0}};b.prototype.toJSON=function(){return{type:"Buffer",data:Array.prototype.slice.call(this._arr||this,0)}};function od(t,e,n){return e===0&&n===t.length?Xn.fromByteArray(t):Xn.fromByteArray(t.slice(e,n))}function Lo(t,e,n){n=Math.min(t.length,n);for(var r=[],o=e;o<n;){var s=t[o],i=null,l=s>239?4:s>223?3:s>191?2:1;if(o+l<=n){var a,c,d,p;switch(l){case 1:s<128&&(i=s);break;case 2:a=t[o+1],(a&192)===128&&(p=(s&31)<<6|a&63,p>127&&(i=p));break;case 3:a=t[o+1],c=t[o+2],(a&192)===128&&(c&192)===128&&(p=(s&15)<<12|(a&63)<<6|c&63,p>2047&&(p<55296||p>57343)&&(i=p));break;case 4:a=t[o+1],c=t[o+2],d=t[o+3],(a&192)===128&&(c&192)===128&&(d&192)===128&&(p=(s&15)<<18|(a&63)<<12|(c&63)<<6|d&63,p>65535&&p<1114112&&(i=p))}}i===null?(i=65533,l=1):i>65535&&(i-=65536,r.push(i>>>10&1023|55296),i=56320|i&1023),r.push(i),o+=l}return sd(r)}var wo=4096;function sd(t){var e=t.length;if(e<=wo)return String.fromCharCode.apply(String,t);for(var n="",r=0;r<e;)n+=String.fromCharCode.apply(String,t.slice(r,r+=wo));return n}function id(t,e,n){var r="";n=Math.min(t.length,n);for(var o=e;o<n;++o)r+=String.fromCharCode(t[o]&127);return r}function ad(t,e,n){var r="";n=Math.min(t.length,n);for(var o=e;o<n;++o)r+=String.fromCharCode(t[o]);return r}function ld(t,e,n){var r=t.length;(!e||e<0)&&(e=0),(!n||n<0||n>r)&&(n=r);for(var o="",s=e;s<n;++s)o+=hd[t[s]];return o}function cd(t,e,n){for(var r=t.slice(e,n),o="",s=0;s<r.length-1;s+=2)o+=String.fromCharCode(r[s]+r[s+1]*256);return o}b.prototype.slice=function(e,n){var r=this.length;e=~~e,n=n===void 0?r:~~n,e<0?(e+=r,e<0&&(e=0)):e>r&&(e=r),n<0?(n+=r,n<0&&(n=0)):n>r&&(n=r),n<e&&(n=e);var o=this.subarray(e,n);return Object.setPrototypeOf(o,b.prototype),o};function ae(t,e,n){if(t%1!==0||t<0)throw new RangeError("offset is not uint");if(t+e>n)throw new RangeError("Trying to access beyond buffer length")}b.prototype.readUintLE=b.prototype.readUIntLE=function(e,n,r){e=e>>>0,n=n>>>0,r||ae(e,n,this.length);for(var o=this[e],s=1,i=0;++i<n&&(s*=256);)o+=this[e+i]*s;return o};b.prototype.readUintBE=b.prototype.readUIntBE=function(e,n,r){e=e>>>0,n=n>>>0,r||ae(e,n,this.length);for(var o=this[e+--n],s=1;n>0&&(s*=256);)o+=this[e+--n]*s;return o};b.prototype.readUint8=b.prototype.readUInt8=function(e,n){return e=e>>>0,n||ae(e,1,this.length),this[e]};b.prototype.readUint16LE=b.prototype.readUInt16LE=function(e,n){return e=e>>>0,n||ae(e,2,this.length),this[e]|this[e+1]<<8};b.prototype.readUint16BE=b.prototype.readUInt16BE=function(e,n){return e=e>>>0,n||ae(e,2,this.length),this[e]<<8|this[e+1]};b.prototype.readUint32LE=b.prototype.readUInt32LE=function(e,n){return e=e>>>0,n||ae(e,4,this.length),(this[e]|this[e+1]<<8|this[e+2]<<16)+this[e+3]*16777216};b.prototype.readUint32BE=b.prototype.readUInt32BE=function(e,n){return e=e>>>0,n||ae(e,4,this.length),this[e]*16777216+(this[e+1]<<16|this[e+2]<<8|this[e+3])};b.prototype.readIntLE=function(e,n,r){e=e>>>0,n=n>>>0,r||ae(e,n,this.length);for(var o=this[e],s=1,i=0;++i<n&&(s*=256);)o+=this[e+i]*s;return s*=128,o>=s&&(o-=Math.pow(2,8*n)),o};b.prototype.readIntBE=function(e,n,r){e=e>>>0,n=n>>>0,r||ae(e,n,this.length);for(var o=n,s=1,i=this[e+--o];o>0&&(s*=256);)i+=this[e+--o]*s;return s*=128,i>=s&&(i-=Math.pow(2,8*n)),i};b.prototype.readInt8=function(e,n){return e=e>>>0,n||ae(e,1,this.length),this[e]&128?(255-this[e]+1)*-1:this[e]};b.prototype.readInt16LE=function(e,n){e=e>>>0,n||ae(e,2,this.length);var r=this[e]|this[e+1]<<8;return r&32768?r|4294901760:r};b.prototype.readInt16BE=function(e,n){e=e>>>0,n||ae(e,2,this.length);var r=this[e+1]|this[e]<<8;return r&32768?r|4294901760:r};b.prototype.readInt32LE=function(e,n){return e=e>>>0,n||ae(e,4,this.length),this[e]|this[e+1]<<8|this[e+2]<<16|this[e+3]<<24};b.prototype.readInt32BE=function(e,n){return e=e>>>0,n||ae(e,4,this.length),this[e]<<24|this[e+1]<<16|this[e+2]<<8|this[e+3]};b.prototype.readFloatLE=function(e,n){return e=e>>>0,n||ae(e,4,this.length),Ye.read(this,e,!0,23,4)};b.prototype.readFloatBE=function(e,n){return e=e>>>0,n||ae(e,4,this.length),Ye.read(this,e,!1,23,4)};b.prototype.readDoubleLE=function(e,n){return e=e>>>0,n||ae(e,8,this.length),Ye.read(this,e,!0,52,8)};b.prototype.readDoubleBE=function(e,n){return e=e>>>0,n||ae(e,8,this.length),Ye.read(this,e,!1,52,8)};function he(t,e,n,r,o,s){if(!b.isBuffer(t))throw new TypeError('"buffer" argument must be a Buffer instance');if(e>o||e<s)throw new RangeError('"value" argument is out of bounds');if(n+r>t.length)throw new RangeError("Index out of range")}b.prototype.writeUintLE=b.prototype.writeUIntLE=function(e,n,r,o){if(e=+e,n=n>>>0,r=r>>>0,!o){var s=Math.pow(2,8*r)-1;he(this,e,n,r,s,0)}var i=1,l=0;for(this[n]=e&255;++l<r&&(i*=256);)this[n+l]=e/i&255;return n+r};b.prototype.writeUintBE=b.prototype.writeUIntBE=function(e,n,r,o){if(e=+e,n=n>>>0,r=r>>>0,!o){var s=Math.pow(2,8*r)-1;he(this,e,n,r,s,0)}var i=r-1,l=1;for(this[n+i]=e&255;--i>=0&&(l*=256);)this[n+i]=e/l&255;return n+r};b.prototype.writeUint8=b.prototype.writeUInt8=function(e,n,r){return e=+e,n=n>>>0,r||he(this,e,n,1,255,0),this[n]=e&255,n+1};b.prototype.writeUint16LE=b.prototype.writeUInt16LE=function(e,n,r){return e=+e,n=n>>>0,r||he(this,e,n,2,65535,0),this[n]=e&255,this[n+1]=e>>>8,n+2};b.prototype.writeUint16BE=b.prototype.writeUInt16BE=function(e,n,r){return e=+e,n=n>>>0,r||he(this,e,n,2,65535,0),this[n]=e>>>8,this[n+1]=e&255,n+2};b.prototype.writeUint32LE=b.prototype.writeUInt32LE=function(e,n,r){return e=+e,n=n>>>0,r||he(this,e,n,4,4294967295,0),this[n+3]=e>>>24,this[n+2]=e>>>16,this[n+1]=e>>>8,this[n]=e&255,n+4};b.prototype.writeUint32BE=b.prototype.writeUInt32BE=function(e,n,r){return e=+e,n=n>>>0,r||he(this,e,n,4,4294967295,0),this[n]=e>>>24,this[n+1]=e>>>16,this[n+2]=e>>>8,this[n+3]=e&255,n+4};b.prototype.writeIntLE=function(e,n,r,o){if(e=+e,n=n>>>0,!o){var s=Math.pow(2,8*r-1);he(this,e,n,r,s-1,-s)}var i=0,l=1,a=0;for(this[n]=e&255;++i<r&&(l*=256);)e<0&&a===0&&this[n+i-1]!==0&&(a=1),this[n+i]=(e/l>>0)-a&255;return n+r};b.prototype.writeIntBE=function(e,n,r,o){if(e=+e,n=n>>>0,!o){var s=Math.pow(2,8*r-1);he(this,e,n,r,s-1,-s)}var i=r-1,l=1,a=0;for(this[n+i]=e&255;--i>=0&&(l*=256);)e<0&&a===0&&this[n+i+1]!==0&&(a=1),this[n+i]=(e/l>>0)-a&255;return n+r};b.prototype.writeInt8=function(e,n,r){return e=+e,n=n>>>0,r||he(this,e,n,1,127,-128),e<0&&(e=255+e+1),this[n]=e&255,n+1};b.prototype.writeInt16LE=function(e,n,r){return e=+e,n=n>>>0,r||he(this,e,n,2,32767,-32768),this[n]=e&255,this[n+1]=e>>>8,n+2};b.prototype.writeInt16BE=function(e,n,r){return e=+e,n=n>>>0,r||he(this,e,n,2,32767,-32768),this[n]=e>>>8,this[n+1]=e&255,n+2};b.prototype.writeInt32LE=function(e,n,r){return e=+e,n=n>>>0,r||he(this,e,n,4,2147483647,-2147483648),this[n]=e&255,this[n+1]=e>>>8,this[n+2]=e>>>16,this[n+3]=e>>>24,n+4};b.prototype.writeInt32BE=function(e,n,r){return e=+e,n=n>>>0,r||he(this,e,n,4,2147483647,-2147483648),e<0&&(e=4294967295+e+1),this[n]=e>>>24,this[n+1]=e>>>16,this[n+2]=e>>>8,this[n+3]=e&255,n+4};function xo(t,e,n,r,o,s){if(n+r>t.length)throw new RangeError("Index out of range");if(n<0)throw new RangeError("Index out of range")}function ko(t,e,n,r,o){return e=+e,n=n>>>0,o||xo(t,e,n,4,34028234663852886e22,-34028234663852886e22),Ye.write(t,e,n,r,23,4),n+4}b.prototype.writeFloatLE=function(e,n,r){return ko(this,e,n,!0,r)};b.prototype.writeFloatBE=function(e,n,r){return ko(this,e,n,!1,r)};function No(t,e,n,r,o){return e=+e,n=n>>>0,o||xo(t,e,n,8,17976931348623157e292,-17976931348623157e292),Ye.write(t,e,n,r,52,8),n+8}b.prototype.writeDoubleLE=function(e,n,r){return No(this,e,n,!0,r)};b.prototype.writeDoubleBE=function(e,n,r){return No(this,e,n,!1,r)};b.prototype.copy=function(e,n,r,o){if(!b.isBuffer(e))throw new TypeError("argument should be a Buffer");if(r||(r=0),!o&&o!==0&&(o=this.length),n>=e.length&&(n=e.length),n||(n=0),o>0&&o<r&&(o=r),o===r||e.length===0||this.length===0)return 0;if(n<0)throw new RangeError("targetStart out of bounds");if(r<0||r>=this.length)throw new RangeError("Index out of range");if(o<0)throw new RangeError("sourceEnd out of bounds");o>this.length&&(o=this.length),e.length-n<o-r&&(o=e.length-n+r);var s=o-r;return this===e&&typeof Uint8Array.prototype.copyWithin=="function"?this.copyWithin(n,r,o):Uint8Array.prototype.set.call(e,this.subarray(r,o),n),s};b.prototype.fill=function(e,n,r,o){if(typeof e=="string"){if(typeof n=="string"?(o=n,n=0,r=this.length):typeof r=="string"&&(o=r,r=this.length),o!==void 0&&typeof o!="string")throw new TypeError("encoding must be a string");if(typeof o=="string"&&!b.isEncoding(o))throw new TypeError("Unknown encoding: "+o);if(e.length===1){var s=e.charCodeAt(0);(o==="utf8"&&s<128||o==="latin1")&&(e=s)}}else typeof e=="number"?e=e&255:typeof e=="boolean"&&(e=Number(e));if(n<0||this.length<n||this.length<r)throw new RangeError("Out of range index");if(r<=n)return this;n=n>>>0,r=r===void 0?this.length:r>>>0,e||(e=0);var i;if(typeof e=="number")for(i=n;i<r;++i)this[i]=e;else{var l=b.isBuffer(e)?e:b.from(e,o),a=l.length;if(a===0)throw new TypeError('The value "'+e+'" is invalid for argument "value"');for(i=0;i<r-n;++i)this[i+n]=l[i%a]}return this};var dd=/[^+/0-9A-Za-z-_]/g;function ud(t){if(t=t.split("=")[0],t=t.trim().replace(dd,""),t.length<2)return"";for(;t.length%4!==0;)t=t+"=";return t}function nr(t,e){e=e||1/0;for(var n,r=t.length,o=null,s=[],i=0;i<r;++i){if(n=t.charCodeAt(i),n>55295&&n<57344){if(!o){if(n>56319){(e-=3)>-1&&s.push(239,191,189);continue}else if(i+1===r){(e-=3)>-1&&s.push(239,191,189);continue}o=n;continue}if(n<56320){(e-=3)>-1&&s.push(239,191,189),o=n;continue}n=(o-55296<<10|n-56320)+65536}else o&&(e-=3)>-1&&s.push(239,191,189);if(o=null,n<128){if((e-=1)<0)break;s.push(n)}else if(n<2048){if((e-=2)<0)break;s.push(n>>6|192,n&63|128)}else if(n<65536){if((e-=3)<0)break;s.push(n>>12|224,n>>6&63|128,n&63|128)}else if(n<1114112){if((e-=4)<0)break;s.push(n>>18|240,n>>12&63|128,n>>6&63|128,n&63|128)}else throw new Error("Invalid code point")}return s}function pd(t){for(var e=[],n=0;n<t.length;++n)e.push(t.charCodeAt(n)&255);return e}function fd(t,e){for(var n,r,o,s=[],i=0;i<t.length&&!((e-=2)<0);++i)n=t.charCodeAt(i),r=n>>8,o=n%256,s.push(o),s.push(r);return s}function Mo(t){return Xn.toByteArray(ud(t))}function Jt(t,e,n,r){for(var o=0;o<r&&!(o+n>=e.length||o>=t.length);++o)e[o+n]=t[o];return o}function Le(t,e){return t instanceof e||t!=null&&t.constructor!=null&&t.constructor.name!=null&&t.constructor.name===e.name}function sr(t){return t!==t}var hd=(function(){for(var t="0123456789abcdef",e=new Array(256),n=0;n<16;++n)for(var r=n*16,o=0;o<16;++o)e[r+o]=t[n]+t[o];return e})()});var Dt={};Ss(Dt,{ArtMethod:()=>Nt,ArtStackVisitor:()=>In,DVM_JNI_ENV_OFFSET_SELF:()=>Hr,HandleVector:()=>ut,VariableSizedHandleScope:()=>pt,backtrace:()=>zn,deoptimizeBootImage:()=>Hn,deoptimizeEverything:()=>Gn,deoptimizeMethod:()=>Bn,ensureClassInitialized:()=>Za,getAndroidApiLevel:()=>re,getAndroidVersion:()=>ft,getApi:()=>B,getArtClassSpec:()=>jn,getArtFieldSpec:()=>Pn,getArtMethodSpec:()=>Te,getArtThreadFromEnv:()=>Ft,getArtThreadSpec:()=>Ke,makeArtClassLoaderVisitor:()=>Vn,makeArtClassVisitor:()=>Un,makeMethodMangler:()=>Ol,makeObjectVisitorPredicate:()=>Zn,revertGlobalPatches:()=>Jn,translateMethod:()=>Rl,withAllArtThreadsSuspended:()=>Dn,withRunnableArtThread:()=>Se});var{pageSize:Wt,pointerSize:Ts}=Process,qt=class{constructor(e){this.sliceSize=e,this.slicesPerPage=Wt/e,this.pages=[],this.free=[]}allocateSlice(e,n){let r=e.near===void 0,o=n===1;if(r&&o){let s=this.free.pop();if(s!==void 0)return s}else if(n<Wt){let{free:s}=this,i=s.length,l=o?null:ptr(n-1);for(let a=0;a!==i;a++){let c=s[a],d=r||this._isSliceNear(c,e),p=o||c.and(l).isNull();if(d&&p)return s.splice(a,1)[0]}}return this._allocatePage(e)}_allocatePage(e){let n=Memory.alloc(Wt,e),{sliceSize:r,slicesPerPage:o}=this;for(let s=1;s!==o;s++){let i=n.add(s*r);this.free.push(i)}return this.pages.push(n),n}_isSliceNear(e,n){let r=e.add(this.sliceSize),{near:o,maxDistance:s}=n,i=Ir(o.sub(e)),l=Ir(o.sub(r));return i.compare(s)<=0&&l.compare(s)<=0}freeSlice(e){this.free.push(e)}};function Ir(t){let e=Ts===4?31:63,n=ptr(1).shl(e).not();return t.and(n)}function Kt(t){return new qt(t)}function ue(t,e){if(e!==0)throw new Error(t+" failed: "+e)}var Et={v1_0:805371904,v1_2:805372416},St={canTagObjects:1},{pointerSize:Is}=Process,As={exceptions:"propagate"};function Ne(t,e){this.handle=t,this.vm=e,this.vtable=t.readPointer()}Ne.prototype.deallocate=st(47,"int32",["pointer","pointer"],function(t,e){return t(this.handle,e)});Ne.prototype.getLoadedClasses=st(78,"int32",["pointer","pointer","pointer"],function(t,e,n){let r=t(this.handle,e,n);ue("EnvJvmti::getLoadedClasses",r)});Ne.prototype.iterateOverInstancesOfClass=st(112,"int32",["pointer","pointer","int","pointer","pointer"],function(t,e,n,r,o){let s=t(this.handle,e,n,r,o);ue("EnvJvmti::iterateOverInstancesOfClass",s)});Ne.prototype.getObjectsWithTags=st(114,"int32",["pointer","int","pointer","pointer","pointer","pointer"],function(t,e,n,r,o,s){let i=t(this.handle,e,n,r,o,s);ue("EnvJvmti::getObjectsWithTags",i)});Ne.prototype.addCapabilities=st(142,"int32",["pointer","pointer"],function(t,e){return t(this.handle,e)});function st(t,e,n,r){let o=null;return function(){o===null&&(o=new NativeFunction(this.vtable.add((t-1)*Is).readPointer(),e,n,As));let s=[o];return s=s.concat.apply(s,arguments),r.apply(this,s)}}function je(t,e,{limit:n}){let r=t,o=null;for(let s=0;s!==n;s++){let i=Instruction.parse(r),l=e(i,o);if(l!==null)return l;r=i.next,o=i}return null}function de(t){let e=null,n=!1;return function(...r){return n||(e=t(...r),n=!0),e}}function y(t,e){this.handle=t,this.vm=e}var wt=Process.pointerSize,Pe=2,Ls=28,xs=34,ks=37,Ns=40,Ms=43,Os=46,Rs=49,js=52,Ps=55,Fs=58,Ds=61,Us=64,Vs=67,zs=70,Js=73,Bs=76,Gs=79,Hs=82,$s=85,Zs=88,Ws=91,qs=114,Ks=117,Qs=120,Ys=123,Xs=126,ei=129,ti=132,ni=135,ri=138,oi=141,si=95,ii=96,ai=97,li=98,ci=99,di=100,ui=101,pi=102,fi=103,hi=104,_i=105,mi=106,gi=107,bi=108,yi=109,vi=110,Ei=111,Si=112,wi=145,Ci=146,Ti=147,Ii=148,Ai=149,Li=150,xi=151,ki=152,Ni=153,Mi=154,Oi=155,Ri=156,ji=157,Pi=158,Fi=159,Di=160,Ui=161,Vi=162,zi={pointer:xs,uint8:ks,int8:Ns,uint16:Ms,int16:Os,int32:Rs,int64:js,float:Ps,double:Fs,void:Ds},Ji={pointer:Us,uint8:Vs,int8:zs,uint16:Js,int16:Bs,int32:Gs,int64:Hs,float:$s,double:Zs,void:Ws},Bi={pointer:qs,uint8:Ks,int8:Qs,uint16:Ys,int16:Xs,int32:ei,int64:ti,float:ni,double:ri,void:oi},Gi={pointer:si,uint8:ii,int8:ai,uint16:li,int16:ci,int32:di,int64:ui,float:pi,double:fi},Hi={pointer:hi,uint8:_i,int8:mi,uint16:gi,int16:bi,int32:yi,int64:vi,float:Ei,double:Si},$i={pointer:wi,uint8:Ci,int8:Ti,uint16:Ii,int16:Ai,int32:Li,int64:xi,float:ki,double:Ni},Zi={pointer:Mi,uint8:Oi,int8:Ri,uint16:ji,int16:Pi,int32:Fi,int64:Di,float:Ui,double:Vi},Lr={exceptions:"propagate"},Qt=null,cn=[];y.dispose=function(t){cn.forEach(t.deleteGlobalRef,t),cn=[]};function Ue(t){return cn.push(t),t}function Ct(t){return Qt===null&&(Qt=t.handle.readPointer()),Qt}function x(t,e,n,r){let o=null;return function(){o===null&&(o=new NativeFunction(Ct(this).add(t*wt).readPointer(),e,n,Lr));let s=[o];return s=s.concat.apply(s,arguments),r.apply(this,s)}}y.prototype.getVersion=x(4,"int32",["pointer"],function(t){return t(this.handle)});y.prototype.findClass=x(6,"pointer",["pointer","pointer"],function(t,e){let n=t(this.handle,Memory.allocUtf8String(e));return this.throwIfExceptionPending(),n});y.prototype.throwIfExceptionPending=function(){let t=this.exceptionOccurred();if(t.isNull())return;this.exceptionClear();let e=this.newGlobalRef(t);this.deleteLocalRef(t);let n=this.vaMethod("pointer",[])(this.handle,e,this.javaLangObject().toString),r=this.stringFromJni(n);this.deleteLocalRef(n);let o=new Error(r);throw o.$h=e,Script.bindWeak(o,Wi(this.vm,e)),o};function Wi(t,e){return function(){t.perform(n=>{n.deleteGlobalRef(e)})}}y.prototype.fromReflectedMethod=x(7,"pointer",["pointer","pointer"],function(t,e){return t(this.handle,e)});y.prototype.fromReflectedField=x(8,"pointer",["pointer","pointer"],function(t,e){return t(this.handle,e)});y.prototype.toReflectedMethod=x(9,"pointer",["pointer","pointer","pointer","uint8"],function(t,e,n,r){return t(this.handle,e,n,r)});y.prototype.getSuperclass=x(10,"pointer",["pointer","pointer"],function(t,e){return t(this.handle,e)});y.prototype.isAssignableFrom=x(11,"uint8",["pointer","pointer","pointer"],function(t,e,n){return!!t(this.handle,e,n)});y.prototype.toReflectedField=x(12,"pointer",["pointer","pointer","pointer","uint8"],function(t,e,n,r){return t(this.handle,e,n,r)});y.prototype.throw=x(13,"int32",["pointer","pointer"],function(t,e){return t(this.handle,e)});y.prototype.exceptionOccurred=x(15,"pointer",["pointer"],function(t){return t(this.handle)});y.prototype.exceptionDescribe=x(16,"void",["pointer"],function(t){t(this.handle)});y.prototype.exceptionClear=x(17,"void",["pointer"],function(t){t(this.handle)});y.prototype.pushLocalFrame=x(19,"int32",["pointer","int32"],function(t,e){return t(this.handle,e)});y.prototype.popLocalFrame=x(20,"pointer",["pointer","pointer"],function(t,e){return t(this.handle,e)});y.prototype.newGlobalRef=x(21,"pointer",["pointer","pointer"],function(t,e){return t(this.handle,e)});y.prototype.deleteGlobalRef=x(22,"void",["pointer","pointer"],function(t,e){t(this.handle,e)});y.prototype.deleteLocalRef=x(23,"void",["pointer","pointer"],function(t,e){t(this.handle,e)});y.prototype.isSameObject=x(24,"uint8",["pointer","pointer","pointer"],function(t,e,n){return!!t(this.handle,e,n)});y.prototype.newLocalRef=x(25,"pointer",["pointer","pointer"],function(t,e){return t(this.handle,e)});y.prototype.allocObject=x(27,"pointer",["pointer","pointer"],function(t,e){return t(this.handle,e)});y.prototype.getObjectClass=x(31,"pointer",["pointer","pointer"],function(t,e){return t(this.handle,e)});y.prototype.isInstanceOf=x(32,"uint8",["pointer","pointer","pointer"],function(t,e,n){return!!t(this.handle,e,n)});y.prototype.getMethodId=x(33,"pointer",["pointer","pointer","pointer","pointer"],function(t,e,n,r){return t(this.handle,e,Memory.allocUtf8String(n),Memory.allocUtf8String(r))});y.prototype.getFieldId=x(94,"pointer",["pointer","pointer","pointer","pointer"],function(t,e,n,r){return t(this.handle,e,Memory.allocUtf8String(n),Memory.allocUtf8String(r))});y.prototype.getIntField=x(100,"int32",["pointer","pointer","pointer"],function(t,e,n){return t(this.handle,e,n)});y.prototype.getStaticMethodId=x(113,"pointer",["pointer","pointer","pointer","pointer"],function(t,e,n,r){return t(this.handle,e,Memory.allocUtf8String(n),Memory.allocUtf8String(r))});y.prototype.getStaticFieldId=x(144,"pointer",["pointer","pointer","pointer","pointer"],function(t,e,n,r){return t(this.handle,e,Memory.allocUtf8String(n),Memory.allocUtf8String(r))});y.prototype.getStaticIntField=x(150,"int32",["pointer","pointer","pointer"],function(t,e,n){return t(this.handle,e,n)});y.prototype.getStringLength=x(164,"int32",["pointer","pointer"],function(t,e){return t(this.handle,e)});y.prototype.getStringChars=x(165,"pointer",["pointer","pointer","pointer"],function(t,e){return t(this.handle,e,NULL)});y.prototype.releaseStringChars=x(166,"void",["pointer","pointer","pointer"],function(t,e,n){t(this.handle,e,n)});y.prototype.newStringUtf=x(167,"pointer",["pointer","pointer"],function(t,e){let n=Memory.allocUtf8String(e);return t(this.handle,n)});y.prototype.getStringUtfChars=x(169,"pointer",["pointer","pointer","pointer"],function(t,e){return t(this.handle,e,NULL)});y.prototype.releaseStringUtfChars=x(170,"void",["pointer","pointer","pointer"],function(t,e,n){t(this.handle,e,n)});y.prototype.getArrayLength=x(171,"int32",["pointer","pointer"],function(t,e){return t(this.handle,e)});y.prototype.newObjectArray=x(172,"pointer",["pointer","int32","pointer","pointer"],function(t,e,n,r){return t(this.handle,e,n,r)});y.prototype.getObjectArrayElement=x(173,"pointer",["pointer","pointer","int32"],function(t,e,n){return t(this.handle,e,n)});y.prototype.setObjectArrayElement=x(174,"void",["pointer","pointer","int32","pointer"],function(t,e,n,r){t(this.handle,e,n,r)});y.prototype.newBooleanArray=x(175,"pointer",["pointer","int32"],function(t,e){return t(this.handle,e)});y.prototype.newByteArray=x(176,"pointer",["pointer","int32"],function(t,e){return t(this.handle,e)});y.prototype.newCharArray=x(177,"pointer",["pointer","int32"],function(t,e){return t(this.handle,e)});y.prototype.newShortArray=x(178,"pointer",["pointer","int32"],function(t,e){return t(this.handle,e)});y.prototype.newIntArray=x(179,"pointer",["pointer","int32"],function(t,e){return t(this.handle,e)});y.prototype.newLongArray=x(180,"pointer",["pointer","int32"],function(t,e){return t(this.handle,e)});y.prototype.newFloatArray=x(181,"pointer",["pointer","int32"],function(t,e){return t(this.handle,e)});y.prototype.newDoubleArray=x(182,"pointer",["pointer","int32"],function(t,e){return t(this.handle,e)});y.prototype.getBooleanArrayElements=x(183,"pointer",["pointer","pointer","pointer"],function(t,e){return t(this.handle,e,NULL)});y.prototype.getByteArrayElements=x(184,"pointer",["pointer","pointer","pointer"],function(t,e){return t(this.handle,e,NULL)});y.prototype.getCharArrayElements=x(185,"pointer",["pointer","pointer","pointer"],function(t,e){return t(this.handle,e,NULL)});y.prototype.getShortArrayElements=x(186,"pointer",["pointer","pointer","pointer"],function(t,e){return t(this.handle,e,NULL)});y.prototype.getIntArrayElements=x(187,"pointer",["pointer","pointer","pointer"],function(t,e){return t(this.handle,e,NULL)});y.prototype.getLongArrayElements=x(188,"pointer",["pointer","pointer","pointer"],function(t,e){return t(this.handle,e,NULL)});y.prototype.getFloatArrayElements=x(189,"pointer",["pointer","pointer","pointer"],function(t,e){return t(this.handle,e,NULL)});y.prototype.getDoubleArrayElements=x(190,"pointer",["pointer","pointer","pointer"],function(t,e){return t(this.handle,e,NULL)});y.prototype.releaseBooleanArrayElements=x(191,"pointer",["pointer","pointer","pointer","int32"],function(t,e,n){t(this.handle,e,n,Pe)});y.prototype.releaseByteArrayElements=x(192,"pointer",["pointer","pointer","pointer","int32"],function(t,e,n){t(this.handle,e,n,Pe)});y.prototype.releaseCharArrayElements=x(193,"pointer",["pointer","pointer","pointer","int32"],function(t,e,n){t(this.handle,e,n,Pe)});y.prototype.releaseShortArrayElements=x(194,"pointer",["pointer","pointer","pointer","int32"],function(t,e,n){t(this.handle,e,n,Pe)});y.prototype.releaseIntArrayElements=x(195,"pointer",["pointer","pointer","pointer","int32"],function(t,e,n){t(this.handle,e,n,Pe)});y.prototype.releaseLongArrayElements=x(196,"pointer",["pointer","pointer","pointer","int32"],function(t,e,n){t(this.handle,e,n,Pe)});y.prototype.releaseFloatArrayElements=x(197,"pointer",["pointer","pointer","pointer","int32"],function(t,e,n){t(this.handle,e,n,Pe)});y.prototype.releaseDoubleArrayElements=x(198,"pointer",["pointer","pointer","pointer","int32"],function(t,e,n){t(this.handle,e,n,Pe)});y.prototype.getByteArrayRegion=x(200,"void",["pointer","pointer","int","int","pointer"],function(t,e,n,r,o){t(this.handle,e,n,r,o)});y.prototype.setBooleanArrayRegion=x(207,"void",["pointer","pointer","int32","int32","pointer"],function(t,e,n,r,o){t(this.handle,e,n,r,o)});y.prototype.setByteArrayRegion=x(208,"void",["pointer","pointer","int32","int32","pointer"],function(t,e,n,r,o){t(this.handle,e,n,r,o)});y.prototype.setCharArrayRegion=x(209,"void",["pointer","pointer","int32","int32","pointer"],function(t,e,n,r,o){t(this.handle,e,n,r,o)});y.prototype.setShortArrayRegion=x(210,"void",["pointer","pointer","int32","int32","pointer"],function(t,e,n,r,o){t(this.handle,e,n,r,o)});y.prototype.setIntArrayRegion=x(211,"void",["pointer","pointer","int32","int32","pointer"],function(t,e,n,r,o){t(this.handle,e,n,r,o)});y.prototype.setLongArrayRegion=x(212,"void",["pointer","pointer","int32","int32","pointer"],function(t,e,n,r,o){t(this.handle,e,n,r,o)});y.prototype.setFloatArrayRegion=x(213,"void",["pointer","pointer","int32","int32","pointer"],function(t,e,n,r,o){t(this.handle,e,n,r,o)});y.prototype.setDoubleArrayRegion=x(214,"void",["pointer","pointer","int32","int32","pointer"],function(t,e,n,r,o){t(this.handle,e,n,r,o)});y.prototype.registerNatives=x(215,"int32",["pointer","pointer","pointer","int32"],function(t,e,n,r){return t(this.handle,e,n,r)});y.prototype.monitorEnter=x(217,"int32",["pointer","pointer"],function(t,e){return t(this.handle,e)});y.prototype.monitorExit=x(218,"int32",["pointer","pointer"],function(t,e){return t(this.handle,e)});y.prototype.getDirectBufferAddress=x(230,"pointer",["pointer","pointer"],function(t,e){return t(this.handle,e)});y.prototype.getObjectRefType=x(232,"int32",["pointer","pointer"],function(t,e){return t(this.handle,e)});var Ar=new Map;function Tt(t,e,n,r){return un(this,"p",Ki,t,e,n,r)}function dn(t,e,n,r){return un(this,"v",Qi,t,e,n,r)}function qi(t,e,n,r){return un(this,"n",Yi,t,e,n,r)}function un(t,e,n,r,o,s,i){if(i!==void 0)return n(t,r,o,s,i);let l=[r,e,o].concat(s).join("|"),a=Ar.get(l);return a===void 0&&(a=n(t,r,o,s,Lr),Ar.set(l,a)),a}function Ki(t,e,n,r,o){return new NativeFunction(Ct(t).add(e*wt).readPointer(),n,["pointer","pointer","pointer"].concat(r),o)}function Qi(t,e,n,r,o){return new NativeFunction(Ct(t).add(e*wt).readPointer(),n,["pointer","pointer","pointer","..."].concat(r),o)}function Yi(t,e,n,r,o){return new NativeFunction(Ct(t).add(e*wt).readPointer(),n,["pointer","pointer","pointer","pointer","..."].concat(r),o)}y.prototype.constructor=function(t,e){return dn.call(this,Ls,"pointer",t,e)};y.prototype.vaMethod=function(t,e,n){let r=zi[t];if(r===void 0)throw new Error("Unsupported type: "+t);return dn.call(this,r,t,e,n)};y.prototype.nonvirtualVaMethod=function(t,e,n){let r=Ji[t];if(r===void 0)throw new Error("Unsupported type: "+t);return qi.call(this,r,t,e,n)};y.prototype.staticVaMethod=function(t,e,n){let r=Bi[t];if(r===void 0)throw new Error("Unsupported type: "+t);return dn.call(this,r,t,e,n)};y.prototype.getField=function(t){let e=Gi[t];if(e===void 0)throw new Error("Unsupported type: "+t);return Tt.call(this,e,t,[])};y.prototype.getStaticField=function(t){let e=$i[t];if(e===void 0)throw new Error("Unsupported type: "+t);return Tt.call(this,e,t,[])};y.prototype.setField=function(t){let e=Hi[t];if(e===void 0)throw new Error("Unsupported type: "+t);return Tt.call(this,e,"void",[t])};y.prototype.setStaticField=function(t){let e=Zi[t];if(e===void 0)throw new Error("Unsupported type: "+t);return Tt.call(this,e,"void",[t])};var Yt=null;y.prototype.javaLangClass=function(){if(Yt===null){let t=this.findClass("java/lang/Class");try{let e=this.getMethodId.bind(this,t);Yt={handle:Ue(this.newGlobalRef(t)),getName:e("getName","()Ljava/lang/String;"),getSimpleName:e("getSimpleName","()Ljava/lang/String;"),getGenericSuperclass:e("getGenericSuperclass","()Ljava/lang/reflect/Type;"),getDeclaredConstructors:e("getDeclaredConstructors","()[Ljava/lang/reflect/Constructor;"),getDeclaredMethods:e("getDeclaredMethods","()[Ljava/lang/reflect/Method;"),getDeclaredFields:e("getDeclaredFields","()[Ljava/lang/reflect/Field;"),isArray:e("isArray","()Z"),isPrimitive:e("isPrimitive","()Z"),isInterface:e("isInterface","()Z"),getComponentType:e("getComponentType","()Ljava/lang/Class;")}}finally{this.deleteLocalRef(t)}}return Yt};var Xt=null;y.prototype.javaLangObject=function(){if(Xt===null){let t=this.findClass("java/lang/Object");try{let e=this.getMethodId.bind(this,t);Xt={handle:Ue(this.newGlobalRef(t)),toString:e("toString","()Ljava/lang/String;"),getClass:e("getClass","()Ljava/lang/Class;")}}finally{this.deleteLocalRef(t)}}return Xt};var en=null;y.prototype.javaLangReflectConstructor=function(){if(en===null){let t=this.findClass("java/lang/reflect/Constructor");try{en={getGenericParameterTypes:this.getMethodId(t,"getGenericParameterTypes","()[Ljava/lang/reflect/Type;")}}finally{this.deleteLocalRef(t)}}return en};var tn=null;y.prototype.javaLangReflectMethod=function(){if(tn===null){let t=this.findClass("java/lang/reflect/Method");try{let e=this.getMethodId.bind(this,t);tn={getName:e("getName","()Ljava/lang/String;"),getGenericParameterTypes:e("getGenericParameterTypes","()[Ljava/lang/reflect/Type;"),getParameterTypes:e("getParameterTypes","()[Ljava/lang/Class;"),getGenericReturnType:e("getGenericReturnType","()Ljava/lang/reflect/Type;"),getGenericExceptionTypes:e("getGenericExceptionTypes","()[Ljava/lang/reflect/Type;"),getModifiers:e("getModifiers","()I"),isVarArgs:e("isVarArgs","()Z")}}finally{this.deleteLocalRef(t)}}return tn};var nn=null;y.prototype.javaLangReflectField=function(){if(nn===null){let t=this.findClass("java/lang/reflect/Field");try{let e=this.getMethodId.bind(this,t);nn={getName:e("getName","()Ljava/lang/String;"),getType:e("getType","()Ljava/lang/Class;"),getGenericType:e("getGenericType","()Ljava/lang/reflect/Type;"),getModifiers:e("getModifiers","()I"),toString:e("toString","()Ljava/lang/String;")}}finally{this.deleteLocalRef(t)}}return nn};var rn=null;y.prototype.javaLangReflectTypeVariable=function(){if(rn===null){let t=this.findClass("java/lang/reflect/TypeVariable");try{let e=this.getMethodId.bind(this,t);rn={handle:Ue(this.newGlobalRef(t)),getName:e("getName","()Ljava/lang/String;"),getBounds:e("getBounds","()[Ljava/lang/reflect/Type;"),getGenericDeclaration:e("getGenericDeclaration","()Ljava/lang/reflect/GenericDeclaration;")}}finally{this.deleteLocalRef(t)}}return rn};var on=null;y.prototype.javaLangReflectWildcardType=function(){if(on===null){let t=this.findClass("java/lang/reflect/WildcardType");try{let e=this.getMethodId.bind(this,t);on={handle:Ue(this.newGlobalRef(t)),getLowerBounds:e("getLowerBounds","()[Ljava/lang/reflect/Type;"),getUpperBounds:e("getUpperBounds","()[Ljava/lang/reflect/Type;")}}finally{this.deleteLocalRef(t)}}return on};var sn=null;y.prototype.javaLangReflectGenericArrayType=function(){if(sn===null){let t=this.findClass("java/lang/reflect/GenericArrayType");try{sn={handle:Ue(this.newGlobalRef(t)),getGenericComponentType:this.getMethodId(t,"getGenericComponentType","()Ljava/lang/reflect/Type;")}}finally{this.deleteLocalRef(t)}}return sn};var an=null;y.prototype.javaLangReflectParameterizedType=function(){if(an===null){let t=this.findClass("java/lang/reflect/ParameterizedType");try{let e=this.getMethodId.bind(this,t);an={handle:Ue(this.newGlobalRef(t)),getActualTypeArguments:e("getActualTypeArguments","()[Ljava/lang/reflect/Type;"),getRawType:e("getRawType","()Ljava/lang/reflect/Type;"),getOwnerType:e("getOwnerType","()Ljava/lang/reflect/Type;")}}finally{this.deleteLocalRef(t)}}return an};var ln=null;y.prototype.javaLangString=function(){if(ln===null){let t=this.findClass("java/lang/String");try{ln={handle:Ue(this.newGlobalRef(t))}}finally{this.deleteLocalRef(t)}}return ln};y.prototype.getClassName=function(t){let e=this.vaMethod("pointer",[])(this.handle,t,this.javaLangClass().getName);try{return this.stringFromJni(e)}finally{this.deleteLocalRef(e)}};y.prototype.getObjectClassName=function(t){let e=this.getObjectClass(t);try{return this.getClassName(e)}finally{this.deleteLocalRef(e)}};y.prototype.getActualTypeArgument=function(t){let e=this.vaMethod("pointer",[])(this.handle,t,this.javaLangReflectParameterizedType().getActualTypeArguments);if(this.throwIfExceptionPending(),!e.isNull())try{return this.getTypeNameFromFirstTypeElement(e)}finally{this.deleteLocalRef(e)}};y.prototype.getTypeNameFromFirstTypeElement=function(t){if(this.getArrayLength(t)>0){let n=this.getObjectArrayElement(t,0);try{return this.getTypeName(n)}finally{this.deleteLocalRef(n)}}else return"java.lang.Object"};y.prototype.getTypeName=function(t,e){let n=this.vaMethod("pointer",[]);if(this.isInstanceOf(t,this.javaLangClass().handle))return this.getClassName(t);if(this.isInstanceOf(t,this.javaLangReflectGenericArrayType().handle))return this.getArrayTypeName(t);if(this.isInstanceOf(t,this.javaLangReflectParameterizedType().handle)){let r=n(this.handle,t,this.javaLangReflectParameterizedType().getRawType);this.throwIfExceptionPending();let o;try{o=this.getTypeName(r)}finally{this.deleteLocalRef(r)}return e&&(o+="<"+this.getActualTypeArgument(t)+">"),o}else return this.isInstanceOf(t,this.javaLangReflectTypeVariable().handle)||this.isInstanceOf(t,this.javaLangReflectWildcardType().handle),"java.lang.Object"};y.prototype.getArrayTypeName=function(t){let e=this.vaMethod("pointer",[]);if(this.isInstanceOf(t,this.javaLangClass().handle))return this.getClassName(t);if(this.isInstanceOf(t,this.javaLangReflectGenericArrayType().handle)){let n=e(this.handle,t,this.javaLangReflectGenericArrayType().getGenericComponentType);this.throwIfExceptionPending();try{return"[L"+this.getTypeName(n)+";"}finally{this.deleteLocalRef(n)}}else return"[Ljava.lang.Object;"};y.prototype.stringFromJni=function(t){let e=this.getStringChars(t);if(e.isNull())throw new Error("Unable to access string");try{let n=this.getStringLength(t);return e.readUtf16String(n)}finally{this.releaseStringChars(t,e)}};var xr=65542,We=Process.pointerSize,pn=Process.getCurrentThreadId(),Ve=new Map,it=new Map;function Ce(t){let e=t.vm,n=null,r=null,o=null;function s(){let l=e.readPointer(),a={exceptions:"propagate"};n=new NativeFunction(l.add(4*We).readPointer(),"int32",["pointer","pointer","pointer"],a),r=new NativeFunction(l.add(5*We).readPointer(),"int32",["pointer"],a),o=new NativeFunction(l.add(6*We).readPointer(),"int32",["pointer","pointer","int32"],a)}this.handle=e,this.perform=function(l){let a=Process.getCurrentThreadId(),c=i(a);if(c!==null)return l(c);let d=this._tryGetEnv(),p=d!==null;p||(d=this.attachCurrentThread(),Ve.set(a,!0)),this.link(a,d);try{return l(d)}finally{let f=a===pn;if(f||this.unlink(a),!p&&!f){let u=Ve.get(a);Ve.delete(a),u&&this.detachCurrentThread()}}},this.attachCurrentThread=function(){let l=Memory.alloc(We);return ue("VM::AttachCurrentThread",n(e,l,NULL)),new y(l.readPointer(),this)},this.detachCurrentThread=function(){ue("VM::DetachCurrentThread",r(e))},this.preventDetachDueToClassLoader=function(){let l=Process.getCurrentThreadId();Ve.has(l)&&Ve.set(l,!1)},this.getEnv=function(){let l=i(Process.getCurrentThreadId());if(l!==null)return l;let a=Memory.alloc(We),c=o(e,a,xr);if(c===-2)throw new Error("Current thread is not attached to the Java VM; please move this code inside a Java.perform() callback");return ue("VM::GetEnv",c),new y(a.readPointer(),this)},this.tryGetEnv=function(){let l=i(Process.getCurrentThreadId());return l!==null?l:this._tryGetEnv()},this._tryGetEnv=function(){let l=this.tryGetEnvHandle(xr);return l===null?null:new y(l,this)},this.tryGetEnvHandle=function(l){let a=Memory.alloc(We);return o(e,a,l)!==0?null:a.readPointer()},this.makeHandleDestructor=function(l){return()=>{this.perform(a=>{a.deleteGlobalRef(l)})}},this.link=function(l,a){let c=it.get(l);c===void 0?it.set(l,[a,1]):c[1]++},this.unlink=function(l){let a=it.get(l);a[1]===1?it.delete(l):a[1]--};function i(l){let a=it.get(l);return a===void 0?null:a[0]}s.call(this)}Ce.dispose=function(t){Ve.get(pn)===!0&&(Ve.delete(pn),t.detachCurrentThread())};var Xi=4,C=Process.pointerSize,{readU32:ea,readPointer:ta,writeU32:na,writePointer:ra}=NativePointer.prototype,oa=1,sa=8,ia=16,xt=256,aa=524288,la=2097152,Gr=1073741824,ca=524288,da=134217728,kr=1048576,ua=2097152,pa=268435456,fa=268435456,ha=0,Sn=3,wn=5,On=ptr(1).not(),_a=2147467263,ma=4294963200,Pt=17*C,ga=18*C,Hr=12,ba=112,ya=116,va=0,hn=56,Nr=4,Ea=8,Sa=10,wa=12,Ca=14,Ta=28,Ia=36,Aa=0,La=1,xa=2,ka=3,Na=4,Ma=5,Oa=6,Ra=7,Mr=2147483648,ja=28,dt=3*C,Pa=3*C,Fa=1,Da=1,$r=de(qa),Ua=de(ol),Te=de(il),Ke=de(al),Va=de(ll),za=de(ml),ft=de(pl),Zr=de(fl),re=de(hl),Ja=de(vl),Ba=Process.arch==="ia32"?oc:rc,q={exceptions:"propagate"},at={},_n=null,mn=null,Wr=null,ce=null,Rn=[],kt=new Map,qr=[],gn=null,Or=0,Rr=!1,jr=!1,lt=null,Ga=[],bn=null,It=null;function B(){return _n===null&&(_n=Ha()),_n}function Ha(){let t=Process.enumerateModules().filter(u=>/^lib(art|dvm).so$/.test(u.name)).filter(u=>!/\/system\/fake-libs/.test(u.path));if(t.length===0)return null;let e=t[0],n=e.name.indexOf("art")!==-1?"art":"dalvik",r=n==="art",o={module:e,find(u){let{module:_}=this,h=_.findExportByName(u);return h===null&&(h=_.findSymbolByName(u)),h},flavor:n,addLocalReference:null};o.isApiLevel34OrApexEquivalent=r&&(o.find("_ZN3art7AppInfo29GetPrimaryApkReferenceProfileEv")!==null||o.find("_ZN3art6Thread15RunFlipFunctionEPS0_")!==null);let s=r?{functions:{JNI_GetCreatedJavaVMs:["JNI_GetCreatedJavaVMs","int",["pointer","int","pointer"]],artInterpreterToCompiledCodeBridge:function(u){this.artInterpreterToCompiledCodeBridge=u},_ZN3art9JavaVMExt12AddGlobalRefEPNS_6ThreadENS_6ObjPtrINS_6mirror6ObjectEEE:["art::JavaVMExt::AddGlobalRef","pointer",["pointer","pointer","pointer"]],_ZN3art9JavaVMExt12AddGlobalRefEPNS_6ThreadEPNS_6mirror6ObjectE:["art::JavaVMExt::AddGlobalRef","pointer",["pointer","pointer","pointer"]],_ZN3art17ReaderWriterMutex13ExclusiveLockEPNS_6ThreadE:["art::ReaderWriterMutex::ExclusiveLock","void",["pointer","pointer"]],_ZN3art17ReaderWriterMutex15ExclusiveUnlockEPNS_6ThreadE:["art::ReaderWriterMutex::ExclusiveUnlock","void",["pointer","pointer"]],_ZN3art22IndirectReferenceTable3AddEjPNS_6mirror6ObjectE:function(u){this["art::IndirectReferenceTable::Add"]=new NativeFunction(u,"pointer",["pointer","uint","pointer"],q)},_ZN3art22IndirectReferenceTable3AddENS_15IRTSegmentStateENS_6ObjPtrINS_6mirror6ObjectEEE:function(u){this["art::IndirectReferenceTable::Add"]=new NativeFunction(u,"pointer",["pointer","uint","pointer"],q)},_ZN3art9JavaVMExt12DecodeGlobalEPv:function(u){let _;re()>=26?_=Ba(u,["pointer","pointer"]):_=new NativeFunction(u,"pointer",["pointer","pointer"],q),this["art::JavaVMExt::DecodeGlobal"]=function(h,g,m){return _(h,m)}},_ZN3art9JavaVMExt12DecodeGlobalEPNS_6ThreadEPv:["art::JavaVMExt::DecodeGlobal","pointer",["pointer","pointer","pointer"]],_ZNK3art6Thread19DecodeGlobalJObjectEP8_jobject:["art::Thread::DecodeJObject","pointer",["pointer","pointer"]],_ZNK3art6Thread13DecodeJObjectEP8_jobject:["art::Thread::DecodeJObject","pointer",["pointer","pointer"]],_ZN3art10ThreadList10SuspendAllEPKcb:["art::ThreadList::SuspendAll","void",["pointer","pointer","bool"]],_ZN3art10ThreadList10SuspendAllEv:function(u){let _=new NativeFunction(u,"void",["pointer"],q);this["art::ThreadList::SuspendAll"]=function(h,g,m){return _(h)}},_ZN3art10ThreadList9ResumeAllEv:["art::ThreadList::ResumeAll","void",["pointer"]],_ZN3art11ClassLinker12VisitClassesEPNS_12ClassVisitorE:["art::ClassLinker::VisitClasses","void",["pointer","pointer"]],_ZN3art11ClassLinker12VisitClassesEPFbPNS_6mirror5ClassEPvES4_:function(u){let _=new NativeFunction(u,"void",["pointer","pointer","pointer"],q);this["art::ClassLinker::VisitClasses"]=function(h,g){_(h,g,NULL)}},_ZNK3art11ClassLinker17VisitClassLoadersEPNS_18ClassLoaderVisitorE:["art::ClassLinker::VisitClassLoaders","void",["pointer","pointer"]],_ZN3art2gc4Heap12VisitObjectsEPFvPNS_6mirror6ObjectEPvES5_:["art::gc::Heap::VisitObjects","void",["pointer","pointer","pointer"]],_ZN3art2gc4Heap12GetInstancesERNS_24VariableSizedHandleScopeENS_6HandleINS_6mirror5ClassEEEiRNSt3__16vectorINS4_INS5_6ObjectEEENS8_9allocatorISB_EEEE:["art::gc::Heap::GetInstances","void",["pointer","pointer","pointer","int","pointer"]],_ZN3art2gc4Heap12GetInstancesERNS_24VariableSizedHandleScopeENS_6HandleINS_6mirror5ClassEEEbiRNSt3__16vectorINS4_INS5_6ObjectEEENS8_9allocatorISB_EEEE:function(u){let _=new NativeFunction(u,"void",["pointer","pointer","pointer","bool","int","pointer"],q);this["art::gc::Heap::GetInstances"]=function(h,g,m,E,I){_(h,g,m,0,E,I)}},_ZN3art12StackVisitorC2EPNS_6ThreadEPNS_7ContextENS0_13StackWalkKindEjb:["art::StackVisitor::StackVisitor","void",["pointer","pointer","pointer","uint","uint","bool"]],_ZN3art12StackVisitorC2EPNS_6ThreadEPNS_7ContextENS0_13StackWalkKindEmb:["art::StackVisitor::StackVisitor","void",["pointer","pointer","pointer","uint","size_t","bool"]],_ZN3art12StackVisitor9WalkStackILNS0_16CountTransitionsE0EEEvb:["art::StackVisitor::WalkStack","void",["pointer","bool"]],_ZNK3art12StackVisitor9GetMethodEv:["art::StackVisitor::GetMethod","pointer",["pointer"]],_ZNK3art12StackVisitor16DescribeLocationEv:function(u){this["art::StackVisitor::DescribeLocation"]=Lt(u,["pointer"])},_ZNK3art12StackVisitor24GetCurrentQuickFrameInfoEv:function(u){this["art::StackVisitor::GetCurrentQuickFrameInfo"]=yl(u)},_ZN3art6Thread18GetLongJumpContextEv:["art::Thread::GetLongJumpContext","pointer",["pointer"]],_ZN3art6mirror5Class13GetDescriptorEPNSt3__112basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEE:function(u){this["art::mirror::Class::GetDescriptor"]=u},_ZN3art6mirror5Class11GetLocationEv:function(u){this["art::mirror::Class::GetLocation"]=Lt(u,["pointer"])},_ZN3art9ArtMethod12PrettyMethodEb:function(u){this["art::ArtMethod::PrettyMethod"]=Lt(u,["pointer","bool"])},_ZN3art12PrettyMethodEPNS_9ArtMethodEb:function(u){this["art::ArtMethod::PrettyMethodNullSafe"]=Lt(u,["pointer","bool"])},_ZN3art6Thread14CurrentFromGdbEv:["art::Thread::CurrentFromGdb","pointer",[]],_ZN3art6mirror6Object5CloneEPNS_6ThreadE:function(u){this["art::mirror::Object::Clone"]=new NativeFunction(u,"pointer",["pointer","pointer"],q)},_ZN3art6mirror6Object5CloneEPNS_6ThreadEm:function(u){let _=new NativeFunction(u,"pointer",["pointer","pointer","pointer"],q);this["art::mirror::Object::Clone"]=function(h,g){let m=NULL;return _(h,g,m)}},_ZN3art6mirror6Object5CloneEPNS_6ThreadEj:function(u){let _=new NativeFunction(u,"pointer",["pointer","pointer","uint"],q);this["art::mirror::Object::Clone"]=function(h,g){return _(h,g,0)}},_ZN3art3Dbg14SetJdwpAllowedEb:["art::Dbg::SetJdwpAllowed","void",["bool"]],_ZN3art3Dbg13ConfigureJdwpERKNS_4JDWP11JdwpOptionsE:["art::Dbg::ConfigureJdwp","void",["pointer"]],_ZN3art31InternalDebuggerControlCallback13StartDebuggerEv:["art::InternalDebuggerControlCallback::StartDebugger","void",["pointer"]],_ZN3art3Dbg9StartJdwpEv:["art::Dbg::StartJdwp","void",[]],_ZN3art3Dbg8GoActiveEv:["art::Dbg::GoActive","void",[]],_ZN3art3Dbg21RequestDeoptimizationERKNS_21DeoptimizationRequestE:["art::Dbg::RequestDeoptimization","void",["pointer"]],_ZN3art3Dbg20ManageDeoptimizationEv:["art::Dbg::ManageDeoptimization","void",[]],_ZN3art15instrumentation15Instrumentation20EnableDeoptimizationEv:["art::Instrumentation::EnableDeoptimization","void",["pointer"]],_ZN3art15instrumentation15Instrumentation20DeoptimizeEverythingEPKc:["art::Instrumentation::DeoptimizeEverything","void",["pointer","pointer"]],_ZN3art15instrumentation15Instrumentation20DeoptimizeEverythingEv:function(u){let _=new NativeFunction(u,"void",["pointer"],q);this["art::Instrumentation::DeoptimizeEverything"]=function(h,g){_(h)}},_ZN3art7Runtime19DeoptimizeBootImageEv:["art::Runtime::DeoptimizeBootImage","void",["pointer"]],_ZN3art15instrumentation15Instrumentation10DeoptimizeEPNS_9ArtMethodE:["art::Instrumentation::Deoptimize","void",["pointer","pointer"]],_ZN3art3jni12JniIdManager14DecodeMethodIdEP10_jmethodID:["art::jni::JniIdManager::DecodeMethodId","pointer",["pointer","pointer"]],_ZN3art11interpreter18GetNterpEntryPointEv:["art::interpreter::GetNterpEntryPoint","pointer",[]],_ZN3art7Monitor17TranslateLocationEPNS_9ArtMethodEjPPKcPi:["art::Monitor::TranslateLocation","void",["pointer","uint32","pointer","pointer"]]},variables:{_ZN3art3Dbg9gRegistryE:function(u){this.isJdwpStarted=()=>!u.readPointer().isNull()},_ZN3art3Dbg15gDebuggerActiveE:function(u){this.isDebuggerActive=()=>!!u.readU8()}},optionals:new Set(["artInterpreterToCompiledCodeBridge","_ZN3art9JavaVMExt12AddGlobalRefEPNS_6ThreadENS_6ObjPtrINS_6mirror6ObjectEEE","_ZN3art9JavaVMExt12AddGlobalRefEPNS_6ThreadEPNS_6mirror6ObjectE","_ZN3art9JavaVMExt12DecodeGlobalEPv","_ZN3art9JavaVMExt12DecodeGlobalEPNS_6ThreadEPv","_ZNK3art6Thread19DecodeGlobalJObjectEP8_jobject","_ZNK3art6Thread13DecodeJObjectEP8_jobject","_ZN3art10ThreadList10SuspendAllEPKcb","_ZN3art10ThreadList10SuspendAllEv","_ZN3art11ClassLinker12VisitClassesEPNS_12ClassVisitorE","_ZN3art11ClassLinker12VisitClassesEPFbPNS_6mirror5ClassEPvES4_","_ZNK3art11ClassLinker17VisitClassLoadersEPNS_18ClassLoaderVisitorE","_ZN3art6mirror6Object5CloneEPNS_6ThreadE","_ZN3art6mirror6Object5CloneEPNS_6ThreadEm","_ZN3art6mirror6Object5CloneEPNS_6ThreadEj","_ZN3art22IndirectReferenceTable3AddEjPNS_6mirror6ObjectE","_ZN3art22IndirectReferenceTable3AddENS_15IRTSegmentStateENS_6ObjPtrINS_6mirror6ObjectEEE","_ZN3art2gc4Heap12VisitObjectsEPFvPNS_6mirror6ObjectEPvES5_","_ZN3art2gc4Heap12GetInstancesERNS_24VariableSizedHandleScopeENS_6HandleINS_6mirror5ClassEEEiRNSt3__16vectorINS4_INS5_6ObjectEEENS8_9allocatorISB_EEEE","_ZN3art2gc4Heap12GetInstancesERNS_24VariableSizedHandleScopeENS_6HandleINS_6mirror5ClassEEEbiRNSt3__16vectorINS4_INS5_6ObjectEEENS8_9allocatorISB_EEEE","_ZN3art12StackVisitorC2EPNS_6ThreadEPNS_7ContextENS0_13StackWalkKindEjb","_ZN3art12StackVisitorC2EPNS_6ThreadEPNS_7ContextENS0_13StackWalkKindEmb","_ZN3art12StackVisitor9WalkStackILNS0_16CountTransitionsE0EEEvb","_ZNK3art12StackVisitor9GetMethodEv","_ZNK3art12StackVisitor16DescribeLocationEv","_ZNK3art12StackVisitor24GetCurrentQuickFrameInfoEv","_ZN3art6Thread18GetLongJumpContextEv","_ZN3art6mirror5Class13GetDescriptorEPNSt3__112basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEE","_ZN3art6mirror5Class11GetLocationEv","_ZN3art9ArtMethod12PrettyMethodEb","_ZN3art12PrettyMethodEPNS_9ArtMethodEb","_ZN3art3Dbg13ConfigureJdwpERKNS_4JDWP11JdwpOptionsE","_ZN3art31InternalDebuggerControlCallback13StartDebuggerEv","_ZN3art3Dbg15gDebuggerActiveE","_ZN3art15instrumentation15Instrumentation20EnableDeoptimizationEv","_ZN3art15instrumentation15Instrumentation20DeoptimizeEverythingEPKc","_ZN3art15instrumentation15Instrumentation20DeoptimizeEverythingEv","_ZN3art7Runtime19DeoptimizeBootImageEv","_ZN3art15instrumentation15Instrumentation10DeoptimizeEPNS_9ArtMethodE","_ZN3art3Dbg9StartJdwpEv","_ZN3art3Dbg8GoActiveEv","_ZN3art3Dbg21RequestDeoptimizationERKNS_21DeoptimizationRequestE","_ZN3art3Dbg20ManageDeoptimizationEv","_ZN3art3Dbg9gRegistryE","_ZN3art3jni12JniIdManager14DecodeMethodIdEP10_jmethodID","_ZN3art11interpreter18GetNterpEntryPointEv","_ZN3art7Monitor17TranslateLocationEPNS_9ArtMethodEjPPKcPi"])}:{functions:{_Z20dvmDecodeIndirectRefP6ThreadP8_jobject:["dvmDecodeIndirectRef","pointer",["pointer","pointer"]],_Z15dvmUseJNIBridgeP6MethodPv:["dvmUseJNIBridge","void",["pointer","pointer"]],_Z20dvmHeapSourceGetBasev:["dvmHeapSourceGetBase","pointer",[]],_Z21dvmHeapSourceGetLimitv:["dvmHeapSourceGetLimit","pointer",[]],_Z16dvmIsValidObjectPK6Object:["dvmIsValidObject","uint8",["pointer"]],JNI_GetCreatedJavaVMs:["JNI_GetCreatedJavaVMs","int",["pointer","int","pointer"]]},variables:{gDvmJni:function(u){this.gDvmJni=u},gDvm:function(u){this.gDvm=u}}},{functions:i={},variables:l={},optionals:a=new Set}=s,c=[];for(let[u,_]of Object.entries(i)){let h=o.find(u);h!==null?typeof _=="function"?_.call(o,h):o[_[0]]=new NativeFunction(h,_[1],_[2],q):a.has(u)||c.push(u)}for(let[u,_]of Object.entries(l)){let h=o.find(u);h!==null?_.call(o,h):a.has(u)||c.push(u)}if(c.length>0)throw new Error("Java API only partially available; please file a bug. Missing: "+c.join(", "));let d=Memory.alloc(C),p=Memory.alloc(Xi);if(ue("JNI_GetCreatedJavaVMs",o.JNI_GetCreatedJavaVMs(d,1,p)),p.readInt()===0)return null;if(o.vm=d.readPointer(),r){let u=re(),_;u>=27?_=33554432:u>=24?_=16777216:_=0,o.kAccCompileDontBother=_;let h=o.vm.add(C).readPointer();o.artRuntime=h;let g=$r(o),m=g.offset,E=m.instrumentation;o.artInstrumentation=E!==null?h.add(E):null,o.artHeap=h.add(m.heap).readPointer(),o.artThreadList=h.add(m.threadList).readPointer();let I=h.add(m.classLinker).readPointer(),k=sl(h,g).offset,R=I.add(k.quickResolutionTrampoline).readPointer(),j=I.add(k.quickImtConflictTrampoline).readPointer(),S=I.add(k.quickGenericJniTrampoline).readPointer(),N=I.add(k.quickToInterpreterBridgeTrampoline).readPointer();o.artClassLinker={address:I,quickResolutionTrampoline:R,quickImtConflictTrampoline:j,quickGenericJniTrampoline:S,quickToInterpreterBridgeTrampoline:N};let v=new Ce(o);o.artQuickGenericJniTrampoline=yn(S,v),o.artQuickToInterpreterBridge=yn(N,v),o.artQuickResolutionTrampoline=yn(R,v),o["art::JavaVMExt::AddGlobalRef"]===void 0&&(o["art::JavaVMExt::AddGlobalRef"]=Ql(o)),o["art::JavaVMExt::DecodeGlobal"]===void 0&&(o["art::JavaVMExt::DecodeGlobal"]=Yl(o)),o["art::ArtMethod::PrettyMethod"]===void 0&&(o["art::ArtMethod::PrettyMethod"]=o["art::ArtMethod::PrettyMethodNullSafe"]),o["art::interpreter::GetNterpEntryPoint"]!==void 0?o.artNterpEntryPoint=o["art::interpreter::GetNterpEntryPoint"]():o.artNterpEntryPoint=o.find("ExecuteNterpImpl"),ce=wl(o,v),nc(o);let T=null;Object.defineProperty(o,"jvmti",{get(){return T===null&&(T=[$a(v,this.artRuntime)]),T[0]}})}let f=e.enumerateImports().filter(u=>u.name.indexOf("_Z")===0).reduce((u,_)=>(u[_.name]=_.address,u),{});return o.$new=new NativeFunction(f._Znwm||f._Znwj,"pointer",["ulong"],q),o.$delete=new NativeFunction(f._ZdlPv,"void",["pointer"],q),Wr=r?xn:kn,o}function $a(t,e){let n=null;return t.perform(()=>{let r=B().find("_ZN3art7Runtime18EnsurePluginLoadedEPKcPNSt3__112basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEE");if(r===null)return;let o=new NativeFunction(r,"bool",["pointer","pointer","pointer"]),s=Memory.alloc(C);if(!o(e,Memory.allocUtf8String("libopenjdkjvmti.so"),s))return;let l=Et.v1_2|1073741824,a=t.tryGetEnvHandle(l);if(a===null)return;n=new Ne(a,t);let c=Memory.alloc(8);c.writeU64(St.canTagObjects),n.addCapabilities(c)!==0&&(n=null)}),n}function Za(t,e){B().flavor==="art"&&(t.getFieldId(e,"x","Z"),t.exceptionClear())}function Wa(t){return{offset:C===4?{globalsLock:32,globals:72}:{globalsLock:64,globals:112}}}function qa(t){let e=t.vm,n=t.artRuntime,r=C===4?200:384,o=r+100*C,s=re(),i=Zr(),{isApiLevel34OrApexEquivalent:l}=t,a=null;for(let c=r;c!==o;c+=C)if(n.add(c).readPointer().equals(e)){let p,f=null;s>=33||i==="Tiramisu"||l?(p=[c-4*C],f=c-C):s>=30||i==="R"?(p=[c-3*C,c-4*C],f=c-C):s>=29?p=[c-2*C]:s>=27?p=[c-dt-3*C]:p=[c-dt-2*C];for(let u of p){let _=u-C,h=_-C,g;l?g=h-9*C:s>=24?g=h-8*C:s>=23?g=h-7*C:g=h-4*C;let m={offset:{heap:g,threadList:h,internTable:_,classLinker:u,jniIdManager:f}};if(Kr(n,m)!==null){a=m;break}}break}if(a===null)throw new Error("Unable to determine Runtime field offsets");return a.offset.instrumentation=Qa(t),a.offset.jniIdsIndirection=tl(t),a}var Ka={ia32:Pr,x64:Pr,arm:Ya,arm64:Xa};function Qa(t){let e=t["art::Runtime::DeoptimizeBootImage"];return e===void 0?null:je(e,Ka[Process.arch],{limit:30})}function Pr(t){if(t.mnemonic!=="lea")return null;let e=t.operands[1].value.disp;return e<256||e>1024?null:e}function Ya(t){if(t.mnemonic!=="add.w")return null;let e=t.operands;if(e.length!==3)return null;let n=e[2];return n.type!=="imm"?null:n.value}function Xa(t){if(t.mnemonic!=="add")return null;let e=t.operands;if(e.length!==3||e[0].value==="sp"||e[1].value==="sp")return null;let n=e[2];if(n.type!=="imm")return null;let r=n.value.valueOf();return r<256||r>1024?null:r}var el={ia32:Fr,x64:Fr,arm:nl,arm64:rl};function tl(t){let e=t.find("_ZN3art7Runtime12SetJniIdTypeENS_9JniIdTypeE");if(e===null)return null;let n=je(e,el[Process.arch],{limit:20});if(n===null)throw new Error("Unable to determine Runtime.jni_ids_indirection_ offset");return n}function Fr(t){return t.mnemonic==="cmp"?t.operands[0].value.disp:null}function nl(t){return t.mnemonic==="ldr.w"?t.operands[1].value.disp:null}function rl(t,e){if(e===null)return null;let{mnemonic:n}=t,{mnemonic:r}=e;return n==="cmp"&&r==="ldr"||n==="bl"&&r==="str"?e.operands[1].value.disp:null}function ol(){let e={"4-21":136,"4-22":136,"4-23":172,"4-24":196,"4-25":196,"4-26":196,"4-27":196,"4-28":212,"4-29":172,"4-30":180,"4-31":180,"8-21":224,"8-22":224,"8-23":296,"8-24":344,"8-25":344,"8-26":352,"8-27":352,"8-28":392,"8-29":328,"8-30":336,"8-31":336}[`${C}-${re()}`];if(e===void 0)throw new Error("Unable to determine Instrumentation field offsets");return{offset:{forcedInterpretOnly:4,deoptimizationEnabled:e}}}function sl(t,e){let n=Kr(t,e);if(n===null)throw new Error("Unable to determine ClassLinker field offsets");return n}function Kr(t,e){if(mn!==null)return mn;let{classLinker:n,internTable:r}=e.offset,o=t.add(n).readPointer(),s=t.add(r).readPointer(),i=C===4?100:200,l=i+100*C,a=re(),c=null;for(let d=i;d!==l;d+=C)if(o.add(d).readPointer().equals(s)){let f;a>=30||Zr()==="R"?f=6:a>=29?f=4:a>=23?f=3:f=5;let u=d+f*C,_;a>=23?_=u-2*C:_=u-3*C,c={offset:{quickResolutionTrampoline:_,quickImtConflictTrampoline:u-C,quickGenericJniTrampoline:u,quickToInterpreterBridgeTrampoline:u+C}};break}return c!==null&&(mn=c),c}function jn(t){let e;try{e=re()}catch{return null}return e>=36?{offset:{ifields:40,methods:48,sfields:0,copiedMethodsOffset:108}}:e>=26?{offset:{ifields:40,methods:48,sfields:56,copiedMethodsOffset:116}}:e>=24?{offset:{ifields:56,methods:64,sfields:72,copiedMethodsOffset:124}}:null}function il(t){let e=B(),n;return t.perform(r=>{let o=r.findClass("android/os/Process"),s=Qr(r.getStaticMethodId(o,"getElapsedCpuTime","()J"));r.deleteLocalRef(o);let i=Process.getModuleByName("libandroid_runtime.so"),l=i.base,a=l.add(i.size),c=re(),d=c<=21?8:C,p=oa|sa|ia|xt,f=~(Gr|pa|ua)>>>0,u=null,_=null,h=2;for(let E=0;E!==64&&h!==0;E+=4){let I=s.add(E);if(u===null){let k=I.readPointer();k.compare(l)>=0&&k.compare(a)<0&&(u=E,h--)}_===null&&(I.readU32()&f)===p&&(_=E,h--)}if(h!==0)throw new Error("Unable to determine ArtMethod field offsets");let g=u+d;n={size:c<=21?g+32:g+C,offset:{jniCode:u,quickCode:g,accessFlags:_}},"artInterpreterToCompiledCodeBridge"in e&&(n.offset.interpreterCode=u-d)}),n}function Pn(t){let e=re();return e>=23?{size:16,offset:{accessFlags:4}}:e>=21?{size:24,offset:{accessFlags:12}}:null}function al(t){let e=re(),n;return t.perform(r=>{let o=Ft(r),s=r.handle,i=null,l=null,a=null,c=null,d=null,p=null;for(let f=144;f!==256;f+=C)if(o.add(f).readPointer().equals(s)){l=f-6*C,d=f-4*C,p=f+2*C,e<=22&&(l-=C,i=l-C-72-12,a=f+6*C,d-=C,p-=C),c=f+9*C,e<=22&&(c+=2*C+4,C===8&&(c+=4)),e>=23&&(c+=C);break}if(c===null)throw new Error("Unable to determine ArtThread field offsets");n={offset:{isExceptionReportedToInstrumentation:i,exception:l,throwLocation:a,topHandleScope:c,managedStack:d,self:p}}}),n}function ll(){return re()>=23?{offset:{topQuickFrame:0,link:C}}:{offset:{topQuickFrame:2*C,link:0}}}var cl={ia32:Dr,x64:Dr,arm:dl,arm64:ul};function yn(t,e){let n;return e.perform(r=>{let o=Ft(r),s=cl[Process.arch],i=Instruction.parse(t),l=s(i);l!==null?n=o.add(l).readPointer():n=t}),n}function Dr(t){return t.mnemonic==="jmp"?t.operands[0].value.disp:null}function dl(t){return t.mnemonic==="ldr.w"?t.operands[1].value.disp:null}function ul(t){return t.mnemonic==="ldr"?t.operands[1].value.disp:null}function Ft(t){return t.handle.add(C).readPointer()}function pl(){return Fn("ro.build.version.release")}function fl(){return Fn("ro.build.version.codename")}function hl(){return parseInt(Fn("ro.build.version.sdk"),10)}var vn=null,_l=92;function Fn(t){vn===null&&(vn=new NativeFunction(Process.getModuleByName("libc.so").getExportByName("__system_property_get"),"int",["pointer","pointer"],q));let e=Memory.alloc(_l);return vn(Memory.allocUtf8String(t),e),e.readUtf8String()}function Se(t,e,n){let r=za(t,e),o=Ft(e).toString();if(at[o]=n,r(e.handle),at[o]!==void 0)throw delete at[o],new Error("Unable to perform state transition; please file a bug")}function ml(t,e){let n=new NativeCallback(gl,"void",["pointer"]);return Xr(t,e,n)}function gl(t){let e=t.toString(),n=at[e];delete at[e],n(t)}function Dn(t){let e=B(),n=e.artThreadList;e["art::ThreadList::SuspendAll"](n,Memory.allocUtf8String("frida"),!1?1:0);try{t()}finally{e["art::ThreadList::ResumeAll"](n)}}var Cn=class{constructor(e){let n=Memory.alloc(4*C),r=n.add(C);n.writePointer(r);let o=new NativeCallback((s,i)=>e(i)===!0?1:0,"bool",["pointer","pointer"]);r.add(2*C).writePointer(o),this.handle=n,this._onVisit=o}};function Un(t){return B()["art::ClassLinker::VisitClasses"]instanceof NativeFunction?new Cn(t):new NativeCallback(n=>t(n)===!0?1:0,"bool",["pointer","pointer"])}var Tn=class{constructor(e){let n=Memory.alloc(4*C),r=n.add(C);n.writePointer(r);let o=new NativeCallback((s,i)=>{e(i)},"void",["pointer","pointer"]);r.add(2*C).writePointer(o),this.handle=n,this._onVisit=o}};function Vn(t){return new Tn(t)}var bl={"include-inlined-frames":0,"skip-inlined-frames":1},In=class{constructor(e,n,r,o=0,s=!0){let i=B(),l=512,a=3*C,c=Memory.alloc(l+a);i["art::StackVisitor::StackVisitor"](c,e,n,bl[r],o,s?1:0);let d=c.add(l);c.writePointer(d);let p=new NativeCallback(this._visitFrame.bind(this),"bool",["pointer"]);d.add(2*C).writePointer(p),this.handle=c,this._onVisitFrame=p;let f=c.add(C===4?12:24);this._curShadowFrame=f,this._curQuickFrame=f.add(C),this._curQuickFramePc=f.add(2*C),this._curOatQuickMethodHeader=f.add(3*C),this._getMethodImpl=i["art::StackVisitor::GetMethod"],this._descLocImpl=i["art::StackVisitor::DescribeLocation"],this._getCQFIImpl=i["art::StackVisitor::GetCurrentQuickFrameInfo"]}walkStack(e=!1){B()["art::StackVisitor::WalkStack"](this.handle,e?1:0)}_visitFrame(){return this.visitFrame()?1:0}visitFrame(){throw new Error("Subclass must implement visitFrame")}getMethod(){let e=this._getMethodImpl(this.handle);return e.isNull()?null:new Nt(e)}getCurrentQuickFramePc(){return this._curQuickFramePc.readPointer()}getCurrentQuickFrame(){return this._curQuickFrame.readPointer()}getCurrentShadowFrame(){return this._curShadowFrame.readPointer()}describeLocation(){let e=new Rt;return this._descLocImpl(e,this.handle),e.disposeToString()}getCurrentOatQuickMethodHeader(){return this._curOatQuickMethodHeader.readPointer()}getCurrentQuickFrameInfo(){return this._getCQFIImpl(this.handle)}},Nt=class{constructor(e){this.handle=e}prettyMethod(e=!0){let n=new Rt;return B()["art::ArtMethod::PrettyMethod"](n,this.handle,e?1:0),n.disposeToString()}toString(){return`ArtMethod(handle=${this.handle})`}};function yl(t){return function(e){let n=Memory.alloc(12);return Ja(t)(n,e),{frameSizeInBytes:n.readU32(),coreSpillMask:n.add(4).readU32(),fpSpillMask:n.add(8).readU32()}}}function vl(t){let e=NULL;switch(Process.arch){case"ia32":e=qe(32,n=>{n.putMovRegRegOffsetPtr("ecx","esp",4),n.putMovRegRegOffsetPtr("edx","esp",8),n.putCallAddressWithArguments(t,["ecx","edx"]),n.putMovRegReg("esp","ebp"),n.putPopReg("ebp"),n.putRet()});break;case"x64":e=qe(32,n=>{n.putPushReg("rdi"),n.putCallAddressWithArguments(t,["rsi"]),n.putPopReg("rdi"),n.putMovRegPtrReg("rdi","rax"),n.putMovRegOffsetPtrReg("rdi",8,"edx"),n.putRet()});break;case"arm":e=qe(16,n=>{n.putCallAddressWithArguments(t,["r0","r1"]),n.putPopRegs(["r0","lr"]),n.putMovRegReg("pc","lr")});break;case"arm64":e=qe(64,n=>{n.putPushRegReg("x0","lr"),n.putCallAddressWithArguments(t,["x1"]),n.putPopRegReg("x2","lr"),n.putStrRegRegOffset("x0","x2",0),n.putStrRegRegOffset("w1","x2",8),n.putRet()});break}return new NativeFunction(e,"void",["pointer","pointer"],q)}var El={ia32:globalThis.X86Relocator,x64:globalThis.X86Relocator,arm:globalThis.ThumbRelocator,arm64:globalThis.Arm64Relocator},An={ia32:globalThis.X86Writer,x64:globalThis.X86Writer,arm:globalThis.ThumbWriter,arm64:globalThis.Arm64Writer};function qe(t,e){gn===null&&(gn=Memory.alloc(Process.pageSize));let n=gn.add(Or),r=Process.arch,o=An[r];return Memory.patchCode(n,t,s=>{let i=new o(s,{pc:n});if(e(i),i.flush(),i.offset>t)throw new Error(`Wrote ${i.offset}, exceeding maximum of ${t}`)}),Or+=t,r==="arm"?n.or(1):n}function Sl(t,e){Cl(e),Al(e)}function wl(t,e){let n=Ke(e).offset,r=Va().offset,o=`
+📦
+438198 /entry_fullscreen.js
+✄
+var __defProp = Object.defineProperty;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+
+// frida-shim:node_modules/@frida/base64-js/index.js
+var lookup = [];
+var revLookup = [];
+var code = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+for (let i = 0, len = code.length; i < len; ++i) {
+  lookup[i] = code[i];
+  revLookup[code.charCodeAt(i)] = i;
+}
+revLookup["-".charCodeAt(0)] = 62;
+revLookup["_".charCodeAt(0)] = 63;
+function getLens(b64) {
+  const len = b64.length;
+  if (len % 4 > 0) {
+    throw new Error("Invalid string. Length must be a multiple of 4");
+  }
+  let validLen = b64.indexOf("=");
+  if (validLen === -1) validLen = len;
+  const placeHoldersLen = validLen === len ? 0 : 4 - validLen % 4;
+  return [validLen, placeHoldersLen];
+}
+function _byteLength(b64, validLen, placeHoldersLen) {
+  return (validLen + placeHoldersLen) * 3 / 4 - placeHoldersLen;
+}
+function toByteArray(b64) {
+  const lens = getLens(b64);
+  const validLen = lens[0];
+  const placeHoldersLen = lens[1];
+  const arr = new Uint8Array(_byteLength(b64, validLen, placeHoldersLen));
+  let curByte = 0;
+  const len = placeHoldersLen > 0 ? validLen - 4 : validLen;
+  let i;
+  for (i = 0; i < len; i += 4) {
+    const tmp = revLookup[b64.charCodeAt(i)] << 18 | revLookup[b64.charCodeAt(i + 1)] << 12 | revLookup[b64.charCodeAt(i + 2)] << 6 | revLookup[b64.charCodeAt(i + 3)];
+    arr[curByte++] = tmp >> 16 & 255;
+    arr[curByte++] = tmp >> 8 & 255;
+    arr[curByte++] = tmp & 255;
+  }
+  if (placeHoldersLen === 2) {
+    const tmp = revLookup[b64.charCodeAt(i)] << 2 | revLookup[b64.charCodeAt(i + 1)] >> 4;
+    arr[curByte++] = tmp & 255;
+  }
+  if (placeHoldersLen === 1) {
+    const tmp = revLookup[b64.charCodeAt(i)] << 10 | revLookup[b64.charCodeAt(i + 1)] << 4 | revLookup[b64.charCodeAt(i + 2)] >> 2;
+    arr[curByte++] = tmp >> 8 & 255;
+    arr[curByte++] = tmp & 255;
+  }
+  return arr;
+}
+function tripletToBase64(num) {
+  return lookup[num >> 18 & 63] + lookup[num >> 12 & 63] + lookup[num >> 6 & 63] + lookup[num & 63];
+}
+function encodeChunk(uint8, start, end) {
+  const output = [];
+  for (let i = start; i < end; i += 3) {
+    const tmp = (uint8[i] << 16 & 16711680) + (uint8[i + 1] << 8 & 65280) + (uint8[i + 2] & 255);
+    output.push(tripletToBase64(tmp));
+  }
+  return output.join("");
+}
+function fromByteArray(uint8) {
+  const len = uint8.length;
+  const extraBytes = len % 3;
+  const parts = [];
+  const maxChunkLength = 16383;
+  for (let i = 0, len2 = len - extraBytes; i < len2; i += maxChunkLength) {
+    parts.push(encodeChunk(uint8, i, i + maxChunkLength > len2 ? len2 : i + maxChunkLength));
+  }
+  if (extraBytes === 1) {
+    const tmp = uint8[len - 1];
+    parts.push(
+      lookup[tmp >> 2] + lookup[tmp << 4 & 63] + "=="
+    );
+  } else if (extraBytes === 2) {
+    const tmp = (uint8[len - 2] << 8) + uint8[len - 1];
+    parts.push(
+      lookup[tmp >> 10] + lookup[tmp >> 4 & 63] + lookup[tmp << 2 & 63] + "="
+    );
+  }
+  return parts.join("");
+}
+
+// frida-shim:node_modules/@frida/ieee754/index.js
+function read(buffer, offset, isLE, mLen, nBytes) {
+  let e, m;
+  const eLen = nBytes * 8 - mLen - 1;
+  const eMax = (1 << eLen) - 1;
+  const eBias = eMax >> 1;
+  let nBits = -7;
+  let i = isLE ? nBytes - 1 : 0;
+  const d = isLE ? -1 : 1;
+  let s = buffer[offset + i];
+  i += d;
+  e = s & (1 << -nBits) - 1;
+  s >>= -nBits;
+  nBits += eLen;
+  while (nBits > 0) {
+    e = e * 256 + buffer[offset + i];
+    i += d;
+    nBits -= 8;
+  }
+  m = e & (1 << -nBits) - 1;
+  e >>= -nBits;
+  nBits += mLen;
+  while (nBits > 0) {
+    m = m * 256 + buffer[offset + i];
+    i += d;
+    nBits -= 8;
+  }
+  if (e === 0) {
+    e = 1 - eBias;
+  } else if (e === eMax) {
+    return m ? NaN : (s ? -1 : 1) * Infinity;
+  } else {
+    m = m + Math.pow(2, mLen);
+    e = e - eBias;
+  }
+  return (s ? -1 : 1) * m * Math.pow(2, e - mLen);
+}
+function write(buffer, value, offset, isLE, mLen, nBytes) {
+  let e, m, c;
+  let eLen = nBytes * 8 - mLen - 1;
+  const eMax = (1 << eLen) - 1;
+  const eBias = eMax >> 1;
+  const rt = mLen === 23 ? Math.pow(2, -24) - Math.pow(2, -77) : 0;
+  let i = isLE ? 0 : nBytes - 1;
+  const d = isLE ? 1 : -1;
+  const s = value < 0 || value === 0 && 1 / value < 0 ? 1 : 0;
+  value = Math.abs(value);
+  if (isNaN(value) || value === Infinity) {
+    m = isNaN(value) ? 1 : 0;
+    e = eMax;
+  } else {
+    e = Math.floor(Math.log(value) / Math.LN2);
+    if (value * (c = Math.pow(2, -e)) < 1) {
+      e--;
+      c *= 2;
+    }
+    if (e + eBias >= 1) {
+      value += rt / c;
+    } else {
+      value += rt * Math.pow(2, 1 - eBias);
+    }
+    if (value * c >= 2) {
+      e++;
+      c /= 2;
+    }
+    if (e + eBias >= eMax) {
+      m = 0;
+      e = eMax;
+    } else if (e + eBias >= 1) {
+      m = (value * c - 1) * Math.pow(2, mLen);
+      e = e + eBias;
+    } else {
+      m = value * Math.pow(2, eBias - 1) * Math.pow(2, mLen);
+      e = 0;
+    }
+  }
+  while (mLen >= 8) {
+    buffer[offset + i] = m & 255;
+    i += d;
+    m /= 256;
+    mLen -= 8;
+  }
+  e = e << mLen | m;
+  eLen += mLen;
+  while (eLen > 0) {
+    buffer[offset + i] = e & 255;
+    i += d;
+    e /= 256;
+    eLen -= 8;
+  }
+  buffer[offset + i - d] |= s * 128;
+}
+
+// frida-shim:node_modules/@frida/buffer/index.js
+var config = {
+  INSPECT_MAX_BYTES: 50
+};
+var K_MAX_LENGTH = 2147483647;
+Buffer2.TYPED_ARRAY_SUPPORT = true;
+Object.defineProperty(Buffer2.prototype, "parent", {
+  enumerable: true,
+  get: function() {
+    if (!Buffer2.isBuffer(this)) return void 0;
+    return this.buffer;
+  }
+});
+Object.defineProperty(Buffer2.prototype, "offset", {
+  enumerable: true,
+  get: function() {
+    if (!Buffer2.isBuffer(this)) return void 0;
+    return this.byteOffset;
+  }
+});
+function createBuffer(length) {
+  if (length > K_MAX_LENGTH) {
+    throw new RangeError('The value "' + length + '" is invalid for option "size"');
+  }
+  const buf = new Uint8Array(length);
+  Object.setPrototypeOf(buf, Buffer2.prototype);
+  return buf;
+}
+function Buffer2(arg, encodingOrOffset, length) {
+  if (typeof arg === "number") {
+    if (typeof encodingOrOffset === "string") {
+      throw new TypeError(
+        'The "string" argument must be of type string. Received type number'
+      );
+    }
+    return allocUnsafe(arg);
+  }
+  return from(arg, encodingOrOffset, length);
+}
+Buffer2.poolSize = 8192;
+function from(value, encodingOrOffset, length) {
+  if (typeof value === "string") {
+    return fromString(value, encodingOrOffset);
+  }
+  if (ArrayBuffer.isView(value)) {
+    return fromArrayView(value);
+  }
+  if (value == null) {
+    throw new TypeError(
+      "The first argument must be one of type string, Buffer, ArrayBuffer, Array, or Array-like Object. Received type " + typeof value
+    );
+  }
+  if (value instanceof ArrayBuffer || value && value.buffer instanceof ArrayBuffer) {
+    return fromArrayBuffer(value, encodingOrOffset, length);
+  }
+  if (value instanceof SharedArrayBuffer || value && value.buffer instanceof SharedArrayBuffer) {
+    return fromArrayBuffer(value, encodingOrOffset, length);
+  }
+  if (typeof value === "number") {
+    throw new TypeError(
+      'The "value" argument must not be of type number. Received type number'
+    );
+  }
+  const valueOf = value.valueOf && value.valueOf();
+  if (valueOf != null && valueOf !== value) {
+    return Buffer2.from(valueOf, encodingOrOffset, length);
+  }
+  const b = fromObject(value);
+  if (b) return b;
+  if (typeof Symbol !== "undefined" && Symbol.toPrimitive != null && typeof value[Symbol.toPrimitive] === "function") {
+    return Buffer2.from(value[Symbol.toPrimitive]("string"), encodingOrOffset, length);
+  }
+  throw new TypeError(
+    "The first argument must be one of type string, Buffer, ArrayBuffer, Array, or Array-like Object. Received type " + typeof value
+  );
+}
+Buffer2.from = function(value, encodingOrOffset, length) {
+  return from(value, encodingOrOffset, length);
+};
+Object.setPrototypeOf(Buffer2.prototype, Uint8Array.prototype);
+Object.setPrototypeOf(Buffer2, Uint8Array);
+function assertSize(size) {
+  if (typeof size !== "number") {
+    throw new TypeError('"size" argument must be of type number');
+  } else if (size < 0) {
+    throw new RangeError('The value "' + size + '" is invalid for option "size"');
+  }
+}
+function alloc(size, fill2, encoding) {
+  assertSize(size);
+  if (size <= 0) {
+    return createBuffer(size);
+  }
+  if (fill2 !== void 0) {
+    return typeof encoding === "string" ? createBuffer(size).fill(fill2, encoding) : createBuffer(size).fill(fill2);
+  }
+  return createBuffer(size);
+}
+Buffer2.alloc = function(size, fill2, encoding) {
+  return alloc(size, fill2, encoding);
+};
+function allocUnsafe(size) {
+  assertSize(size);
+  return createBuffer(size < 0 ? 0 : checked(size) | 0);
+}
+Buffer2.allocUnsafe = function(size) {
+  return allocUnsafe(size);
+};
+Buffer2.allocUnsafeSlow = function(size) {
+  return allocUnsafe(size);
+};
+function fromString(string, encoding) {
+  if (typeof encoding !== "string" || encoding === "") {
+    encoding = "utf8";
+  }
+  if (!Buffer2.isEncoding(encoding)) {
+    throw new TypeError("Unknown encoding: " + encoding);
+  }
+  const length = byteLength(string, encoding) | 0;
+  let buf = createBuffer(length);
+  const actual = buf.write(string, encoding);
+  if (actual !== length) {
+    buf = buf.slice(0, actual);
+  }
+  return buf;
+}
+function fromArrayLike(array) {
+  const length = array.length < 0 ? 0 : checked(array.length) | 0;
+  const buf = createBuffer(length);
+  for (let i = 0; i < length; i += 1) {
+    buf[i] = array[i] & 255;
+  }
+  return buf;
+}
+function fromArrayView(arrayView) {
+  if (arrayView instanceof Uint8Array) {
+    const copy2 = new Uint8Array(arrayView);
+    return fromArrayBuffer(copy2.buffer, copy2.byteOffset, copy2.byteLength);
+  }
+  return fromArrayLike(arrayView);
+}
+function fromArrayBuffer(array, byteOffset, length) {
+  if (byteOffset < 0 || array.byteLength < byteOffset) {
+    throw new RangeError('"offset" is outside of buffer bounds');
+  }
+  if (array.byteLength < byteOffset + (length || 0)) {
+    throw new RangeError('"length" is outside of buffer bounds');
+  }
+  let buf;
+  if (byteOffset === void 0 && length === void 0) {
+    buf = new Uint8Array(array);
+  } else if (length === void 0) {
+    buf = new Uint8Array(array, byteOffset);
+  } else {
+    buf = new Uint8Array(array, byteOffset, length);
+  }
+  Object.setPrototypeOf(buf, Buffer2.prototype);
+  return buf;
+}
+function fromObject(obj) {
+  if (Buffer2.isBuffer(obj)) {
+    const len = checked(obj.length) | 0;
+    const buf = createBuffer(len);
+    if (buf.length === 0) {
+      return buf;
+    }
+    obj.copy(buf, 0, 0, len);
+    return buf;
+  }
+  if (obj.length !== void 0) {
+    if (typeof obj.length !== "number" || Number.isNaN(obj.length)) {
+      return createBuffer(0);
+    }
+    return fromArrayLike(obj);
+  }
+  if (obj.type === "Buffer" && Array.isArray(obj.data)) {
+    return fromArrayLike(obj.data);
+  }
+}
+function checked(length) {
+  if (length >= K_MAX_LENGTH) {
+    throw new RangeError("Attempt to allocate Buffer larger than maximum size: 0x" + K_MAX_LENGTH.toString(16) + " bytes");
+  }
+  return length | 0;
+}
+Buffer2.isBuffer = function isBuffer(b) {
+  return b != null && b._isBuffer === true && b !== Buffer2.prototype;
+};
+Buffer2.compare = function compare(a, b) {
+  if (a instanceof Uint8Array) a = Buffer2.from(a, a.offset, a.byteLength);
+  if (b instanceof Uint8Array) b = Buffer2.from(b, b.offset, b.byteLength);
+  if (!Buffer2.isBuffer(a) || !Buffer2.isBuffer(b)) {
+    throw new TypeError(
+      'The "buf1", "buf2" arguments must be one of type Buffer or Uint8Array'
+    );
+  }
+  if (a === b) return 0;
+  let x = a.length;
+  let y = b.length;
+  for (let i = 0, len = Math.min(x, y); i < len; ++i) {
+    if (a[i] !== b[i]) {
+      x = a[i];
+      y = b[i];
+      break;
+    }
+  }
+  if (x < y) return -1;
+  if (y < x) return 1;
+  return 0;
+};
+Buffer2.isEncoding = function isEncoding(encoding) {
+  switch (String(encoding).toLowerCase()) {
+    case "hex":
+    case "utf8":
+    case "utf-8":
+    case "ascii":
+    case "latin1":
+    case "binary":
+    case "base64":
+    case "ucs2":
+    case "ucs-2":
+    case "utf16le":
+    case "utf-16le":
+      return true;
+    default:
+      return false;
+  }
+};
+Buffer2.concat = function concat(list, length) {
+  if (!Array.isArray(list)) {
+    throw new TypeError('"list" argument must be an Array of Buffers');
+  }
+  if (list.length === 0) {
+    return Buffer2.alloc(0);
+  }
+  let i;
+  if (length === void 0) {
+    length = 0;
+    for (i = 0; i < list.length; ++i) {
+      length += list[i].length;
+    }
+  }
+  const buffer = Buffer2.allocUnsafe(length);
+  let pos = 0;
+  for (i = 0; i < list.length; ++i) {
+    let buf = list[i];
+    if (buf instanceof Uint8Array) {
+      if (pos + buf.length > buffer.length) {
+        if (!Buffer2.isBuffer(buf)) {
+          buf = Buffer2.from(buf.buffer, buf.byteOffset, buf.byteLength);
+        }
+        buf.copy(buffer, pos);
+      } else {
+        Uint8Array.prototype.set.call(
+          buffer,
+          buf,
+          pos
+        );
+      }
+    } else if (!Buffer2.isBuffer(buf)) {
+      throw new TypeError('"list" argument must be an Array of Buffers');
+    } else {
+      buf.copy(buffer, pos);
+    }
+    pos += buf.length;
+  }
+  return buffer;
+};
+function byteLength(string, encoding) {
+  if (Buffer2.isBuffer(string)) {
+    return string.length;
+  }
+  if (ArrayBuffer.isView(string) || string instanceof ArrayBuffer) {
+    return string.byteLength;
+  }
+  if (typeof string !== "string") {
+    throw new TypeError(
+      'The "string" argument must be one of type string, Buffer, or ArrayBuffer. Received type ' + typeof string
+    );
+  }
+  const len = string.length;
+  const mustMatch = arguments.length > 2 && arguments[2] === true;
+  if (!mustMatch && len === 0) return 0;
+  let loweredCase = false;
+  for (; ; ) {
+    switch (encoding) {
+      case "ascii":
+      case "latin1":
+      case "binary":
+        return len;
+      case "utf8":
+      case "utf-8":
+        return utf8ToBytes(string).length;
+      case "ucs2":
+      case "ucs-2":
+      case "utf16le":
+      case "utf-16le":
+        return len * 2;
+      case "hex":
+        return len >>> 1;
+      case "base64":
+        return base64ToBytes(string).length;
+      default:
+        if (loweredCase) {
+          return mustMatch ? -1 : utf8ToBytes(string).length;
+        }
+        encoding = ("" + encoding).toLowerCase();
+        loweredCase = true;
+    }
+  }
+}
+Buffer2.byteLength = byteLength;
+function slowToString(encoding, start, end) {
+  let loweredCase = false;
+  if (start === void 0 || start < 0) {
+    start = 0;
+  }
+  if (start > this.length) {
+    return "";
+  }
+  if (end === void 0 || end > this.length) {
+    end = this.length;
+  }
+  if (end <= 0) {
+    return "";
+  }
+  end >>>= 0;
+  start >>>= 0;
+  if (end <= start) {
+    return "";
+  }
+  if (!encoding) encoding = "utf8";
+  while (true) {
+    switch (encoding) {
+      case "hex":
+        return hexSlice(this, start, end);
+      case "utf8":
+      case "utf-8":
+        return utf8Slice(this, start, end);
+      case "ascii":
+        return asciiSlice(this, start, end);
+      case "latin1":
+      case "binary":
+        return latin1Slice(this, start, end);
+      case "base64":
+        return base64Slice(this, start, end);
+      case "ucs2":
+      case "ucs-2":
+      case "utf16le":
+      case "utf-16le":
+        return utf16leSlice(this, start, end);
+      default:
+        if (loweredCase) throw new TypeError("Unknown encoding: " + encoding);
+        encoding = (encoding + "").toLowerCase();
+        loweredCase = true;
+    }
+  }
+}
+Buffer2.prototype._isBuffer = true;
+function swap(b, n, m) {
+  const i = b[n];
+  b[n] = b[m];
+  b[m] = i;
+}
+Buffer2.prototype.swap16 = function swap16() {
+  const len = this.length;
+  if (len % 2 !== 0) {
+    throw new RangeError("Buffer size must be a multiple of 16-bits");
+  }
+  for (let i = 0; i < len; i += 2) {
+    swap(this, i, i + 1);
+  }
+  return this;
+};
+Buffer2.prototype.swap32 = function swap32() {
+  const len = this.length;
+  if (len % 4 !== 0) {
+    throw new RangeError("Buffer size must be a multiple of 32-bits");
+  }
+  for (let i = 0; i < len; i += 4) {
+    swap(this, i, i + 3);
+    swap(this, i + 1, i + 2);
+  }
+  return this;
+};
+Buffer2.prototype.swap64 = function swap64() {
+  const len = this.length;
+  if (len % 8 !== 0) {
+    throw new RangeError("Buffer size must be a multiple of 64-bits");
+  }
+  for (let i = 0; i < len; i += 8) {
+    swap(this, i, i + 7);
+    swap(this, i + 1, i + 6);
+    swap(this, i + 2, i + 5);
+    swap(this, i + 3, i + 4);
+  }
+  return this;
+};
+Buffer2.prototype.toString = function toString() {
+  const length = this.length;
+  if (length === 0) return "";
+  if (arguments.length === 0) return utf8Slice(this, 0, length);
+  return slowToString.apply(this, arguments);
+};
+Buffer2.prototype.toLocaleString = Buffer2.prototype.toString;
+Buffer2.prototype.equals = function equals(b) {
+  if (!Buffer2.isBuffer(b)) throw new TypeError("Argument must be a Buffer");
+  if (this === b) return true;
+  return Buffer2.compare(this, b) === 0;
+};
+Buffer2.prototype.inspect = function inspect() {
+  let str = "";
+  const max = config.INSPECT_MAX_BYTES;
+  str = this.toString("hex", 0, max).replace(/(.{2})/g, "$1 ").trim();
+  if (this.length > max) str += " ... ";
+  return "<Buffer " + str + ">";
+};
+Buffer2.prototype[Symbol.for("nodejs.util.inspect.custom")] = Buffer2.prototype.inspect;
+Buffer2.prototype.compare = function compare2(target, start, end, thisStart, thisEnd) {
+  if (target instanceof Uint8Array) {
+    target = Buffer2.from(target, target.offset, target.byteLength);
+  }
+  if (!Buffer2.isBuffer(target)) {
+    throw new TypeError(
+      'The "target" argument must be one of type Buffer or Uint8Array. Received type ' + typeof target
+    );
+  }
+  if (start === void 0) {
+    start = 0;
+  }
+  if (end === void 0) {
+    end = target ? target.length : 0;
+  }
+  if (thisStart === void 0) {
+    thisStart = 0;
+  }
+  if (thisEnd === void 0) {
+    thisEnd = this.length;
+  }
+  if (start < 0 || end > target.length || thisStart < 0 || thisEnd > this.length) {
+    throw new RangeError("out of range index");
+  }
+  if (thisStart >= thisEnd && start >= end) {
+    return 0;
+  }
+  if (thisStart >= thisEnd) {
+    return -1;
+  }
+  if (start >= end) {
+    return 1;
+  }
+  start >>>= 0;
+  end >>>= 0;
+  thisStart >>>= 0;
+  thisEnd >>>= 0;
+  if (this === target) return 0;
+  let x = thisEnd - thisStart;
+  let y = end - start;
+  const len = Math.min(x, y);
+  const thisCopy = this.slice(thisStart, thisEnd);
+  const targetCopy = target.slice(start, end);
+  for (let i = 0; i < len; ++i) {
+    if (thisCopy[i] !== targetCopy[i]) {
+      x = thisCopy[i];
+      y = targetCopy[i];
+      break;
+    }
+  }
+  if (x < y) return -1;
+  if (y < x) return 1;
+  return 0;
+};
+function bidirectionalIndexOf(buffer, val, byteOffset, encoding, dir) {
+  if (buffer.length === 0) return -1;
+  if (typeof byteOffset === "string") {
+    encoding = byteOffset;
+    byteOffset = 0;
+  } else if (byteOffset > 2147483647) {
+    byteOffset = 2147483647;
+  } else if (byteOffset < -2147483648) {
+    byteOffset = -2147483648;
+  }
+  byteOffset = +byteOffset;
+  if (Number.isNaN(byteOffset)) {
+    byteOffset = dir ? 0 : buffer.length - 1;
+  }
+  if (byteOffset < 0) byteOffset = buffer.length + byteOffset;
+  if (byteOffset >= buffer.length) {
+    if (dir) return -1;
+    else byteOffset = buffer.length - 1;
+  } else if (byteOffset < 0) {
+    if (dir) byteOffset = 0;
+    else return -1;
+  }
+  if (typeof val === "string") {
+    val = Buffer2.from(val, encoding);
+  }
+  if (Buffer2.isBuffer(val)) {
+    if (val.length === 0) {
+      return -1;
+    }
+    return arrayIndexOf(buffer, val, byteOffset, encoding, dir);
+  } else if (typeof val === "number") {
+    val = val & 255;
+    if (typeof Uint8Array.prototype.indexOf === "function") {
+      if (dir) {
+        return Uint8Array.prototype.indexOf.call(buffer, val, byteOffset);
+      } else {
+        return Uint8Array.prototype.lastIndexOf.call(buffer, val, byteOffset);
+      }
+    }
+    return arrayIndexOf(buffer, [val], byteOffset, encoding, dir);
+  }
+  throw new TypeError("val must be string, number or Buffer");
+}
+function arrayIndexOf(arr, val, byteOffset, encoding, dir) {
+  let indexSize = 1;
+  let arrLength = arr.length;
+  let valLength = val.length;
+  if (encoding !== void 0) {
+    encoding = String(encoding).toLowerCase();
+    if (encoding === "ucs2" || encoding === "ucs-2" || encoding === "utf16le" || encoding === "utf-16le") {
+      if (arr.length < 2 || val.length < 2) {
+        return -1;
+      }
+      indexSize = 2;
+      arrLength /= 2;
+      valLength /= 2;
+      byteOffset /= 2;
+    }
+  }
+  function read2(buf, i2) {
+    if (indexSize === 1) {
+      return buf[i2];
+    } else {
+      return buf.readUInt16BE(i2 * indexSize);
+    }
+  }
+  let i;
+  if (dir) {
+    let foundIndex = -1;
+    for (i = byteOffset; i < arrLength; i++) {
+      if (read2(arr, i) === read2(val, foundIndex === -1 ? 0 : i - foundIndex)) {
+        if (foundIndex === -1) foundIndex = i;
+        if (i - foundIndex + 1 === valLength) return foundIndex * indexSize;
+      } else {
+        if (foundIndex !== -1) i -= i - foundIndex;
+        foundIndex = -1;
+      }
+    }
+  } else {
+    if (byteOffset + valLength > arrLength) byteOffset = arrLength - valLength;
+    for (i = byteOffset; i >= 0; i--) {
+      let found = true;
+      for (let j = 0; j < valLength; j++) {
+        if (read2(arr, i + j) !== read2(val, j)) {
+          found = false;
+          break;
+        }
+      }
+      if (found) return i;
+    }
+  }
+  return -1;
+}
+Buffer2.prototype.includes = function includes(val, byteOffset, encoding) {
+  return this.indexOf(val, byteOffset, encoding) !== -1;
+};
+Buffer2.prototype.indexOf = function indexOf(val, byteOffset, encoding) {
+  return bidirectionalIndexOf(this, val, byteOffset, encoding, true);
+};
+Buffer2.prototype.lastIndexOf = function lastIndexOf(val, byteOffset, encoding) {
+  return bidirectionalIndexOf(this, val, byteOffset, encoding, false);
+};
+function hexWrite(buf, string, offset, length) {
+  offset = Number(offset) || 0;
+  const remaining = buf.length - offset;
+  if (!length) {
+    length = remaining;
+  } else {
+    length = Number(length);
+    if (length > remaining) {
+      length = remaining;
+    }
+  }
+  const strLen = string.length;
+  if (length > strLen / 2) {
+    length = strLen / 2;
+  }
+  let i;
+  for (i = 0; i < length; ++i) {
+    const parsed = parseInt(string.substr(i * 2, 2), 16);
+    if (Number.isNaN(parsed)) return i;
+    buf[offset + i] = parsed;
+  }
+  return i;
+}
+function utf8Write(buf, string, offset, length) {
+  return blitBuffer(utf8ToBytes(string, buf.length - offset), buf, offset, length);
+}
+function asciiWrite(buf, string, offset, length) {
+  return blitBuffer(asciiToBytes(string), buf, offset, length);
+}
+function base64Write(buf, string, offset, length) {
+  return blitBuffer(base64ToBytes(string), buf, offset, length);
+}
+function ucs2Write(buf, string, offset, length) {
+  return blitBuffer(utf16leToBytes(string, buf.length - offset), buf, offset, length);
+}
+Buffer2.prototype.write = function write2(string, offset, length, encoding) {
+  if (offset === void 0) {
+    encoding = "utf8";
+    length = this.length;
+    offset = 0;
+  } else if (length === void 0 && typeof offset === "string") {
+    encoding = offset;
+    length = this.length;
+    offset = 0;
+  } else if (isFinite(offset)) {
+    offset = offset >>> 0;
+    if (isFinite(length)) {
+      length = length >>> 0;
+      if (encoding === void 0) encoding = "utf8";
+    } else {
+      encoding = length;
+      length = void 0;
+    }
+  } else {
+    throw new Error(
+      "Buffer.write(string, encoding, offset[, length]) is no longer supported"
+    );
+  }
+  const remaining = this.length - offset;
+  if (length === void 0 || length > remaining) length = remaining;
+  if (string.length > 0 && (length < 0 || offset < 0) || offset > this.length) {
+    throw new RangeError("Attempt to write outside buffer bounds");
+  }
+  if (!encoding) encoding = "utf8";
+  let loweredCase = false;
+  for (; ; ) {
+    switch (encoding) {
+      case "hex":
+        return hexWrite(this, string, offset, length);
+      case "utf8":
+      case "utf-8":
+        return utf8Write(this, string, offset, length);
+      case "ascii":
+      case "latin1":
+      case "binary":
+        return asciiWrite(this, string, offset, length);
+      case "base64":
+        return base64Write(this, string, offset, length);
+      case "ucs2":
+      case "ucs-2":
+      case "utf16le":
+      case "utf-16le":
+        return ucs2Write(this, string, offset, length);
+      default:
+        if (loweredCase) throw new TypeError("Unknown encoding: " + encoding);
+        encoding = ("" + encoding).toLowerCase();
+        loweredCase = true;
+    }
+  }
+};
+Buffer2.prototype.toJSON = function toJSON() {
+  return {
+    type: "Buffer",
+    data: Array.prototype.slice.call(this._arr || this, 0)
+  };
+};
+function base64Slice(buf, start, end) {
+  if (start === 0 && end === buf.length) {
+    return fromByteArray(buf);
+  } else {
+    return fromByteArray(buf.slice(start, end));
+  }
+}
+function utf8Slice(buf, start, end) {
+  end = Math.min(buf.length, end);
+  const res = [];
+  let i = start;
+  while (i < end) {
+    const firstByte = buf[i];
+    let codePoint = null;
+    let bytesPerSequence = firstByte > 239 ? 4 : firstByte > 223 ? 3 : firstByte > 191 ? 2 : 1;
+    if (i + bytesPerSequence <= end) {
+      let secondByte, thirdByte, fourthByte, tempCodePoint;
+      switch (bytesPerSequence) {
+        case 1:
+          if (firstByte < 128) {
+            codePoint = firstByte;
+          }
+          break;
+        case 2:
+          secondByte = buf[i + 1];
+          if ((secondByte & 192) === 128) {
+            tempCodePoint = (firstByte & 31) << 6 | secondByte & 63;
+            if (tempCodePoint > 127) {
+              codePoint = tempCodePoint;
+            }
+          }
+          break;
+        case 3:
+          secondByte = buf[i + 1];
+          thirdByte = buf[i + 2];
+          if ((secondByte & 192) === 128 && (thirdByte & 192) === 128) {
+            tempCodePoint = (firstByte & 15) << 12 | (secondByte & 63) << 6 | thirdByte & 63;
+            if (tempCodePoint > 2047 && (tempCodePoint < 55296 || tempCodePoint > 57343)) {
+              codePoint = tempCodePoint;
+            }
+          }
+          break;
+        case 4:
+          secondByte = buf[i + 1];
+          thirdByte = buf[i + 2];
+          fourthByte = buf[i + 3];
+          if ((secondByte & 192) === 128 && (thirdByte & 192) === 128 && (fourthByte & 192) === 128) {
+            tempCodePoint = (firstByte & 15) << 18 | (secondByte & 63) << 12 | (thirdByte & 63) << 6 | fourthByte & 63;
+            if (tempCodePoint > 65535 && tempCodePoint < 1114112) {
+              codePoint = tempCodePoint;
+            }
+          }
+      }
+    }
+    if (codePoint === null) {
+      codePoint = 65533;
+      bytesPerSequence = 1;
+    } else if (codePoint > 65535) {
+      codePoint -= 65536;
+      res.push(codePoint >>> 10 & 1023 | 55296);
+      codePoint = 56320 | codePoint & 1023;
+    }
+    res.push(codePoint);
+    i += bytesPerSequence;
+  }
+  return decodeCodePointsArray(res);
+}
+var MAX_ARGUMENTS_LENGTH = 4096;
+function decodeCodePointsArray(codePoints) {
+  const len = codePoints.length;
+  if (len <= MAX_ARGUMENTS_LENGTH) {
+    return String.fromCharCode.apply(String, codePoints);
+  }
+  let res = "";
+  let i = 0;
+  while (i < len) {
+    res += String.fromCharCode.apply(
+      String,
+      codePoints.slice(i, i += MAX_ARGUMENTS_LENGTH)
+    );
+  }
+  return res;
+}
+function asciiSlice(buf, start, end) {
+  let ret = "";
+  end = Math.min(buf.length, end);
+  for (let i = start; i < end; ++i) {
+    ret += String.fromCharCode(buf[i] & 127);
+  }
+  return ret;
+}
+function latin1Slice(buf, start, end) {
+  let ret = "";
+  end = Math.min(buf.length, end);
+  for (let i = start; i < end; ++i) {
+    ret += String.fromCharCode(buf[i]);
+  }
+  return ret;
+}
+function hexSlice(buf, start, end) {
+  const len = buf.length;
+  if (!start || start < 0) start = 0;
+  if (!end || end < 0 || end > len) end = len;
+  let out = "";
+  for (let i = start; i < end; ++i) {
+    out += hexSliceLookupTable[buf[i]];
+  }
+  return out;
+}
+function utf16leSlice(buf, start, end) {
+  const bytes = buf.slice(start, end);
+  let res = "";
+  for (let i = 0; i < bytes.length - 1; i += 2) {
+    res += String.fromCharCode(bytes[i] + bytes[i + 1] * 256);
+  }
+  return res;
+}
+Buffer2.prototype.slice = function slice(start, end) {
+  const len = this.length;
+  start = ~~start;
+  end = end === void 0 ? len : ~~end;
+  if (start < 0) {
+    start += len;
+    if (start < 0) start = 0;
+  } else if (start > len) {
+    start = len;
+  }
+  if (end < 0) {
+    end += len;
+    if (end < 0) end = 0;
+  } else if (end > len) {
+    end = len;
+  }
+  if (end < start) end = start;
+  const newBuf = this.subarray(start, end);
+  Object.setPrototypeOf(newBuf, Buffer2.prototype);
+  return newBuf;
+};
+function checkOffset(offset, ext, length) {
+  if (offset % 1 !== 0 || offset < 0) throw new RangeError("offset is not uint");
+  if (offset + ext > length) throw new RangeError("Trying to access beyond buffer length");
+}
+Buffer2.prototype.readUintLE = Buffer2.prototype.readUIntLE = function readUIntLE(offset, byteLength2, noAssert) {
+  offset = offset >>> 0;
+  byteLength2 = byteLength2 >>> 0;
+  if (!noAssert) checkOffset(offset, byteLength2, this.length);
+  let val = this[offset];
+  let mul = 1;
+  let i = 0;
+  while (++i < byteLength2 && (mul *= 256)) {
+    val += this[offset + i] * mul;
+  }
+  return val;
+};
+Buffer2.prototype.readUintBE = Buffer2.prototype.readUIntBE = function readUIntBE(offset, byteLength2, noAssert) {
+  offset = offset >>> 0;
+  byteLength2 = byteLength2 >>> 0;
+  if (!noAssert) {
+    checkOffset(offset, byteLength2, this.length);
+  }
+  let val = this[offset + --byteLength2];
+  let mul = 1;
+  while (byteLength2 > 0 && (mul *= 256)) {
+    val += this[offset + --byteLength2] * mul;
+  }
+  return val;
+};
+Buffer2.prototype.readUint8 = Buffer2.prototype.readUInt8 = function readUInt8(offset, noAssert) {
+  offset = offset >>> 0;
+  if (!noAssert) checkOffset(offset, 1, this.length);
+  return this[offset];
+};
+Buffer2.prototype.readUint16LE = Buffer2.prototype.readUInt16LE = function readUInt16LE(offset, noAssert) {
+  offset = offset >>> 0;
+  if (!noAssert) checkOffset(offset, 2, this.length);
+  return this[offset] | this[offset + 1] << 8;
+};
+Buffer2.prototype.readUint16BE = Buffer2.prototype.readUInt16BE = function readUInt16BE(offset, noAssert) {
+  offset = offset >>> 0;
+  if (!noAssert) checkOffset(offset, 2, this.length);
+  return this[offset] << 8 | this[offset + 1];
+};
+Buffer2.prototype.readUint32LE = Buffer2.prototype.readUInt32LE = function readUInt32LE(offset, noAssert) {
+  offset = offset >>> 0;
+  if (!noAssert) checkOffset(offset, 4, this.length);
+  return (this[offset] | this[offset + 1] << 8 | this[offset + 2] << 16) + this[offset + 3] * 16777216;
+};
+Buffer2.prototype.readUint32BE = Buffer2.prototype.readUInt32BE = function readUInt32BE(offset, noAssert) {
+  offset = offset >>> 0;
+  if (!noAssert) checkOffset(offset, 4, this.length);
+  return this[offset] * 16777216 + (this[offset + 1] << 16 | this[offset + 2] << 8 | this[offset + 3]);
+};
+Buffer2.prototype.readBigUInt64LE = function readBigUInt64LE(offset) {
+  offset = offset >>> 0;
+  validateNumber(offset, "offset");
+  const first = this[offset];
+  const last = this[offset + 7];
+  if (first === void 0 || last === void 0) {
+    boundsError(offset, this.length - 8);
+  }
+  const lo = first + this[++offset] * 2 ** 8 + this[++offset] * 2 ** 16 + this[++offset] * 2 ** 24;
+  const hi = this[++offset] + this[++offset] * 2 ** 8 + this[++offset] * 2 ** 16 + last * 2 ** 24;
+  return BigInt(lo) + (BigInt(hi) << BigInt(32));
+};
+Buffer2.prototype.readBigUInt64BE = function readBigUInt64BE(offset) {
+  offset = offset >>> 0;
+  validateNumber(offset, "offset");
+  const first = this[offset];
+  const last = this[offset + 7];
+  if (first === void 0 || last === void 0) {
+    boundsError(offset, this.length - 8);
+  }
+  const hi = first * 2 ** 24 + this[++offset] * 2 ** 16 + this[++offset] * 2 ** 8 + this[++offset];
+  const lo = this[++offset] * 2 ** 24 + this[++offset] * 2 ** 16 + this[++offset] * 2 ** 8 + last;
+  return (BigInt(hi) << BigInt(32)) + BigInt(lo);
+};
+Buffer2.prototype.readIntLE = function readIntLE(offset, byteLength2, noAssert) {
+  offset = offset >>> 0;
+  byteLength2 = byteLength2 >>> 0;
+  if (!noAssert) checkOffset(offset, byteLength2, this.length);
+  let val = this[offset];
+  let mul = 1;
+  let i = 0;
+  while (++i < byteLength2 && (mul *= 256)) {
+    val += this[offset + i] * mul;
+  }
+  mul *= 128;
+  if (val >= mul) val -= Math.pow(2, 8 * byteLength2);
+  return val;
+};
+Buffer2.prototype.readIntBE = function readIntBE(offset, byteLength2, noAssert) {
+  offset = offset >>> 0;
+  byteLength2 = byteLength2 >>> 0;
+  if (!noAssert) checkOffset(offset, byteLength2, this.length);
+  let i = byteLength2;
+  let mul = 1;
+  let val = this[offset + --i];
+  while (i > 0 && (mul *= 256)) {
+    val += this[offset + --i] * mul;
+  }
+  mul *= 128;
+  if (val >= mul) val -= Math.pow(2, 8 * byteLength2);
+  return val;
+};
+Buffer2.prototype.readInt8 = function readInt8(offset, noAssert) {
+  offset = offset >>> 0;
+  if (!noAssert) checkOffset(offset, 1, this.length);
+  if (!(this[offset] & 128)) return this[offset];
+  return (255 - this[offset] + 1) * -1;
+};
+Buffer2.prototype.readInt16LE = function readInt16LE(offset, noAssert) {
+  offset = offset >>> 0;
+  if (!noAssert) checkOffset(offset, 2, this.length);
+  const val = this[offset] | this[offset + 1] << 8;
+  return val & 32768 ? val | 4294901760 : val;
+};
+Buffer2.prototype.readInt16BE = function readInt16BE(offset, noAssert) {
+  offset = offset >>> 0;
+  if (!noAssert) checkOffset(offset, 2, this.length);
+  const val = this[offset + 1] | this[offset] << 8;
+  return val & 32768 ? val | 4294901760 : val;
+};
+Buffer2.prototype.readInt32LE = function readInt32LE(offset, noAssert) {
+  offset = offset >>> 0;
+  if (!noAssert) checkOffset(offset, 4, this.length);
+  return this[offset] | this[offset + 1] << 8 | this[offset + 2] << 16 | this[offset + 3] << 24;
+};
+Buffer2.prototype.readInt32BE = function readInt32BE(offset, noAssert) {
+  offset = offset >>> 0;
+  if (!noAssert) checkOffset(offset, 4, this.length);
+  return this[offset] << 24 | this[offset + 1] << 16 | this[offset + 2] << 8 | this[offset + 3];
+};
+Buffer2.prototype.readBigInt64LE = function readBigInt64LE(offset) {
+  offset = offset >>> 0;
+  validateNumber(offset, "offset");
+  const first = this[offset];
+  const last = this[offset + 7];
+  if (first === void 0 || last === void 0) {
+    boundsError(offset, this.length - 8);
+  }
+  const val = this[offset + 4] + this[offset + 5] * 2 ** 8 + this[offset + 6] * 2 ** 16 + (last << 24);
+  return (BigInt(val) << BigInt(32)) + BigInt(first + this[++offset] * 2 ** 8 + this[++offset] * 2 ** 16 + this[++offset] * 2 ** 24);
+};
+Buffer2.prototype.readBigInt64BE = function readBigInt64BE(offset) {
+  offset = offset >>> 0;
+  validateNumber(offset, "offset");
+  const first = this[offset];
+  const last = this[offset + 7];
+  if (first === void 0 || last === void 0) {
+    boundsError(offset, this.length - 8);
+  }
+  const val = (first << 24) + // Overflow
+  this[++offset] * 2 ** 16 + this[++offset] * 2 ** 8 + this[++offset];
+  return (BigInt(val) << BigInt(32)) + BigInt(this[++offset] * 2 ** 24 + this[++offset] * 2 ** 16 + this[++offset] * 2 ** 8 + last);
+};
+Buffer2.prototype.readFloatLE = function readFloatLE(offset, noAssert) {
+  offset = offset >>> 0;
+  if (!noAssert) checkOffset(offset, 4, this.length);
+  return read(this, offset, true, 23, 4);
+};
+Buffer2.prototype.readFloatBE = function readFloatBE(offset, noAssert) {
+  offset = offset >>> 0;
+  if (!noAssert) checkOffset(offset, 4, this.length);
+  return read(this, offset, false, 23, 4);
+};
+Buffer2.prototype.readDoubleLE = function readDoubleLE(offset, noAssert) {
+  offset = offset >>> 0;
+  if (!noAssert) checkOffset(offset, 8, this.length);
+  return read(this, offset, true, 52, 8);
+};
+Buffer2.prototype.readDoubleBE = function readDoubleBE(offset, noAssert) {
+  offset = offset >>> 0;
+  if (!noAssert) checkOffset(offset, 8, this.length);
+  return read(this, offset, false, 52, 8);
+};
+function checkInt(buf, value, offset, ext, max, min) {
+  if (!Buffer2.isBuffer(buf)) throw new TypeError('"buffer" argument must be a Buffer instance');
+  if (value > max || value < min) throw new RangeError('"value" argument is out of bounds');
+  if (offset + ext > buf.length) throw new RangeError("Index out of range");
+}
+Buffer2.prototype.writeUintLE = Buffer2.prototype.writeUIntLE = function writeUIntLE(value, offset, byteLength2, noAssert) {
+  value = +value;
+  offset = offset >>> 0;
+  byteLength2 = byteLength2 >>> 0;
+  if (!noAssert) {
+    const maxBytes = Math.pow(2, 8 * byteLength2) - 1;
+    checkInt(this, value, offset, byteLength2, maxBytes, 0);
+  }
+  let mul = 1;
+  let i = 0;
+  this[offset] = value & 255;
+  while (++i < byteLength2 && (mul *= 256)) {
+    this[offset + i] = value / mul & 255;
+  }
+  return offset + byteLength2;
+};
+Buffer2.prototype.writeUintBE = Buffer2.prototype.writeUIntBE = function writeUIntBE(value, offset, byteLength2, noAssert) {
+  value = +value;
+  offset = offset >>> 0;
+  byteLength2 = byteLength2 >>> 0;
+  if (!noAssert) {
+    const maxBytes = Math.pow(2, 8 * byteLength2) - 1;
+    checkInt(this, value, offset, byteLength2, maxBytes, 0);
+  }
+  let i = byteLength2 - 1;
+  let mul = 1;
+  this[offset + i] = value & 255;
+  while (--i >= 0 && (mul *= 256)) {
+    this[offset + i] = value / mul & 255;
+  }
+  return offset + byteLength2;
+};
+Buffer2.prototype.writeUint8 = Buffer2.prototype.writeUInt8 = function writeUInt8(value, offset, noAssert) {
+  value = +value;
+  offset = offset >>> 0;
+  if (!noAssert) checkInt(this, value, offset, 1, 255, 0);
+  this[offset] = value & 255;
+  return offset + 1;
+};
+Buffer2.prototype.writeUint16LE = Buffer2.prototype.writeUInt16LE = function writeUInt16LE(value, offset, noAssert) {
+  value = +value;
+  offset = offset >>> 0;
+  if (!noAssert) checkInt(this, value, offset, 2, 65535, 0);
+  this[offset] = value & 255;
+  this[offset + 1] = value >>> 8;
+  return offset + 2;
+};
+Buffer2.prototype.writeUint16BE = Buffer2.prototype.writeUInt16BE = function writeUInt16BE(value, offset, noAssert) {
+  value = +value;
+  offset = offset >>> 0;
+  if (!noAssert) checkInt(this, value, offset, 2, 65535, 0);
+  this[offset] = value >>> 8;
+  this[offset + 1] = value & 255;
+  return offset + 2;
+};
+Buffer2.prototype.writeUint32LE = Buffer2.prototype.writeUInt32LE = function writeUInt32LE(value, offset, noAssert) {
+  value = +value;
+  offset = offset >>> 0;
+  if (!noAssert) checkInt(this, value, offset, 4, 4294967295, 0);
+  this[offset + 3] = value >>> 24;
+  this[offset + 2] = value >>> 16;
+  this[offset + 1] = value >>> 8;
+  this[offset] = value & 255;
+  return offset + 4;
+};
+Buffer2.prototype.writeUint32BE = Buffer2.prototype.writeUInt32BE = function writeUInt32BE(value, offset, noAssert) {
+  value = +value;
+  offset = offset >>> 0;
+  if (!noAssert) checkInt(this, value, offset, 4, 4294967295, 0);
+  this[offset] = value >>> 24;
+  this[offset + 1] = value >>> 16;
+  this[offset + 2] = value >>> 8;
+  this[offset + 3] = value & 255;
+  return offset + 4;
+};
+function wrtBigUInt64LE(buf, value, offset, min, max) {
+  checkIntBI(value, min, max, buf, offset, 7);
+  let lo = Number(value & BigInt(4294967295));
+  buf[offset++] = lo;
+  lo = lo >> 8;
+  buf[offset++] = lo;
+  lo = lo >> 8;
+  buf[offset++] = lo;
+  lo = lo >> 8;
+  buf[offset++] = lo;
+  let hi = Number(value >> BigInt(32) & BigInt(4294967295));
+  buf[offset++] = hi;
+  hi = hi >> 8;
+  buf[offset++] = hi;
+  hi = hi >> 8;
+  buf[offset++] = hi;
+  hi = hi >> 8;
+  buf[offset++] = hi;
+  return offset;
+}
+function wrtBigUInt64BE(buf, value, offset, min, max) {
+  checkIntBI(value, min, max, buf, offset, 7);
+  let lo = Number(value & BigInt(4294967295));
+  buf[offset + 7] = lo;
+  lo = lo >> 8;
+  buf[offset + 6] = lo;
+  lo = lo >> 8;
+  buf[offset + 5] = lo;
+  lo = lo >> 8;
+  buf[offset + 4] = lo;
+  let hi = Number(value >> BigInt(32) & BigInt(4294967295));
+  buf[offset + 3] = hi;
+  hi = hi >> 8;
+  buf[offset + 2] = hi;
+  hi = hi >> 8;
+  buf[offset + 1] = hi;
+  hi = hi >> 8;
+  buf[offset] = hi;
+  return offset + 8;
+}
+Buffer2.prototype.writeBigUInt64LE = function writeBigUInt64LE(value, offset = 0) {
+  return wrtBigUInt64LE(this, value, offset, BigInt(0), BigInt("0xffffffffffffffff"));
+};
+Buffer2.prototype.writeBigUInt64BE = function writeBigUInt64BE(value, offset = 0) {
+  return wrtBigUInt64BE(this, value, offset, BigInt(0), BigInt("0xffffffffffffffff"));
+};
+Buffer2.prototype.writeIntLE = function writeIntLE(value, offset, byteLength2, noAssert) {
+  value = +value;
+  offset = offset >>> 0;
+  if (!noAssert) {
+    const limit = Math.pow(2, 8 * byteLength2 - 1);
+    checkInt(this, value, offset, byteLength2, limit - 1, -limit);
+  }
+  let i = 0;
+  let mul = 1;
+  let sub = 0;
+  this[offset] = value & 255;
+  while (++i < byteLength2 && (mul *= 256)) {
+    if (value < 0 && sub === 0 && this[offset + i - 1] !== 0) {
+      sub = 1;
+    }
+    this[offset + i] = (value / mul >> 0) - sub & 255;
+  }
+  return offset + byteLength2;
+};
+Buffer2.prototype.writeIntBE = function writeIntBE(value, offset, byteLength2, noAssert) {
+  value = +value;
+  offset = offset >>> 0;
+  if (!noAssert) {
+    const limit = Math.pow(2, 8 * byteLength2 - 1);
+    checkInt(this, value, offset, byteLength2, limit - 1, -limit);
+  }
+  let i = byteLength2 - 1;
+  let mul = 1;
+  let sub = 0;
+  this[offset + i] = value & 255;
+  while (--i >= 0 && (mul *= 256)) {
+    if (value < 0 && sub === 0 && this[offset + i + 1] !== 0) {
+      sub = 1;
+    }
+    this[offset + i] = (value / mul >> 0) - sub & 255;
+  }
+  return offset + byteLength2;
+};
+Buffer2.prototype.writeInt8 = function writeInt8(value, offset, noAssert) {
+  value = +value;
+  offset = offset >>> 0;
+  if (!noAssert) checkInt(this, value, offset, 1, 127, -128);
+  if (value < 0) value = 255 + value + 1;
+  this[offset] = value & 255;
+  return offset + 1;
+};
+Buffer2.prototype.writeInt16LE = function writeInt16LE(value, offset, noAssert) {
+  value = +value;
+  offset = offset >>> 0;
+  if (!noAssert) checkInt(this, value, offset, 2, 32767, -32768);
+  this[offset] = value & 255;
+  this[offset + 1] = value >>> 8;
+  return offset + 2;
+};
+Buffer2.prototype.writeInt16BE = function writeInt16BE(value, offset, noAssert) {
+  value = +value;
+  offset = offset >>> 0;
+  if (!noAssert) checkInt(this, value, offset, 2, 32767, -32768);
+  this[offset] = value >>> 8;
+  this[offset + 1] = value & 255;
+  return offset + 2;
+};
+Buffer2.prototype.writeInt32LE = function writeInt32LE(value, offset, noAssert) {
+  value = +value;
+  offset = offset >>> 0;
+  if (!noAssert) checkInt(this, value, offset, 4, 2147483647, -2147483648);
+  this[offset] = value & 255;
+  this[offset + 1] = value >>> 8;
+  this[offset + 2] = value >>> 16;
+  this[offset + 3] = value >>> 24;
+  return offset + 4;
+};
+Buffer2.prototype.writeInt32BE = function writeInt32BE(value, offset, noAssert) {
+  value = +value;
+  offset = offset >>> 0;
+  if (!noAssert) checkInt(this, value, offset, 4, 2147483647, -2147483648);
+  if (value < 0) value = 4294967295 + value + 1;
+  this[offset] = value >>> 24;
+  this[offset + 1] = value >>> 16;
+  this[offset + 2] = value >>> 8;
+  this[offset + 3] = value & 255;
+  return offset + 4;
+};
+Buffer2.prototype.writeBigInt64LE = function writeBigInt64LE(value, offset = 0) {
+  return wrtBigUInt64LE(this, value, offset, -BigInt("0x8000000000000000"), BigInt("0x7fffffffffffffff"));
+};
+Buffer2.prototype.writeBigInt64BE = function writeBigInt64BE(value, offset = 0) {
+  return wrtBigUInt64BE(this, value, offset, -BigInt("0x8000000000000000"), BigInt("0x7fffffffffffffff"));
+};
+function checkIEEE754(buf, value, offset, ext, max, min) {
+  if (offset + ext > buf.length) throw new RangeError("Index out of range");
+  if (offset < 0) throw new RangeError("Index out of range");
+}
+function writeFloat(buf, value, offset, littleEndian, noAssert) {
+  value = +value;
+  offset = offset >>> 0;
+  if (!noAssert) {
+    checkIEEE754(buf, value, offset, 4, 34028234663852886e22, -34028234663852886e22);
+  }
+  write(buf, value, offset, littleEndian, 23, 4);
+  return offset + 4;
+}
+Buffer2.prototype.writeFloatLE = function writeFloatLE(value, offset, noAssert) {
+  return writeFloat(this, value, offset, true, noAssert);
+};
+Buffer2.prototype.writeFloatBE = function writeFloatBE(value, offset, noAssert) {
+  return writeFloat(this, value, offset, false, noAssert);
+};
+function writeDouble(buf, value, offset, littleEndian, noAssert) {
+  value = +value;
+  offset = offset >>> 0;
+  if (!noAssert) {
+    checkIEEE754(buf, value, offset, 8, 17976931348623157e292, -17976931348623157e292);
+  }
+  write(buf, value, offset, littleEndian, 52, 8);
+  return offset + 8;
+}
+Buffer2.prototype.writeDoubleLE = function writeDoubleLE(value, offset, noAssert) {
+  return writeDouble(this, value, offset, true, noAssert);
+};
+Buffer2.prototype.writeDoubleBE = function writeDoubleBE(value, offset, noAssert) {
+  return writeDouble(this, value, offset, false, noAssert);
+};
+Buffer2.prototype.copy = function copy(target, targetStart, start, end) {
+  if (!Buffer2.isBuffer(target)) throw new TypeError("argument should be a Buffer");
+  if (!start) start = 0;
+  if (!end && end !== 0) end = this.length;
+  if (targetStart >= target.length) targetStart = target.length;
+  if (!targetStart) targetStart = 0;
+  if (end > 0 && end < start) end = start;
+  if (end === start) return 0;
+  if (target.length === 0 || this.length === 0) return 0;
+  if (targetStart < 0) {
+    throw new RangeError("targetStart out of bounds");
+  }
+  if (start < 0 || start >= this.length) throw new RangeError("Index out of range");
+  if (end < 0) throw new RangeError("sourceEnd out of bounds");
+  if (end > this.length) end = this.length;
+  if (target.length - targetStart < end - start) {
+    end = target.length - targetStart + start;
+  }
+  const len = end - start;
+  if (this === target) {
+    this.copyWithin(targetStart, start, end);
+  } else {
+    Uint8Array.prototype.set.call(
+      target,
+      this.subarray(start, end),
+      targetStart
+    );
+  }
+  return len;
+};
+Buffer2.prototype.fill = function fill(val, start, end, encoding) {
+  if (typeof val === "string") {
+    if (typeof start === "string") {
+      encoding = start;
+      start = 0;
+      end = this.length;
+    } else if (typeof end === "string") {
+      encoding = end;
+      end = this.length;
+    }
+    if (encoding !== void 0 && typeof encoding !== "string") {
+      throw new TypeError("encoding must be a string");
+    }
+    if (typeof encoding === "string" && !Buffer2.isEncoding(encoding)) {
+      throw new TypeError("Unknown encoding: " + encoding);
+    }
+    if (val.length === 1) {
+      const code3 = val.charCodeAt(0);
+      if (encoding === "utf8" && code3 < 128 || encoding === "latin1") {
+        val = code3;
+      }
+    }
+  } else if (typeof val === "number") {
+    val = val & 255;
+  } else if (typeof val === "boolean") {
+    val = Number(val);
+  }
+  if (start < 0 || this.length < start || this.length < end) {
+    throw new RangeError("Out of range index");
+  }
+  if (end <= start) {
+    return this;
+  }
+  start = start >>> 0;
+  end = end === void 0 ? this.length : end >>> 0;
+  if (!val) val = 0;
+  let i;
+  if (typeof val === "number") {
+    for (i = start; i < end; ++i) {
+      this[i] = val;
+    }
+  } else {
+    const bytes = Buffer2.isBuffer(val) ? val : Buffer2.from(val, encoding);
+    const len = bytes.length;
+    if (len === 0) {
+      throw new TypeError('The value "' + val + '" is invalid for argument "value"');
+    }
+    for (i = 0; i < end - start; ++i) {
+      this[i + start] = bytes[i % len];
+    }
+  }
+  return this;
+};
+var errors = {};
+function E(sym, getMessage, Base) {
+  errors[sym] = class NodeError extends Base {
+    constructor() {
+      super();
+      Object.defineProperty(this, "message", {
+        value: getMessage.apply(this, arguments),
+        writable: true,
+        configurable: true
+      });
+      this.name = `${this.name} [${sym}]`;
+      this.stack;
+      delete this.name;
+    }
+    get code() {
+      return sym;
+    }
+    set code(value) {
+      Object.defineProperty(this, "code", {
+        configurable: true,
+        enumerable: true,
+        value,
+        writable: true
+      });
+    }
+    toString() {
+      return `${this.name} [${sym}]: ${this.message}`;
+    }
+  };
+}
+E(
+  "ERR_BUFFER_OUT_OF_BOUNDS",
+  function(name) {
+    if (name) {
+      return `${name} is outside of buffer bounds`;
+    }
+    return "Attempt to access memory outside buffer bounds";
+  },
+  RangeError
+);
+E(
+  "ERR_INVALID_ARG_TYPE",
+  function(name, actual) {
+    return `The "${name}" argument must be of type number. Received type ${typeof actual}`;
+  },
+  TypeError
+);
+E(
+  "ERR_OUT_OF_RANGE",
+  function(str, range, input) {
+    let msg = `The value of "${str}" is out of range.`;
+    let received = input;
+    if (Number.isInteger(input) && Math.abs(input) > 2 ** 32) {
+      received = addNumericalSeparator(String(input));
+    } else if (typeof input === "bigint") {
+      received = String(input);
+      if (input > BigInt(2) ** BigInt(32) || input < -(BigInt(2) ** BigInt(32))) {
+        received = addNumericalSeparator(received);
+      }
+      received += "n";
+    }
+    msg += ` It must be ${range}. Received ${received}`;
+    return msg;
+  },
+  RangeError
+);
+function addNumericalSeparator(val) {
+  let res = "";
+  let i = val.length;
+  const start = val[0] === "-" ? 1 : 0;
+  for (; i >= start + 4; i -= 3) {
+    res = `_${val.slice(i - 3, i)}${res}`;
+  }
+  return `${val.slice(0, i)}${res}`;
+}
+function checkBounds(buf, offset, byteLength2) {
+  validateNumber(offset, "offset");
+  if (buf[offset] === void 0 || buf[offset + byteLength2] === void 0) {
+    boundsError(offset, buf.length - (byteLength2 + 1));
+  }
+}
+function checkIntBI(value, min, max, buf, offset, byteLength2) {
+  if (value > max || value < min) {
+    const n = typeof min === "bigint" ? "n" : "";
+    let range;
+    if (byteLength2 > 3) {
+      if (min === 0 || min === BigInt(0)) {
+        range = `>= 0${n} and < 2${n} ** ${(byteLength2 + 1) * 8}${n}`;
+      } else {
+        range = `>= -(2${n} ** ${(byteLength2 + 1) * 8 - 1}${n}) and < 2 ** ${(byteLength2 + 1) * 8 - 1}${n}`;
+      }
+    } else {
+      range = `>= ${min}${n} and <= ${max}${n}`;
+    }
+    throw new errors.ERR_OUT_OF_RANGE("value", range, value);
+  }
+  checkBounds(buf, offset, byteLength2);
+}
+function validateNumber(value, name) {
+  if (typeof value !== "number") {
+    throw new errors.ERR_INVALID_ARG_TYPE(name, "number", value);
+  }
+}
+function boundsError(value, length, type) {
+  if (Math.floor(value) !== value) {
+    validateNumber(value, type);
+    throw new errors.ERR_OUT_OF_RANGE(type || "offset", "an integer", value);
+  }
+  if (length < 0) {
+    throw new errors.ERR_BUFFER_OUT_OF_BOUNDS();
+  }
+  throw new errors.ERR_OUT_OF_RANGE(
+    type || "offset",
+    `>= ${type ? 1 : 0} and <= ${length}`,
+    value
+  );
+}
+var INVALID_BASE64_RE = /[^+/0-9A-Za-z-_]/g;
+function base64clean(str) {
+  str = str.split("=")[0];
+  str = str.trim().replace(INVALID_BASE64_RE, "");
+  if (str.length < 2) return "";
+  while (str.length % 4 !== 0) {
+    str = str + "=";
+  }
+  return str;
+}
+function utf8ToBytes(string, units) {
+  units = units || Infinity;
+  let codePoint;
+  const length = string.length;
+  let leadSurrogate = null;
+  const bytes = [];
+  for (let i = 0; i < length; ++i) {
+    codePoint = string.charCodeAt(i);
+    if (codePoint > 55295 && codePoint < 57344) {
+      if (!leadSurrogate) {
+        if (codePoint > 56319) {
+          if ((units -= 3) > -1) bytes.push(239, 191, 189);
+          continue;
+        } else if (i + 1 === length) {
+          if ((units -= 3) > -1) bytes.push(239, 191, 189);
+          continue;
+        }
+        leadSurrogate = codePoint;
+        continue;
+      }
+      if (codePoint < 56320) {
+        if ((units -= 3) > -1) bytes.push(239, 191, 189);
+        leadSurrogate = codePoint;
+        continue;
+      }
+      codePoint = (leadSurrogate - 55296 << 10 | codePoint - 56320) + 65536;
+    } else if (leadSurrogate) {
+      if ((units -= 3) > -1) bytes.push(239, 191, 189);
+    }
+    leadSurrogate = null;
+    if (codePoint < 128) {
+      if ((units -= 1) < 0) break;
+      bytes.push(codePoint);
+    } else if (codePoint < 2048) {
+      if ((units -= 2) < 0) break;
+      bytes.push(
+        codePoint >> 6 | 192,
+        codePoint & 63 | 128
+      );
+    } else if (codePoint < 65536) {
+      if ((units -= 3) < 0) break;
+      bytes.push(
+        codePoint >> 12 | 224,
+        codePoint >> 6 & 63 | 128,
+        codePoint & 63 | 128
+      );
+    } else if (codePoint < 1114112) {
+      if ((units -= 4) < 0) break;
+      bytes.push(
+        codePoint >> 18 | 240,
+        codePoint >> 12 & 63 | 128,
+        codePoint >> 6 & 63 | 128,
+        codePoint & 63 | 128
+      );
+    } else {
+      throw new Error("Invalid code point");
+    }
+  }
+  return bytes;
+}
+function asciiToBytes(str) {
+  const byteArray = [];
+  for (let i = 0; i < str.length; ++i) {
+    byteArray.push(str.charCodeAt(i) & 255);
+  }
+  return byteArray;
+}
+function utf16leToBytes(str, units) {
+  let c, hi, lo;
+  const byteArray = [];
+  for (let i = 0; i < str.length; ++i) {
+    if ((units -= 2) < 0) break;
+    c = str.charCodeAt(i);
+    hi = c >> 8;
+    lo = c % 256;
+    byteArray.push(lo);
+    byteArray.push(hi);
+  }
+  return byteArray;
+}
+function base64ToBytes(str) {
+  return toByteArray(base64clean(str));
+}
+function blitBuffer(src, dst, offset, length) {
+  let i;
+  for (i = 0; i < length; ++i) {
+    if (i + offset >= dst.length || i >= src.length) break;
+    dst[i + offset] = src[i];
+  }
+  return i;
+}
+var hexSliceLookupTable = function() {
+  const alphabet = "0123456789abcdef";
+  const table = new Array(256);
+  for (let i = 0; i < 16; ++i) {
+    const i16 = i * 16;
+    for (let j = 0; j < 16; ++j) {
+      table[i16 + j] = alphabet[i] + alphabet[j];
+    }
+  }
+  return table;
+}();
+
+// node_modules/frida-java-bridge/lib/android.js
+var android_exports = {};
+__export(android_exports, {
+  ArtMethod: () => ArtMethod,
+  ArtStackVisitor: () => ArtStackVisitor,
+  DVM_JNI_ENV_OFFSET_SELF: () => DVM_JNI_ENV_OFFSET_SELF,
+  HandleVector: () => HandleVector,
+  VariableSizedHandleScope: () => VariableSizedHandleScope,
+  backtrace: () => backtrace,
+  deoptimizeBootImage: () => deoptimizeBootImage,
+  deoptimizeEverything: () => deoptimizeEverything,
+  deoptimizeMethod: () => deoptimizeMethod,
+  ensureClassInitialized: () => ensureClassInitialized,
+  getAndroidApiLevel: () => getAndroidApiLevel,
+  getAndroidVersion: () => getAndroidVersion,
+  getApi: () => getApi,
+  getArtClassSpec: () => getArtClassSpec,
+  getArtFieldSpec: () => getArtFieldSpec,
+  getArtMethodSpec: () => getArtMethodSpec,
+  getArtThreadFromEnv: () => getArtThreadFromEnv,
+  getArtThreadSpec: () => getArtThreadSpec,
+  makeArtClassLoaderVisitor: () => makeArtClassLoaderVisitor,
+  makeArtClassVisitor: () => makeArtClassVisitor,
+  makeMethodMangler: () => makeMethodMangler,
+  makeObjectVisitorPredicate: () => makeObjectVisitorPredicate,
+  revertGlobalPatches: () => revertGlobalPatches,
+  translateMethod: () => translateMethod,
+  withAllArtThreadsSuspended: () => withAllArtThreadsSuspended,
+  withRunnableArtThread: () => withRunnableArtThread
+});
+
+// node_modules/frida-java-bridge/lib/alloc.js
+var {
+  pageSize,
+  pointerSize
+} = Process;
+var CodeAllocator = class {
+  constructor(sliceSize) {
+    this.sliceSize = sliceSize;
+    this.slicesPerPage = pageSize / sliceSize;
+    this.pages = [];
+    this.free = [];
+  }
+  allocateSlice(spec, alignment) {
+    const anyLocation = spec.near === void 0;
+    const anyAlignment = alignment === 1;
+    if (anyLocation && anyAlignment) {
+      const slice2 = this.free.pop();
+      if (slice2 !== void 0) {
+        return slice2;
+      }
+    } else if (alignment < pageSize) {
+      const { free } = this;
+      const n = free.length;
+      const alignMask = anyAlignment ? null : ptr(alignment - 1);
+      for (let i = 0; i !== n; i++) {
+        const slice2 = free[i];
+        const satisfiesLocation = anyLocation || this._isSliceNear(slice2, spec);
+        const satisfiesAlignment = anyAlignment || slice2.and(alignMask).isNull();
+        if (satisfiesLocation && satisfiesAlignment) {
+          return free.splice(i, 1)[0];
+        }
+      }
+    }
+    return this._allocatePage(spec);
+  }
+  _allocatePage(spec) {
+    const page = Memory.alloc(pageSize, spec);
+    const { sliceSize, slicesPerPage } = this;
+    for (let i = 1; i !== slicesPerPage; i++) {
+      const slice2 = page.add(i * sliceSize);
+      this.free.push(slice2);
+    }
+    this.pages.push(page);
+    return page;
+  }
+  _isSliceNear(slice2, spec) {
+    const sliceEnd = slice2.add(this.sliceSize);
+    const { near, maxDistance } = spec;
+    const startDistance = abs(near.sub(slice2));
+    const endDistance = abs(near.sub(sliceEnd));
+    return startDistance.compare(maxDistance) <= 0 && endDistance.compare(maxDistance) <= 0;
+  }
+  freeSlice(slice2) {
+    this.free.push(slice2);
+  }
+};
+function abs(nptr) {
+  const shmt = pointerSize === 4 ? 31 : 63;
+  const mask = ptr(1).shl(shmt).not();
+  return nptr.and(mask);
+}
+function makeAllocator(sliceSize) {
+  return new CodeAllocator(sliceSize);
+}
+
+// node_modules/frida-java-bridge/lib/result.js
+var JNI_OK = 0;
+function checkJniResult(name, result) {
+  if (result !== JNI_OK) {
+    throw new Error(name + " failed: " + result);
+  }
+}
+
+// node_modules/frida-java-bridge/lib/jvmti.js
+var jvmtiVersion = {
+  v1_0: 805371904,
+  v1_2: 805372416
+};
+var jvmtiCapabilities = {
+  canTagObjects: 1
+};
+var { pointerSize: pointerSize2 } = Process;
+var nativeFunctionOptions = {
+  exceptions: "propagate"
+};
+function EnvJvmti(handle, vm3) {
+  this.handle = handle;
+  this.vm = vm3;
+  this.vtable = handle.readPointer();
+}
+EnvJvmti.prototype.deallocate = proxy(47, "int32", ["pointer", "pointer"], function(impl, mem) {
+  return impl(this.handle, mem);
+});
+EnvJvmti.prototype.getLoadedClasses = proxy(78, "int32", ["pointer", "pointer", "pointer"], function(impl, classCountPtr, classesPtr) {
+  const result = impl(this.handle, classCountPtr, classesPtr);
+  checkJniResult("EnvJvmti::getLoadedClasses", result);
+});
+EnvJvmti.prototype.iterateOverInstancesOfClass = proxy(112, "int32", ["pointer", "pointer", "int", "pointer", "pointer"], function(impl, klass, objectFilter, heapObjectCallback, userData) {
+  const result = impl(this.handle, klass, objectFilter, heapObjectCallback, userData);
+  checkJniResult("EnvJvmti::iterateOverInstancesOfClass", result);
+});
+EnvJvmti.prototype.getObjectsWithTags = proxy(114, "int32", ["pointer", "int", "pointer", "pointer", "pointer", "pointer"], function(impl, tagCount, tags, countPtr, objectResultPtr, tagResultPtr) {
+  const result = impl(this.handle, tagCount, tags, countPtr, objectResultPtr, tagResultPtr);
+  checkJniResult("EnvJvmti::getObjectsWithTags", result);
+});
+EnvJvmti.prototype.addCapabilities = proxy(142, "int32", ["pointer", "pointer"], function(impl, capabilitiesPtr) {
+  return impl(this.handle, capabilitiesPtr);
+});
+function proxy(offset, retType, argTypes, wrapper) {
+  let impl = null;
+  return function() {
+    if (impl === null) {
+      impl = new NativeFunction(this.vtable.add((offset - 1) * pointerSize2).readPointer(), retType, argTypes, nativeFunctionOptions);
+    }
+    let args = [impl];
+    args = args.concat.apply(args, arguments);
+    return wrapper.apply(this, args);
+  };
+}
+
+// node_modules/frida-java-bridge/lib/machine-code.js
+function parseInstructionsAt(address, tryParse, { limit }) {
+  let cursor = address;
+  let prevInsn = null;
+  for (let i = 0; i !== limit; i++) {
+    const insn = Instruction.parse(cursor);
+    const value = tryParse(insn, prevInsn);
+    if (value !== null) {
+      return value;
+    }
+    cursor = insn.next;
+    prevInsn = insn;
+  }
+  return null;
+}
+
+// node_modules/frida-java-bridge/lib/memoize.js
+function memoize(compute) {
+  let value = null;
+  let computed = false;
+  return function(...args) {
+    if (!computed) {
+      value = compute(...args);
+      computed = true;
+    }
+    return value;
+  };
+}
+
+// node_modules/frida-java-bridge/lib/env.js
+function Env(handle, vm3) {
+  this.handle = handle;
+  this.vm = vm3;
+}
+var pointerSize3 = Process.pointerSize;
+var JNI_ABORT = 2;
+var CALL_CONSTRUCTOR_METHOD_OFFSET = 28;
+var CALL_OBJECT_METHOD_OFFSET = 34;
+var CALL_BOOLEAN_METHOD_OFFSET = 37;
+var CALL_BYTE_METHOD_OFFSET = 40;
+var CALL_CHAR_METHOD_OFFSET = 43;
+var CALL_SHORT_METHOD_OFFSET = 46;
+var CALL_INT_METHOD_OFFSET = 49;
+var CALL_LONG_METHOD_OFFSET = 52;
+var CALL_FLOAT_METHOD_OFFSET = 55;
+var CALL_DOUBLE_METHOD_OFFSET = 58;
+var CALL_VOID_METHOD_OFFSET = 61;
+var CALL_NONVIRTUAL_OBJECT_METHOD_OFFSET = 64;
+var CALL_NONVIRTUAL_BOOLEAN_METHOD_OFFSET = 67;
+var CALL_NONVIRTUAL_BYTE_METHOD_OFFSET = 70;
+var CALL_NONVIRTUAL_CHAR_METHOD_OFFSET = 73;
+var CALL_NONVIRTUAL_SHORT_METHOD_OFFSET = 76;
+var CALL_NONVIRTUAL_INT_METHOD_OFFSET = 79;
+var CALL_NONVIRTUAL_LONG_METHOD_OFFSET = 82;
+var CALL_NONVIRTUAL_FLOAT_METHOD_OFFSET = 85;
+var CALL_NONVIRTUAL_DOUBLE_METHOD_OFFSET = 88;
+var CALL_NONVIRTUAL_VOID_METHOD_OFFSET = 91;
+var CALL_STATIC_OBJECT_METHOD_OFFSET = 114;
+var CALL_STATIC_BOOLEAN_METHOD_OFFSET = 117;
+var CALL_STATIC_BYTE_METHOD_OFFSET = 120;
+var CALL_STATIC_CHAR_METHOD_OFFSET = 123;
+var CALL_STATIC_SHORT_METHOD_OFFSET = 126;
+var CALL_STATIC_INT_METHOD_OFFSET = 129;
+var CALL_STATIC_LONG_METHOD_OFFSET = 132;
+var CALL_STATIC_FLOAT_METHOD_OFFSET = 135;
+var CALL_STATIC_DOUBLE_METHOD_OFFSET = 138;
+var CALL_STATIC_VOID_METHOD_OFFSET = 141;
+var GET_OBJECT_FIELD_OFFSET = 95;
+var GET_BOOLEAN_FIELD_OFFSET = 96;
+var GET_BYTE_FIELD_OFFSET = 97;
+var GET_CHAR_FIELD_OFFSET = 98;
+var GET_SHORT_FIELD_OFFSET = 99;
+var GET_INT_FIELD_OFFSET = 100;
+var GET_LONG_FIELD_OFFSET = 101;
+var GET_FLOAT_FIELD_OFFSET = 102;
+var GET_DOUBLE_FIELD_OFFSET = 103;
+var SET_OBJECT_FIELD_OFFSET = 104;
+var SET_BOOLEAN_FIELD_OFFSET = 105;
+var SET_BYTE_FIELD_OFFSET = 106;
+var SET_CHAR_FIELD_OFFSET = 107;
+var SET_SHORT_FIELD_OFFSET = 108;
+var SET_INT_FIELD_OFFSET = 109;
+var SET_LONG_FIELD_OFFSET = 110;
+var SET_FLOAT_FIELD_OFFSET = 111;
+var SET_DOUBLE_FIELD_OFFSET = 112;
+var GET_STATIC_OBJECT_FIELD_OFFSET = 145;
+var GET_STATIC_BOOLEAN_FIELD_OFFSET = 146;
+var GET_STATIC_BYTE_FIELD_OFFSET = 147;
+var GET_STATIC_CHAR_FIELD_OFFSET = 148;
+var GET_STATIC_SHORT_FIELD_OFFSET = 149;
+var GET_STATIC_INT_FIELD_OFFSET = 150;
+var GET_STATIC_LONG_FIELD_OFFSET = 151;
+var GET_STATIC_FLOAT_FIELD_OFFSET = 152;
+var GET_STATIC_DOUBLE_FIELD_OFFSET = 153;
+var SET_STATIC_OBJECT_FIELD_OFFSET = 154;
+var SET_STATIC_BOOLEAN_FIELD_OFFSET = 155;
+var SET_STATIC_BYTE_FIELD_OFFSET = 156;
+var SET_STATIC_CHAR_FIELD_OFFSET = 157;
+var SET_STATIC_SHORT_FIELD_OFFSET = 158;
+var SET_STATIC_INT_FIELD_OFFSET = 159;
+var SET_STATIC_LONG_FIELD_OFFSET = 160;
+var SET_STATIC_FLOAT_FIELD_OFFSET = 161;
+var SET_STATIC_DOUBLE_FIELD_OFFSET = 162;
+var callMethodOffset = {
+  pointer: CALL_OBJECT_METHOD_OFFSET,
+  uint8: CALL_BOOLEAN_METHOD_OFFSET,
+  int8: CALL_BYTE_METHOD_OFFSET,
+  uint16: CALL_CHAR_METHOD_OFFSET,
+  int16: CALL_SHORT_METHOD_OFFSET,
+  int32: CALL_INT_METHOD_OFFSET,
+  int64: CALL_LONG_METHOD_OFFSET,
+  float: CALL_FLOAT_METHOD_OFFSET,
+  double: CALL_DOUBLE_METHOD_OFFSET,
+  void: CALL_VOID_METHOD_OFFSET
+};
+var callNonvirtualMethodOffset = {
+  pointer: CALL_NONVIRTUAL_OBJECT_METHOD_OFFSET,
+  uint8: CALL_NONVIRTUAL_BOOLEAN_METHOD_OFFSET,
+  int8: CALL_NONVIRTUAL_BYTE_METHOD_OFFSET,
+  uint16: CALL_NONVIRTUAL_CHAR_METHOD_OFFSET,
+  int16: CALL_NONVIRTUAL_SHORT_METHOD_OFFSET,
+  int32: CALL_NONVIRTUAL_INT_METHOD_OFFSET,
+  int64: CALL_NONVIRTUAL_LONG_METHOD_OFFSET,
+  float: CALL_NONVIRTUAL_FLOAT_METHOD_OFFSET,
+  double: CALL_NONVIRTUAL_DOUBLE_METHOD_OFFSET,
+  void: CALL_NONVIRTUAL_VOID_METHOD_OFFSET
+};
+var callStaticMethodOffset = {
+  pointer: CALL_STATIC_OBJECT_METHOD_OFFSET,
+  uint8: CALL_STATIC_BOOLEAN_METHOD_OFFSET,
+  int8: CALL_STATIC_BYTE_METHOD_OFFSET,
+  uint16: CALL_STATIC_CHAR_METHOD_OFFSET,
+  int16: CALL_STATIC_SHORT_METHOD_OFFSET,
+  int32: CALL_STATIC_INT_METHOD_OFFSET,
+  int64: CALL_STATIC_LONG_METHOD_OFFSET,
+  float: CALL_STATIC_FLOAT_METHOD_OFFSET,
+  double: CALL_STATIC_DOUBLE_METHOD_OFFSET,
+  void: CALL_STATIC_VOID_METHOD_OFFSET
+};
+var getFieldOffset = {
+  pointer: GET_OBJECT_FIELD_OFFSET,
+  uint8: GET_BOOLEAN_FIELD_OFFSET,
+  int8: GET_BYTE_FIELD_OFFSET,
+  uint16: GET_CHAR_FIELD_OFFSET,
+  int16: GET_SHORT_FIELD_OFFSET,
+  int32: GET_INT_FIELD_OFFSET,
+  int64: GET_LONG_FIELD_OFFSET,
+  float: GET_FLOAT_FIELD_OFFSET,
+  double: GET_DOUBLE_FIELD_OFFSET
+};
+var setFieldOffset = {
+  pointer: SET_OBJECT_FIELD_OFFSET,
+  uint8: SET_BOOLEAN_FIELD_OFFSET,
+  int8: SET_BYTE_FIELD_OFFSET,
+  uint16: SET_CHAR_FIELD_OFFSET,
+  int16: SET_SHORT_FIELD_OFFSET,
+  int32: SET_INT_FIELD_OFFSET,
+  int64: SET_LONG_FIELD_OFFSET,
+  float: SET_FLOAT_FIELD_OFFSET,
+  double: SET_DOUBLE_FIELD_OFFSET
+};
+var getStaticFieldOffset = {
+  pointer: GET_STATIC_OBJECT_FIELD_OFFSET,
+  uint8: GET_STATIC_BOOLEAN_FIELD_OFFSET,
+  int8: GET_STATIC_BYTE_FIELD_OFFSET,
+  uint16: GET_STATIC_CHAR_FIELD_OFFSET,
+  int16: GET_STATIC_SHORT_FIELD_OFFSET,
+  int32: GET_STATIC_INT_FIELD_OFFSET,
+  int64: GET_STATIC_LONG_FIELD_OFFSET,
+  float: GET_STATIC_FLOAT_FIELD_OFFSET,
+  double: GET_STATIC_DOUBLE_FIELD_OFFSET
+};
+var setStaticFieldOffset = {
+  pointer: SET_STATIC_OBJECT_FIELD_OFFSET,
+  uint8: SET_STATIC_BOOLEAN_FIELD_OFFSET,
+  int8: SET_STATIC_BYTE_FIELD_OFFSET,
+  uint16: SET_STATIC_CHAR_FIELD_OFFSET,
+  int16: SET_STATIC_SHORT_FIELD_OFFSET,
+  int32: SET_STATIC_INT_FIELD_OFFSET,
+  int64: SET_STATIC_LONG_FIELD_OFFSET,
+  float: SET_STATIC_FLOAT_FIELD_OFFSET,
+  double: SET_STATIC_DOUBLE_FIELD_OFFSET
+};
+var nativeFunctionOptions2 = {
+  exceptions: "propagate"
+};
+var cachedVtable = null;
+var globalRefs = [];
+Env.dispose = function(env) {
+  globalRefs.forEach(env.deleteGlobalRef, env);
+  globalRefs = [];
+};
+function register(globalRef) {
+  globalRefs.push(globalRef);
+  return globalRef;
+}
+function vtable(instance) {
+  if (cachedVtable === null) {
+    cachedVtable = instance.handle.readPointer();
+  }
+  return cachedVtable;
+}
+function proxy2(offset, retType, argTypes, wrapper) {
+  let impl = null;
+  return function() {
+    if (impl === null) {
+      impl = new NativeFunction(vtable(this).add(offset * pointerSize3).readPointer(), retType, argTypes, nativeFunctionOptions2);
+    }
+    let args = [impl];
+    args = args.concat.apply(args, arguments);
+    return wrapper.apply(this, args);
+  };
+}
+Env.prototype.getVersion = proxy2(4, "int32", ["pointer"], function(impl) {
+  return impl(this.handle);
+});
+Env.prototype.findClass = proxy2(6, "pointer", ["pointer", "pointer"], function(impl, name) {
+  const result = impl(this.handle, Memory.allocUtf8String(name));
+  this.throwIfExceptionPending();
+  return result;
+});
+Env.prototype.throwIfExceptionPending = function() {
+  const throwable = this.exceptionOccurred();
+  if (throwable.isNull()) {
+    return;
+  }
+  this.exceptionClear();
+  const handle = this.newGlobalRef(throwable);
+  this.deleteLocalRef(throwable);
+  const description = this.vaMethod("pointer", [])(this.handle, handle, this.javaLangObject().toString);
+  const descriptionStr = this.stringFromJni(description);
+  this.deleteLocalRef(description);
+  const error = new Error(descriptionStr);
+  error.$h = handle;
+  Script.bindWeak(error, makeErrorHandleDestructor(this.vm, handle));
+  throw error;
+};
+function makeErrorHandleDestructor(vm3, handle) {
+  return function() {
+    vm3.perform((env) => {
+      env.deleteGlobalRef(handle);
+    });
+  };
+}
+Env.prototype.fromReflectedMethod = proxy2(7, "pointer", ["pointer", "pointer"], function(impl, method) {
+  return impl(this.handle, method);
+});
+Env.prototype.fromReflectedField = proxy2(8, "pointer", ["pointer", "pointer"], function(impl, method) {
+  return impl(this.handle, method);
+});
+Env.prototype.toReflectedMethod = proxy2(9, "pointer", ["pointer", "pointer", "pointer", "uint8"], function(impl, klass, methodId, isStatic) {
+  return impl(this.handle, klass, methodId, isStatic);
+});
+Env.prototype.getSuperclass = proxy2(10, "pointer", ["pointer", "pointer"], function(impl, klass) {
+  return impl(this.handle, klass);
+});
+Env.prototype.isAssignableFrom = proxy2(11, "uint8", ["pointer", "pointer", "pointer"], function(impl, klass1, klass2) {
+  return !!impl(this.handle, klass1, klass2);
+});
+Env.prototype.toReflectedField = proxy2(12, "pointer", ["pointer", "pointer", "pointer", "uint8"], function(impl, klass, fieldId, isStatic) {
+  return impl(this.handle, klass, fieldId, isStatic);
+});
+Env.prototype.throw = proxy2(13, "int32", ["pointer", "pointer"], function(impl, obj) {
+  return impl(this.handle, obj);
+});
+Env.prototype.exceptionOccurred = proxy2(15, "pointer", ["pointer"], function(impl) {
+  return impl(this.handle);
+});
+Env.prototype.exceptionDescribe = proxy2(16, "void", ["pointer"], function(impl) {
+  impl(this.handle);
+});
+Env.prototype.exceptionClear = proxy2(17, "void", ["pointer"], function(impl) {
+  impl(this.handle);
+});
+Env.prototype.pushLocalFrame = proxy2(19, "int32", ["pointer", "int32"], function(impl, capacity) {
+  return impl(this.handle, capacity);
+});
+Env.prototype.popLocalFrame = proxy2(20, "pointer", ["pointer", "pointer"], function(impl, result) {
+  return impl(this.handle, result);
+});
+Env.prototype.newGlobalRef = proxy2(21, "pointer", ["pointer", "pointer"], function(impl, obj) {
+  return impl(this.handle, obj);
+});
+Env.prototype.deleteGlobalRef = proxy2(22, "void", ["pointer", "pointer"], function(impl, globalRef) {
+  impl(this.handle, globalRef);
+});
+Env.prototype.deleteLocalRef = proxy2(23, "void", ["pointer", "pointer"], function(impl, localRef) {
+  impl(this.handle, localRef);
+});
+Env.prototype.isSameObject = proxy2(24, "uint8", ["pointer", "pointer", "pointer"], function(impl, ref1, ref2) {
+  return !!impl(this.handle, ref1, ref2);
+});
+Env.prototype.newLocalRef = proxy2(25, "pointer", ["pointer", "pointer"], function(impl, obj) {
+  return impl(this.handle, obj);
+});
+Env.prototype.allocObject = proxy2(27, "pointer", ["pointer", "pointer"], function(impl, clazz) {
+  return impl(this.handle, clazz);
+});
+Env.prototype.getObjectClass = proxy2(31, "pointer", ["pointer", "pointer"], function(impl, obj) {
+  return impl(this.handle, obj);
+});
+Env.prototype.isInstanceOf = proxy2(32, "uint8", ["pointer", "pointer", "pointer"], function(impl, obj, klass) {
+  return !!impl(this.handle, obj, klass);
+});
+Env.prototype.getMethodId = proxy2(33, "pointer", ["pointer", "pointer", "pointer", "pointer"], function(impl, klass, name, sig) {
+  return impl(this.handle, klass, Memory.allocUtf8String(name), Memory.allocUtf8String(sig));
+});
+Env.prototype.getFieldId = proxy2(94, "pointer", ["pointer", "pointer", "pointer", "pointer"], function(impl, klass, name, sig) {
+  return impl(this.handle, klass, Memory.allocUtf8String(name), Memory.allocUtf8String(sig));
+});
+Env.prototype.getIntField = proxy2(100, "int32", ["pointer", "pointer", "pointer"], function(impl, obj, fieldId) {
+  return impl(this.handle, obj, fieldId);
+});
+Env.prototype.getStaticMethodId = proxy2(113, "pointer", ["pointer", "pointer", "pointer", "pointer"], function(impl, klass, name, sig) {
+  return impl(this.handle, klass, Memory.allocUtf8String(name), Memory.allocUtf8String(sig));
+});
+Env.prototype.getStaticFieldId = proxy2(144, "pointer", ["pointer", "pointer", "pointer", "pointer"], function(impl, klass, name, sig) {
+  return impl(this.handle, klass, Memory.allocUtf8String(name), Memory.allocUtf8String(sig));
+});
+Env.prototype.getStaticIntField = proxy2(150, "int32", ["pointer", "pointer", "pointer"], function(impl, obj, fieldId) {
+  return impl(this.handle, obj, fieldId);
+});
+Env.prototype.getStringLength = proxy2(164, "int32", ["pointer", "pointer"], function(impl, str) {
+  return impl(this.handle, str);
+});
+Env.prototype.getStringChars = proxy2(165, "pointer", ["pointer", "pointer", "pointer"], function(impl, str) {
+  return impl(this.handle, str, NULL);
+});
+Env.prototype.releaseStringChars = proxy2(166, "void", ["pointer", "pointer", "pointer"], function(impl, str, utf) {
+  impl(this.handle, str, utf);
+});
+Env.prototype.newStringUtf = proxy2(167, "pointer", ["pointer", "pointer"], function(impl, str) {
+  const utf = Memory.allocUtf8String(str);
+  return impl(this.handle, utf);
+});
+Env.prototype.getStringUtfChars = proxy2(169, "pointer", ["pointer", "pointer", "pointer"], function(impl, str) {
+  return impl(this.handle, str, NULL);
+});
+Env.prototype.releaseStringUtfChars = proxy2(170, "void", ["pointer", "pointer", "pointer"], function(impl, str, utf) {
+  impl(this.handle, str, utf);
+});
+Env.prototype.getArrayLength = proxy2(171, "int32", ["pointer", "pointer"], function(impl, array) {
+  return impl(this.handle, array);
+});
+Env.prototype.newObjectArray = proxy2(172, "pointer", ["pointer", "int32", "pointer", "pointer"], function(impl, length, elementClass, initialElement) {
+  return impl(this.handle, length, elementClass, initialElement);
+});
+Env.prototype.getObjectArrayElement = proxy2(173, "pointer", ["pointer", "pointer", "int32"], function(impl, array, index) {
+  return impl(this.handle, array, index);
+});
+Env.prototype.setObjectArrayElement = proxy2(174, "void", ["pointer", "pointer", "int32", "pointer"], function(impl, array, index, value) {
+  impl(this.handle, array, index, value);
+});
+Env.prototype.newBooleanArray = proxy2(175, "pointer", ["pointer", "int32"], function(impl, length) {
+  return impl(this.handle, length);
+});
+Env.prototype.newByteArray = proxy2(176, "pointer", ["pointer", "int32"], function(impl, length) {
+  return impl(this.handle, length);
+});
+Env.prototype.newCharArray = proxy2(177, "pointer", ["pointer", "int32"], function(impl, length) {
+  return impl(this.handle, length);
+});
+Env.prototype.newShortArray = proxy2(178, "pointer", ["pointer", "int32"], function(impl, length) {
+  return impl(this.handle, length);
+});
+Env.prototype.newIntArray = proxy2(179, "pointer", ["pointer", "int32"], function(impl, length) {
+  return impl(this.handle, length);
+});
+Env.prototype.newLongArray = proxy2(180, "pointer", ["pointer", "int32"], function(impl, length) {
+  return impl(this.handle, length);
+});
+Env.prototype.newFloatArray = proxy2(181, "pointer", ["pointer", "int32"], function(impl, length) {
+  return impl(this.handle, length);
+});
+Env.prototype.newDoubleArray = proxy2(182, "pointer", ["pointer", "int32"], function(impl, length) {
+  return impl(this.handle, length);
+});
+Env.prototype.getBooleanArrayElements = proxy2(183, "pointer", ["pointer", "pointer", "pointer"], function(impl, array) {
+  return impl(this.handle, array, NULL);
+});
+Env.prototype.getByteArrayElements = proxy2(184, "pointer", ["pointer", "pointer", "pointer"], function(impl, array) {
+  return impl(this.handle, array, NULL);
+});
+Env.prototype.getCharArrayElements = proxy2(185, "pointer", ["pointer", "pointer", "pointer"], function(impl, array) {
+  return impl(this.handle, array, NULL);
+});
+Env.prototype.getShortArrayElements = proxy2(186, "pointer", ["pointer", "pointer", "pointer"], function(impl, array) {
+  return impl(this.handle, array, NULL);
+});
+Env.prototype.getIntArrayElements = proxy2(187, "pointer", ["pointer", "pointer", "pointer"], function(impl, array) {
+  return impl(this.handle, array, NULL);
+});
+Env.prototype.getLongArrayElements = proxy2(188, "pointer", ["pointer", "pointer", "pointer"], function(impl, array) {
+  return impl(this.handle, array, NULL);
+});
+Env.prototype.getFloatArrayElements = proxy2(189, "pointer", ["pointer", "pointer", "pointer"], function(impl, array) {
+  return impl(this.handle, array, NULL);
+});
+Env.prototype.getDoubleArrayElements = proxy2(190, "pointer", ["pointer", "pointer", "pointer"], function(impl, array) {
+  return impl(this.handle, array, NULL);
+});
+Env.prototype.releaseBooleanArrayElements = proxy2(191, "pointer", ["pointer", "pointer", "pointer", "int32"], function(impl, array, cArray) {
+  impl(this.handle, array, cArray, JNI_ABORT);
+});
+Env.prototype.releaseByteArrayElements = proxy2(192, "pointer", ["pointer", "pointer", "pointer", "int32"], function(impl, array, cArray) {
+  impl(this.handle, array, cArray, JNI_ABORT);
+});
+Env.prototype.releaseCharArrayElements = proxy2(193, "pointer", ["pointer", "pointer", "pointer", "int32"], function(impl, array, cArray) {
+  impl(this.handle, array, cArray, JNI_ABORT);
+});
+Env.prototype.releaseShortArrayElements = proxy2(194, "pointer", ["pointer", "pointer", "pointer", "int32"], function(impl, array, cArray) {
+  impl(this.handle, array, cArray, JNI_ABORT);
+});
+Env.prototype.releaseIntArrayElements = proxy2(195, "pointer", ["pointer", "pointer", "pointer", "int32"], function(impl, array, cArray) {
+  impl(this.handle, array, cArray, JNI_ABORT);
+});
+Env.prototype.releaseLongArrayElements = proxy2(196, "pointer", ["pointer", "pointer", "pointer", "int32"], function(impl, array, cArray) {
+  impl(this.handle, array, cArray, JNI_ABORT);
+});
+Env.prototype.releaseFloatArrayElements = proxy2(197, "pointer", ["pointer", "pointer", "pointer", "int32"], function(impl, array, cArray) {
+  impl(this.handle, array, cArray, JNI_ABORT);
+});
+Env.prototype.releaseDoubleArrayElements = proxy2(198, "pointer", ["pointer", "pointer", "pointer", "int32"], function(impl, array, cArray) {
+  impl(this.handle, array, cArray, JNI_ABORT);
+});
+Env.prototype.getByteArrayRegion = proxy2(200, "void", ["pointer", "pointer", "int", "int", "pointer"], function(impl, array, start, length, cArray) {
+  impl(this.handle, array, start, length, cArray);
+});
+Env.prototype.setBooleanArrayRegion = proxy2(207, "void", ["pointer", "pointer", "int32", "int32", "pointer"], function(impl, array, start, length, cArray) {
+  impl(this.handle, array, start, length, cArray);
+});
+Env.prototype.setByteArrayRegion = proxy2(208, "void", ["pointer", "pointer", "int32", "int32", "pointer"], function(impl, array, start, length, cArray) {
+  impl(this.handle, array, start, length, cArray);
+});
+Env.prototype.setCharArrayRegion = proxy2(209, "void", ["pointer", "pointer", "int32", "int32", "pointer"], function(impl, array, start, length, cArray) {
+  impl(this.handle, array, start, length, cArray);
+});
+Env.prototype.setShortArrayRegion = proxy2(210, "void", ["pointer", "pointer", "int32", "int32", "pointer"], function(impl, array, start, length, cArray) {
+  impl(this.handle, array, start, length, cArray);
+});
+Env.prototype.setIntArrayRegion = proxy2(211, "void", ["pointer", "pointer", "int32", "int32", "pointer"], function(impl, array, start, length, cArray) {
+  impl(this.handle, array, start, length, cArray);
+});
+Env.prototype.setLongArrayRegion = proxy2(212, "void", ["pointer", "pointer", "int32", "int32", "pointer"], function(impl, array, start, length, cArray) {
+  impl(this.handle, array, start, length, cArray);
+});
+Env.prototype.setFloatArrayRegion = proxy2(213, "void", ["pointer", "pointer", "int32", "int32", "pointer"], function(impl, array, start, length, cArray) {
+  impl(this.handle, array, start, length, cArray);
+});
+Env.prototype.setDoubleArrayRegion = proxy2(214, "void", ["pointer", "pointer", "int32", "int32", "pointer"], function(impl, array, start, length, cArray) {
+  impl(this.handle, array, start, length, cArray);
+});
+Env.prototype.registerNatives = proxy2(215, "int32", ["pointer", "pointer", "pointer", "int32"], function(impl, klass, methods, numMethods) {
+  return impl(this.handle, klass, methods, numMethods);
+});
+Env.prototype.monitorEnter = proxy2(217, "int32", ["pointer", "pointer"], function(impl, obj) {
+  return impl(this.handle, obj);
+});
+Env.prototype.monitorExit = proxy2(218, "int32", ["pointer", "pointer"], function(impl, obj) {
+  return impl(this.handle, obj);
+});
+Env.prototype.getDirectBufferAddress = proxy2(230, "pointer", ["pointer", "pointer"], function(impl, obj) {
+  return impl(this.handle, obj);
+});
+Env.prototype.getObjectRefType = proxy2(232, "int32", ["pointer", "pointer"], function(impl, ref) {
+  return impl(this.handle, ref);
+});
+var cachedMethods = /* @__PURE__ */ new Map();
+function plainMethod(offset, retType, argTypes, options) {
+  return getOrMakeMethod(this, "p", makePlainMethod, offset, retType, argTypes, options);
+}
+function vaMethod(offset, retType, argTypes, options) {
+  return getOrMakeMethod(this, "v", makeVaMethod, offset, retType, argTypes, options);
+}
+function nonvirtualVaMethod(offset, retType, argTypes, options) {
+  return getOrMakeMethod(this, "n", makeNonvirtualVaMethod, offset, retType, argTypes, options);
+}
+function getOrMakeMethod(env, flavor, construct, offset, retType, argTypes, options) {
+  if (options !== void 0) {
+    return construct(env, offset, retType, argTypes, options);
+  }
+  const key = [offset, flavor, retType].concat(argTypes).join("|");
+  let m = cachedMethods.get(key);
+  if (m === void 0) {
+    m = construct(env, offset, retType, argTypes, nativeFunctionOptions2);
+    cachedMethods.set(key, m);
+  }
+  return m;
+}
+function makePlainMethod(env, offset, retType, argTypes, options) {
+  return new NativeFunction(
+    vtable(env).add(offset * pointerSize3).readPointer(),
+    retType,
+    ["pointer", "pointer", "pointer"].concat(argTypes),
+    options
+  );
+}
+function makeVaMethod(env, offset, retType, argTypes, options) {
+  return new NativeFunction(
+    vtable(env).add(offset * pointerSize3).readPointer(),
+    retType,
+    ["pointer", "pointer", "pointer", "..."].concat(argTypes),
+    options
+  );
+}
+function makeNonvirtualVaMethod(env, offset, retType, argTypes, options) {
+  return new NativeFunction(
+    vtable(env).add(offset * pointerSize3).readPointer(),
+    retType,
+    ["pointer", "pointer", "pointer", "pointer", "..."].concat(argTypes),
+    options
+  );
+}
+Env.prototype.constructor = function(argTypes, options) {
+  return vaMethod.call(this, CALL_CONSTRUCTOR_METHOD_OFFSET, "pointer", argTypes, options);
+};
+Env.prototype.vaMethod = function(retType, argTypes, options) {
+  const offset = callMethodOffset[retType];
+  if (offset === void 0) {
+    throw new Error("Unsupported type: " + retType);
+  }
+  return vaMethod.call(this, offset, retType, argTypes, options);
+};
+Env.prototype.nonvirtualVaMethod = function(retType, argTypes, options) {
+  const offset = callNonvirtualMethodOffset[retType];
+  if (offset === void 0) {
+    throw new Error("Unsupported type: " + retType);
+  }
+  return nonvirtualVaMethod.call(this, offset, retType, argTypes, options);
+};
+Env.prototype.staticVaMethod = function(retType, argTypes, options) {
+  const offset = callStaticMethodOffset[retType];
+  if (offset === void 0) {
+    throw new Error("Unsupported type: " + retType);
+  }
+  return vaMethod.call(this, offset, retType, argTypes, options);
+};
+Env.prototype.getField = function(fieldType) {
+  const offset = getFieldOffset[fieldType];
+  if (offset === void 0) {
+    throw new Error("Unsupported type: " + fieldType);
+  }
+  return plainMethod.call(this, offset, fieldType, []);
+};
+Env.prototype.getStaticField = function(fieldType) {
+  const offset = getStaticFieldOffset[fieldType];
+  if (offset === void 0) {
+    throw new Error("Unsupported type: " + fieldType);
+  }
+  return plainMethod.call(this, offset, fieldType, []);
+};
+Env.prototype.setField = function(fieldType) {
+  const offset = setFieldOffset[fieldType];
+  if (offset === void 0) {
+    throw new Error("Unsupported type: " + fieldType);
+  }
+  return plainMethod.call(this, offset, "void", [fieldType]);
+};
+Env.prototype.setStaticField = function(fieldType) {
+  const offset = setStaticFieldOffset[fieldType];
+  if (offset === void 0) {
+    throw new Error("Unsupported type: " + fieldType);
+  }
+  return plainMethod.call(this, offset, "void", [fieldType]);
+};
+var javaLangClass = null;
+Env.prototype.javaLangClass = function() {
+  if (javaLangClass === null) {
+    const handle = this.findClass("java/lang/Class");
+    try {
+      const get = this.getMethodId.bind(this, handle);
+      javaLangClass = {
+        handle: register(this.newGlobalRef(handle)),
+        getName: get("getName", "()Ljava/lang/String;"),
+        getSimpleName: get("getSimpleName", "()Ljava/lang/String;"),
+        getGenericSuperclass: get("getGenericSuperclass", "()Ljava/lang/reflect/Type;"),
+        getDeclaredConstructors: get("getDeclaredConstructors", "()[Ljava/lang/reflect/Constructor;"),
+        getDeclaredMethods: get("getDeclaredMethods", "()[Ljava/lang/reflect/Method;"),
+        getDeclaredFields: get("getDeclaredFields", "()[Ljava/lang/reflect/Field;"),
+        isArray: get("isArray", "()Z"),
+        isPrimitive: get("isPrimitive", "()Z"),
+        isInterface: get("isInterface", "()Z"),
+        getComponentType: get("getComponentType", "()Ljava/lang/Class;")
+      };
+    } finally {
+      this.deleteLocalRef(handle);
+    }
+  }
+  return javaLangClass;
+};
+var javaLangObject = null;
+Env.prototype.javaLangObject = function() {
+  if (javaLangObject === null) {
+    const handle = this.findClass("java/lang/Object");
+    try {
+      const get = this.getMethodId.bind(this, handle);
+      javaLangObject = {
+        handle: register(this.newGlobalRef(handle)),
+        toString: get("toString", "()Ljava/lang/String;"),
+        getClass: get("getClass", "()Ljava/lang/Class;")
+      };
+    } finally {
+      this.deleteLocalRef(handle);
+    }
+  }
+  return javaLangObject;
+};
+var javaLangReflectConstructor = null;
+Env.prototype.javaLangReflectConstructor = function() {
+  if (javaLangReflectConstructor === null) {
+    const handle = this.findClass("java/lang/reflect/Constructor");
+    try {
+      javaLangReflectConstructor = {
+        getGenericParameterTypes: this.getMethodId(handle, "getGenericParameterTypes", "()[Ljava/lang/reflect/Type;")
+      };
+    } finally {
+      this.deleteLocalRef(handle);
+    }
+  }
+  return javaLangReflectConstructor;
+};
+var javaLangReflectMethod = null;
+Env.prototype.javaLangReflectMethod = function() {
+  if (javaLangReflectMethod === null) {
+    const handle = this.findClass("java/lang/reflect/Method");
+    try {
+      const get = this.getMethodId.bind(this, handle);
+      javaLangReflectMethod = {
+        getName: get("getName", "()Ljava/lang/String;"),
+        getGenericParameterTypes: get("getGenericParameterTypes", "()[Ljava/lang/reflect/Type;"),
+        getParameterTypes: get("getParameterTypes", "()[Ljava/lang/Class;"),
+        getGenericReturnType: get("getGenericReturnType", "()Ljava/lang/reflect/Type;"),
+        getGenericExceptionTypes: get("getGenericExceptionTypes", "()[Ljava/lang/reflect/Type;"),
+        getModifiers: get("getModifiers", "()I"),
+        isVarArgs: get("isVarArgs", "()Z")
+      };
+    } finally {
+      this.deleteLocalRef(handle);
+    }
+  }
+  return javaLangReflectMethod;
+};
+var javaLangReflectField = null;
+Env.prototype.javaLangReflectField = function() {
+  if (javaLangReflectField === null) {
+    const handle = this.findClass("java/lang/reflect/Field");
+    try {
+      const get = this.getMethodId.bind(this, handle);
+      javaLangReflectField = {
+        getName: get("getName", "()Ljava/lang/String;"),
+        getType: get("getType", "()Ljava/lang/Class;"),
+        getGenericType: get("getGenericType", "()Ljava/lang/reflect/Type;"),
+        getModifiers: get("getModifiers", "()I"),
+        toString: get("toString", "()Ljava/lang/String;")
+      };
+    } finally {
+      this.deleteLocalRef(handle);
+    }
+  }
+  return javaLangReflectField;
+};
+var javaLangReflectTypeVariable = null;
+Env.prototype.javaLangReflectTypeVariable = function() {
+  if (javaLangReflectTypeVariable === null) {
+    const handle = this.findClass("java/lang/reflect/TypeVariable");
+    try {
+      const get = this.getMethodId.bind(this, handle);
+      javaLangReflectTypeVariable = {
+        handle: register(this.newGlobalRef(handle)),
+        getName: get("getName", "()Ljava/lang/String;"),
+        getBounds: get("getBounds", "()[Ljava/lang/reflect/Type;"),
+        getGenericDeclaration: get("getGenericDeclaration", "()Ljava/lang/reflect/GenericDeclaration;")
+      };
+    } finally {
+      this.deleteLocalRef(handle);
+    }
+  }
+  return javaLangReflectTypeVariable;
+};
+var javaLangReflectWildcardType = null;
+Env.prototype.javaLangReflectWildcardType = function() {
+  if (javaLangReflectWildcardType === null) {
+    const handle = this.findClass("java/lang/reflect/WildcardType");
+    try {
+      const get = this.getMethodId.bind(this, handle);
+      javaLangReflectWildcardType = {
+        handle: register(this.newGlobalRef(handle)),
+        getLowerBounds: get("getLowerBounds", "()[Ljava/lang/reflect/Type;"),
+        getUpperBounds: get("getUpperBounds", "()[Ljava/lang/reflect/Type;")
+      };
+    } finally {
+      this.deleteLocalRef(handle);
+    }
+  }
+  return javaLangReflectWildcardType;
+};
+var javaLangReflectGenericArrayType = null;
+Env.prototype.javaLangReflectGenericArrayType = function() {
+  if (javaLangReflectGenericArrayType === null) {
+    const handle = this.findClass("java/lang/reflect/GenericArrayType");
+    try {
+      javaLangReflectGenericArrayType = {
+        handle: register(this.newGlobalRef(handle)),
+        getGenericComponentType: this.getMethodId(handle, "getGenericComponentType", "()Ljava/lang/reflect/Type;")
+      };
+    } finally {
+      this.deleteLocalRef(handle);
+    }
+  }
+  return javaLangReflectGenericArrayType;
+};
+var javaLangReflectParameterizedType = null;
+Env.prototype.javaLangReflectParameterizedType = function() {
+  if (javaLangReflectParameterizedType === null) {
+    const handle = this.findClass("java/lang/reflect/ParameterizedType");
+    try {
+      const get = this.getMethodId.bind(this, handle);
+      javaLangReflectParameterizedType = {
+        handle: register(this.newGlobalRef(handle)),
+        getActualTypeArguments: get("getActualTypeArguments", "()[Ljava/lang/reflect/Type;"),
+        getRawType: get("getRawType", "()Ljava/lang/reflect/Type;"),
+        getOwnerType: get("getOwnerType", "()Ljava/lang/reflect/Type;")
+      };
+    } finally {
+      this.deleteLocalRef(handle);
+    }
+  }
+  return javaLangReflectParameterizedType;
+};
+var javaLangString = null;
+Env.prototype.javaLangString = function() {
+  if (javaLangString === null) {
+    const handle = this.findClass("java/lang/String");
+    try {
+      javaLangString = {
+        handle: register(this.newGlobalRef(handle))
+      };
+    } finally {
+      this.deleteLocalRef(handle);
+    }
+  }
+  return javaLangString;
+};
+Env.prototype.getClassName = function(classHandle) {
+  const name = this.vaMethod("pointer", [])(this.handle, classHandle, this.javaLangClass().getName);
+  try {
+    return this.stringFromJni(name);
+  } finally {
+    this.deleteLocalRef(name);
+  }
+};
+Env.prototype.getObjectClassName = function(objHandle) {
+  const jklass = this.getObjectClass(objHandle);
+  try {
+    return this.getClassName(jklass);
+  } finally {
+    this.deleteLocalRef(jklass);
+  }
+};
+Env.prototype.getActualTypeArgument = function(type) {
+  const actualTypeArguments = this.vaMethod("pointer", [])(this.handle, type, this.javaLangReflectParameterizedType().getActualTypeArguments);
+  this.throwIfExceptionPending();
+  if (!actualTypeArguments.isNull()) {
+    try {
+      return this.getTypeNameFromFirstTypeElement(actualTypeArguments);
+    } finally {
+      this.deleteLocalRef(actualTypeArguments);
+    }
+  }
+};
+Env.prototype.getTypeNameFromFirstTypeElement = function(typeArray) {
+  const length = this.getArrayLength(typeArray);
+  if (length > 0) {
+    const typeArgument0 = this.getObjectArrayElement(typeArray, 0);
+    try {
+      return this.getTypeName(typeArgument0);
+    } finally {
+      this.deleteLocalRef(typeArgument0);
+    }
+  } else {
+    return "java.lang.Object";
+  }
+};
+Env.prototype.getTypeName = function(type, getGenericsInformation) {
+  const invokeObjectMethodNoArgs = this.vaMethod("pointer", []);
+  if (this.isInstanceOf(type, this.javaLangClass().handle)) {
+    return this.getClassName(type);
+  } else if (this.isInstanceOf(type, this.javaLangReflectGenericArrayType().handle)) {
+    return this.getArrayTypeName(type);
+  } else if (this.isInstanceOf(type, this.javaLangReflectParameterizedType().handle)) {
+    const rawType = invokeObjectMethodNoArgs(this.handle, type, this.javaLangReflectParameterizedType().getRawType);
+    this.throwIfExceptionPending();
+    let result;
+    try {
+      result = this.getTypeName(rawType);
+    } finally {
+      this.deleteLocalRef(rawType);
+    }
+    if (getGenericsInformation) {
+      result += "<" + this.getActualTypeArgument(type) + ">";
+    }
+    return result;
+  } else if (this.isInstanceOf(type, this.javaLangReflectTypeVariable().handle)) {
+    return "java.lang.Object";
+  } else if (this.isInstanceOf(type, this.javaLangReflectWildcardType().handle)) {
+    return "java.lang.Object";
+  } else {
+    return "java.lang.Object";
+  }
+};
+Env.prototype.getArrayTypeName = function(type) {
+  const invokeObjectMethodNoArgs = this.vaMethod("pointer", []);
+  if (this.isInstanceOf(type, this.javaLangClass().handle)) {
+    return this.getClassName(type);
+  } else if (this.isInstanceOf(type, this.javaLangReflectGenericArrayType().handle)) {
+    const componentType = invokeObjectMethodNoArgs(this.handle, type, this.javaLangReflectGenericArrayType().getGenericComponentType);
+    this.throwIfExceptionPending();
+    try {
+      return "[L" + this.getTypeName(componentType) + ";";
+    } finally {
+      this.deleteLocalRef(componentType);
+    }
+  } else {
+    return "[Ljava.lang.Object;";
+  }
+};
+Env.prototype.stringFromJni = function(str) {
+  const utf = this.getStringChars(str);
+  if (utf.isNull()) {
+    throw new Error("Unable to access string");
+  }
+  try {
+    const length = this.getStringLength(str);
+    return utf.readUtf16String(length);
+  } finally {
+    this.releaseStringChars(str, utf);
+  }
+};
+
+// node_modules/frida-java-bridge/lib/vm.js
+var JNI_VERSION_1_6 = 65542;
+var pointerSize4 = Process.pointerSize;
+var jsThreadID = Process.getCurrentThreadId();
+var attachedThreads = /* @__PURE__ */ new Map();
+var activeEnvs = /* @__PURE__ */ new Map();
+function VM(api2) {
+  const handle = api2.vm;
+  let attachCurrentThread = null;
+  let detachCurrentThread = null;
+  let getEnv = null;
+  function initialize2() {
+    const vtable2 = handle.readPointer();
+    const options = {
+      exceptions: "propagate"
+    };
+    attachCurrentThread = new NativeFunction(vtable2.add(4 * pointerSize4).readPointer(), "int32", ["pointer", "pointer", "pointer"], options);
+    detachCurrentThread = new NativeFunction(vtable2.add(5 * pointerSize4).readPointer(), "int32", ["pointer"], options);
+    getEnv = new NativeFunction(vtable2.add(6 * pointerSize4).readPointer(), "int32", ["pointer", "pointer", "int32"], options);
+  }
+  this.handle = handle;
+  this.perform = function(fn) {
+    const threadId = Process.getCurrentThreadId();
+    const cachedEnv = tryGetCachedEnv(threadId);
+    if (cachedEnv !== null) {
+      return fn(cachedEnv);
+    }
+    let env = this._tryGetEnv();
+    const alreadyAttached = env !== null;
+    if (!alreadyAttached) {
+      env = this.attachCurrentThread();
+      attachedThreads.set(threadId, true);
+    }
+    this.link(threadId, env);
+    try {
+      return fn(env);
+    } finally {
+      const isJsThread = threadId === jsThreadID;
+      if (!isJsThread) {
+        this.unlink(threadId);
+      }
+      if (!alreadyAttached && !isJsThread) {
+        const allowedToDetach = attachedThreads.get(threadId);
+        attachedThreads.delete(threadId);
+        if (allowedToDetach) {
+          this.detachCurrentThread();
+        }
+      }
+    }
+  };
+  this.attachCurrentThread = function() {
+    const envBuf = Memory.alloc(pointerSize4);
+    checkJniResult("VM::AttachCurrentThread", attachCurrentThread(handle, envBuf, NULL));
+    return new Env(envBuf.readPointer(), this);
+  };
+  this.detachCurrentThread = function() {
+    checkJniResult("VM::DetachCurrentThread", detachCurrentThread(handle));
+  };
+  this.preventDetachDueToClassLoader = function() {
+    const threadId = Process.getCurrentThreadId();
+    if (attachedThreads.has(threadId)) {
+      attachedThreads.set(threadId, false);
+    }
+  };
+  this.getEnv = function() {
+    const cachedEnv = tryGetCachedEnv(Process.getCurrentThreadId());
+    if (cachedEnv !== null) {
+      return cachedEnv;
+    }
+    const envBuf = Memory.alloc(pointerSize4);
+    const result = getEnv(handle, envBuf, JNI_VERSION_1_6);
+    if (result === -2) {
+      throw new Error("Current thread is not attached to the Java VM; please move this code inside a Java.perform() callback");
+    }
+    checkJniResult("VM::GetEnv", result);
+    return new Env(envBuf.readPointer(), this);
+  };
+  this.tryGetEnv = function() {
+    const cachedEnv = tryGetCachedEnv(Process.getCurrentThreadId());
+    if (cachedEnv !== null) {
+      return cachedEnv;
+    }
+    return this._tryGetEnv();
+  };
+  this._tryGetEnv = function() {
+    const h = this.tryGetEnvHandle(JNI_VERSION_1_6);
+    if (h === null) {
+      return null;
+    }
+    return new Env(h, this);
+  };
+  this.tryGetEnvHandle = function(version) {
+    const envBuf = Memory.alloc(pointerSize4);
+    const result = getEnv(handle, envBuf, version);
+    if (result !== JNI_OK) {
+      return null;
+    }
+    return envBuf.readPointer();
+  };
+  this.makeHandleDestructor = function(handle2) {
+    return () => {
+      this.perform((env) => {
+        env.deleteGlobalRef(handle2);
+      });
+    };
+  };
+  this.link = function(tid, env) {
+    const entry = activeEnvs.get(tid);
+    if (entry === void 0) {
+      activeEnvs.set(tid, [env, 1]);
+    } else {
+      entry[1]++;
+    }
+  };
+  this.unlink = function(tid) {
+    const entry = activeEnvs.get(tid);
+    if (entry[1] === 1) {
+      activeEnvs.delete(tid);
+    } else {
+      entry[1]--;
+    }
+  };
+  function tryGetCachedEnv(threadId) {
+    const entry = activeEnvs.get(threadId);
+    if (entry === void 0) {
+      return null;
+    }
+    return entry[0];
+  }
+  initialize2.call(this);
+}
+VM.dispose = function(vm3) {
+  if (attachedThreads.get(jsThreadID) === true) {
+    attachedThreads.delete(jsThreadID);
+    vm3.detachCurrentThread();
+  }
+};
+
+// node_modules/frida-java-bridge/lib/android.js
+var jsizeSize = 4;
+var pointerSize5 = Process.pointerSize;
+var {
+  readU32,
+  readPointer,
+  writeU32,
+  writePointer
+} = NativePointer.prototype;
+var kAccPublic = 1;
+var kAccStatic = 8;
+var kAccFinal = 16;
+var kAccNative = 256;
+var kAccFastNative = 524288;
+var kAccCriticalNative = 2097152;
+var kAccFastInterpreterToInterpreterInvoke = 1073741824;
+var kAccSkipAccessChecks = 524288;
+var kAccSingleImplementation = 134217728;
+var kAccNterpEntryPointFastPathFlag = 1048576;
+var kAccNterpInvokeFastPathFlag = 2097152;
+var kAccPublicApi = 268435456;
+var kAccXposedHookedMethod = 268435456;
+var kPointer = 0;
+var kFullDeoptimization = 3;
+var kSelectiveDeoptimization = 5;
+var THUMB_BIT_REMOVAL_MASK = ptr(1).not();
+var X86_JMP_MAX_DISTANCE = 2147467263;
+var ARM64_ADRP_MAX_DISTANCE = 4294963200;
+var ENV_VTABLE_OFFSET_EXCEPTION_CLEAR = 17 * pointerSize5;
+var ENV_VTABLE_OFFSET_FATAL_ERROR = 18 * pointerSize5;
+var DVM_JNI_ENV_OFFSET_SELF = 12;
+var DVM_CLASS_OBJECT_OFFSET_VTABLE_COUNT = 112;
+var DVM_CLASS_OBJECT_OFFSET_VTABLE = 116;
+var DVM_OBJECT_OFFSET_CLAZZ = 0;
+var DVM_METHOD_SIZE = 56;
+var DVM_METHOD_OFFSET_ACCESS_FLAGS = 4;
+var DVM_METHOD_OFFSET_METHOD_INDEX = 8;
+var DVM_METHOD_OFFSET_REGISTERS_SIZE = 10;
+var DVM_METHOD_OFFSET_OUTS_SIZE = 12;
+var DVM_METHOD_OFFSET_INS_SIZE = 14;
+var DVM_METHOD_OFFSET_SHORTY = 28;
+var DVM_METHOD_OFFSET_JNI_ARG_INFO = 36;
+var DALVIK_JNI_RETURN_VOID = 0;
+var DALVIK_JNI_RETURN_FLOAT = 1;
+var DALVIK_JNI_RETURN_DOUBLE = 2;
+var DALVIK_JNI_RETURN_S8 = 3;
+var DALVIK_JNI_RETURN_S4 = 4;
+var DALVIK_JNI_RETURN_S2 = 5;
+var DALVIK_JNI_RETURN_U2 = 6;
+var DALVIK_JNI_RETURN_S1 = 7;
+var DALVIK_JNI_NO_ARG_INFO = 2147483648;
+var DALVIK_JNI_RETURN_SHIFT = 28;
+var STD_STRING_SIZE = 3 * pointerSize5;
+var STD_VECTOR_SIZE = 3 * pointerSize5;
+var AF_UNIX = 1;
+var SOCK_STREAM = 1;
+var getArtRuntimeSpec = memoize(_getArtRuntimeSpec);
+var getArtInstrumentationSpec = memoize(_getArtInstrumentationSpec);
+var getArtMethodSpec = memoize(_getArtMethodSpec);
+var getArtThreadSpec = memoize(_getArtThreadSpec);
+var getArtManagedStackSpec = memoize(_getArtManagedStackSpec);
+var getArtThreadStateTransitionImpl = memoize(_getArtThreadStateTransitionImpl);
+var getAndroidVersion = memoize(_getAndroidVersion);
+var getAndroidCodename = memoize(_getAndroidCodename);
+var getAndroidApiLevel = memoize(_getAndroidApiLevel);
+var getArtQuickFrameInfoGetterThunk = memoize(_getArtQuickFrameInfoGetterThunk);
+var makeCxxMethodWrapperReturningPointerByValue = Process.arch === "ia32" ? makeCxxMethodWrapperReturningPointerByValueInFirstArg : makeCxxMethodWrapperReturningPointerByValueGeneric;
+var nativeFunctionOptions3 = {
+  exceptions: "propagate"
+};
+var artThreadStateTransitions = {};
+var cachedApi = null;
+var cachedArtClassLinkerSpec = null;
+var MethodMangler = null;
+var artController = null;
+var inlineHooks = [];
+var patchedClasses = /* @__PURE__ */ new Map();
+var artQuickInterceptors = [];
+var thunkPage = null;
+var thunkOffset = 0;
+var taughtArtAboutReplacementMethods = false;
+var taughtArtAboutMethodInstrumentation = false;
+var backtraceModule = null;
+var jdwpSessions = [];
+var socketpair = null;
+var trampolineAllocator = null;
+function getApi() {
+  if (cachedApi === null) {
+    cachedApi = _getApi();
+  }
+  return cachedApi;
+}
+function _getApi() {
+  const vmModules = Process.enumerateModules().filter((m) => /^lib(art|dvm).so$/.test(m.name)).filter((m) => !/\/system\/fake-libs/.test(m.path));
+  if (vmModules.length === 0) {
+    return null;
+  }
+  const vmModule = vmModules[0];
+  const flavor = vmModule.name.indexOf("art") !== -1 ? "art" : "dalvik";
+  const isArt = flavor === "art";
+  const temporaryApi = {
+    module: vmModule,
+    find(name) {
+      const { module } = this;
+      let address = module.findExportByName(name);
+      if (address === null) {
+        address = module.findSymbolByName(name);
+      }
+      return address;
+    },
+    flavor,
+    addLocalReference: null
+  };
+  temporaryApi.isApiLevel34OrApexEquivalent = isArt && (temporaryApi.find("_ZN3art7AppInfo29GetPrimaryApkReferenceProfileEv") !== null || temporaryApi.find("_ZN3art6Thread15RunFlipFunctionEPS0_") !== null);
+  const pending = isArt ? {
+    functions: {
+      JNI_GetCreatedJavaVMs: ["JNI_GetCreatedJavaVMs", "int", ["pointer", "int", "pointer"]],
+      // Android < 7
+      artInterpreterToCompiledCodeBridge: function(address) {
+        this.artInterpreterToCompiledCodeBridge = address;
+      },
+      // Android >= 8
+      _ZN3art9JavaVMExt12AddGlobalRefEPNS_6ThreadENS_6ObjPtrINS_6mirror6ObjectEEE: ["art::JavaVMExt::AddGlobalRef", "pointer", ["pointer", "pointer", "pointer"]],
+      // Android >= 6
+      _ZN3art9JavaVMExt12AddGlobalRefEPNS_6ThreadEPNS_6mirror6ObjectE: ["art::JavaVMExt::AddGlobalRef", "pointer", ["pointer", "pointer", "pointer"]],
+      // Android < 6: makeAddGlobalRefFallbackForAndroid5() needs these:
+      _ZN3art17ReaderWriterMutex13ExclusiveLockEPNS_6ThreadE: ["art::ReaderWriterMutex::ExclusiveLock", "void", ["pointer", "pointer"]],
+      _ZN3art17ReaderWriterMutex15ExclusiveUnlockEPNS_6ThreadE: ["art::ReaderWriterMutex::ExclusiveUnlock", "void", ["pointer", "pointer"]],
+      // Android <= 7
+      _ZN3art22IndirectReferenceTable3AddEjPNS_6mirror6ObjectE: function(address) {
+        this["art::IndirectReferenceTable::Add"] = new NativeFunction(address, "pointer", ["pointer", "uint", "pointer"], nativeFunctionOptions3);
+      },
+      // Android > 7
+      _ZN3art22IndirectReferenceTable3AddENS_15IRTSegmentStateENS_6ObjPtrINS_6mirror6ObjectEEE: function(address) {
+        this["art::IndirectReferenceTable::Add"] = new NativeFunction(address, "pointer", ["pointer", "uint", "pointer"], nativeFunctionOptions3);
+      },
+      // Android >= 7
+      _ZN3art9JavaVMExt12DecodeGlobalEPv: function(address) {
+        let decodeGlobal;
+        if (getAndroidApiLevel() >= 26) {
+          decodeGlobal = makeCxxMethodWrapperReturningPointerByValue(address, ["pointer", "pointer"]);
+        } else {
+          decodeGlobal = new NativeFunction(address, "pointer", ["pointer", "pointer"], nativeFunctionOptions3);
+        }
+        this["art::JavaVMExt::DecodeGlobal"] = function(vm3, thread, ref) {
+          return decodeGlobal(vm3, ref);
+        };
+      },
+      // Android >= 6
+      _ZN3art9JavaVMExt12DecodeGlobalEPNS_6ThreadEPv: ["art::JavaVMExt::DecodeGlobal", "pointer", ["pointer", "pointer", "pointer"]],
+      // makeDecodeGlobalFallback() uses:
+      // Android >= 15
+      _ZNK3art6Thread19DecodeGlobalJObjectEP8_jobject: ["art::Thread::DecodeJObject", "pointer", ["pointer", "pointer"]],
+      // Android < 6
+      _ZNK3art6Thread13DecodeJObjectEP8_jobject: ["art::Thread::DecodeJObject", "pointer", ["pointer", "pointer"]],
+      // Android >= 6
+      _ZN3art10ThreadList10SuspendAllEPKcb: ["art::ThreadList::SuspendAll", "void", ["pointer", "pointer", "bool"]],
+      // or fallback:
+      _ZN3art10ThreadList10SuspendAllEv: function(address) {
+        const suspendAll = new NativeFunction(address, "void", ["pointer"], nativeFunctionOptions3);
+        this["art::ThreadList::SuspendAll"] = function(threadList, cause, longSuspend) {
+          return suspendAll(threadList);
+        };
+      },
+      _ZN3art10ThreadList9ResumeAllEv: ["art::ThreadList::ResumeAll", "void", ["pointer"]],
+      // Android >= 7
+      _ZN3art11ClassLinker12VisitClassesEPNS_12ClassVisitorE: ["art::ClassLinker::VisitClasses", "void", ["pointer", "pointer"]],
+      // Android < 7
+      _ZN3art11ClassLinker12VisitClassesEPFbPNS_6mirror5ClassEPvES4_: function(address) {
+        const visitClasses = new NativeFunction(address, "void", ["pointer", "pointer", "pointer"], nativeFunctionOptions3);
+        this["art::ClassLinker::VisitClasses"] = function(classLinker, visitor) {
+          visitClasses(classLinker, visitor, NULL);
+        };
+      },
+      _ZNK3art11ClassLinker17VisitClassLoadersEPNS_18ClassLoaderVisitorE: ["art::ClassLinker::VisitClassLoaders", "void", ["pointer", "pointer"]],
+      _ZN3art2gc4Heap12VisitObjectsEPFvPNS_6mirror6ObjectEPvES5_: ["art::gc::Heap::VisitObjects", "void", ["pointer", "pointer", "pointer"]],
+      _ZN3art2gc4Heap12GetInstancesERNS_24VariableSizedHandleScopeENS_6HandleINS_6mirror5ClassEEEiRNSt3__16vectorINS4_INS5_6ObjectEEENS8_9allocatorISB_EEEE: ["art::gc::Heap::GetInstances", "void", ["pointer", "pointer", "pointer", "int", "pointer"]],
+      // Android >= 9
+      _ZN3art2gc4Heap12GetInstancesERNS_24VariableSizedHandleScopeENS_6HandleINS_6mirror5ClassEEEbiRNSt3__16vectorINS4_INS5_6ObjectEEENS8_9allocatorISB_EEEE: function(address) {
+        const getInstances = new NativeFunction(address, "void", ["pointer", "pointer", "pointer", "bool", "int", "pointer"], nativeFunctionOptions3);
+        this["art::gc::Heap::GetInstances"] = function(instance, scope, hClass, maxCount, instances) {
+          const useIsAssignableFrom = 0;
+          getInstances(instance, scope, hClass, useIsAssignableFrom, maxCount, instances);
+        };
+      },
+      _ZN3art12StackVisitorC2EPNS_6ThreadEPNS_7ContextENS0_13StackWalkKindEjb: ["art::StackVisitor::StackVisitor", "void", ["pointer", "pointer", "pointer", "uint", "uint", "bool"]],
+      _ZN3art12StackVisitorC2EPNS_6ThreadEPNS_7ContextENS0_13StackWalkKindEmb: ["art::StackVisitor::StackVisitor", "void", ["pointer", "pointer", "pointer", "uint", "size_t", "bool"]],
+      _ZN3art12StackVisitor9WalkStackILNS0_16CountTransitionsE0EEEvb: ["art::StackVisitor::WalkStack", "void", ["pointer", "bool"]],
+      _ZNK3art12StackVisitor9GetMethodEv: ["art::StackVisitor::GetMethod", "pointer", ["pointer"]],
+      _ZNK3art12StackVisitor16DescribeLocationEv: function(address) {
+        this["art::StackVisitor::DescribeLocation"] = makeCxxMethodWrapperReturningStdStringByValue(address, ["pointer"]);
+      },
+      _ZNK3art12StackVisitor24GetCurrentQuickFrameInfoEv: function(address) {
+        this["art::StackVisitor::GetCurrentQuickFrameInfo"] = makeArtQuickFrameInfoGetter(address);
+      },
+      _ZN3art6Thread18GetLongJumpContextEv: ["art::Thread::GetLongJumpContext", "pointer", ["pointer"]],
+      _ZN3art6mirror5Class13GetDescriptorEPNSt3__112basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEE: function(address) {
+        this["art::mirror::Class::GetDescriptor"] = address;
+      },
+      _ZN3art6mirror5Class11GetLocationEv: function(address) {
+        this["art::mirror::Class::GetLocation"] = makeCxxMethodWrapperReturningStdStringByValue(address, ["pointer"]);
+      },
+      _ZN3art9ArtMethod12PrettyMethodEb: function(address) {
+        this["art::ArtMethod::PrettyMethod"] = makeCxxMethodWrapperReturningStdStringByValue(address, ["pointer", "bool"]);
+      },
+      _ZN3art12PrettyMethodEPNS_9ArtMethodEb: function(address) {
+        this["art::ArtMethod::PrettyMethodNullSafe"] = makeCxxMethodWrapperReturningStdStringByValue(address, ["pointer", "bool"]);
+      },
+      // Android < 6 for cloneArtMethod()
+      _ZN3art6Thread14CurrentFromGdbEv: ["art::Thread::CurrentFromGdb", "pointer", []],
+      _ZN3art6mirror6Object5CloneEPNS_6ThreadE: function(address) {
+        this["art::mirror::Object::Clone"] = new NativeFunction(address, "pointer", ["pointer", "pointer"], nativeFunctionOptions3);
+      },
+      _ZN3art6mirror6Object5CloneEPNS_6ThreadEm: function(address) {
+        const clone = new NativeFunction(address, "pointer", ["pointer", "pointer", "pointer"], nativeFunctionOptions3);
+        this["art::mirror::Object::Clone"] = function(thisPtr, threadPtr) {
+          const numTargetBytes = NULL;
+          return clone(thisPtr, threadPtr, numTargetBytes);
+        };
+      },
+      _ZN3art6mirror6Object5CloneEPNS_6ThreadEj: function(address) {
+        const clone = new NativeFunction(address, "pointer", ["pointer", "pointer", "uint"], nativeFunctionOptions3);
+        this["art::mirror::Object::Clone"] = function(thisPtr, threadPtr) {
+          const numTargetBytes = 0;
+          return clone(thisPtr, threadPtr, numTargetBytes);
+        };
+      },
+      _ZN3art3Dbg14SetJdwpAllowedEb: ["art::Dbg::SetJdwpAllowed", "void", ["bool"]],
+      _ZN3art3Dbg13ConfigureJdwpERKNS_4JDWP11JdwpOptionsE: ["art::Dbg::ConfigureJdwp", "void", ["pointer"]],
+      _ZN3art31InternalDebuggerControlCallback13StartDebuggerEv: ["art::InternalDebuggerControlCallback::StartDebugger", "void", ["pointer"]],
+      _ZN3art3Dbg9StartJdwpEv: ["art::Dbg::StartJdwp", "void", []],
+      _ZN3art3Dbg8GoActiveEv: ["art::Dbg::GoActive", "void", []],
+      _ZN3art3Dbg21RequestDeoptimizationERKNS_21DeoptimizationRequestE: ["art::Dbg::RequestDeoptimization", "void", ["pointer"]],
+      _ZN3art3Dbg20ManageDeoptimizationEv: ["art::Dbg::ManageDeoptimization", "void", []],
+      _ZN3art15instrumentation15Instrumentation20EnableDeoptimizationEv: ["art::Instrumentation::EnableDeoptimization", "void", ["pointer"]],
+      // Android >= 6
+      _ZN3art15instrumentation15Instrumentation20DeoptimizeEverythingEPKc: ["art::Instrumentation::DeoptimizeEverything", "void", ["pointer", "pointer"]],
+      // Android < 6
+      _ZN3art15instrumentation15Instrumentation20DeoptimizeEverythingEv: function(address) {
+        const deoptimize = new NativeFunction(address, "void", ["pointer"], nativeFunctionOptions3);
+        this["art::Instrumentation::DeoptimizeEverything"] = function(instrumentation, key) {
+          deoptimize(instrumentation);
+        };
+      },
+      _ZN3art7Runtime19DeoptimizeBootImageEv: ["art::Runtime::DeoptimizeBootImage", "void", ["pointer"]],
+      _ZN3art15instrumentation15Instrumentation10DeoptimizeEPNS_9ArtMethodE: ["art::Instrumentation::Deoptimize", "void", ["pointer", "pointer"]],
+      // Android >= 11
+      _ZN3art3jni12JniIdManager14DecodeMethodIdEP10_jmethodID: ["art::jni::JniIdManager::DecodeMethodId", "pointer", ["pointer", "pointer"]],
+      _ZN3art11interpreter18GetNterpEntryPointEv: ["art::interpreter::GetNterpEntryPoint", "pointer", []],
+      _ZN3art7Monitor17TranslateLocationEPNS_9ArtMethodEjPPKcPi: ["art::Monitor::TranslateLocation", "void", ["pointer", "uint32", "pointer", "pointer"]]
+    },
+    variables: {
+      _ZN3art3Dbg9gRegistryE: function(address) {
+        this.isJdwpStarted = () => !address.readPointer().isNull();
+      },
+      _ZN3art3Dbg15gDebuggerActiveE: function(address) {
+        this.isDebuggerActive = () => !!address.readU8();
+      }
+    },
+    optionals: /* @__PURE__ */ new Set([
+      "artInterpreterToCompiledCodeBridge",
+      "_ZN3art9JavaVMExt12AddGlobalRefEPNS_6ThreadENS_6ObjPtrINS_6mirror6ObjectEEE",
+      "_ZN3art9JavaVMExt12AddGlobalRefEPNS_6ThreadEPNS_6mirror6ObjectE",
+      "_ZN3art9JavaVMExt12DecodeGlobalEPv",
+      "_ZN3art9JavaVMExt12DecodeGlobalEPNS_6ThreadEPv",
+      "_ZNK3art6Thread19DecodeGlobalJObjectEP8_jobject",
+      "_ZNK3art6Thread13DecodeJObjectEP8_jobject",
+      "_ZN3art10ThreadList10SuspendAllEPKcb",
+      "_ZN3art10ThreadList10SuspendAllEv",
+      "_ZN3art11ClassLinker12VisitClassesEPNS_12ClassVisitorE",
+      "_ZN3art11ClassLinker12VisitClassesEPFbPNS_6mirror5ClassEPvES4_",
+      "_ZNK3art11ClassLinker17VisitClassLoadersEPNS_18ClassLoaderVisitorE",
+      "_ZN3art6mirror6Object5CloneEPNS_6ThreadE",
+      "_ZN3art6mirror6Object5CloneEPNS_6ThreadEm",
+      "_ZN3art6mirror6Object5CloneEPNS_6ThreadEj",
+      "_ZN3art22IndirectReferenceTable3AddEjPNS_6mirror6ObjectE",
+      "_ZN3art22IndirectReferenceTable3AddENS_15IRTSegmentStateENS_6ObjPtrINS_6mirror6ObjectEEE",
+      "_ZN3art2gc4Heap12VisitObjectsEPFvPNS_6mirror6ObjectEPvES5_",
+      "_ZN3art2gc4Heap12GetInstancesERNS_24VariableSizedHandleScopeENS_6HandleINS_6mirror5ClassEEEiRNSt3__16vectorINS4_INS5_6ObjectEEENS8_9allocatorISB_EEEE",
+      "_ZN3art2gc4Heap12GetInstancesERNS_24VariableSizedHandleScopeENS_6HandleINS_6mirror5ClassEEEbiRNSt3__16vectorINS4_INS5_6ObjectEEENS8_9allocatorISB_EEEE",
+      "_ZN3art12StackVisitorC2EPNS_6ThreadEPNS_7ContextENS0_13StackWalkKindEjb",
+      "_ZN3art12StackVisitorC2EPNS_6ThreadEPNS_7ContextENS0_13StackWalkKindEmb",
+      "_ZN3art12StackVisitor9WalkStackILNS0_16CountTransitionsE0EEEvb",
+      "_ZNK3art12StackVisitor9GetMethodEv",
+      "_ZNK3art12StackVisitor16DescribeLocationEv",
+      "_ZNK3art12StackVisitor24GetCurrentQuickFrameInfoEv",
+      "_ZN3art6Thread18GetLongJumpContextEv",
+      "_ZN3art6mirror5Class13GetDescriptorEPNSt3__112basic_stringIcNS2_11char_traitsIcEENS2_9allocatorIcEEEE",
+      "_ZN3art6mirror5Class11GetLocationEv",
+      "_ZN3art9ArtMethod12PrettyMethodEb",
+      "_ZN3art12PrettyMethodEPNS_9ArtMethodEb",
+      "_ZN3art3Dbg13ConfigureJdwpERKNS_4JDWP11JdwpOptionsE",
+      "_ZN3art31InternalDebuggerControlCallback13StartDebuggerEv",
+      "_ZN3art3Dbg15gDebuggerActiveE",
+      "_ZN3art15instrumentation15Instrumentation20EnableDeoptimizationEv",
+      "_ZN3art15instrumentation15Instrumentation20DeoptimizeEverythingEPKc",
+      "_ZN3art15instrumentation15Instrumentation20DeoptimizeEverythingEv",
+      "_ZN3art7Runtime19DeoptimizeBootImageEv",
+      "_ZN3art15instrumentation15Instrumentation10DeoptimizeEPNS_9ArtMethodE",
+      "_ZN3art3Dbg9StartJdwpEv",
+      "_ZN3art3Dbg8GoActiveEv",
+      "_ZN3art3Dbg21RequestDeoptimizationERKNS_21DeoptimizationRequestE",
+      "_ZN3art3Dbg20ManageDeoptimizationEv",
+      "_ZN3art3Dbg9gRegistryE",
+      "_ZN3art3jni12JniIdManager14DecodeMethodIdEP10_jmethodID",
+      "_ZN3art11interpreter18GetNterpEntryPointEv",
+      "_ZN3art7Monitor17TranslateLocationEPNS_9ArtMethodEjPPKcPi"
+    ])
+  } : {
+    functions: {
+      _Z20dvmDecodeIndirectRefP6ThreadP8_jobject: ["dvmDecodeIndirectRef", "pointer", ["pointer", "pointer"]],
+      _Z15dvmUseJNIBridgeP6MethodPv: ["dvmUseJNIBridge", "void", ["pointer", "pointer"]],
+      _Z20dvmHeapSourceGetBasev: ["dvmHeapSourceGetBase", "pointer", []],
+      _Z21dvmHeapSourceGetLimitv: ["dvmHeapSourceGetLimit", "pointer", []],
+      _Z16dvmIsValidObjectPK6Object: ["dvmIsValidObject", "uint8", ["pointer"]],
+      JNI_GetCreatedJavaVMs: ["JNI_GetCreatedJavaVMs", "int", ["pointer", "int", "pointer"]]
+    },
+    variables: {
+      gDvmJni: function(address) {
+        this.gDvmJni = address;
+      },
+      gDvm: function(address) {
+        this.gDvm = address;
+      }
+    }
+  };
+  const {
+    functions = {},
+    variables = {},
+    optionals = /* @__PURE__ */ new Set()
+  } = pending;
+  const missing = [];
+  for (const [name, signature] of Object.entries(functions)) {
+    const address = temporaryApi.find(name);
+    if (address !== null) {
+      if (typeof signature === "function") {
+        signature.call(temporaryApi, address);
+      } else {
+        temporaryApi[signature[0]] = new NativeFunction(address, signature[1], signature[2], nativeFunctionOptions3);
+      }
+    } else {
+      if (!optionals.has(name)) {
+        missing.push(name);
+      }
+    }
+  }
+  for (const [name, handler] of Object.entries(variables)) {
+    const address = temporaryApi.find(name);
+    if (address !== null) {
+      handler.call(temporaryApi, address);
+    } else {
+      if (!optionals.has(name)) {
+        missing.push(name);
+      }
+    }
+  }
+  if (missing.length > 0) {
+    throw new Error("Java API only partially available; please file a bug. Missing: " + missing.join(", "));
+  }
+  const vms = Memory.alloc(pointerSize5);
+  const vmCount = Memory.alloc(jsizeSize);
+  checkJniResult("JNI_GetCreatedJavaVMs", temporaryApi.JNI_GetCreatedJavaVMs(vms, 1, vmCount));
+  if (vmCount.readInt() === 0) {
+    return null;
+  }
+  temporaryApi.vm = vms.readPointer();
+  if (isArt) {
+    const apiLevel = getAndroidApiLevel();
+    let kAccCompileDontBother;
+    if (apiLevel >= 27) {
+      kAccCompileDontBother = 33554432;
+    } else if (apiLevel >= 24) {
+      kAccCompileDontBother = 16777216;
+    } else {
+      kAccCompileDontBother = 0;
+    }
+    temporaryApi.kAccCompileDontBother = kAccCompileDontBother;
+    const artRuntime = temporaryApi.vm.add(pointerSize5).readPointer();
+    temporaryApi.artRuntime = artRuntime;
+    const runtimeSpec = getArtRuntimeSpec(temporaryApi);
+    const runtimeOffset = runtimeSpec.offset;
+    const instrumentationOffset = runtimeOffset.instrumentation;
+    temporaryApi.artInstrumentation = instrumentationOffset !== null ? artRuntime.add(instrumentationOffset) : null;
+    temporaryApi.artHeap = artRuntime.add(runtimeOffset.heap).readPointer();
+    temporaryApi.artThreadList = artRuntime.add(runtimeOffset.threadList).readPointer();
+    const classLinker = artRuntime.add(runtimeOffset.classLinker).readPointer();
+    const classLinkerOffsets = getArtClassLinkerSpec(artRuntime, runtimeSpec).offset;
+    const quickResolutionTrampoline = classLinker.add(classLinkerOffsets.quickResolutionTrampoline).readPointer();
+    const quickImtConflictTrampoline = classLinker.add(classLinkerOffsets.quickImtConflictTrampoline).readPointer();
+    const quickGenericJniTrampoline = classLinker.add(classLinkerOffsets.quickGenericJniTrampoline).readPointer();
+    const quickToInterpreterBridgeTrampoline = classLinker.add(classLinkerOffsets.quickToInterpreterBridgeTrampoline).readPointer();
+    temporaryApi.artClassLinker = {
+      address: classLinker,
+      quickResolutionTrampoline,
+      quickImtConflictTrampoline,
+      quickGenericJniTrampoline,
+      quickToInterpreterBridgeTrampoline
+    };
+    const vm3 = new VM(temporaryApi);
+    temporaryApi.artQuickGenericJniTrampoline = getArtQuickEntrypointFromTrampoline(quickGenericJniTrampoline, vm3);
+    temporaryApi.artQuickToInterpreterBridge = getArtQuickEntrypointFromTrampoline(quickToInterpreterBridgeTrampoline, vm3);
+    temporaryApi.artQuickResolutionTrampoline = getArtQuickEntrypointFromTrampoline(quickResolutionTrampoline, vm3);
+    if (temporaryApi["art::JavaVMExt::AddGlobalRef"] === void 0) {
+      temporaryApi["art::JavaVMExt::AddGlobalRef"] = makeAddGlobalRefFallbackForAndroid5(temporaryApi);
+    }
+    if (temporaryApi["art::JavaVMExt::DecodeGlobal"] === void 0) {
+      temporaryApi["art::JavaVMExt::DecodeGlobal"] = makeDecodeGlobalFallback(temporaryApi);
+    }
+    if (temporaryApi["art::ArtMethod::PrettyMethod"] === void 0) {
+      temporaryApi["art::ArtMethod::PrettyMethod"] = temporaryApi["art::ArtMethod::PrettyMethodNullSafe"];
+    }
+    if (temporaryApi["art::interpreter::GetNterpEntryPoint"] !== void 0) {
+      temporaryApi.artNterpEntryPoint = temporaryApi["art::interpreter::GetNterpEntryPoint"]();
+    } else {
+      temporaryApi.artNterpEntryPoint = temporaryApi.find("ExecuteNterpImpl");
+    }
+    artController = makeArtController(temporaryApi, vm3);
+    fixupArtQuickDeliverExceptionBug(temporaryApi);
+    let cachedJvmti = null;
+    Object.defineProperty(temporaryApi, "jvmti", {
+      get() {
+        if (cachedJvmti === null) {
+          cachedJvmti = [tryGetEnvJvmti(vm3, this.artRuntime)];
+        }
+        return cachedJvmti[0];
+      }
+    });
+  }
+  const cxxImports = vmModule.enumerateImports().filter((imp) => imp.name.indexOf("_Z") === 0).reduce((result, imp) => {
+    result[imp.name] = imp.address;
+    return result;
+  }, {});
+  temporaryApi.$new = new NativeFunction(cxxImports._Znwm || cxxImports._Znwj, "pointer", ["ulong"], nativeFunctionOptions3);
+  temporaryApi.$delete = new NativeFunction(cxxImports._ZdlPv, "void", ["pointer"], nativeFunctionOptions3);
+  MethodMangler = isArt ? ArtMethodMangler : DalvikMethodMangler;
+  return temporaryApi;
+}
+function tryGetEnvJvmti(vm3, runtime2) {
+  let env = null;
+  vm3.perform(() => {
+    const ensurePluginLoadedAddr = getApi().find("_ZN3art7Runtime18EnsurePluginLoadedEPKcPNSt3__112basic_stringIcNS3_11char_traitsIcEENS3_9allocatorIcEEEE");
+    if (ensurePluginLoadedAddr === null) {
+      return;
+    }
+    const ensurePluginLoaded = new NativeFunction(
+      ensurePluginLoadedAddr,
+      "bool",
+      ["pointer", "pointer", "pointer"]
+    );
+    const errorPtr = Memory.alloc(pointerSize5);
+    const success = ensurePluginLoaded(runtime2, Memory.allocUtf8String("libopenjdkjvmti.so"), errorPtr);
+    if (!success) {
+      return;
+    }
+    const kArtTiVersion = jvmtiVersion.v1_2 | 1073741824;
+    const handle = vm3.tryGetEnvHandle(kArtTiVersion);
+    if (handle === null) {
+      return;
+    }
+    env = new EnvJvmti(handle, vm3);
+    const capaBuf = Memory.alloc(8);
+    capaBuf.writeU64(jvmtiCapabilities.canTagObjects);
+    const result = env.addCapabilities(capaBuf);
+    if (result !== JNI_OK) {
+      env = null;
+    }
+  });
+  return env;
+}
+function ensureClassInitialized(env, classRef) {
+  const api2 = getApi();
+  if (api2.flavor !== "art") {
+    return;
+  }
+  env.getFieldId(classRef, "x", "Z");
+  env.exceptionClear();
+}
+function getArtVMSpec(api2) {
+  return {
+    offset: pointerSize5 === 4 ? {
+      globalsLock: 32,
+      globals: 72
+    } : {
+      globalsLock: 64,
+      globals: 112
+    }
+  };
+}
+function _getArtRuntimeSpec(api2) {
+  const vm3 = api2.vm;
+  const runtime2 = api2.artRuntime;
+  const startOffset = pointerSize5 === 4 ? 200 : 384;
+  const endOffset = startOffset + 100 * pointerSize5;
+  const apiLevel = getAndroidApiLevel();
+  const codename = getAndroidCodename();
+  const { isApiLevel34OrApexEquivalent } = api2;
+  let spec = null;
+  for (let offset = startOffset; offset !== endOffset; offset += pointerSize5) {
+    const value = runtime2.add(offset).readPointer();
+    if (value.equals(vm3)) {
+      let classLinkerOffsets;
+      let jniIdManagerOffset = null;
+      if (apiLevel >= 33 || codename === "Tiramisu" || isApiLevel34OrApexEquivalent) {
+        classLinkerOffsets = [offset - 4 * pointerSize5];
+        jniIdManagerOffset = offset - pointerSize5;
+      } else if (apiLevel >= 30 || codename === "R") {
+        classLinkerOffsets = [offset - 3 * pointerSize5, offset - 4 * pointerSize5];
+        jniIdManagerOffset = offset - pointerSize5;
+      } else if (apiLevel >= 29) {
+        classLinkerOffsets = [offset - 2 * pointerSize5];
+      } else if (apiLevel >= 27) {
+        classLinkerOffsets = [offset - STD_STRING_SIZE - 3 * pointerSize5];
+      } else {
+        classLinkerOffsets = [offset - STD_STRING_SIZE - 2 * pointerSize5];
+      }
+      for (const classLinkerOffset of classLinkerOffsets) {
+        const internTableOffset = classLinkerOffset - pointerSize5;
+        const threadListOffset = internTableOffset - pointerSize5;
+        let heapOffset;
+        if (isApiLevel34OrApexEquivalent) {
+          heapOffset = threadListOffset - 9 * pointerSize5;
+        } else if (apiLevel >= 24) {
+          heapOffset = threadListOffset - 8 * pointerSize5;
+        } else if (apiLevel >= 23) {
+          heapOffset = threadListOffset - 7 * pointerSize5;
+        } else {
+          heapOffset = threadListOffset - 4 * pointerSize5;
+        }
+        const candidate = {
+          offset: {
+            heap: heapOffset,
+            threadList: threadListOffset,
+            internTable: internTableOffset,
+            classLinker: classLinkerOffset,
+            jniIdManager: jniIdManagerOffset
+          }
+        };
+        if (tryGetArtClassLinkerSpec(runtime2, candidate) !== null) {
+          spec = candidate;
+          break;
+        }
+      }
+      break;
+    }
+  }
+  if (spec === null) {
+    throw new Error("Unable to determine Runtime field offsets");
+  }
+  spec.offset.instrumentation = tryDetectInstrumentationOffset(api2);
+  spec.offset.jniIdsIndirection = tryDetectJniIdsIndirectionOffset(api2);
+  return spec;
+}
+var instrumentationOffsetParsers = {
+  ia32: parsex86InstrumentationOffset,
+  x64: parsex86InstrumentationOffset,
+  arm: parseArmInstrumentationOffset,
+  arm64: parseArm64InstrumentationOffset
+};
+function tryDetectInstrumentationOffset(api2) {
+  const impl = api2["art::Runtime::DeoptimizeBootImage"];
+  if (impl === void 0) {
+    return null;
+  }
+  return parseInstructionsAt(impl, instrumentationOffsetParsers[Process.arch], { limit: 30 });
+}
+function parsex86InstrumentationOffset(insn) {
+  if (insn.mnemonic !== "lea") {
+    return null;
+  }
+  const offset = insn.operands[1].value.disp;
+  if (offset < 256 || offset > 1024) {
+    return null;
+  }
+  return offset;
+}
+function parseArmInstrumentationOffset(insn) {
+  if (insn.mnemonic !== "add.w") {
+    return null;
+  }
+  const ops = insn.operands;
+  if (ops.length !== 3) {
+    return null;
+  }
+  const op2 = ops[2];
+  if (op2.type !== "imm") {
+    return null;
+  }
+  return op2.value;
+}
+function parseArm64InstrumentationOffset(insn) {
+  if (insn.mnemonic !== "add") {
+    return null;
+  }
+  const ops = insn.operands;
+  if (ops.length !== 3) {
+    return null;
+  }
+  if (ops[0].value === "sp" || ops[1].value === "sp") {
+    return null;
+  }
+  const op2 = ops[2];
+  if (op2.type !== "imm") {
+    return null;
+  }
+  const offset = op2.value.valueOf();
+  if (offset < 256 || offset > 1024) {
+    return null;
+  }
+  return offset;
+}
+var jniIdsIndirectionOffsetParsers = {
+  ia32: parsex86JniIdsIndirectionOffset,
+  x64: parsex86JniIdsIndirectionOffset,
+  arm: parseArmJniIdsIndirectionOffset,
+  arm64: parseArm64JniIdsIndirectionOffset
+};
+function tryDetectJniIdsIndirectionOffset(api2) {
+  const impl = api2.find("_ZN3art7Runtime12SetJniIdTypeENS_9JniIdTypeE");
+  if (impl === null) {
+    return null;
+  }
+  const offset = parseInstructionsAt(impl, jniIdsIndirectionOffsetParsers[Process.arch], { limit: 20 });
+  if (offset === null) {
+    throw new Error("Unable to determine Runtime.jni_ids_indirection_ offset");
+  }
+  return offset;
+}
+function parsex86JniIdsIndirectionOffset(insn) {
+  if (insn.mnemonic === "cmp") {
+    return insn.operands[0].value.disp;
+  }
+  return null;
+}
+function parseArmJniIdsIndirectionOffset(insn) {
+  if (insn.mnemonic === "ldr.w") {
+    return insn.operands[1].value.disp;
+  }
+  return null;
+}
+function parseArm64JniIdsIndirectionOffset(insn, prevInsn) {
+  if (prevInsn === null) {
+    return null;
+  }
+  const { mnemonic } = insn;
+  const { mnemonic: prevMnemonic } = prevInsn;
+  if (mnemonic === "cmp" && prevMnemonic === "ldr" || mnemonic === "bl" && prevMnemonic === "str") {
+    return prevInsn.operands[1].value.disp;
+  }
+  return null;
+}
+function _getArtInstrumentationSpec() {
+  const deoptimizationEnabledOffsets = {
+    "4-21": 136,
+    "4-22": 136,
+    "4-23": 172,
+    "4-24": 196,
+    "4-25": 196,
+    "4-26": 196,
+    "4-27": 196,
+    "4-28": 212,
+    "4-29": 172,
+    "4-30": 180,
+    "4-31": 180,
+    "8-21": 224,
+    "8-22": 224,
+    "8-23": 296,
+    "8-24": 344,
+    "8-25": 344,
+    "8-26": 352,
+    "8-27": 352,
+    "8-28": 392,
+    "8-29": 328,
+    "8-30": 336,
+    "8-31": 336
+  };
+  const deoptEnabledOffset = deoptimizationEnabledOffsets[`${pointerSize5}-${getAndroidApiLevel()}`];
+  if (deoptEnabledOffset === void 0) {
+    throw new Error("Unable to determine Instrumentation field offsets");
+  }
+  return {
+    offset: {
+      forcedInterpretOnly: 4,
+      deoptimizationEnabled: deoptEnabledOffset
+    }
+  };
+}
+function getArtClassLinkerSpec(runtime2, runtimeSpec) {
+  const spec = tryGetArtClassLinkerSpec(runtime2, runtimeSpec);
+  if (spec === null) {
+    throw new Error("Unable to determine ClassLinker field offsets");
+  }
+  return spec;
+}
+function tryGetArtClassLinkerSpec(runtime2, runtimeSpec) {
+  if (cachedArtClassLinkerSpec !== null) {
+    return cachedArtClassLinkerSpec;
+  }
+  const { classLinker: classLinkerOffset, internTable: internTableOffset } = runtimeSpec.offset;
+  const classLinker = runtime2.add(classLinkerOffset).readPointer();
+  const internTable = runtime2.add(internTableOffset).readPointer();
+  const startOffset = pointerSize5 === 4 ? 100 : 200;
+  const endOffset = startOffset + 100 * pointerSize5;
+  const apiLevel = getAndroidApiLevel();
+  let spec = null;
+  for (let offset = startOffset; offset !== endOffset; offset += pointerSize5) {
+    const value = classLinker.add(offset).readPointer();
+    if (value.equals(internTable)) {
+      let delta;
+      if (apiLevel >= 30 || getAndroidCodename() === "R") {
+        delta = 6;
+      } else if (apiLevel >= 29) {
+        delta = 4;
+      } else if (apiLevel >= 23) {
+        delta = 3;
+      } else {
+        delta = 5;
+      }
+      const quickGenericJniTrampolineOffset = offset + delta * pointerSize5;
+      let quickResolutionTrampolineOffset;
+      if (apiLevel >= 23) {
+        quickResolutionTrampolineOffset = quickGenericJniTrampolineOffset - 2 * pointerSize5;
+      } else {
+        quickResolutionTrampolineOffset = quickGenericJniTrampolineOffset - 3 * pointerSize5;
+      }
+      spec = {
+        offset: {
+          quickResolutionTrampoline: quickResolutionTrampolineOffset,
+          quickImtConflictTrampoline: quickGenericJniTrampolineOffset - pointerSize5,
+          quickGenericJniTrampoline: quickGenericJniTrampolineOffset,
+          quickToInterpreterBridgeTrampoline: quickGenericJniTrampolineOffset + pointerSize5
+        }
+      };
+      break;
+    }
+  }
+  if (spec !== null) {
+    cachedArtClassLinkerSpec = spec;
+  }
+  return spec;
+}
+function getArtClassSpec(vm3) {
+  let apiLevel;
+  try {
+    apiLevel = getAndroidApiLevel();
+  } catch (e) {
+    return null;
+  }
+  if (apiLevel >= 36) {
+    return {
+      offset: {
+        ifields: 40,
+        methods: 40 + 8,
+        sfields: 0,
+        copiedMethodsOffset: 108
+      }
+    };
+  } else if (apiLevel >= 26) {
+    return {
+      offset: {
+        ifields: 40,
+        methods: 40 + 8,
+        sfields: 40 + 16,
+        copiedMethodsOffset: 116
+      }
+    };
+  } else if (apiLevel >= 24) {
+    return {
+      offset: {
+        ifields: 56,
+        methods: 56 + 8,
+        sfields: 56 + 16,
+        copiedMethodsOffset: 124
+      }
+    };
+  } else {
+    return null;
+  }
+}
+function _getArtMethodSpec(vm3) {
+  const api2 = getApi();
+  let spec;
+  vm3.perform((env) => {
+    const process = env.findClass("android/os/Process");
+    const getElapsedCpuTime = unwrapMethodId(env.getStaticMethodId(process, "getElapsedCpuTime", "()J"));
+    env.deleteLocalRef(process);
+    const runtimeModule = Process.getModuleByName("libandroid_runtime.so");
+    const runtimeStart = runtimeModule.base;
+    const runtimeEnd = runtimeStart.add(runtimeModule.size);
+    const apiLevel = getAndroidApiLevel();
+    const entrypointFieldSize = apiLevel <= 21 ? 8 : pointerSize5;
+    const expectedAccessFlags = kAccPublic | kAccStatic | kAccFinal | kAccNative;
+    const relevantAccessFlagsMask = ~(kAccFastInterpreterToInterpreterInvoke | kAccPublicApi | kAccNterpInvokeFastPathFlag) >>> 0;
+    let jniCodeOffset = null;
+    let accessFlagsOffset = null;
+    let remaining = 2;
+    for (let offset = 0; offset !== 64 && remaining !== 0; offset += 4) {
+      const field = getElapsedCpuTime.add(offset);
+      if (jniCodeOffset === null) {
+        const address = field.readPointer();
+        if (address.compare(runtimeStart) >= 0 && address.compare(runtimeEnd) < 0) {
+          jniCodeOffset = offset;
+          remaining--;
+        }
+      }
+      if (accessFlagsOffset === null) {
+        const flags = field.readU32();
+        if ((flags & relevantAccessFlagsMask) === expectedAccessFlags) {
+          accessFlagsOffset = offset;
+          remaining--;
+        }
+      }
+    }
+    if (remaining !== 0) {
+      throw new Error("Unable to determine ArtMethod field offsets");
+    }
+    const quickCodeOffset = jniCodeOffset + entrypointFieldSize;
+    const size = apiLevel <= 21 ? quickCodeOffset + 32 : quickCodeOffset + pointerSize5;
+    spec = {
+      size,
+      offset: {
+        jniCode: jniCodeOffset,
+        quickCode: quickCodeOffset,
+        accessFlags: accessFlagsOffset
+      }
+    };
+    if ("artInterpreterToCompiledCodeBridge" in api2) {
+      spec.offset.interpreterCode = jniCodeOffset - entrypointFieldSize;
+    }
+  });
+  return spec;
+}
+function getArtFieldSpec(vm3) {
+  const apiLevel = getAndroidApiLevel();
+  if (apiLevel >= 23) {
+    return {
+      size: 16,
+      offset: {
+        accessFlags: 4
+      }
+    };
+  }
+  if (apiLevel >= 21) {
+    return {
+      size: 24,
+      offset: {
+        accessFlags: 12
+      }
+    };
+  }
+  return null;
+}
+function _getArtThreadSpec(vm3) {
+  const apiLevel = getAndroidApiLevel();
+  let spec;
+  vm3.perform((env) => {
+    const threadHandle = getArtThreadFromEnv(env);
+    const envHandle = env.handle;
+    let isExceptionReportedOffset = null;
+    let exceptionOffset = null;
+    let throwLocationOffset = null;
+    let topHandleScopeOffset = null;
+    let managedStackOffset = null;
+    let selfOffset = null;
+    for (let offset = 144; offset !== 256; offset += pointerSize5) {
+      const field = threadHandle.add(offset);
+      const value = field.readPointer();
+      if (value.equals(envHandle)) {
+        exceptionOffset = offset - 6 * pointerSize5;
+        managedStackOffset = offset - 4 * pointerSize5;
+        selfOffset = offset + 2 * pointerSize5;
+        if (apiLevel <= 22) {
+          exceptionOffset -= pointerSize5;
+          isExceptionReportedOffset = exceptionOffset - pointerSize5 - 9 * 8 - 3 * 4;
+          throwLocationOffset = offset + 6 * pointerSize5;
+          managedStackOffset -= pointerSize5;
+          selfOffset -= pointerSize5;
+        }
+        topHandleScopeOffset = offset + 9 * pointerSize5;
+        if (apiLevel <= 22) {
+          topHandleScopeOffset += 2 * pointerSize5 + 4;
+          if (pointerSize5 === 8) {
+            topHandleScopeOffset += 4;
+          }
+        }
+        if (apiLevel >= 23) {
+          topHandleScopeOffset += pointerSize5;
+        }
+        break;
+      }
+    }
+    if (topHandleScopeOffset === null) {
+      throw new Error("Unable to determine ArtThread field offsets");
+    }
+    spec = {
+      offset: {
+        isExceptionReportedToInstrumentation: isExceptionReportedOffset,
+        exception: exceptionOffset,
+        throwLocation: throwLocationOffset,
+        topHandleScope: topHandleScopeOffset,
+        managedStack: managedStackOffset,
+        self: selfOffset
+      }
+    };
+  });
+  return spec;
+}
+function _getArtManagedStackSpec() {
+  const apiLevel = getAndroidApiLevel();
+  if (apiLevel >= 23) {
+    return {
+      offset: {
+        topQuickFrame: 0,
+        link: pointerSize5
+      }
+    };
+  } else {
+    return {
+      offset: {
+        topQuickFrame: 2 * pointerSize5,
+        link: 0
+      }
+    };
+  }
+}
+var artQuickTrampolineParsers = {
+  ia32: parseArtQuickTrampolineX86,
+  x64: parseArtQuickTrampolineX86,
+  arm: parseArtQuickTrampolineArm,
+  arm64: parseArtQuickTrampolineArm64
+};
+function getArtQuickEntrypointFromTrampoline(trampoline, vm3) {
+  let address;
+  vm3.perform((env) => {
+    const thread = getArtThreadFromEnv(env);
+    const tryParse = artQuickTrampolineParsers[Process.arch];
+    const insn = Instruction.parse(trampoline);
+    const offset = tryParse(insn);
+    if (offset !== null) {
+      address = thread.add(offset).readPointer();
+    } else {
+      address = trampoline;
+    }
+  });
+  return address;
+}
+function parseArtQuickTrampolineX86(insn) {
+  if (insn.mnemonic === "jmp") {
+    return insn.operands[0].value.disp;
+  }
+  return null;
+}
+function parseArtQuickTrampolineArm(insn) {
+  if (insn.mnemonic === "ldr.w") {
+    return insn.operands[1].value.disp;
+  }
+  return null;
+}
+function parseArtQuickTrampolineArm64(insn) {
+  if (insn.mnemonic === "ldr") {
+    return insn.operands[1].value.disp;
+  }
+  return null;
+}
+function getArtThreadFromEnv(env) {
+  return env.handle.add(pointerSize5).readPointer();
+}
+function _getAndroidVersion() {
+  return getAndroidSystemProperty("ro.build.version.release");
+}
+function _getAndroidCodename() {
+  return getAndroidSystemProperty("ro.build.version.codename");
+}
+function _getAndroidApiLevel() {
+  return parseInt(getAndroidSystemProperty("ro.build.version.sdk"), 10);
+}
+var systemPropertyGet = null;
+var PROP_VALUE_MAX = 92;
+function getAndroidSystemProperty(name) {
+  if (systemPropertyGet === null) {
+    systemPropertyGet = new NativeFunction(
+      Process.getModuleByName("libc.so").getExportByName("__system_property_get"),
+      "int",
+      ["pointer", "pointer"],
+      nativeFunctionOptions3
+    );
+  }
+  const buf = Memory.alloc(PROP_VALUE_MAX);
+  systemPropertyGet(Memory.allocUtf8String(name), buf);
+  return buf.readUtf8String();
+}
+function withRunnableArtThread(vm3, env, fn) {
+  const perform = getArtThreadStateTransitionImpl(vm3, env);
+  const id = getArtThreadFromEnv(env).toString();
+  artThreadStateTransitions[id] = fn;
+  perform(env.handle);
+  if (artThreadStateTransitions[id] !== void 0) {
+    delete artThreadStateTransitions[id];
+    throw new Error("Unable to perform state transition; please file a bug");
+  }
+}
+function _getArtThreadStateTransitionImpl(vm3, env) {
+  const callback = new NativeCallback(onThreadStateTransitionComplete, "void", ["pointer"]);
+  return makeArtThreadStateTransitionImpl(vm3, env, callback);
+}
+function onThreadStateTransitionComplete(thread) {
+  const id = thread.toString();
+  const fn = artThreadStateTransitions[id];
+  delete artThreadStateTransitions[id];
+  fn(thread);
+}
+function withAllArtThreadsSuspended(fn) {
+  const api2 = getApi();
+  const threadList = api2.artThreadList;
+  const longSuspend = false;
+  api2["art::ThreadList::SuspendAll"](threadList, Memory.allocUtf8String("frida"), longSuspend ? 1 : 0);
+  try {
+    fn();
+  } finally {
+    api2["art::ThreadList::ResumeAll"](threadList);
+  }
+}
+var ArtClassVisitor = class {
+  constructor(visit) {
+    const visitor = Memory.alloc(4 * pointerSize5);
+    const vtable2 = visitor.add(pointerSize5);
+    visitor.writePointer(vtable2);
+    const onVisit = new NativeCallback((self, klass) => {
+      return visit(klass) === true ? 1 : 0;
+    }, "bool", ["pointer", "pointer"]);
+    vtable2.add(2 * pointerSize5).writePointer(onVisit);
+    this.handle = visitor;
+    this._onVisit = onVisit;
+  }
+};
+function makeArtClassVisitor(visit) {
+  const api2 = getApi();
+  if (api2["art::ClassLinker::VisitClasses"] instanceof NativeFunction) {
+    return new ArtClassVisitor(visit);
+  }
+  return new NativeCallback((klass) => {
+    return visit(klass) === true ? 1 : 0;
+  }, "bool", ["pointer", "pointer"]);
+}
+var ArtClassLoaderVisitor = class {
+  constructor(visit) {
+    const visitor = Memory.alloc(4 * pointerSize5);
+    const vtable2 = visitor.add(pointerSize5);
+    visitor.writePointer(vtable2);
+    const onVisit = new NativeCallback((self, klass) => {
+      visit(klass);
+    }, "void", ["pointer", "pointer"]);
+    vtable2.add(2 * pointerSize5).writePointer(onVisit);
+    this.handle = visitor;
+    this._onVisit = onVisit;
+  }
+};
+function makeArtClassLoaderVisitor(visit) {
+  return new ArtClassLoaderVisitor(visit);
+}
+var WalkKind = {
+  "include-inlined-frames": 0,
+  "skip-inlined-frames": 1
+};
+var ArtStackVisitor = class {
+  constructor(thread, context, walkKind, numFrames = 0, checkSuspended = true) {
+    const api2 = getApi();
+    const baseSize = 512;
+    const vtableSize = 3 * pointerSize5;
+    const visitor = Memory.alloc(baseSize + vtableSize);
+    api2["art::StackVisitor::StackVisitor"](
+      visitor,
+      thread,
+      context,
+      WalkKind[walkKind],
+      numFrames,
+      checkSuspended ? 1 : 0
+    );
+    const vtable2 = visitor.add(baseSize);
+    visitor.writePointer(vtable2);
+    const onVisitFrame = new NativeCallback(this._visitFrame.bind(this), "bool", ["pointer"]);
+    vtable2.add(2 * pointerSize5).writePointer(onVisitFrame);
+    this.handle = visitor;
+    this._onVisitFrame = onVisitFrame;
+    const curShadowFrame = visitor.add(pointerSize5 === 4 ? 12 : 24);
+    this._curShadowFrame = curShadowFrame;
+    this._curQuickFrame = curShadowFrame.add(pointerSize5);
+    this._curQuickFramePc = curShadowFrame.add(2 * pointerSize5);
+    this._curOatQuickMethodHeader = curShadowFrame.add(3 * pointerSize5);
+    this._getMethodImpl = api2["art::StackVisitor::GetMethod"];
+    this._descLocImpl = api2["art::StackVisitor::DescribeLocation"];
+    this._getCQFIImpl = api2["art::StackVisitor::GetCurrentQuickFrameInfo"];
+  }
+  walkStack(includeTransitions = false) {
+    getApi()["art::StackVisitor::WalkStack"](this.handle, includeTransitions ? 1 : 0);
+  }
+  _visitFrame() {
+    return this.visitFrame() ? 1 : 0;
+  }
+  visitFrame() {
+    throw new Error("Subclass must implement visitFrame");
+  }
+  getMethod() {
+    const methodHandle = this._getMethodImpl(this.handle);
+    if (methodHandle.isNull()) {
+      return null;
+    }
+    return new ArtMethod(methodHandle);
+  }
+  getCurrentQuickFramePc() {
+    return this._curQuickFramePc.readPointer();
+  }
+  getCurrentQuickFrame() {
+    return this._curQuickFrame.readPointer();
+  }
+  getCurrentShadowFrame() {
+    return this._curShadowFrame.readPointer();
+  }
+  describeLocation() {
+    const result = new StdString();
+    this._descLocImpl(result, this.handle);
+    return result.disposeToString();
+  }
+  getCurrentOatQuickMethodHeader() {
+    return this._curOatQuickMethodHeader.readPointer();
+  }
+  getCurrentQuickFrameInfo() {
+    return this._getCQFIImpl(this.handle);
+  }
+};
+var ArtMethod = class {
+  constructor(handle) {
+    this.handle = handle;
+  }
+  prettyMethod(withSignature = true) {
+    const result = new StdString();
+    getApi()["art::ArtMethod::PrettyMethod"](result, this.handle, withSignature ? 1 : 0);
+    return result.disposeToString();
+  }
+  toString() {
+    return `ArtMethod(handle=${this.handle})`;
+  }
+};
+function makeArtQuickFrameInfoGetter(impl) {
+  return function(self) {
+    const result = Memory.alloc(12);
+    getArtQuickFrameInfoGetterThunk(impl)(result, self);
+    return {
+      frameSizeInBytes: result.readU32(),
+      coreSpillMask: result.add(4).readU32(),
+      fpSpillMask: result.add(8).readU32()
+    };
+  };
+}
+function _getArtQuickFrameInfoGetterThunk(impl) {
+  let thunk = NULL;
+  switch (Process.arch) {
+    case "ia32":
+      thunk = makeThunk(32, (writer) => {
+        writer.putMovRegRegOffsetPtr("ecx", "esp", 4);
+        writer.putMovRegRegOffsetPtr("edx", "esp", 8);
+        writer.putCallAddressWithArguments(impl, ["ecx", "edx"]);
+        writer.putMovRegReg("esp", "ebp");
+        writer.putPopReg("ebp");
+        writer.putRet();
+      });
+      break;
+    case "x64":
+      thunk = makeThunk(32, (writer) => {
+        writer.putPushReg("rdi");
+        writer.putCallAddressWithArguments(impl, ["rsi"]);
+        writer.putPopReg("rdi");
+        writer.putMovRegPtrReg("rdi", "rax");
+        writer.putMovRegOffsetPtrReg("rdi", 8, "edx");
+        writer.putRet();
+      });
+      break;
+    case "arm":
+      thunk = makeThunk(16, (writer) => {
+        writer.putCallAddressWithArguments(impl, ["r0", "r1"]);
+        writer.putPopRegs(["r0", "lr"]);
+        writer.putMovRegReg("pc", "lr");
+      });
+      break;
+    case "arm64":
+      thunk = makeThunk(64, (writer) => {
+        writer.putPushRegReg("x0", "lr");
+        writer.putCallAddressWithArguments(impl, ["x1"]);
+        writer.putPopRegReg("x2", "lr");
+        writer.putStrRegRegOffset("x0", "x2", 0);
+        writer.putStrRegRegOffset("w1", "x2", 8);
+        writer.putRet();
+      });
+      break;
+  }
+  return new NativeFunction(thunk, "void", ["pointer", "pointer"], nativeFunctionOptions3);
+}
+var thunkRelocators = {
+  ia32: globalThis.X86Relocator,
+  x64: globalThis.X86Relocator,
+  arm: globalThis.ThumbRelocator,
+  arm64: globalThis.Arm64Relocator
+};
+var thunkWriters = {
+  ia32: globalThis.X86Writer,
+  x64: globalThis.X86Writer,
+  arm: globalThis.ThumbWriter,
+  arm64: globalThis.Arm64Writer
+};
+function makeThunk(size, write3) {
+  if (thunkPage === null) {
+    thunkPage = Memory.alloc(Process.pageSize);
+  }
+  const thunk = thunkPage.add(thunkOffset);
+  const arch = Process.arch;
+  const Writer = thunkWriters[arch];
+  Memory.patchCode(thunk, size, (code3) => {
+    const writer = new Writer(code3, { pc: thunk });
+    write3(writer);
+    writer.flush();
+    if (writer.offset > size) {
+      throw new Error(`Wrote ${writer.offset}, exceeding maximum of ${size}`);
+    }
+  });
+  thunkOffset += size;
+  return arch === "arm" ? thunk.or(1) : thunk;
+}
+function notifyArtMethodHooked(method, vm3) {
+  ensureArtKnowsHowToHandleMethodInstrumentation(vm3);
+  ensureArtKnowsHowToHandleReplacementMethods(vm3);
+}
+function makeArtController(api2, vm3) {
+  const threadOffsets = getArtThreadSpec(vm3).offset;
+  const managedStackOffsets = getArtManagedStackSpec().offset;
+  const code3 = `
 #include <gum/guminterceptor.h>
 
 extern GMutex lock;
@@ -123,16 +4214,16 @@ find_replacement_method_from_quick_code (gpointer method,
    *   2- The ArtMethod * inside the linked managed stack's top quick frame is the
    *      same as our replacement.
    */
-  managed_stack = thread + ${n.managedStack};
-  top_quick_frame = *((gpointer *) (managed_stack + ${r.topQuickFrame}));
+  managed_stack = thread + ${threadOffsets.managedStack};
+  top_quick_frame = *((gpointer *) (managed_stack + ${managedStackOffsets.topQuickFrame}));
   if (top_quick_frame != NULL)
     return replacement_method;
 
-  link_managed_stack = *((gpointer *) (managed_stack + ${r.link}));
+  link_managed_stack = *((gpointer *) (managed_stack + ${managedStackOffsets.link}));
   if (link_managed_stack == NULL)
     return replacement_method;
 
-  link_top_quick_frame = GSIZE_TO_POINTER (*((gsize *) (link_managed_stack + ${r.topQuickFrame})) & ~((gsize) 1));
+  link_top_quick_frame = GSIZE_TO_POINTER (*((gsize *) (link_managed_stack + ${managedStackOffsets.topQuickFrame})) & ~((gsize) 1));
   if (link_top_quick_frame == NULL || *link_top_quick_frame != replacement_method)
     return replacement_method;
 
@@ -164,7 +4255,7 @@ on_art_method_get_oat_quick_method_header (gpointer method,
 void
 on_art_method_pretty_method (GumInvocationContext * ic)
 {
-  const guint this_arg_index = ${Process.arch==="arm64"?0:1};
+  const guint this_arg_index = ${Process.arch === "arm64" ? 0 : 1};
   gpointer method;
 
   method = gum_invocation_context_get_nth_argument (ic, this_arg_index);
@@ -188,7 +4279,506 @@ on_leave_gc_concurrent_copying_copying_phase (GumInvocationContext * ic)
 
   g_mutex_unlock (&lock);
 }
-`,s=8,i=C,l=C,a=C,d=Memory.alloc(s+i+l+a),p=d.add(s),f=p.add(i),u=f.add(l),_=t.find(C===4?"_ZN3art9ArtMethod23GetOatQuickMethodHeaderEj":"_ZN3art9ArtMethod23GetOatQuickMethodHeaderEm"),h=new CModule(o,{lock:d,methods:p,replacements:f,last_seen_art_method:u,get_oat_quick_method_header_impl:_??ptr("0xdeadbeef")}),g={exceptions:"propagate",scheduling:"exclusive"};return{handle:h,replacedMethods:{isReplacement:new NativeFunction(h.is_replacement_method,"bool",["pointer"],g),get:new NativeFunction(h.get_replacement_method,"pointer",["pointer"],g),set:new NativeFunction(h.set_replacement_method,"void",["pointer","pointer"],g),delete:new NativeFunction(h.delete_replacement_method,"void",["pointer"],g),translate:new NativeFunction(h.translate_method,"pointer",["pointer"],g),findReplacementFromQuickCode:h.find_replacement_method_from_quick_code},getOatQuickMethodHeaderImpl:_,hooks:{Interpreter:{doCall:h.on_interpreter_do_call},ArtMethod:{getOatQuickMethodHeader:h.on_art_method_get_oat_quick_method_header,prettyMethod:h.on_art_method_pretty_method},Gc:{copyingPhase:{onLeave:h.on_leave_gc_concurrent_copying_copying_phase},runFlip:{onEnter:h.on_leave_gc_concurrent_copying_copying_phase}}}}}function Cl(t){jr||(jr=!0,Tl(t),Il())}function Tl(t){let e=B();[e.artQuickGenericJniTrampoline,e.artQuickToInterpreterBridge,e.artQuickResolutionTrampoline].forEach(r=>{Memory.protect(r,32,"rwx");let o=new Ot(r);o.activate(t),qr.push(o)})}function Il(){let t=B(),e=re(),{isApiLevel34OrApexEquivalent:n}=t,r;if(e<=22)r=/^_ZN3art11interpreter6DoCallILb[0-1]ELb[0-1]EEEbPNS_6mirror9ArtMethodEPNS_6ThreadERNS_11ShadowFrameEPKNS_11InstructionEtPNS_6JValueE$/;else if(e<=33&&!n)r=/^_ZN3art11interpreter6DoCallILb[0-1]ELb[0-1]EEEbPNS_9ArtMethodEPNS_6ThreadERNS_11ShadowFrameEPKNS_11InstructionEtPNS_6JValueE$/;else if(n)r=/^_ZN3art11interpreter6DoCallILb[0-1]EEEbPNS_9ArtMethodEPNS_6ThreadERNS_11ShadowFrameEPKNS_11InstructionEtbPNS_6JValueE$/;else throw new Error("Unable to find method invocation in ART; please file a bug");let o=t.module,s=[...o.enumerateExports(),...o.enumerateSymbols()].filter(i=>r.test(i.name));if(s.length===0)throw new Error("Unable to find method invocation in ART; please file a bug");for(let i of s)Interceptor.attach(i.address,ce.hooks.Interpreter.doCall)}function Al(t){if(Rr)return;if(Rr=!0,!xl()){let{getOatQuickMethodHeaderImpl:s}=ce;if(s===null)return;try{Interceptor.replace(s,ce.hooks.ArtMethod.getOatQuickMethodHeader)}catch{}}let e=re(),n=null,r=B();e>28?n=r.find("_ZN3art2gc9collector17ConcurrentCopying12CopyingPhaseEv"):e>22&&(n=r.find("_ZN3art2gc9collector17ConcurrentCopying12MarkingPhaseEv")),n!==null&&Interceptor.attach(n,ce.hooks.Gc.copyingPhase);let o=null;o=r.find("_ZN3art6Thread15RunFlipFunctionEPS0_"),o===null&&(o=r.find("_ZN3art6Thread15RunFlipFunctionEPS0_b")),o!==null&&Interceptor.attach(o,ce.hooks.Gc.runFlip)}var Ll={arm:{signatures:[{pattern:["b0 68","01 30","0c d0","1b 98",":","c0 ff","c0 ff","00 ff","00 2f"],validateMatch:En},{pattern:["d8 f8 08 00","01 30","0c d0","1b 98",":","f0 ff ff 0f","ff ff","00 ff","00 2f"],validateMatch:En},{pattern:["b0 68","01 30","40 f0 c3 80","00 25",":","c0 ff","c0 ff","c0 fb 00 d0","ff f8"],validateMatch:En}],instrument:Nl},arm64:{signatures:[{pattern:["0a 40 b9","1f 05 00 31","40 01 00 54","88 39 00 f0",":","fc ff ff","1f fc ff ff","1f 00 00 ff","00 00 00 9f"],offset:1,validateMatch:Ur},{pattern:["0a 40 b9","1f 05 00 31","01 34 00 54","e0 03 1f aa",":","fc ff ff","1f fc ff ff","1f 00 00 ff","e0 ff ff ff"],offset:1,validateMatch:Ur}],instrument:Ml}};function En({address:t,size:e}){let n=Instruction.parse(t.or(1)),[r,o]=n.operands,s=o.value.base,i=r.value,l=Instruction.parse(n.next.add(2)),a=ptr(l.operands[0].value),c=l.address.add(l.size),d,p;return l.mnemonic==="beq"?(d=c,p=a):(d=a,p=c),je(d.or(1),f,{limit:3});function f(u){let{mnemonic:_}=u;if(!(_==="ldr"||_==="ldr.w"))return null;let{base:h,disp:g}=u.operands[1].value;return h===s&&g===20?{methodReg:s,scratchReg:i,target:{whenTrue:a,whenRegularMethod:d,whenRuntimeMethod:p}}:null}}function Ur({address:t,size:e}){let[n,r]=Instruction.parse(t).operands,o=r.value.base,s="x"+n.value.substring(1),i=Instruction.parse(t.add(8)),l=ptr(i.operands[0].value),a=t.add(12),c,d;return i.mnemonic==="b.eq"?(c=a,d=l):(c=l,d=a),je(c,p,{limit:3});function p(f){if(f.mnemonic!=="ldr")return null;let{base:u,disp:_}=f.operands[1].value;return u===o&&_===24?{methodReg:o,scratchReg:s,target:{whenTrue:l,whenRegularMethod:c,whenRuntimeMethod:d}}:null}}function xl(){if(re()<31)return!1;let t=Ll[Process.arch];if(t===void 0)return!1;let e=t.signatures.map(({pattern:r,offset:o=0,validateMatch:s=kl})=>({pattern:new MatchPattern(r.join("")),offset:o,validateMatch:s})),n=[];for(let{base:r,size:o}of B().module.enumerateRanges("--x"))for(let{pattern:s,offset:i,validateMatch:l}of e){let a=Memory.scanSync(r,o,s).map(({address:c,size:d})=>({address:c.sub(i),size:d+i})).filter(c=>{let d=l(c);return d===null?!1:(c.validationResult=d,!0)});n.push(...a)}return n.length===0?!1:(n.forEach(t.instrument),!0)}function kl(){return{}}var Mt=class{constructor(e,n,r){this.address=e,this.size=n,this.originalCode=e.readByteArray(n),this.trampoline=r}revert(){Memory.patchCode(this.address,this.size,e=>{e.writeByteArray(this.originalCode)})}};function Nl({address:t,size:e,validationResult:n}){let{methodReg:r,target:o}=n,s=Memory.alloc(Process.pageSize),i=e;Memory.patchCode(s,256,l=>{let a=new ThumbWriter(l,{pc:s}),c=new ThumbRelocator(t,a);for(let _=0;_!==2;_++)c.readOne();c.writeAll(),c.readOne(),c.skipOne(),a.putBCondLabel("eq","runtime_or_replacement_method");let d=[45,237,16,10];a.putBytes(d);let p=["r0","r1","r2","r3"];a.putPushRegs(p),a.putCallAddressWithArguments(ce.replacedMethods.isReplacement,[r]),a.putCmpRegImm("r0",0),a.putPopRegs(p);let f=[189,236,16,10];a.putBytes(f),a.putBCondLabel("ne","runtime_or_replacement_method"),a.putBLabel("regular_method"),c.readOne();let u=c.input.address.equals(o.whenRegularMethod);for(a.putLabel(u?"regular_method":"runtime_or_replacement_method"),c.writeOne();i<10;){let _=c.readOne();if(_===0){i=10;break}i=_}c.writeAll(),a.putBranchAddress(t.add(i+1)),a.putLabel(u?"runtime_or_replacement_method":"regular_method"),a.putBranchAddress(o.whenTrue),a.flush()}),Rn.push(new Mt(t,i,s)),Memory.patchCode(t,i,l=>{let a=new ThumbWriter(l,{pc:t});a.putLdrRegAddress("pc",s.or(1)),a.flush()})}function Ml({address:t,size:e,validationResult:n}){let{methodReg:r,scratchReg:o,target:s}=n,i=Memory.alloc(Process.pageSize);Memory.patchCode(i,256,l=>{let a=new Arm64Writer(l,{pc:i}),c=new Arm64Relocator(t,a);for(let _=0;_!==2;_++)c.readOne();c.writeAll(),c.readOne(),c.skipOne(),a.putBCondLabel("eq","runtime_or_replacement_method");let d=["d0","d1","d2","d3","d4","d5","d6","d7","x0","x1","x2","x3","x4","x5","x6","x7","x8","x9","x10","x11","x12","x13","x14","x15","x16","x17"],p=d.length;for(let _=0;_!==p;_+=2)a.putPushRegReg(d[_],d[_+1]);a.putCallAddressWithArguments(ce.replacedMethods.isReplacement,[r]),a.putCmpRegReg("x0","xzr");for(let _=p-2;_>=0;_-=2)a.putPopRegReg(d[_],d[_+1]);a.putBCondLabel("ne","runtime_or_replacement_method"),a.putBLabel("regular_method"),c.readOne();let f=c.input,u=f.address.equals(s.whenRegularMethod);a.putLabel(u?"regular_method":"runtime_or_replacement_method"),c.writeOne(),a.putBranchAddress(f.next),a.putLabel(u?"runtime_or_replacement_method":"regular_method"),a.putBranchAddress(s.whenTrue),a.flush()}),Rn.push(new Mt(t,e,i)),Memory.patchCode(t,e,l=>{let a=new Arm64Writer(l,{pc:t});a.putLdrRegAddress(o,i),a.putBrReg(o),a.flush()})}function Ol(t){return new Wr(t)}function Rl(t){return ce.replacedMethods.translate(t)}function zn(t,e={}){let{limit:n=16}=e,r=t.getEnv();return lt===null&&(lt=jl(t,r)),lt.backtrace(r,n)}function jl(t,e){let n=B(),r=Memory.alloc(Process.pointerSize),o=new CModule(`
+`;
+  const lockSize = 8;
+  const methodsSize = pointerSize5;
+  const replacementsSize = pointerSize5;
+  const lastSeenArtMethodSize = pointerSize5;
+  const data = Memory.alloc(lockSize + methodsSize + replacementsSize + lastSeenArtMethodSize);
+  const lock = data;
+  const methods = lock.add(lockSize);
+  const replacements = methods.add(methodsSize);
+  const lastSeenArtMethod = replacements.add(replacementsSize);
+  const getOatQuickMethodHeaderImpl = api2.find(pointerSize5 === 4 ? "_ZN3art9ArtMethod23GetOatQuickMethodHeaderEj" : "_ZN3art9ArtMethod23GetOatQuickMethodHeaderEm");
+  const cm2 = new CModule(code3, {
+    lock,
+    methods,
+    replacements,
+    last_seen_art_method: lastSeenArtMethod,
+    get_oat_quick_method_header_impl: getOatQuickMethodHeaderImpl ?? ptr("0xdeadbeef")
+  });
+  const fastOptions = { exceptions: "propagate", scheduling: "exclusive" };
+  return {
+    handle: cm2,
+    replacedMethods: {
+      isReplacement: new NativeFunction(cm2.is_replacement_method, "bool", ["pointer"], fastOptions),
+      get: new NativeFunction(cm2.get_replacement_method, "pointer", ["pointer"], fastOptions),
+      set: new NativeFunction(cm2.set_replacement_method, "void", ["pointer", "pointer"], fastOptions),
+      delete: new NativeFunction(cm2.delete_replacement_method, "void", ["pointer"], fastOptions),
+      translate: new NativeFunction(cm2.translate_method, "pointer", ["pointer"], fastOptions),
+      findReplacementFromQuickCode: cm2.find_replacement_method_from_quick_code
+    },
+    getOatQuickMethodHeaderImpl,
+    hooks: {
+      Interpreter: {
+        doCall: cm2.on_interpreter_do_call
+      },
+      ArtMethod: {
+        getOatQuickMethodHeader: cm2.on_art_method_get_oat_quick_method_header,
+        prettyMethod: cm2.on_art_method_pretty_method
+      },
+      Gc: {
+        copyingPhase: {
+          onLeave: cm2.on_leave_gc_concurrent_copying_copying_phase
+        },
+        runFlip: {
+          onEnter: cm2.on_leave_gc_concurrent_copying_copying_phase
+        }
+      }
+    }
+  };
+}
+function ensureArtKnowsHowToHandleMethodInstrumentation(vm3) {
+  if (taughtArtAboutMethodInstrumentation) {
+    return;
+  }
+  taughtArtAboutMethodInstrumentation = true;
+  instrumentArtQuickEntrypoints(vm3);
+  instrumentArtMethodInvocationFromInterpreter();
+}
+function instrumentArtQuickEntrypoints(vm3) {
+  const api2 = getApi();
+  const quickEntrypoints = [
+    api2.artQuickGenericJniTrampoline,
+    api2.artQuickToInterpreterBridge,
+    api2.artQuickResolutionTrampoline
+  ];
+  quickEntrypoints.forEach((entrypoint) => {
+    Memory.protect(entrypoint, 32, "rwx");
+    const interceptor = new ArtQuickCodeInterceptor(entrypoint);
+    interceptor.activate(vm3);
+    artQuickInterceptors.push(interceptor);
+  });
+}
+function instrumentArtMethodInvocationFromInterpreter() {
+  const api2 = getApi();
+  const apiLevel = getAndroidApiLevel();
+  const { isApiLevel34OrApexEquivalent } = api2;
+  let artInterpreterDoCallExportRegex;
+  if (apiLevel <= 22) {
+    artInterpreterDoCallExportRegex = /^_ZN3art11interpreter6DoCallILb[0-1]ELb[0-1]EEEbPNS_6mirror9ArtMethodEPNS_6ThreadERNS_11ShadowFrameEPKNS_11InstructionEtPNS_6JValueE$/;
+  } else if (apiLevel <= 33 && !isApiLevel34OrApexEquivalent) {
+    artInterpreterDoCallExportRegex = /^_ZN3art11interpreter6DoCallILb[0-1]ELb[0-1]EEEbPNS_9ArtMethodEPNS_6ThreadERNS_11ShadowFrameEPKNS_11InstructionEtPNS_6JValueE$/;
+  } else if (isApiLevel34OrApexEquivalent) {
+    artInterpreterDoCallExportRegex = /^_ZN3art11interpreter6DoCallILb[0-1]EEEbPNS_9ArtMethodEPNS_6ThreadERNS_11ShadowFrameEPKNS_11InstructionEtbPNS_6JValueE$/;
+  } else {
+    throw new Error("Unable to find method invocation in ART; please file a bug");
+  }
+  const art = api2.module;
+  const entries = [...art.enumerateExports(), ...art.enumerateSymbols()].filter((entry) => artInterpreterDoCallExportRegex.test(entry.name));
+  if (entries.length === 0) {
+    throw new Error("Unable to find method invocation in ART; please file a bug");
+  }
+  for (const entry of entries) {
+    Interceptor.attach(entry.address, artController.hooks.Interpreter.doCall);
+  }
+}
+function ensureArtKnowsHowToHandleReplacementMethods(vm3) {
+  if (taughtArtAboutReplacementMethods) {
+    return;
+  }
+  taughtArtAboutReplacementMethods = true;
+  if (!maybeInstrumentGetOatQuickMethodHeaderInlineCopies()) {
+    const { getOatQuickMethodHeaderImpl } = artController;
+    if (getOatQuickMethodHeaderImpl === null) {
+      return;
+    }
+    try {
+      Interceptor.replace(getOatQuickMethodHeaderImpl, artController.hooks.ArtMethod.getOatQuickMethodHeader);
+    } catch (e) {
+    }
+  }
+  const apiLevel = getAndroidApiLevel();
+  let copyingPhase = null;
+  const api2 = getApi();
+  if (apiLevel > 28) {
+    copyingPhase = api2.find("_ZN3art2gc9collector17ConcurrentCopying12CopyingPhaseEv");
+  } else if (apiLevel > 22) {
+    copyingPhase = api2.find("_ZN3art2gc9collector17ConcurrentCopying12MarkingPhaseEv");
+  }
+  if (copyingPhase !== null) {
+    Interceptor.attach(copyingPhase, artController.hooks.Gc.copyingPhase);
+  }
+  let runFlip = null;
+  runFlip = api2.find("_ZN3art6Thread15RunFlipFunctionEPS0_");
+  if (runFlip === null) {
+    runFlip = api2.find("_ZN3art6Thread15RunFlipFunctionEPS0_b");
+  }
+  if (runFlip !== null) {
+    Interceptor.attach(runFlip, artController.hooks.Gc.runFlip);
+  }
+}
+var artGetOatQuickMethodHeaderInlinedCopyHandler = {
+  arm: {
+    signatures: [
+      {
+        pattern: [
+          "b0 68",
+          // ldr r0, [r6, #8]
+          "01 30",
+          // adds r0, #1
+          "0c d0",
+          // beq #0x16fcd4
+          "1b 98",
+          // ldr r0, [sp, #0x6c]
+          ":",
+          "c0 ff",
+          "c0 ff",
+          "00 ff",
+          "00 2f"
+        ],
+        validateMatch: validateGetOatQuickMethodHeaderInlinedMatchArm
+      },
+      {
+        pattern: [
+          "d8 f8 08 00",
+          // ldr r0, [r8, #8]
+          "01 30",
+          // adds r0, #1
+          "0c d0",
+          // beq #0x16fcd4
+          "1b 98",
+          // ldr r0, [sp, #0x6c]
+          ":",
+          "f0 ff ff 0f",
+          "ff ff",
+          "00 ff",
+          "00 2f"
+        ],
+        validateMatch: validateGetOatQuickMethodHeaderInlinedMatchArm
+      },
+      {
+        pattern: [
+          "b0 68",
+          // ldr r0, [r6, #8]
+          "01 30",
+          // adds r0, #1
+          "40 f0 c3 80",
+          // bne #0x203bf0
+          "00 25",
+          // movs r5, #0
+          ":",
+          "c0 ff",
+          "c0 ff",
+          "c0 fb 00 d0",
+          "ff f8"
+        ],
+        validateMatch: validateGetOatQuickMethodHeaderInlinedMatchArm
+      }
+    ],
+    instrument: instrumentGetOatQuickMethodHeaderInlinedCopyArm
+  },
+  arm64: {
+    signatures: [
+      {
+        pattern: [
+          /* e8 */
+          "0a 40 b9",
+          // ldr w8, [x23, #0x8]
+          "1f 05 00 31",
+          // cmn w8, #0x1
+          "40 01 00 54",
+          // b.eq 0x2e4204
+          "88 39 00 f0",
+          // adrp x8, 0xa17000
+          ":",
+          /* 00 */
+          "fc ff ff",
+          "1f fc ff ff",
+          "1f 00 00 ff",
+          "00 00 00 9f"
+        ],
+        offset: 1,
+        validateMatch: validateGetOatQuickMethodHeaderInlinedMatchArm64
+      },
+      {
+        pattern: [
+          /* e8 */
+          "0a 40 b9",
+          // ldr w8, [x23, #0x8]
+          "1f 05 00 31",
+          // cmn w8, #0x1
+          "01 34 00 54",
+          // b.ne 0x3d8e50
+          "e0 03 1f aa",
+          // mov x0, xzr
+          ":",
+          /* 00 */
+          "fc ff ff",
+          "1f fc ff ff",
+          "1f 00 00 ff",
+          "e0 ff ff ff"
+        ],
+        offset: 1,
+        validateMatch: validateGetOatQuickMethodHeaderInlinedMatchArm64
+      }
+    ],
+    instrument: instrumentGetOatQuickMethodHeaderInlinedCopyArm64
+  }
+};
+function validateGetOatQuickMethodHeaderInlinedMatchArm({ address, size }) {
+  const ldr = Instruction.parse(address.or(1));
+  const [ldrDst, ldrSrc] = ldr.operands;
+  const methodReg = ldrSrc.value.base;
+  const scratchReg = ldrDst.value;
+  const branch = Instruction.parse(ldr.next.add(2));
+  const targetWhenTrue = ptr(branch.operands[0].value);
+  const targetWhenFalse = branch.address.add(branch.size);
+  let targetWhenRegularMethod, targetWhenRuntimeMethod;
+  if (branch.mnemonic === "beq") {
+    targetWhenRegularMethod = targetWhenFalse;
+    targetWhenRuntimeMethod = targetWhenTrue;
+  } else {
+    targetWhenRegularMethod = targetWhenTrue;
+    targetWhenRuntimeMethod = targetWhenFalse;
+  }
+  return parseInstructionsAt(targetWhenRegularMethod.or(1), tryParse, { limit: 3 });
+  function tryParse(insn) {
+    const { mnemonic } = insn;
+    if (!(mnemonic === "ldr" || mnemonic === "ldr.w")) {
+      return null;
+    }
+    const { base, disp } = insn.operands[1].value;
+    if (!(base === methodReg && disp === 20)) {
+      return null;
+    }
+    return {
+      methodReg,
+      scratchReg,
+      target: {
+        whenTrue: targetWhenTrue,
+        whenRegularMethod: targetWhenRegularMethod,
+        whenRuntimeMethod: targetWhenRuntimeMethod
+      }
+    };
+  }
+}
+function validateGetOatQuickMethodHeaderInlinedMatchArm64({ address, size }) {
+  const [ldrDst, ldrSrc] = Instruction.parse(address).operands;
+  const methodReg = ldrSrc.value.base;
+  const scratchReg = "x" + ldrDst.value.substring(1);
+  const branch = Instruction.parse(address.add(8));
+  const targetWhenTrue = ptr(branch.operands[0].value);
+  const targetWhenFalse = address.add(12);
+  let targetWhenRegularMethod, targetWhenRuntimeMethod;
+  if (branch.mnemonic === "b.eq") {
+    targetWhenRegularMethod = targetWhenFalse;
+    targetWhenRuntimeMethod = targetWhenTrue;
+  } else {
+    targetWhenRegularMethod = targetWhenTrue;
+    targetWhenRuntimeMethod = targetWhenFalse;
+  }
+  return parseInstructionsAt(targetWhenRegularMethod, tryParse, { limit: 3 });
+  function tryParse(insn) {
+    if (insn.mnemonic !== "ldr") {
+      return null;
+    }
+    const { base, disp } = insn.operands[1].value;
+    if (!(base === methodReg && disp === 24)) {
+      return null;
+    }
+    return {
+      methodReg,
+      scratchReg,
+      target: {
+        whenTrue: targetWhenTrue,
+        whenRegularMethod: targetWhenRegularMethod,
+        whenRuntimeMethod: targetWhenRuntimeMethod
+      }
+    };
+  }
+}
+function maybeInstrumentGetOatQuickMethodHeaderInlineCopies() {
+  if (getAndroidApiLevel() < 31) {
+    return false;
+  }
+  const handler = artGetOatQuickMethodHeaderInlinedCopyHandler[Process.arch];
+  if (handler === void 0) {
+    return false;
+  }
+  const signatures = handler.signatures.map(({ pattern, offset = 0, validateMatch = returnEmptyObject }) => {
+    return {
+      pattern: new MatchPattern(pattern.join("")),
+      offset,
+      validateMatch
+    };
+  });
+  const impls = [];
+  for (const { base, size } of getApi().module.enumerateRanges("--x")) {
+    for (const { pattern, offset, validateMatch } of signatures) {
+      const matches = Memory.scanSync(base, size, pattern).map(({ address, size: size2 }) => {
+        return { address: address.sub(offset), size: size2 + offset };
+      }).filter((match) => {
+        const validationResult = validateMatch(match);
+        if (validationResult === null) {
+          return false;
+        }
+        match.validationResult = validationResult;
+        return true;
+      });
+      impls.push(...matches);
+    }
+  }
+  if (impls.length === 0) {
+    return false;
+  }
+  impls.forEach(handler.instrument);
+  return true;
+}
+function returnEmptyObject() {
+  return {};
+}
+var InlineHook = class {
+  constructor(address, size, trampoline) {
+    this.address = address;
+    this.size = size;
+    this.originalCode = address.readByteArray(size);
+    this.trampoline = trampoline;
+  }
+  revert() {
+    Memory.patchCode(this.address, this.size, (code3) => {
+      code3.writeByteArray(this.originalCode);
+    });
+  }
+};
+function instrumentGetOatQuickMethodHeaderInlinedCopyArm({ address, size, validationResult }) {
+  const { methodReg, target } = validationResult;
+  const trampoline = Memory.alloc(Process.pageSize);
+  let redirectCapacity = size;
+  Memory.patchCode(trampoline, 256, (code3) => {
+    const writer = new ThumbWriter(code3, { pc: trampoline });
+    const relocator = new ThumbRelocator(address, writer);
+    for (let i = 0; i !== 2; i++) {
+      relocator.readOne();
+    }
+    relocator.writeAll();
+    relocator.readOne();
+    relocator.skipOne();
+    writer.putBCondLabel("eq", "runtime_or_replacement_method");
+    const vpushFpRegs = [45, 237, 16, 10];
+    writer.putBytes(vpushFpRegs);
+    const savedRegs = ["r0", "r1", "r2", "r3"];
+    writer.putPushRegs(savedRegs);
+    writer.putCallAddressWithArguments(artController.replacedMethods.isReplacement, [methodReg]);
+    writer.putCmpRegImm("r0", 0);
+    writer.putPopRegs(savedRegs);
+    const vpopFpRegs = [189, 236, 16, 10];
+    writer.putBytes(vpopFpRegs);
+    writer.putBCondLabel("ne", "runtime_or_replacement_method");
+    writer.putBLabel("regular_method");
+    relocator.readOne();
+    const tailIsRegular = relocator.input.address.equals(target.whenRegularMethod);
+    writer.putLabel(tailIsRegular ? "regular_method" : "runtime_or_replacement_method");
+    relocator.writeOne();
+    while (redirectCapacity < 10) {
+      const offset = relocator.readOne();
+      if (offset === 0) {
+        redirectCapacity = 10;
+        break;
+      }
+      redirectCapacity = offset;
+    }
+    relocator.writeAll();
+    writer.putBranchAddress(address.add(redirectCapacity + 1));
+    writer.putLabel(tailIsRegular ? "runtime_or_replacement_method" : "regular_method");
+    writer.putBranchAddress(target.whenTrue);
+    writer.flush();
+  });
+  inlineHooks.push(new InlineHook(address, redirectCapacity, trampoline));
+  Memory.patchCode(address, redirectCapacity, (code3) => {
+    const writer = new ThumbWriter(code3, { pc: address });
+    writer.putLdrRegAddress("pc", trampoline.or(1));
+    writer.flush();
+  });
+}
+function instrumentGetOatQuickMethodHeaderInlinedCopyArm64({ address, size, validationResult }) {
+  const { methodReg, scratchReg, target } = validationResult;
+  const trampoline = Memory.alloc(Process.pageSize);
+  Memory.patchCode(trampoline, 256, (code3) => {
+    const writer = new Arm64Writer(code3, { pc: trampoline });
+    const relocator = new Arm64Relocator(address, writer);
+    for (let i = 0; i !== 2; i++) {
+      relocator.readOne();
+    }
+    relocator.writeAll();
+    relocator.readOne();
+    relocator.skipOne();
+    writer.putBCondLabel("eq", "runtime_or_replacement_method");
+    const savedRegs = [
+      "d0",
+      "d1",
+      "d2",
+      "d3",
+      "d4",
+      "d5",
+      "d6",
+      "d7",
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4",
+      "x5",
+      "x6",
+      "x7",
+      "x8",
+      "x9",
+      "x10",
+      "x11",
+      "x12",
+      "x13",
+      "x14",
+      "x15",
+      "x16",
+      "x17"
+    ];
+    const numSavedRegs = savedRegs.length;
+    for (let i = 0; i !== numSavedRegs; i += 2) {
+      writer.putPushRegReg(savedRegs[i], savedRegs[i + 1]);
+    }
+    writer.putCallAddressWithArguments(artController.replacedMethods.isReplacement, [methodReg]);
+    writer.putCmpRegReg("x0", "xzr");
+    for (let i = numSavedRegs - 2; i >= 0; i -= 2) {
+      writer.putPopRegReg(savedRegs[i], savedRegs[i + 1]);
+    }
+    writer.putBCondLabel("ne", "runtime_or_replacement_method");
+    writer.putBLabel("regular_method");
+    relocator.readOne();
+    const tailInstruction = relocator.input;
+    const tailIsRegular = tailInstruction.address.equals(target.whenRegularMethod);
+    writer.putLabel(tailIsRegular ? "regular_method" : "runtime_or_replacement_method");
+    relocator.writeOne();
+    writer.putBranchAddress(tailInstruction.next);
+    writer.putLabel(tailIsRegular ? "runtime_or_replacement_method" : "regular_method");
+    writer.putBranchAddress(target.whenTrue);
+    writer.flush();
+  });
+  inlineHooks.push(new InlineHook(address, size, trampoline));
+  Memory.patchCode(address, size, (code3) => {
+    const writer = new Arm64Writer(code3, { pc: address });
+    writer.putLdrRegAddress(scratchReg, trampoline);
+    writer.putBrReg(scratchReg);
+    writer.flush();
+  });
+}
+function makeMethodMangler(methodId) {
+  return new MethodMangler(methodId);
+}
+function translateMethod(methodId) {
+  return artController.replacedMethods.translate(methodId);
+}
+function backtrace(vm3, options = {}) {
+  const { limit = 16 } = options;
+  const env = vm3.getEnv();
+  if (backtraceModule === null) {
+    backtraceModule = makeBacktraceModule(vm3, env);
+  }
+  return backtraceModule.backtrace(env, limit);
+}
+function makeBacktraceModule(vm3, env) {
+  const api2 = getApi();
+  const performImpl = Memory.alloc(Process.pointerSize);
+  const cm2 = new CModule(`
 #include <glib.h>
 #include <stdbool.h>
 #include <string.h>
@@ -630,7 +5220,2628 @@ std_string_get_data (StdString * str)
   bool is_large = (str->flags & 1) != 0;
   return is_large ? str->large.data : str->tiny.data;
 }
-`,{current_backtrace:Memory.alloc(Process.pointerSize),perform_art_thread_state_transition:r,art_thread_get_long_jump_context:n["art::Thread::GetLongJumpContext"],art_stack_visitor_init:n["art::StackVisitor::StackVisitor"],art_stack_visitor_walk_stack:n["art::StackVisitor::WalkStack"],art_stack_visitor_get_method:n["art::StackVisitor::GetMethod"],art_stack_visitor_describe_location:n["art::StackVisitor::DescribeLocation"],translate_method:ce.replacedMethods.translate,translate_location:n["art::Monitor::TranslateLocation"],get_class_location:n["art::mirror::Class::GetLocation"],cxx_delete:n.$delete,strtoul:Process.getModuleByName("libc.so").getExportByName("strtoul")}),s=new NativeFunction(o._create,"pointer",["pointer","uint"],q),i=new NativeFunction(o._destroy,"void",["pointer"],q),l={exceptions:"propagate",scheduling:"exclusive"},a=new NativeFunction(o._get_id,"pointer",["pointer"],l),c=new NativeFunction(o._get_frames,"pointer",["pointer"],l),d=Xr(t,e,o._on_thread_state_transition_complete);o._performData=d,r.writePointer(d),o.backtrace=(f,u)=>{let _=s(f,u),h=new Ln(_);return Script.bindWeak(h,p.bind(null,_)),h};function p(f){i(f)}return o.getId=f=>a(f).readUtf8String(),o.getFrames=f=>JSON.parse(c(f).readUtf8String()),o}var Ln=class{constructor(e){this.handle=e}get id(){return lt.getId(this.handle)}get frames(){return lt.getFrames(this.handle)}};function Jn(){kt.forEach(t=>{t.vtablePtr.writePointer(t.vtable),t.vtableCountPtr.writeS32(t.vtableCount)}),kt.clear();for(let t of qr.splice(0))t.deactivate();for(let t of Rn.splice(0))t.revert()}function Qr(t){let e=B(),n=$r(e).offset,r=n.jniIdManager,o=n.jniIdsIndirection;if(r!==null&&o!==null){let s=e.artRuntime;if(s.add(o).readInt()!==ha){let l=s.add(r).readPointer();return e["art::jni::JniIdManager::DecodeMethodId"](l,t)}}return t}var Pl={ia32:Fl,x64:Dl,arm:Ul,arm64:Vl};function Fl(t,e,n,r,o){let s=Ke(o).offset,i=Te(o).offset,l;return Memory.patchCode(t,128,a=>{let c=new X86Writer(a,{pc:t}),d=new X86Relocator(e,c),p=[15,174,4,36],f=[15,174,12,36];c.putPushax(),c.putMovRegReg("ebp","esp"),c.putAndRegU32("esp",4294967280),c.putSubRegImm("esp",512),c.putBytes(p),c.putMovRegFsU32Ptr("ebx",s.self),c.putCallAddressWithAlignedArguments(ce.replacedMethods.findReplacementFromQuickCode,["eax","ebx"]),c.putTestRegReg("eax","eax"),c.putJccShortLabel("je","restore_registers","no-hint"),c.putMovRegOffsetPtrReg("ebp",28,"eax"),c.putLabel("restore_registers"),c.putBytes(f),c.putMovRegReg("esp","ebp"),c.putPopax(),c.putJccShortLabel("jne","invoke_replacement","no-hint");do l=d.readOne();while(l<n&&!d.eoi);d.writeAll(),d.eoi||c.putJmpAddress(e.add(l)),c.putLabel("invoke_replacement"),c.putJmpRegOffsetPtr("eax",i.quickCode),c.flush()}),l}function Dl(t,e,n,r,o){let s=Ke(o).offset,i=Te(o).offset,l;return Memory.patchCode(t,256,a=>{let c=new X86Writer(a,{pc:t}),d=new X86Relocator(e,c),p=[15,174,4,36],f=[15,174,12,36];c.putPushax(),c.putMovRegReg("rbp","rsp"),c.putAndRegU32("rsp",4294967280),c.putSubRegImm("rsp",512),c.putBytes(p),c.putMovRegGsU32Ptr("rbx",s.self),c.putCallAddressWithAlignedArguments(ce.replacedMethods.findReplacementFromQuickCode,["rdi","rbx"]),c.putTestRegReg("rax","rax"),c.putJccShortLabel("je","restore_registers","no-hint"),c.putMovRegOffsetPtrReg("rbp",64,"rax"),c.putLabel("restore_registers"),c.putBytes(f),c.putMovRegReg("rsp","rbp"),c.putPopax(),c.putJccShortLabel("jne","invoke_replacement","no-hint");do l=d.readOne();while(l<n&&!d.eoi);d.writeAll(),d.eoi||c.putJmpAddress(e.add(l)),c.putLabel("invoke_replacement"),c.putJmpRegOffsetPtr("rdi",i.quickCode),c.flush()}),l}function Ul(t,e,n,r,o){let s=Te(o).offset,i=e.and(On),l;return Memory.patchCode(t,128,a=>{let c=new ThumbWriter(a,{pc:t}),d=new ThumbRelocator(i,c),p=[45,237,16,10],f=[189,236,16,10];c.putPushRegs(["r1","r2","r3","r5","r6","r7","r8","r10","r11","lr"]),c.putBytes(p),c.putSubRegRegImm("sp","sp",8),c.putStrRegRegOffset("r0","sp",0),c.putCallAddressWithArguments(ce.replacedMethods.findReplacementFromQuickCode,["r0","r9"]),c.putCmpRegImm("r0",0),c.putBCondLabel("eq","restore_registers"),c.putStrRegRegOffset("r0","sp",0),c.putLabel("restore_registers"),c.putLdrRegRegOffset("r0","sp",0),c.putAddRegRegImm("sp","sp",8),c.putBytes(f),c.putPopRegs(["lr","r11","r10","r8","r7","r6","r5","r3","r2","r1"]),c.putBCondLabel("ne","invoke_replacement");do l=d.readOne();while(l<n&&!d.eoi);d.writeAll(),d.eoi||c.putLdrRegAddress("pc",e.add(l)),c.putLabel("invoke_replacement"),c.putLdrRegRegOffset("pc","r0",s.quickCode),c.flush()}),l}function Vl(t,e,n,{availableScratchRegs:r},o){let s=Te(o).offset,i;return Memory.patchCode(t,256,l=>{let a=new Arm64Writer(l,{pc:t}),c=new Arm64Relocator(e,a);a.putPushRegReg("d0","d1"),a.putPushRegReg("d2","d3"),a.putPushRegReg("d4","d5"),a.putPushRegReg("d6","d7"),a.putPushRegReg("x1","x2"),a.putPushRegReg("x3","x4"),a.putPushRegReg("x5","x6"),a.putPushRegReg("x7","x20"),a.putPushRegReg("x21","x22"),a.putPushRegReg("x23","x24"),a.putPushRegReg("x25","x26"),a.putPushRegReg("x27","x28"),a.putPushRegReg("x29","lr"),a.putSubRegRegImm("sp","sp",16),a.putStrRegRegOffset("x0","sp",0),a.putCallAddressWithArguments(ce.replacedMethods.findReplacementFromQuickCode,["x0","x19"]),a.putCmpRegReg("x0","xzr"),a.putBCondLabel("eq","restore_registers"),a.putStrRegRegOffset("x0","sp",0),a.putLabel("restore_registers"),a.putLdrRegRegOffset("x0","sp",0),a.putAddRegRegImm("sp","sp",16),a.putPopRegReg("x29","lr"),a.putPopRegReg("x27","x28"),a.putPopRegReg("x25","x26"),a.putPopRegReg("x23","x24"),a.putPopRegReg("x21","x22"),a.putPopRegReg("x7","x20"),a.putPopRegReg("x5","x6"),a.putPopRegReg("x3","x4"),a.putPopRegReg("x1","x2"),a.putPopRegReg("d6","d7"),a.putPopRegReg("d4","d5"),a.putPopRegReg("d2","d3"),a.putPopRegReg("d0","d1"),a.putBCondLabel("ne","invoke_replacement");do i=c.readOne();while(i<n&&!c.eoi);if(c.writeAll(),!c.eoi){let d=Array.from(r)[0];a.putLdrRegAddress(d,e.add(i)),a.putBrReg(d)}a.putLabel("invoke_replacement"),a.putLdrRegRegOffset("x16","x0",s.quickCode),a.putBrReg("x16"),a.flush()}),i}var zl={ia32:Vr,x64:Vr,arm:Jl,arm64:Bl};function Vr(t,e,n){Memory.patchCode(t,16,r=>{let o=new X86Writer(r,{pc:t});o.putJmpAddress(e),o.flush()})}function Jl(t,e,n){let r=t.and(On);Memory.patchCode(r,16,o=>{let s=new ThumbWriter(o,{pc:r});s.putLdrRegAddress("pc",e.or(1)),s.flush()})}function Bl(t,e,n){Memory.patchCode(t,16,r=>{let o=new Arm64Writer(r,{pc:t});n===16?o.putLdrRegAddress("x16",e):o.putAdrpRegAddress("x16",e),o.putBrReg("x16"),o.flush()})}var Gl={ia32:5,x64:16,arm:8,arm64:16},Ot=class{constructor(e){this.quickCode=e,this.quickCodeAddress=Process.arch==="arm"?e.and(On):e,this.redirectSize=0,this.trampoline=null,this.overwrittenPrologue=null,this.overwrittenPrologueLength=0}_canRelocateCode(e,n){let r=An[Process.arch],o=El[Process.arch],{quickCodeAddress:s}=this,i=new r(s),l=new o(s,i),a;if(Process.arch==="arm64"){let c=new Set(["x16","x17"]);do{let d=l.readOne(),p=new Set(c),{read:f,written:u}=l.input.regsAccessed;for(let _ of[f,u])for(let h of _){let g;h.startsWith("w")?g="x"+h.substring(1):g=h,p.delete(g)}if(p.size===0)break;a=d,c=p}while(a<e&&!l.eoi);n.availableScratchRegs=c}else do a=l.readOne();while(a<e&&!l.eoi);return a>=e}_allocateTrampoline(){It===null&&(It=Kt(C===4?128:256));let e=Gl[Process.arch],n,r,o=1,s={};if(C===4||this._canRelocateCode(e,s))n=e,r={};else{let i;Process.arch==="x64"?(n=5,i=_a):Process.arch==="arm64"&&(n=8,i=ma,o=4096),r={near:this.quickCodeAddress,maxDistance:i}}return this.redirectSize=n,this.trampoline=It.allocateSlice(r,o),s}_destroyTrampoline(){It.freeSlice(this.trampoline)}activate(e){let n=this._allocateTrampoline(),{trampoline:r,quickCode:o,redirectSize:s}=this,i=Pl[Process.arch],l=i(r,o,s,n,e);this.overwrittenPrologueLength=l,this.overwrittenPrologue=Memory.dup(this.quickCodeAddress,l);let a=zl[Process.arch];a(o,r,s)}deactivate(){let{quickCodeAddress:e,overwrittenPrologueLength:n}=this,r=An[Process.arch];Memory.patchCode(e,n,o=>{let s=new r(o,{pc:e}),{overwrittenPrologue:i}=this;s.putBytes(i.readByteArray(n)),s.flush()}),this._destroyTrampoline()}};function Hl(t){let e=B(),{module:n,artClassLinker:r}=e;return t.equals(r.quickGenericJniTrampoline)||t.equals(r.quickToInterpreterBridgeTrampoline)||t.equals(r.quickResolutionTrampoline)||t.equals(r.quickImtConflictTrampoline)||t.compare(n.base)>=0&&t.compare(n.base.add(n.size))<0}var xn=class{constructor(e){let n=Qr(e);this.methodId=n,this.originalMethod=null,this.hookedMethodId=n,this.replacementMethodId=null,this.interceptor=null}replace(e,n,r,o,s){let{kAccCompileDontBother:i,artNterpEntryPoint:l}=s;this.originalMethod=zr(this.methodId,o);let a=this.originalMethod.accessFlags;if((a&fa)!==0&&$l()){let u=this.originalMethod.jniCode;this.hookedMethodId=u.add(2*C).readPointer(),this.originalMethod=zr(this.hookedMethodId,o)}let{hookedMethodId:c}=this,d=Wl(c,o);this.replacementMethodId=d,At(d,{jniCode:e,accessFlags:(a&~(la|aa|kr)|xt|i)>>>0,quickCode:s.artClassLinker.quickGenericJniTrampoline,interpreterCode:s.artInterpreterToCompiledCodeBridge},o);let p=Gr|da|kr;(a&xt)===0&&(p|=ca),At(c,{accessFlags:(a&~p|i)>>>0},o);let f=this.originalMethod.quickCode;if(l!==null&&f.equals(l)&&At(c,{quickCode:s.artQuickToInterpreterBridge},o),!Hl(f)){let u=new Ot(f);u.activate(o),this.interceptor=u}ce.replacedMethods.set(c,d),Sl(c,o)}revert(e){let{hookedMethodId:n,interceptor:r}=this;At(n,this.originalMethod,e),ce.replacedMethods.delete(n),r!==null&&(r.deactivate(),this.interceptor=null)}resolveTarget(e,n,r,o){return this.hookedMethodId}};function $l(){return re()<28}function zr(t,e){let r=Te(e).offset;return["jniCode","accessFlags","quickCode","interpreterCode"].reduce((o,s)=>{let i=r[s];if(i===void 0)return o;let l=t.add(i),a=s==="accessFlags"?ea:ta;return o[s]=a.call(l),o},{})}function At(t,e,n){let o=Te(n).offset;Object.keys(e).forEach(s=>{let i=o[s];if(i===void 0)return;let l=t.add(i);(s==="accessFlags"?na:ra).call(l,e[s])})}var kn=class{constructor(e){this.methodId=e,this.originalMethod=null}replace(e,n,r,o,s){let{methodId:i}=this;this.originalMethod=Memory.dup(i,hn);let l=r.reduce((f,u)=>f+u.size,0);n&&l++;let a=(i.add(Nr).readU32()|xt)>>>0,c=l,d=0,p=l;i.add(Nr).writeU32(a),i.add(Sa).writeU16(c),i.add(wa).writeU16(d),i.add(Ca).writeU16(p),i.add(Ia).writeU32(Zl(i)),s.dvmUseJNIBridge(i,e)}revert(e){Memory.copy(this.methodId,this.originalMethod,hn)}resolveTarget(e,n,r,o){let s=r.handle.add(Hr).readPointer(),i;if(n)i=o.dvmDecodeIndirectRef(s,e.$h);else{let f=e.$borrowClassHandle(r);i=o.dvmDecodeIndirectRef(s,f.value),f.unref(r)}let l;n?l=i.add(va).readPointer():l=i;let a=l.toString(16),c=kt.get(a);if(c===void 0){let f=l.add(ya),u=l.add(ba),_=f.readPointer(),h=u.readS32(),g=h*C,m=Memory.alloc(2*g);Memory.copy(m,_,g),f.writePointer(m),c={classObject:l,vtablePtr:f,vtableCountPtr:u,vtable:_,vtableCount:h,shadowVtable:m,shadowVtableCount:h,targetMethods:new Map},kt.set(a,c)}let d=this.methodId.toString(16),p=c.targetMethods.get(d);if(p===void 0){p=Memory.dup(this.originalMethod,hn);let f=c.shadowVtableCount++;c.shadowVtable.add(f*C).writePointer(p),p.add(Ea).writeU16(f),c.vtableCountPtr.writeS32(c.shadowVtableCount),c.targetMethods.set(d,p)}return p}};function Zl(t){if(Process.arch!=="ia32")return Mr;let e=t.add(Ta).readPointer().readCString();if(e===null||e.length===0||e.length>65535)return Mr;let n;switch(e[0]){case"V":n=Aa;break;case"F":n=La;break;case"D":n=xa;break;case"J":n=ka;break;case"Z":case"B":n=Ra;break;case"C":n=Oa;break;case"S":n=Ma;break;default:n=Na;break}let r=0;for(let o=e.length-1;o>0;o--){let s=e[o];r+=s==="D"||s==="J"?2:1}return n<<ja|r}function Wl(t,e){let n=B();if(re()<23){let r=n["art::Thread::CurrentFromGdb"]();return n["art::mirror::Object::Clone"](t,r)}return Memory.dup(t,Te(e).size)}function Bn(t,e,n){Yr(t,e,wn,n)}function Gn(t,e){Yr(t,e,Sn)}function Hn(t,e){let n=B();if(re()<26)throw new Error("This API is only available on Android >= 8.0");Se(t,e,r=>{n["art::Runtime::DeoptimizeBootImage"](n.artRuntime)})}function Yr(t,e,n,r){let o=B();if(re()<24)throw new Error("This API is only available on Android >= 7.0");Se(t,e,s=>{if(re()<30){if(!o.isJdwpStarted()){let l=ql(o);Ga.push(l)}o.isDebuggerActive()||o["art::Dbg::GoActive"]();let i=Memory.alloc(8+C);switch(i.writeU32(n),n){case Sn:break;case wn:i.add(8).writePointer(r);break;default:throw new Error("Unsupported deoptimization kind")}o["art::Dbg::RequestDeoptimization"](i),o["art::Dbg::ManageDeoptimization"]()}else{let i=o.artInstrumentation;if(i===null)throw new Error("Unable to find Instrumentation class in ART; please file a bug");let l=o["art::Instrumentation::EnableDeoptimization"];switch(l!==void 0&&(i.add(Ua().offset.deoptimizationEnabled).readU8()||l(i)),n){case Sn:o["art::Instrumentation::DeoptimizeEverything"](i,Memory.allocUtf8String("frida"));break;case wn:o["art::Instrumentation::Deoptimize"](i,r);break;default:throw new Error("Unsupported deoptimization kind")}}})}var Nn=class{constructor(){let e=Process.getModuleByName("libart.so"),n=e.getExportByName("_ZN3art4JDWP12JdwpAdbState6AcceptEv"),r=e.getExportByName("_ZN3art4JDWP12JdwpAdbState15ReceiveClientFdEv"),o=Jr(),s=Jr();this._controlFd=o[0],this._clientFd=s[0];let i=null;i=Interceptor.attach(n,function(l){let a=l[0];Memory.scanSync(a.add(8252),256,"00 ff ff ff ff 00")[0].address.add(1).writeS32(o[1]),i.detach()}),Interceptor.replace(r,new NativeCallback(function(l){return Interceptor.revert(r),s[1]},"int",["pointer"])),Interceptor.flush(),this._handshakeRequest=this._performHandshake()}async _performHandshake(){let e=new UnixInputStream(this._clientFd,{autoClose:!1}),n=new UnixOutputStream(this._clientFd,{autoClose:!1}),r=[74,68,87,80,45,72,97,110,100,115,104,97,107,101];try{await n.writeAll(r),await e.readAll(r.length)}catch{}}};function ql(t){let e=new Nn;t["art::Dbg::SetJdwpAllowed"](1);let n=Kl();t["art::Dbg::ConfigureJdwp"](n);let r=t["art::InternalDebuggerControlCallback::StartDebugger"];return r!==void 0?r(NULL):t["art::Dbg::StartJdwp"](),e}function Kl(){let t=re()<28?2:3,e=0,n=t,r=!0,o=!1,s=e,i=8+dt+2,l=Memory.alloc(i);return l.writeU32(n).add(4).writeU8(r?1:0).add(1).writeU8(o?1:0).add(1).add(dt).writeU16(s),l}function Jr(){bn===null&&(bn=new NativeFunction(Process.getModuleByName("libc.so").getExportByName("socketpair"),"int",["int","int","int","pointer"]));let t=Memory.alloc(8);if(bn(Fa,Da,0,t)===-1)throw new Error("Unable to create socketpair for JDWP");return[t.readS32(),t.add(4).readS32()]}function Ql(t){let e=Wa().offset,n=t.vm.add(e.globalsLock),r=t.vm.add(e.globals),o=t["art::IndirectReferenceTable::Add"],s=t["art::ReaderWriterMutex::ExclusiveLock"],i=t["art::ReaderWriterMutex::ExclusiveUnlock"],l=0;return function(a,c,d){s(n,c);try{return o(r,l,d)}finally{i(n,c)}}}function Yl(t){let e=t["art::Thread::DecodeJObject"];if(e===void 0)throw new Error("art::Thread::DecodeJObject is not available; please file a bug");return function(n,r,o){return e(r,o)}}var Xl={ia32:Br,x64:Br,arm:ec,arm64:tc};function Xr(t,e,n){let r=B(),o=e.handle.readPointer(),s,i=r.find("_ZN3art3JNIILb1EE14ExceptionClearEP7_JNIEnv");i!==null?s=i:s=o.add(Pt).readPointer();let l,a=r.find("_ZN3art3JNIILb1EE10FatalErrorEP7_JNIEnvPKc");a!==null?l=a:l=o.add(ga).readPointer();let c=Xl[Process.arch];if(c===void 0)throw new Error("Not yet implemented for "+Process.arch);let d=null,p=Ke(t).offset,f=p.exception,u=new Set,_=p.isExceptionReportedToInstrumentation;_!==null&&u.add(_);let h=p.throwLocation;h!==null&&(u.add(h),u.add(h+C),u.add(h+2*C));let g=65536,m=Memory.alloc(g);return Memory.patchCode(m,g,E=>{d=c(E,m,s,l,f,u,n)}),d._code=m,d._callback=n,d}function Br(t,e,n,r,o,s,i){let l={},a=new Set,c=[n];for(;c.length>0;){let h=c.shift();if(Object.values(l).some(({begin:R,end:j})=>h.compare(R)>=0&&h.compare(j)<0))continue;let m=h.toString(),E={begin:h},I=null,k=!1;do{if(h.equals(r)){k=!0;break}let R=Instruction.parse(h);I=R;let j=l[R.address.toString()];if(j!==void 0){delete l[j.begin.toString()],l[m]=j,j.begin=E.begin,E=null;break}let S=null;switch(R.mnemonic){case"jmp":S=ptr(R.operands[0].value),k=!0;break;case"je":case"jg":case"jle":case"jne":case"js":S=ptr(R.operands[0].value);break;case"ret":k=!0;break}S!==null&&(a.add(S.toString()),c.push(S),c.sort((N,v)=>N.compare(v))),h=R.next}while(!k);E!==null&&(E.end=I.address.add(I.size),l[m]=E)}let d=Object.keys(l).map(h=>l[h]);d.sort((h,g)=>h.begin.compare(g.begin));let p=l[n.toString()];d.splice(d.indexOf(p),1),d.unshift(p);let f=new X86Writer(t,{pc:e}),u=!1,_=null;return d.forEach(h=>{let g=h.end.sub(h.begin).toInt32(),m=new X86Relocator(h.begin,f),E;for(;(E=m.readOne())!==0;){let I=m.input,{mnemonic:k}=I,R=I.address.toString();a.has(R)&&f.putLabel(R);let j=!0;switch(k){case"jmp":f.putJmpNearLabel(fe(I.operands[0])),j=!1;break;case"je":case"jg":case"jle":case"jne":case"js":f.putJccNearLabel(k,fe(I.operands[0]),"no-hint"),j=!1;break;case"mov":{let[S,N]=I.operands;if(S.type==="mem"&&N.type==="imm"){let v=S.value,T=v.disp;if(T===o&&N.value.valueOf()===0){if(_=v.base,f.putPushfx(),f.putPushax(),f.putMovRegReg("xbp","xsp"),C===4)f.putAndRegU32("esp",4294967280);else{let M=_!=="rdi"?"rdi":"rsi";f.putMovRegU64(M,uint64("0xfffffffffffffff0")),f.putAndRegReg("rsp",M)}f.putCallAddressWithAlignedArguments(i,[_]),f.putMovRegReg("xsp","xbp"),f.putPopax(),f.putPopfx(),u=!0,j=!1}else s.has(T)&&v.base===_&&(j=!1)}break}case"call":{let S=I.operands[0];S.type==="mem"&&S.value.disp===Pt&&(C===4?(f.putPopReg("eax"),f.putMovRegRegOffsetPtr("eax","eax",4),f.putPushReg("eax")):f.putMovRegRegOffsetPtr("rdi","rdi",8),f.putCallAddressWithArguments(i,[]),u=!0,j=!1);break}}if(j?m.writeAll():m.skipOne(),E===g)break}m.dispose()}),f.dispose(),u||$n(),new NativeFunction(e,"void",["pointer"],q)}function ec(t,e,n,r,o,s,i){let l={},a=new Set,c=ptr(1).not(),d=[n];for(;d.length>0;){let m=d.shift();if(Object.values(l).some(({begin:T,end:M})=>m.compare(T)>=0&&m.compare(M)<0))continue;let I=m.and(c),k=I.toString(),R=m.and(1),j={begin:I},S=null,N=!1,v=0;do{if(m.equals(r)){N=!0;break}let T=Instruction.parse(m),{mnemonic:M}=T;S=T;let O=m.and(c).toString(),D=l[O];if(D!==void 0){delete l[D.begin.toString()],l[k]=D,D.begin=j.begin,j=null;break}let U=v===0,P=null;switch(M){case"b":P=ptr(T.operands[0].value),N=U;break;case"beq.w":case"beq":case"bne":case"bne.w":case"bgt":P=ptr(T.operands[0].value);break;case"cbz":case"cbnz":P=ptr(T.operands[1].value);break;case"pop.w":U&&(N=T.operands.filter(V=>V.value==="pc").length===1);break}switch(M){case"it":v=1;break;case"itt":v=2;break;case"ittt":v=3;break;case"itttt":v=4;break;default:v>0&&v--;break}P!==null&&(a.add(P.toString()),d.push(P.or(R)),d.sort((V,Y)=>V.compare(Y))),m=T.next}while(!N);j!==null&&(j.end=S.address.add(S.size),l[k]=j)}let p=Object.keys(l).map(m=>l[m]);p.sort((m,E)=>m.begin.compare(E.begin));let f=l[n.and(c).toString()];p.splice(p.indexOf(f),1),p.unshift(f);let u=new ThumbWriter(t,{pc:e}),_=!1,h=null,g=null;return p.forEach(m=>{let E=new ThumbRelocator(m.begin,u),I=m.begin,k=m.end,R=0;do{if(E.readOne()===0)throw new Error("Unexpected end of block");let S=E.input;I=S.address,R=S.size;let{mnemonic:N}=S,v=I.toString();a.has(v)&&u.putLabel(v);let T=!0;switch(N){case"b":u.putBLabel(fe(S.operands[0])),T=!1;break;case"beq.w":u.putBCondLabelWide("eq",fe(S.operands[0])),T=!1;break;case"bne.w":u.putBCondLabelWide("ne",fe(S.operands[0])),T=!1;break;case"beq":case"bne":case"bgt":u.putBCondLabelWide(N.substr(1),fe(S.operands[0])),T=!1;break;case"cbz":{let M=S.operands;u.putCbzRegLabel(M[0].value,fe(M[1])),T=!1;break}case"cbnz":{let M=S.operands;u.putCbnzRegLabel(M[0].value,fe(M[1])),T=!1;break}case"str":case"str.w":{let M=S.operands[1].value,w=M.disp;if(w===o){h=M.base;let O=h!=="r4"?"r4":"r5",D=["r0","r1","r2","r3",O,"r9","r12","lr"];u.putPushRegs(D),u.putMrsRegReg(O,"apsr-nzcvq"),u.putCallAddressWithArguments(i,[h]),u.putMsrRegReg("apsr-nzcvq",O),u.putPopRegs(D),_=!0,T=!1}else s.has(w)&&M.base===h&&(T=!1);break}case"ldr":{let[M,w]=S.operands;if(w.type==="mem"){let O=w.value;O.base[0]==="r"&&O.disp===Pt&&(g=M.value)}break}case"blx":S.operands[0].value===g&&(u.putLdrRegRegOffset("r0","r0",4),u.putCallAddressWithArguments(i,["r0"]),_=!0,g=null,T=!1);break}T?E.writeAll():E.skipOne()}while(!I.add(R).equals(k));E.dispose()}),u.dispose(),_||$n(),new NativeFunction(e.or(1),"void",["pointer"],q)}function tc(t,e,n,r,o,s,i){let l={},a=new Set,c=[n];for(;c.length>0;){let m=c.shift();if(Object.values(l).some(({begin:S,end:N})=>m.compare(S)>=0&&m.compare(N)<0))continue;let I=m.toString(),k={begin:m},R=null,j=!1;do{if(m.equals(r)){j=!0;break}let S;try{S=Instruction.parse(m)}catch(T){if(m.readU32()===0){j=!0;break}else throw T}R=S;let N=l[S.address.toString()];if(N!==void 0){delete l[N.begin.toString()],l[I]=N,N.begin=k.begin,k=null;break}let v=null;switch(S.mnemonic){case"b":v=ptr(S.operands[0].value),j=!0;break;case"b.eq":case"b.ne":case"b.le":case"b.gt":v=ptr(S.operands[0].value);break;case"cbz":case"cbnz":v=ptr(S.operands[1].value);break;case"tbz":case"tbnz":v=ptr(S.operands[2].value);break;case"ret":j=!0;break}v!==null&&(a.add(v.toString()),c.push(v),c.sort((T,M)=>T.compare(M))),m=S.next}while(!j);k!==null&&(k.end=R.address.add(R.size),l[I]=k)}let d=Object.keys(l).map(m=>l[m]);d.sort((m,E)=>m.begin.compare(E.begin));let p=l[n.toString()];d.splice(d.indexOf(p),1),d.unshift(p);let f=new Arm64Writer(t,{pc:e});f.putBLabel("performTransition");let u=e.add(f.offset);f.putPushAllXRegisters(),f.putCallAddressWithArguments(i,["x0"]),f.putPopAllXRegisters(),f.putRet(),f.putLabel("performTransition");let _=!1,h=null,g=null;return d.forEach(m=>{let E=m.end.sub(m.begin).toInt32(),I=new Arm64Relocator(m.begin,f),k;for(;(k=I.readOne())!==0;){let R=I.input,{mnemonic:j}=R,S=R.address.toString();a.has(S)&&f.putLabel(S);let N=!0;switch(j){case"b":f.putBLabel(fe(R.operands[0])),N=!1;break;case"b.eq":case"b.ne":case"b.le":case"b.gt":f.putBCondLabel(j.substr(2),fe(R.operands[0])),N=!1;break;case"cbz":{let v=R.operands;f.putCbzRegLabel(v[0].value,fe(v[1])),N=!1;break}case"cbnz":{let v=R.operands;f.putCbnzRegLabel(v[0].value,fe(v[1])),N=!1;break}case"tbz":{let v=R.operands;f.putTbzRegImmLabel(v[0].value,v[1].value.valueOf(),fe(v[2])),N=!1;break}case"tbnz":{let v=R.operands;f.putTbnzRegImmLabel(v[0].value,v[1].value.valueOf(),fe(v[2])),N=!1;break}case"str":{let v=R.operands,T=v[0].value,M=v[1].value,w=M.disp;T==="xzr"&&w===o?(h=M.base,f.putPushRegReg("x0","lr"),f.putMovRegReg("x0",h),f.putBlImm(u),f.putPopRegReg("x0","lr"),_=!0,N=!1):s.has(w)&&M.base===h&&(N=!1);break}case"ldr":{let v=R.operands,T=v[1].value;T.base[0]==="x"&&T.disp===Pt&&(g=v[0].value);break}case"blr":R.operands[0].value===g&&(f.putLdrRegRegOffset("x0","x0",8),f.putCallAddressWithArguments(i,["x0"]),_=!0,g=null,N=!1);break}if(N?I.writeAll():I.skipOne(),k===E)break}I.dispose()}),f.dispose(),_||$n(),new NativeFunction(e,"void",["pointer"],q)}function $n(){throw new Error("Unable to parse ART internals; please file a bug")}function nc(t){let e=t["art::ArtMethod::PrettyMethod"];e!==void 0&&(Interceptor.attach(e.impl,ce.hooks.ArtMethod.prettyMethod),Interceptor.flush())}function fe(t){return ptr(t.value).toString()}function rc(t,e){return new NativeFunction(t,"pointer",e,q)}function oc(t,e){let n=new NativeFunction(t,"void",["pointer"].concat(e),q);return function(){let r=Memory.alloc(C);return n(r,...arguments),r.readPointer()}}function Lt(t,e){let{arch:n}=Process;switch(n){case"ia32":case"arm64":{let r;n==="ia32"?r=qe(64,i=>{let l=1+e.length,a=l*4;i.putSubRegImm("esp",a);for(let c=0;c!==l;c++){let d=c*4;i.putMovRegRegOffsetPtr("eax","esp",a+4+d),i.putMovRegOffsetPtrReg("esp",d,"eax")}i.putCallAddress(t),i.putAddRegImm("esp",a-4),i.putRet()}):r=qe(32,i=>{i.putMovRegReg("x8","x0"),e.forEach((l,a)=>{i.putMovRegReg("x"+a,"x"+(a+1))}),i.putLdrRegAddress("x7",t),i.putBrReg("x7")});let o=new NativeFunction(r,"void",["pointer"].concat(e),q),s=function(...i){o(...i)};return s.handle=r,s.impl=t,s}default:{let r=new NativeFunction(t,"void",["pointer"].concat(e),q);return r.impl=t,r}}}var Rt=class{constructor(){this.handle=Memory.alloc(dt)}dispose(){let[e,n]=this._getData();n||B().$delete(e)}disposeToString(){let e=this.toString();return this.dispose(),e}toString(){let[e]=this._getData();return e.readUtf8String()}_getData(){let e=this.handle,n=(e.readU8()&1)===0;return[n?e.add(1):e.add(2*C).readPointer(),n]}},Mn=class{$delete(){this.dispose(),B().$delete(this)}constructor(e,n){this.handle=e,this._begin=e,this._end=e.add(C),this._storage=e.add(2*C),this._elementSize=n}init(){this.begin=NULL,this.end=NULL,this.storage=NULL}dispose(){B().$delete(this.begin)}get begin(){return this._begin.readPointer()}set begin(e){this._begin.writePointer(e)}get end(){return this._end.readPointer()}set end(e){this._end.writePointer(e)}get storage(){return this._storage.readPointer()}set storage(e){this._storage.writePointer(e)}get size(){return this.end.sub(this.begin).toInt32()/this._elementSize}},ut=class t extends Mn{static $new(){let e=new t(B().$new(Pa));return e.init(),e}constructor(e){super(e,C)}get handles(){let e=[],n=this.begin,r=this.end;for(;!n.equals(r);)e.push(n.readPointer()),n=n.add(C);return e}},sc=0,eo=C,to=eo+4,ic=-1,jt=class t{$delete(){this.dispose(),B().$delete(this)}constructor(e){this.handle=e,this._link=e.add(sc),this._numberOfReferences=e.add(eo)}init(e,n){this.link=e,this.numberOfReferences=n}dispose(){}get link(){return new t(this._link.readPointer())}set link(e){this._link.writePointer(e)}get numberOfReferences(){return this._numberOfReferences.readS32()}set numberOfReferences(e){this._numberOfReferences.writeS32(e)}},no=dc(to),ro=no+C,ac=ro+C,pt=class t extends jt{static $new(e,n){let r=new t(B().$new(ac));return r.init(e,n),r}constructor(e){super(e),this._self=e.add(no),this._currentScope=e.add(ro);let o=(64-C-4-4)/4;this._scopeLayout=ct.layoutForCapacity(o),this._topHandleScopePtr=null}init(e,n){let r=e.add(Ke(n).offset.topHandleScope);this._topHandleScopePtr=r,super.init(r.readPointer(),ic),this.self=e,this.currentScope=ct.$new(this._scopeLayout),r.writePointer(this)}dispose(){this._topHandleScopePtr.writePointer(this.link);let e;for(;(e=this.currentScope)!==null;){let n=e.link;e.$delete(),this.currentScope=n}}get self(){return this._self.readPointer()}set self(e){this._self.writePointer(e)}get currentScope(){let e=this._currentScope.readPointer();return e.isNull()?null:new ct(e,this._scopeLayout)}set currentScope(e){this._currentScope.writePointer(e)}newHandle(e){return this.currentScope.newHandle(e)}},ct=class t extends jt{static $new(e){let n=new t(B().$new(e.size),e);return n.init(),n}constructor(e,n){super(e);let{offset:r}=n;this._refsStorage=e.add(r.refsStorage),this._pos=e.add(r.pos),this._layout=n}init(){super.init(NULL,this._layout.numberOfReferences),this.pos=0}get pos(){return this._pos.readU32()}set pos(e){this._pos.writeU32(e)}newHandle(e){let n=this.pos,r=this._refsStorage.add(n*4);return r.writeS32(e.toInt32()),this.pos=n+1,r}static layoutForCapacity(e){let n=to,r=n+e*4;return{size:r+4,numberOfReferences:e,offset:{refsStorage:n,pos:r}}}},lc={arm:function(t,e){let n=Process.pageSize,r=Memory.alloc(n);Memory.protect(r,n,"rwx");let o=new NativeCallback(e,"void",["pointer"]);r._onMatchCallback=o;let s=[26625,18947,17041,53505,19202,18200,18288,48896],i=s.length*2,l=i+4,a=l+4;return Memory.patchCode(r,a,function(c){s.forEach((d,p)=>{c.add(p*2).writeU16(d)}),c.add(i).writeS32(t),c.add(l).writePointer(o)}),r.or(1)},arm64:function(t,e){let n=Process.pageSize,r=Memory.alloc(n);Memory.protect(r,n,"rwx");let o=new NativeCallback(e,"void",["pointer"]);r._onMatchCallback=o;let s=[3107979265,402653378,1795293247,1409286241,1476395139,3592355936,3596551104],i=s.length*4,l=i+4,a=l+8;return Memory.patchCode(r,a,function(c){s.forEach((d,p)=>{c.add(p*4).writeU32(d)}),c.add(i).writeS32(t),c.add(l).writePointer(o)}),r}};function Zn(t,e){return(lc[Process.arch]||cc)(t,e)}function cc(t,e){return new NativeCallback(n=>{n.readS32()===t&&e(n)},"void",["pointer","pointer"])}function dc(t){let e=t%C;return e!==0?t+C-e:t}var uc=4,{pointerSize:J}=Process,pc=256,fc=65536,hc=131072,_c=33554432,mc=67108864,gc=134217728,ze={exceptions:"propagate"},ao=de(kc),bc=de(Mc),yc=de(Ac),Wn=null,qn=!1,Ut=new Map,ht=new Map;function Ie(){return Wn===null&&(Wn=vc()),Wn}function vc(){let t=Process.enumerateModules().filter(a=>/jvm.(dll|dylib|so)$/.test(a.name));if(t.length===0)return null;let e=t[0],n={flavor:"jvm"},r=Process.platform==="windows"?[{module:e,functions:{JNI_GetCreatedJavaVMs:["JNI_GetCreatedJavaVMs","int",["pointer","int","pointer"]],JVM_Sleep:["JVM_Sleep","void",["pointer","pointer","long"]],"VMThread::execute":["VMThread::execute","void",["pointer"]],"Method::size":["Method::size","int",["int"]],"Method::set_native_function":["Method::set_native_function","void",["pointer","pointer","int"]],"Method::clear_native_function":["Method::clear_native_function","void",["pointer"]],"Method::jmethod_id":["Method::jmethod_id","pointer",["pointer"]],"ClassLoaderDataGraph::classes_do":["ClassLoaderDataGraph::classes_do","void",["pointer"]],"NMethodSweeper::sweep_code_cache":["NMethodSweeper::sweep_code_cache","void",[]],"OopMapCache::flush_obsolete_entries":["OopMapCache::flush_obsolete_entries","void",["pointer"]]},variables:{"VM_RedefineClasses::`vftable'":function(a){this.vtableRedefineClasses=a},"VM_RedefineClasses::doit":function(a){this.redefineClassesDoIt=a},"VM_RedefineClasses::doit_prologue":function(a){this.redefineClassesDoItPrologue=a},"VM_RedefineClasses::doit_epilogue":function(a){this.redefineClassesDoItEpilogue=a},"VM_RedefineClasses::allow_nested_vm_operations":function(a){this.redefineClassesAllow=a},"NMethodSweeper::_traversals":function(a){this.traversals=a},"NMethodSweeper::_should_sweep":function(a){this.shouldSweep=a}},optionals:[]}]:[{module:e,functions:{JNI_GetCreatedJavaVMs:["JNI_GetCreatedJavaVMs","int",["pointer","int","pointer"]],_ZN6Method4sizeEb:["Method::size","int",["int"]],_ZN6Method19set_native_functionEPhb:["Method::set_native_function","void",["pointer","pointer","int"]],_ZN6Method21clear_native_functionEv:["Method::clear_native_function","void",["pointer"]],_ZN6Method24restore_unshareable_infoEP10JavaThread:["Method::restore_unshareable_info","void",["pointer","pointer"]],_ZN6Method24restore_unshareable_infoEP6Thread:["Method::restore_unshareable_info","void",["pointer","pointer"]],_ZN6Method11link_methodERK12methodHandleP10JavaThread:["Method::link_method","void",["pointer","pointer","pointer"]],_ZN6Method10jmethod_idEv:["Method::jmethod_id","pointer",["pointer"]],_ZN6Method10clear_codeEv:function(a){let c=new NativeFunction(a,"void",["pointer"],ze);this["Method::clear_code"]=function(d){c(d)}},_ZN6Method10clear_codeEb:function(a){let c=new NativeFunction(a,"void",["pointer","int"],ze),d=0;this["Method::clear_code"]=function(p){c(p,d)}},_ZN18VM_RedefineClasses19mark_dependent_codeEP13InstanceKlass:["VM_RedefineClasses::mark_dependent_code","void",["pointer","pointer"]],_ZN18VM_RedefineClasses20flush_dependent_codeEv:["VM_RedefineClasses::flush_dependent_code","void",[]],_ZN18VM_RedefineClasses20flush_dependent_codeEP13InstanceKlassP6Thread:["VM_RedefineClasses::flush_dependent_code","void",["pointer","pointer","pointer"]],_ZN18VM_RedefineClasses20flush_dependent_codeE19instanceKlassHandleP6Thread:["VM_RedefineClasses::flush_dependent_code","void",["pointer","pointer","pointer"]],_ZN19ResolvedMethodTable21adjust_method_entriesEPb:["ResolvedMethodTable::adjust_method_entries","void",["pointer"]],_ZN15MemberNameTable21adjust_method_entriesEP13InstanceKlassPb:["MemberNameTable::adjust_method_entries","void",["pointer","pointer","pointer"]],_ZN17ConstantPoolCache21adjust_method_entriesEPb:function(a){let c=new NativeFunction(a,"void",["pointer","pointer"],ze);this["ConstantPoolCache::adjust_method_entries"]=function(d,p,f){c(d,f)}},_ZN17ConstantPoolCache21adjust_method_entriesEP13InstanceKlassPb:function(a){let c=new NativeFunction(a,"void",["pointer","pointer","pointer"],ze);this["ConstantPoolCache::adjust_method_entries"]=function(d,p,f){c(d,p,f)}},_ZN20ClassLoaderDataGraph10classes_doEP12KlassClosure:["ClassLoaderDataGraph::classes_do","void",["pointer"]],_ZN20ClassLoaderDataGraph22clean_deallocate_listsEb:["ClassLoaderDataGraph::clean_deallocate_lists","void",["int"]],_ZN10JavaThread27thread_from_jni_environmentEP7JNIEnv_:["JavaThread::thread_from_jni_environment","pointer",["pointer"]],_ZN8VMThread7executeEP12VM_Operation:["VMThread::execute","void",["pointer"]],_ZN11OopMapCache22flush_obsolete_entriesEv:["OopMapCache::flush_obsolete_entries","void",["pointer"]],_ZN14NMethodSweeper11force_sweepEv:["NMethodSweeper::force_sweep","void",[]],_ZN14NMethodSweeper16sweep_code_cacheEv:["NMethodSweeper::sweep_code_cache","void",[]],_ZN14NMethodSweeper17sweep_in_progressEv:["NMethodSweeper::sweep_in_progress","bool",[]],JVM_Sleep:["JVM_Sleep","void",["pointer","pointer","long"]]},variables:{_ZN18VM_RedefineClasses14_the_class_oopE:function(a){this.redefineClass=a},_ZN18VM_RedefineClasses10_the_classE:function(a){this.redefineClass=a},_ZN18VM_RedefineClasses25AdjustCpoolCacheAndVtable8do_klassEP5Klass:function(a){this.doKlass=a},_ZN18VM_RedefineClasses22AdjustAndCleanMetadata8do_klassEP5Klass:function(a){this.doKlass=a},_ZTV18VM_RedefineClasses:function(a){this.vtableRedefineClasses=a},_ZN18VM_RedefineClasses4doitEv:function(a){this.redefineClassesDoIt=a},_ZN18VM_RedefineClasses13doit_prologueEv:function(a){this.redefineClassesDoItPrologue=a},_ZN18VM_RedefineClasses13doit_epilogueEv:function(a){this.redefineClassesDoItEpilogue=a},_ZN18VM_RedefineClassesD0Ev:function(a){this.redefineClassesDispose0=a},_ZN18VM_RedefineClassesD1Ev:function(a){this.redefineClassesDispose1=a},_ZNK18VM_RedefineClasses26allow_nested_vm_operationsEv:function(a){this.redefineClassesAllow=a},_ZNK18VM_RedefineClasses14print_on_errorEP12outputStream:function(a){this.redefineClassesOnError=a},_ZN13InstanceKlass33create_new_default_vtable_indicesEiP10JavaThread:function(a){this.createNewDefaultVtableIndices=a},_ZN13InstanceKlass33create_new_default_vtable_indicesEiP6Thread:function(a){this.createNewDefaultVtableIndices=a},_ZN19Abstract_VM_Version19jre_release_versionEv:function(a){let d=new NativeFunction(a,"pointer",[],ze)().readCString();this.version=d.startsWith("1.8")?8:d.startsWith("9.")?9:parseInt(d.slice(0,2),10),this.versionS=d},_ZN14NMethodSweeper11_traversalsE:function(a){this.traversals=a},_ZN14NMethodSweeper21_sweep_fractions_leftE:function(a){this.fractions=a},_ZN14NMethodSweeper13_should_sweepE:function(a){this.shouldSweep=a}},optionals:["_ZN6Method24restore_unshareable_infoEP10JavaThread","_ZN6Method24restore_unshareable_infoEP6Thread","_ZN6Method11link_methodERK12methodHandleP10JavaThread","_ZN6Method10clear_codeEv","_ZN6Method10clear_codeEb","_ZN18VM_RedefineClasses19mark_dependent_codeEP13InstanceKlass","_ZN18VM_RedefineClasses20flush_dependent_codeEv","_ZN18VM_RedefineClasses20flush_dependent_codeEP13InstanceKlassP6Thread","_ZN18VM_RedefineClasses20flush_dependent_codeE19instanceKlassHandleP6Thread","_ZN19ResolvedMethodTable21adjust_method_entriesEPb","_ZN15MemberNameTable21adjust_method_entriesEP13InstanceKlassPb","_ZN17ConstantPoolCache21adjust_method_entriesEPb","_ZN17ConstantPoolCache21adjust_method_entriesEP13InstanceKlassPb","_ZN20ClassLoaderDataGraph22clean_deallocate_listsEb","_ZN10JavaThread27thread_from_jni_environmentEP7JNIEnv_","_ZN14NMethodSweeper11force_sweepEv","_ZN14NMethodSweeper17sweep_in_progressEv","_ZN18VM_RedefineClasses14_the_class_oopE","_ZN18VM_RedefineClasses10_the_classE","_ZN18VM_RedefineClasses25AdjustCpoolCacheAndVtable8do_klassEP5Klass","_ZN18VM_RedefineClasses22AdjustAndCleanMetadata8do_klassEP5Klass","_ZN18VM_RedefineClassesD0Ev","_ZN18VM_RedefineClassesD1Ev","_ZNK18VM_RedefineClasses14print_on_errorEP12outputStream","_ZN13InstanceKlass33create_new_default_vtable_indicesEiP10JavaThread","_ZN13InstanceKlass33create_new_default_vtable_indicesEiP6Thread","_ZN14NMethodSweeper21_sweep_fractions_leftE"]}],o=[];if(r.forEach(function(a){let c=a.module,d=a.functions||{},p=a.variables||{},f=new Set(a.optionals||[]),u=c.enumerateExports().reduce(function(h,g){return h[g.name]=g,h},{}),_=c.enumerateSymbols().reduce(function(h,g){return h[g.name]=g,h},u);Object.keys(d).forEach(function(h){let g=_[h];if(g!==void 0){let m=d[h];typeof m=="function"?m.call(n,g.address):n[m[0]]=new NativeFunction(g.address,m[1],m[2],ze)}else f.has(h)||o.push(h)}),Object.keys(p).forEach(function(h){let g=_[h];g!==void 0?p[h].call(n,g.address):f.has(h)||o.push(h)})}),o.length>0)throw new Error("Java API only partially available; please file a bug. Missing: "+o.join(", "));let s=Memory.alloc(J),i=Memory.alloc(uc);if(ue("JNI_GetCreatedJavaVMs",n.JNI_GetCreatedJavaVMs(s,1,i)),i.readInt()===0)return null;n.vm=s.readPointer();let l=Process.platform==="windows"?{$new:["??2@YAPEAX_K@Z","pointer",["ulong"]],$delete:["??3@YAXPEAX@Z","void",["pointer"]]}:{$new:["_Znwm","pointer",["ulong"]],$delete:["_ZdlPv","void",["pointer"]]};for(let[a,[c,d,p]]of Object.entries(l)){let f=Module.findGlobalExportByName(c);if(f===null&&(f=DebugSymbol.fromName(c).address,f.isNull()))throw new Error(`unable to find C++ allocator API, missing: '${c}'`);n[a]=new NativeFunction(f,d,p,ze)}return n.jvmti=Ec(n),n["JavaThread::thread_from_jni_environment"]===void 0&&(n["JavaThread::thread_from_jni_environment"]=wc(n)),n}function Ec(t){let e=new Ce(t),n;return e.perform(()=>{let r=e.tryGetEnvHandle(Et.v1_0);if(r===null)throw new Error("JVMTI not available");n=new Ne(r,e);let o=Memory.alloc(8);o.writeU64(St.canTagObjects);let s=n.addCapabilities(o);ue("getEnvJvmti::AddCapabilities",s)}),n}var Sc={x64:Cc};function wc(t){let e=null,n=Sc[Process.arch];if(n!==void 0){let o=new Ce(t).perform(s=>s.handle.readPointer().add(6*J).readPointer());e=je(o,n,{limit:11})}return e===null?()=>{throw new Error("Unable to make thread_from_jni_environment() helper for the current architecture")}:r=>r.add(e)}function Cc(t){if(t.mnemonic!=="lea")return null;let{base:e,disp:n}=t.operands[1].value;return e==="rdi"&&n<0?n:null}function lo(t,e){}var Kn=class{constructor(e){this.methodId=e,this.method=e.readPointer(),this.originalMethod=null,this.newMethod=null,this.resolved=null,this.impl=null,this.key=e.toString(16)}replace(e,n,r,o,s){let{key:i}=this,l=ht.get(i);l!==void 0&&(ht.delete(i),this.method=l.method,this.originalMethod=l.originalMethod,this.newMethod=l.newMethod,this.resolved=l.resolved),this.impl=e,Ut.set(i,this),oo(o)}revert(e){let{key:n}=this;Ut.delete(n),ht.set(n,this),oo(e)}resolveTarget(e,n,r,o){let{resolved:s,originalMethod:i,methodId:l}=this;if(s!==null)return s;if(i===null)return l;i.oldMethod.vtableIndexPtr.writeS32(-2);let c=Memory.alloc(J);return c.writePointer(this.method),this.resolved=c,c}};function oo(t){qn||(qn=!0,Script.nextTick(Tc,t))}function Tc(t){let e=new Map(Ut),n=new Map(ht);Ut.clear(),ht.clear(),qn=!1,t.perform(r=>{let o=Ie(),s=o["JavaThread::thread_from_jni_environment"](r.handle),i=!1;co(()=>{e.forEach(l=>{let{method:a,originalMethod:c,impl:d,methodId:p,newMethod:f}=l;c===null?(l.originalMethod=po(a),l.newMethod=Lc(a,d,s),so(l.newMethod,p,s)):o["Method::set_native_function"](f.method,d,0)}),n.forEach(l=>{let{originalMethod:a,methodId:c,newMethod:d}=l;if(a!==null){xc(a);let p=a.oldMethod;p.oldMethod=d,so(p,c,s),i=!0}})}),i&&Ic(r.handle)})}function Ic(t){let{fractions:e,shouldSweep:n,traversals:r,"NMethodSweeper::sweep_code_cache":o,"NMethodSweeper::sweep_in_progress":s,"NMethodSweeper::force_sweep":i,JVM_Sleep:l}=Ie();if(i!==void 0)Thread.sleep(.05),i(),Thread.sleep(.05),i();else{let a=r.readS64(),c=a+2;for(;c>a;)e.writeS32(1),l(t,NULL,50),s()||co(()=>{Thread.sleep(.05)}),n.readU8()===0&&(e.writeS32(1),o()),a=r.readS64()}}function co(t,e,n){let{execute:r,vtable:o,vtableSize:s,doItOffset:i,prologueOffset:l,epilogueOffset:a}=yc(),c=Memory.dup(o,s),d=Memory.alloc(J*25);d.writePointer(c);let p=new NativeCallback(t,"void",["pointer"]);c.add(i).writePointer(p);let f=null;e!==void 0&&(f=new NativeCallback(e,"int",["pointer"]),c.add(l).writePointer(f));let u=null;n!==void 0&&(u=new NativeCallback(n,"void",["pointer"]),c.add(a).writePointer(u)),r(d)}function Ac(){let{vtableRedefineClasses:t,redefineClassesDoIt:e,redefineClassesDoItPrologue:n,redefineClassesDoItEpilogue:r,redefineClassesOnError:o,redefineClassesAllow:s,redefineClassesDispose0:i,redefineClassesDispose1:l,"VMThread::execute":a}=Ie(),c=t.add(2*J),d=15*J,p=Memory.dup(c,d),f=new NativeCallback(()=>{},"void",["pointer"]),u,_,h;for(let g=0;g!==d;g+=J){let m=p.add(g),E=m.readPointer();o!==void 0&&E.equals(o)||i!==void 0&&E.equals(i)||l!==void 0&&E.equals(l)?m.writePointer(f):E.equals(e)?u=g:E.equals(n)?(_=g,m.writePointer(s)):E.equals(r)&&(h=g,m.writePointer(f))}return{execute:a,emptyCallback:f,vtable:p,vtableSize:d,doItOffset:u,prologueOffset:_,epilogueOffset:h}}function uo(t){return new Kn(t)}function so(t,e,n){let{method:r,oldMethod:o}=t,s=Ie();t.methodsArray.add(t.methodIndex*J).writePointer(r),t.vtableIndex>=0&&t.vtable.add(t.vtableIndex*J).writePointer(r),e.writePointer(r),o.accessFlagsPtr.writeU32((o.accessFlags|fc|hc)>>>0);let i=s["OopMapCache::flush_obsolete_entries"];if(i!==void 0){let{oopMapCache:_}=t;_.isNull()||i(_)}let l=s["VM_RedefineClasses::mark_dependent_code"],a=s["VM_RedefineClasses::flush_dependent_code"];l!==void 0?(l(NULL,t.instanceKlass),a()):a(NULL,t.instanceKlass,n);let c=Memory.alloc(1);c.writeU8(1),s["ConstantPoolCache::adjust_method_entries"](t.cache,t.instanceKlass,c);let d=Memory.alloc(3*J),p=Memory.alloc(J);p.writePointer(s.doKlass),d.writePointer(p),d.add(J).writePointer(n),d.add(2*J).writePointer(n),s.redefineClass!==void 0&&s.redefineClass.writePointer(t.instanceKlass),s["ClassLoaderDataGraph::classes_do"](d);let f=s["ResolvedMethodTable::adjust_method_entries"];if(f!==void 0)f(c);else{let{memberNames:_}=t;if(!_.isNull()){let h=s["MemberNameTable::adjust_method_entries"];h!==void 0&&h(_,t.instanceKlass,c)}}let u=s["ClassLoaderDataGraph::clean_deallocate_lists"];u!==void 0&&u(0)}function Lc(t,e,n){let r=Ie(),o=po(t);o.constPtr.writePointer(o.const);let s=(o.accessFlags|pc|_c|mc|gc)>>>0;if(o.accessFlagsPtr.writeU32(s),o.signatureHandler.writePointer(NULL),o.adapter.writePointer(NULL),o.i2iEntry.writePointer(NULL),r["Method::clear_code"](o.method),o.dataPtr.writePointer(NULL),o.countersPtr.writePointer(NULL),o.stackmapPtr.writePointer(NULL),r["Method::clear_native_function"](o.method),r["Method::set_native_function"](o.method,e,0),r["Method::restore_unshareable_info"](o.method,n),r.version>=17){let i=Memory.alloc(2*J);i.writePointer(o.method),i.add(J).writePointer(n),r["Method::link_method"](o.method,i,n)}return o}function po(t){let e=ao(),n=t.add(e.method.constMethodOffset).readPointer(),r=n.add(e.constMethod.sizeOffset).readS32()*J,o=Memory.alloc(r+e.method.size);Memory.copy(o,n,r);let s=o.add(r);Memory.copy(s,t,e.method.size);let i=io(s,o,r),l=io(t,n,r);return i.oldMethod=l,i}function io(t,e,n){let r=Ie(),o=ao(),s=t.add(o.method.constMethodOffset),i=t.add(o.method.methodDataOffset),l=t.add(o.method.methodCountersOffset),a=t.add(o.method.accessFlagsOffset),c=a.readU32(),d=o.getAdapterPointer(t,e),p=t.add(o.method.i2iEntryOffset),f=t.add(o.method.signatureHandlerOffset),u=e.add(o.constMethod.constantPoolOffset).readPointer(),_=e.add(o.constMethod.stackmapDataOffset),h=u.add(o.constantPool.instanceKlassOffset).readPointer(),g=u.add(o.constantPool.cacheOffset).readPointer(),m=bc(),E=h.add(m.methodsOffset).readPointer(),I=E.readS32(),k=E.add(J),R=e.add(o.constMethod.methodIdnumOffset).readU16(),j=t.add(o.method.vtableIndexOffset),S=j.readS32(),N=h.add(m.vtableOffset),v=h.add(m.oopMapCacheOffset).readPointer(),T=r.version>=10?h.add(m.memberNamesOffset).readPointer():NULL;return{method:t,methodSize:o.method.size,const:e,constSize:n,constPtr:s,dataPtr:i,countersPtr:l,stackmapPtr:_,instanceKlass:h,methodsArray:k,methodsCount:I,methodIndex:R,vtableIndex:S,vtableIndexPtr:j,vtable:N,accessFlags:c,accessFlagsPtr:a,adapter:d,i2iEntry:p,signatureHandler:f,memberNames:T,cache:g,oopMapCache:v}}function xc(t){let{oldMethod:e}=t;e.accessFlagsPtr.writeU32(e.accessFlags),e.vtableIndexPtr.writeS32(e.vtableIndex)}function kc(){let t=Ie(),{version:e}=t,n;e>=17?n="method:early":e>=9&&e<=16?n="const-method":n="method:late";let o=t["Method::size"](1)*J,s=J,i=2*J,l=3*J,a=4*J,c=n==="method:early"?J:0,d=a+c,p=d+4,f=p+4+8,u=f+J,_=c!==0?a:u,h=o-2*J,g=o-J,m=8,E=m+J,I=E+J,k=n==="const-method"?J:0,R=I+k,j=R+14,S=2*J,N=3*J;return{getAdapterPointer:k!==0?function(T,M){return M.add(I)}:function(T,M){return T.add(_)},method:{size:o,constMethodOffset:s,methodDataOffset:i,methodCountersOffset:l,accessFlagsOffset:d,vtableIndexOffset:p,i2iEntryOffset:f,nativeFunctionOffset:h,signatureHandlerOffset:g},constMethod:{constantPoolOffset:m,stackmapDataOffset:E,sizeOffset:R,methodIdnumOffset:j},constantPool:{cacheOffset:S,instanceKlassOffset:N}}}var Nc={x64:Oc};function Mc(){let{version:t,createNewDefaultVtableIndices:e}=Ie(),n=Nc[Process.arch];if(n===void 0)throw new Error(`Missing vtable offset parser for ${Process.arch}`);let r=je(e,n,{limit:32});if(r===null)throw new Error("Unable to deduce vtable offset");let o=t>=10&&t<=11||t>=15?17:18,s=r-7*J,i=r-17*J,l=r-o*J;return{vtableOffset:r,methodsOffset:s,memberNamesOffset:i,oopMapCacheOffset:l}}function Oc(t){if(t.mnemonic!=="mov")return null;let e=t.operands[0];if(e.type!=="mem")return null;let{value:n}=e;if(n.scale!==1)return null;let{disp:r}=n;return r<256?null:r+16}var fo=B;try{ft()}catch{fo=Ie}var ho=fo;var Rc=`#include <json-glib/json-glib.h>
+`, {
+    current_backtrace: Memory.alloc(Process.pointerSize),
+    perform_art_thread_state_transition: performImpl,
+    art_thread_get_long_jump_context: api2["art::Thread::GetLongJumpContext"],
+    art_stack_visitor_init: api2["art::StackVisitor::StackVisitor"],
+    art_stack_visitor_walk_stack: api2["art::StackVisitor::WalkStack"],
+    art_stack_visitor_get_method: api2["art::StackVisitor::GetMethod"],
+    art_stack_visitor_describe_location: api2["art::StackVisitor::DescribeLocation"],
+    translate_method: artController.replacedMethods.translate,
+    translate_location: api2["art::Monitor::TranslateLocation"],
+    get_class_location: api2["art::mirror::Class::GetLocation"],
+    cxx_delete: api2.$delete,
+    strtoul: Process.getModuleByName("libc.so").getExportByName("strtoul")
+  });
+  const _create = new NativeFunction(cm2._create, "pointer", ["pointer", "uint"], nativeFunctionOptions3);
+  const _destroy = new NativeFunction(cm2._destroy, "void", ["pointer"], nativeFunctionOptions3);
+  const fastOptions = { exceptions: "propagate", scheduling: "exclusive" };
+  const _getId = new NativeFunction(cm2._get_id, "pointer", ["pointer"], fastOptions);
+  const _getFrames = new NativeFunction(cm2._get_frames, "pointer", ["pointer"], fastOptions);
+  const performThreadStateTransition = makeArtThreadStateTransitionImpl(vm3, env, cm2._on_thread_state_transition_complete);
+  cm2._performData = performThreadStateTransition;
+  performImpl.writePointer(performThreadStateTransition);
+  cm2.backtrace = (env2, limit) => {
+    const handle = _create(env2, limit);
+    const bt = new Backtrace(handle);
+    Script.bindWeak(bt, destroy.bind(null, handle));
+    return bt;
+  };
+  function destroy(handle) {
+    _destroy(handle);
+  }
+  cm2.getId = (handle) => {
+    return _getId(handle).readUtf8String();
+  };
+  cm2.getFrames = (handle) => {
+    return JSON.parse(_getFrames(handle).readUtf8String());
+  };
+  return cm2;
+}
+var Backtrace = class {
+  constructor(handle) {
+    this.handle = handle;
+  }
+  get id() {
+    return backtraceModule.getId(this.handle);
+  }
+  get frames() {
+    return backtraceModule.getFrames(this.handle);
+  }
+};
+function revertGlobalPatches() {
+  patchedClasses.forEach((entry) => {
+    entry.vtablePtr.writePointer(entry.vtable);
+    entry.vtableCountPtr.writeS32(entry.vtableCount);
+  });
+  patchedClasses.clear();
+  for (const interceptor of artQuickInterceptors.splice(0)) {
+    interceptor.deactivate();
+  }
+  for (const hook of inlineHooks.splice(0)) {
+    hook.revert();
+  }
+}
+function unwrapMethodId(methodId) {
+  const api2 = getApi();
+  const runtimeOffset = getArtRuntimeSpec(api2).offset;
+  const jniIdManagerOffset = runtimeOffset.jniIdManager;
+  const jniIdsIndirectionOffset = runtimeOffset.jniIdsIndirection;
+  if (jniIdManagerOffset !== null && jniIdsIndirectionOffset !== null) {
+    const runtime2 = api2.artRuntime;
+    const jniIdsIndirection = runtime2.add(jniIdsIndirectionOffset).readInt();
+    if (jniIdsIndirection !== kPointer) {
+      const jniIdManager = runtime2.add(jniIdManagerOffset).readPointer();
+      return api2["art::jni::JniIdManager::DecodeMethodId"](jniIdManager, methodId);
+    }
+  }
+  return methodId;
+}
+var artQuickCodeReplacementTrampolineWriters = {
+  ia32: writeArtQuickCodeReplacementTrampolineIA32,
+  x64: writeArtQuickCodeReplacementTrampolineX64,
+  arm: writeArtQuickCodeReplacementTrampolineArm,
+  arm64: writeArtQuickCodeReplacementTrampolineArm64
+};
+function writeArtQuickCodeReplacementTrampolineIA32(trampoline, target, redirectSize, constraints, vm3) {
+  const threadOffsets = getArtThreadSpec(vm3).offset;
+  const artMethodOffsets = getArtMethodSpec(vm3).offset;
+  let offset;
+  Memory.patchCode(trampoline, 128, (code3) => {
+    const writer = new X86Writer(code3, { pc: trampoline });
+    const relocator = new X86Relocator(target, writer);
+    const fxsave = [15, 174, 4, 36];
+    const fxrstor = [15, 174, 12, 36];
+    writer.putPushax();
+    writer.putMovRegReg("ebp", "esp");
+    writer.putAndRegU32("esp", 4294967280);
+    writer.putSubRegImm("esp", 512);
+    writer.putBytes(fxsave);
+    writer.putMovRegFsU32Ptr("ebx", threadOffsets.self);
+    writer.putCallAddressWithAlignedArguments(artController.replacedMethods.findReplacementFromQuickCode, ["eax", "ebx"]);
+    writer.putTestRegReg("eax", "eax");
+    writer.putJccShortLabel("je", "restore_registers", "no-hint");
+    writer.putMovRegOffsetPtrReg("ebp", 7 * 4, "eax");
+    writer.putLabel("restore_registers");
+    writer.putBytes(fxrstor);
+    writer.putMovRegReg("esp", "ebp");
+    writer.putPopax();
+    writer.putJccShortLabel("jne", "invoke_replacement", "no-hint");
+    do {
+      offset = relocator.readOne();
+    } while (offset < redirectSize && !relocator.eoi);
+    relocator.writeAll();
+    if (!relocator.eoi) {
+      writer.putJmpAddress(target.add(offset));
+    }
+    writer.putLabel("invoke_replacement");
+    writer.putJmpRegOffsetPtr("eax", artMethodOffsets.quickCode);
+    writer.flush();
+  });
+  return offset;
+}
+function writeArtQuickCodeReplacementTrampolineX64(trampoline, target, redirectSize, constraints, vm3) {
+  const threadOffsets = getArtThreadSpec(vm3).offset;
+  const artMethodOffsets = getArtMethodSpec(vm3).offset;
+  let offset;
+  Memory.patchCode(trampoline, 256, (code3) => {
+    const writer = new X86Writer(code3, { pc: trampoline });
+    const relocator = new X86Relocator(target, writer);
+    const fxsave = [15, 174, 4, 36];
+    const fxrstor = [15, 174, 12, 36];
+    writer.putPushax();
+    writer.putMovRegReg("rbp", "rsp");
+    writer.putAndRegU32("rsp", 4294967280);
+    writer.putSubRegImm("rsp", 512);
+    writer.putBytes(fxsave);
+    writer.putMovRegGsU32Ptr("rbx", threadOffsets.self);
+    writer.putCallAddressWithAlignedArguments(artController.replacedMethods.findReplacementFromQuickCode, ["rdi", "rbx"]);
+    writer.putTestRegReg("rax", "rax");
+    writer.putJccShortLabel("je", "restore_registers", "no-hint");
+    writer.putMovRegOffsetPtrReg("rbp", 8 * 8, "rax");
+    writer.putLabel("restore_registers");
+    writer.putBytes(fxrstor);
+    writer.putMovRegReg("rsp", "rbp");
+    writer.putPopax();
+    writer.putJccShortLabel("jne", "invoke_replacement", "no-hint");
+    do {
+      offset = relocator.readOne();
+    } while (offset < redirectSize && !relocator.eoi);
+    relocator.writeAll();
+    if (!relocator.eoi) {
+      writer.putJmpAddress(target.add(offset));
+    }
+    writer.putLabel("invoke_replacement");
+    writer.putJmpRegOffsetPtr("rdi", artMethodOffsets.quickCode);
+    writer.flush();
+  });
+  return offset;
+}
+function writeArtQuickCodeReplacementTrampolineArm(trampoline, target, redirectSize, constraints, vm3) {
+  const artMethodOffsets = getArtMethodSpec(vm3).offset;
+  const targetAddress = target.and(THUMB_BIT_REMOVAL_MASK);
+  let offset;
+  Memory.patchCode(trampoline, 128, (code3) => {
+    const writer = new ThumbWriter(code3, { pc: trampoline });
+    const relocator = new ThumbRelocator(targetAddress, writer);
+    const vpushFpRegs = [45, 237, 16, 10];
+    const vpopFpRegs = [189, 236, 16, 10];
+    writer.putPushRegs([
+      "r1",
+      "r2",
+      "r3",
+      "r5",
+      "r6",
+      "r7",
+      "r8",
+      "r10",
+      "r11",
+      "lr"
+    ]);
+    writer.putBytes(vpushFpRegs);
+    writer.putSubRegRegImm("sp", "sp", 8);
+    writer.putStrRegRegOffset("r0", "sp", 0);
+    writer.putCallAddressWithArguments(artController.replacedMethods.findReplacementFromQuickCode, ["r0", "r9"]);
+    writer.putCmpRegImm("r0", 0);
+    writer.putBCondLabel("eq", "restore_registers");
+    writer.putStrRegRegOffset("r0", "sp", 0);
+    writer.putLabel("restore_registers");
+    writer.putLdrRegRegOffset("r0", "sp", 0);
+    writer.putAddRegRegImm("sp", "sp", 8);
+    writer.putBytes(vpopFpRegs);
+    writer.putPopRegs([
+      "lr",
+      "r11",
+      "r10",
+      "r8",
+      "r7",
+      "r6",
+      "r5",
+      "r3",
+      "r2",
+      "r1"
+    ]);
+    writer.putBCondLabel("ne", "invoke_replacement");
+    do {
+      offset = relocator.readOne();
+    } while (offset < redirectSize && !relocator.eoi);
+    relocator.writeAll();
+    if (!relocator.eoi) {
+      writer.putLdrRegAddress("pc", target.add(offset));
+    }
+    writer.putLabel("invoke_replacement");
+    writer.putLdrRegRegOffset("pc", "r0", artMethodOffsets.quickCode);
+    writer.flush();
+  });
+  return offset;
+}
+function writeArtQuickCodeReplacementTrampolineArm64(trampoline, target, redirectSize, { availableScratchRegs }, vm3) {
+  const artMethodOffsets = getArtMethodSpec(vm3).offset;
+  let offset;
+  Memory.patchCode(trampoline, 256, (code3) => {
+    const writer = new Arm64Writer(code3, { pc: trampoline });
+    const relocator = new Arm64Relocator(target, writer);
+    writer.putPushRegReg("d0", "d1");
+    writer.putPushRegReg("d2", "d3");
+    writer.putPushRegReg("d4", "d5");
+    writer.putPushRegReg("d6", "d7");
+    writer.putPushRegReg("x1", "x2");
+    writer.putPushRegReg("x3", "x4");
+    writer.putPushRegReg("x5", "x6");
+    writer.putPushRegReg("x7", "x20");
+    writer.putPushRegReg("x21", "x22");
+    writer.putPushRegReg("x23", "x24");
+    writer.putPushRegReg("x25", "x26");
+    writer.putPushRegReg("x27", "x28");
+    writer.putPushRegReg("x29", "lr");
+    writer.putSubRegRegImm("sp", "sp", 16);
+    writer.putStrRegRegOffset("x0", "sp", 0);
+    writer.putCallAddressWithArguments(artController.replacedMethods.findReplacementFromQuickCode, ["x0", "x19"]);
+    writer.putCmpRegReg("x0", "xzr");
+    writer.putBCondLabel("eq", "restore_registers");
+    writer.putStrRegRegOffset("x0", "sp", 0);
+    writer.putLabel("restore_registers");
+    writer.putLdrRegRegOffset("x0", "sp", 0);
+    writer.putAddRegRegImm("sp", "sp", 16);
+    writer.putPopRegReg("x29", "lr");
+    writer.putPopRegReg("x27", "x28");
+    writer.putPopRegReg("x25", "x26");
+    writer.putPopRegReg("x23", "x24");
+    writer.putPopRegReg("x21", "x22");
+    writer.putPopRegReg("x7", "x20");
+    writer.putPopRegReg("x5", "x6");
+    writer.putPopRegReg("x3", "x4");
+    writer.putPopRegReg("x1", "x2");
+    writer.putPopRegReg("d6", "d7");
+    writer.putPopRegReg("d4", "d5");
+    writer.putPopRegReg("d2", "d3");
+    writer.putPopRegReg("d0", "d1");
+    writer.putBCondLabel("ne", "invoke_replacement");
+    do {
+      offset = relocator.readOne();
+    } while (offset < redirectSize && !relocator.eoi);
+    relocator.writeAll();
+    if (!relocator.eoi) {
+      const scratchReg = Array.from(availableScratchRegs)[0];
+      writer.putLdrRegAddress(scratchReg, target.add(offset));
+      writer.putBrReg(scratchReg);
+    }
+    writer.putLabel("invoke_replacement");
+    writer.putLdrRegRegOffset("x16", "x0", artMethodOffsets.quickCode);
+    writer.putBrReg("x16");
+    writer.flush();
+  });
+  return offset;
+}
+var artQuickCodePrologueWriters = {
+  ia32: writeArtQuickCodePrologueX86,
+  x64: writeArtQuickCodePrologueX86,
+  arm: writeArtQuickCodePrologueArm,
+  arm64: writeArtQuickCodePrologueArm64
+};
+function writeArtQuickCodePrologueX86(target, trampoline, redirectSize) {
+  Memory.patchCode(target, 16, (code3) => {
+    const writer = new X86Writer(code3, { pc: target });
+    writer.putJmpAddress(trampoline);
+    writer.flush();
+  });
+}
+function writeArtQuickCodePrologueArm(target, trampoline, redirectSize) {
+  const targetAddress = target.and(THUMB_BIT_REMOVAL_MASK);
+  Memory.patchCode(targetAddress, 16, (code3) => {
+    const writer = new ThumbWriter(code3, { pc: targetAddress });
+    writer.putLdrRegAddress("pc", trampoline.or(1));
+    writer.flush();
+  });
+}
+function writeArtQuickCodePrologueArm64(target, trampoline, redirectSize) {
+  Memory.patchCode(target, 16, (code3) => {
+    const writer = new Arm64Writer(code3, { pc: target });
+    if (redirectSize === 16) {
+      writer.putLdrRegAddress("x16", trampoline);
+    } else {
+      writer.putAdrpRegAddress("x16", trampoline);
+    }
+    writer.putBrReg("x16");
+    writer.flush();
+  });
+}
+var artQuickCodeHookRedirectSize = {
+  ia32: 5,
+  x64: 16,
+  arm: 8,
+  arm64: 16
+};
+var ArtQuickCodeInterceptor = class {
+  constructor(quickCode) {
+    this.quickCode = quickCode;
+    this.quickCodeAddress = Process.arch === "arm" ? quickCode.and(THUMB_BIT_REMOVAL_MASK) : quickCode;
+    this.redirectSize = 0;
+    this.trampoline = null;
+    this.overwrittenPrologue = null;
+    this.overwrittenPrologueLength = 0;
+  }
+  _canRelocateCode(relocationSize, constraints) {
+    const Writer = thunkWriters[Process.arch];
+    const Relocator = thunkRelocators[Process.arch];
+    const { quickCodeAddress } = this;
+    const writer = new Writer(quickCodeAddress);
+    const relocator = new Relocator(quickCodeAddress, writer);
+    let offset;
+    if (Process.arch === "arm64") {
+      let availableScratchRegs = /* @__PURE__ */ new Set(["x16", "x17"]);
+      do {
+        const nextOffset = relocator.readOne();
+        const nextScratchRegs = new Set(availableScratchRegs);
+        const { read: read2, written } = relocator.input.regsAccessed;
+        for (const regs of [read2, written]) {
+          for (const reg of regs) {
+            let name;
+            if (reg.startsWith("w")) {
+              name = "x" + reg.substring(1);
+            } else {
+              name = reg;
+            }
+            nextScratchRegs.delete(name);
+          }
+        }
+        if (nextScratchRegs.size === 0) {
+          break;
+        }
+        offset = nextOffset;
+        availableScratchRegs = nextScratchRegs;
+      } while (offset < relocationSize && !relocator.eoi);
+      constraints.availableScratchRegs = availableScratchRegs;
+    } else {
+      do {
+        offset = relocator.readOne();
+      } while (offset < relocationSize && !relocator.eoi);
+    }
+    return offset >= relocationSize;
+  }
+  _allocateTrampoline() {
+    if (trampolineAllocator === null) {
+      const trampolineSize = pointerSize5 === 4 ? 128 : 256;
+      trampolineAllocator = makeAllocator(trampolineSize);
+    }
+    const maxRedirectSize = artQuickCodeHookRedirectSize[Process.arch];
+    let redirectSize, spec;
+    let alignment = 1;
+    const constraints = {};
+    if (pointerSize5 === 4 || this._canRelocateCode(maxRedirectSize, constraints)) {
+      redirectSize = maxRedirectSize;
+      spec = {};
+    } else {
+      let maxDistance;
+      if (Process.arch === "x64") {
+        redirectSize = 5;
+        maxDistance = X86_JMP_MAX_DISTANCE;
+      } else if (Process.arch === "arm64") {
+        redirectSize = 8;
+        maxDistance = ARM64_ADRP_MAX_DISTANCE;
+        alignment = 4096;
+      }
+      spec = { near: this.quickCodeAddress, maxDistance };
+    }
+    this.redirectSize = redirectSize;
+    this.trampoline = trampolineAllocator.allocateSlice(spec, alignment);
+    return constraints;
+  }
+  _destroyTrampoline() {
+    trampolineAllocator.freeSlice(this.trampoline);
+  }
+  activate(vm3) {
+    const constraints = this._allocateTrampoline();
+    const { trampoline, quickCode, redirectSize } = this;
+    const writeTrampoline = artQuickCodeReplacementTrampolineWriters[Process.arch];
+    const prologueLength = writeTrampoline(trampoline, quickCode, redirectSize, constraints, vm3);
+    this.overwrittenPrologueLength = prologueLength;
+    this.overwrittenPrologue = Memory.dup(this.quickCodeAddress, prologueLength);
+    const writePrologue = artQuickCodePrologueWriters[Process.arch];
+    writePrologue(quickCode, trampoline, redirectSize);
+  }
+  deactivate() {
+    const { quickCodeAddress, overwrittenPrologueLength: prologueLength } = this;
+    const Writer = thunkWriters[Process.arch];
+    Memory.patchCode(quickCodeAddress, prologueLength, (code3) => {
+      const writer = new Writer(code3, { pc: quickCodeAddress });
+      const { overwrittenPrologue } = this;
+      writer.putBytes(overwrittenPrologue.readByteArray(prologueLength));
+      writer.flush();
+    });
+    this._destroyTrampoline();
+  }
+};
+function isArtQuickEntrypoint(address) {
+  const api2 = getApi();
+  const { module: m, artClassLinker } = api2;
+  return address.equals(artClassLinker.quickGenericJniTrampoline) || address.equals(artClassLinker.quickToInterpreterBridgeTrampoline) || address.equals(artClassLinker.quickResolutionTrampoline) || address.equals(artClassLinker.quickImtConflictTrampoline) || address.compare(m.base) >= 0 && address.compare(m.base.add(m.size)) < 0;
+}
+var ArtMethodMangler = class {
+  constructor(opaqueMethodId) {
+    const methodId = unwrapMethodId(opaqueMethodId);
+    this.methodId = methodId;
+    this.originalMethod = null;
+    this.hookedMethodId = methodId;
+    this.replacementMethodId = null;
+    this.interceptor = null;
+  }
+  replace(impl, isInstanceMethod, argTypes, vm3, api2) {
+    const { kAccCompileDontBother, artNterpEntryPoint } = api2;
+    this.originalMethod = fetchArtMethod(this.methodId, vm3);
+    const originalFlags = this.originalMethod.accessFlags;
+    if ((originalFlags & kAccXposedHookedMethod) !== 0 && xposedIsSupported()) {
+      const hookInfo = this.originalMethod.jniCode;
+      this.hookedMethodId = hookInfo.add(2 * pointerSize5).readPointer();
+      this.originalMethod = fetchArtMethod(this.hookedMethodId, vm3);
+    }
+    const { hookedMethodId } = this;
+    const replacementMethodId = cloneArtMethod(hookedMethodId, vm3);
+    this.replacementMethodId = replacementMethodId;
+    patchArtMethod(replacementMethodId, {
+      jniCode: impl,
+      accessFlags: (originalFlags & ~(kAccCriticalNative | kAccFastNative | kAccNterpEntryPointFastPathFlag) | kAccNative | kAccCompileDontBother) >>> 0,
+      quickCode: api2.artClassLinker.quickGenericJniTrampoline,
+      interpreterCode: api2.artInterpreterToCompiledCodeBridge
+    }, vm3);
+    let hookedMethodRemovedFlags = kAccFastInterpreterToInterpreterInvoke | kAccSingleImplementation | kAccNterpEntryPointFastPathFlag;
+    if ((originalFlags & kAccNative) === 0) {
+      hookedMethodRemovedFlags |= kAccSkipAccessChecks;
+    }
+    patchArtMethod(hookedMethodId, {
+      accessFlags: (originalFlags & ~hookedMethodRemovedFlags | kAccCompileDontBother) >>> 0
+    }, vm3);
+    const quickCode = this.originalMethod.quickCode;
+    if (artNterpEntryPoint !== null && quickCode.equals(artNterpEntryPoint)) {
+      patchArtMethod(hookedMethodId, {
+        quickCode: api2.artQuickToInterpreterBridge
+      }, vm3);
+    }
+    if (!isArtQuickEntrypoint(quickCode)) {
+      const interceptor = new ArtQuickCodeInterceptor(quickCode);
+      interceptor.activate(vm3);
+      this.interceptor = interceptor;
+    }
+    artController.replacedMethods.set(hookedMethodId, replacementMethodId);
+    notifyArtMethodHooked(hookedMethodId, vm3);
+  }
+  revert(vm3) {
+    const { hookedMethodId, interceptor } = this;
+    patchArtMethod(hookedMethodId, this.originalMethod, vm3);
+    artController.replacedMethods.delete(hookedMethodId);
+    if (interceptor !== null) {
+      interceptor.deactivate();
+      this.interceptor = null;
+    }
+  }
+  resolveTarget(wrapper, isInstanceMethod, env, api2) {
+    return this.hookedMethodId;
+  }
+};
+function xposedIsSupported() {
+  return getAndroidApiLevel() < 28;
+}
+function fetchArtMethod(methodId, vm3) {
+  const artMethodSpec = getArtMethodSpec(vm3);
+  const artMethodOffset = artMethodSpec.offset;
+  return ["jniCode", "accessFlags", "quickCode", "interpreterCode"].reduce((original, name) => {
+    const offset = artMethodOffset[name];
+    if (offset === void 0) {
+      return original;
+    }
+    const address = methodId.add(offset);
+    const read2 = name === "accessFlags" ? readU32 : readPointer;
+    original[name] = read2.call(address);
+    return original;
+  }, {});
+}
+function patchArtMethod(methodId, patches, vm3) {
+  const artMethodSpec = getArtMethodSpec(vm3);
+  const artMethodOffset = artMethodSpec.offset;
+  Object.keys(patches).forEach((name) => {
+    const offset = artMethodOffset[name];
+    if (offset === void 0) {
+      return;
+    }
+    const address = methodId.add(offset);
+    const write3 = name === "accessFlags" ? writeU32 : writePointer;
+    write3.call(address, patches[name]);
+  });
+}
+var DalvikMethodMangler = class {
+  constructor(methodId) {
+    this.methodId = methodId;
+    this.originalMethod = null;
+  }
+  replace(impl, isInstanceMethod, argTypes, vm3, api2) {
+    const { methodId } = this;
+    this.originalMethod = Memory.dup(methodId, DVM_METHOD_SIZE);
+    let argsSize = argTypes.reduce((acc, t) => acc + t.size, 0);
+    if (isInstanceMethod) {
+      argsSize++;
+    }
+    const accessFlags = (methodId.add(DVM_METHOD_OFFSET_ACCESS_FLAGS).readU32() | kAccNative) >>> 0;
+    const registersSize = argsSize;
+    const outsSize = 0;
+    const insSize = argsSize;
+    methodId.add(DVM_METHOD_OFFSET_ACCESS_FLAGS).writeU32(accessFlags);
+    methodId.add(DVM_METHOD_OFFSET_REGISTERS_SIZE).writeU16(registersSize);
+    methodId.add(DVM_METHOD_OFFSET_OUTS_SIZE).writeU16(outsSize);
+    methodId.add(DVM_METHOD_OFFSET_INS_SIZE).writeU16(insSize);
+    methodId.add(DVM_METHOD_OFFSET_JNI_ARG_INFO).writeU32(computeDalvikJniArgInfo(methodId));
+    api2.dvmUseJNIBridge(methodId, impl);
+  }
+  revert(vm3) {
+    Memory.copy(this.methodId, this.originalMethod, DVM_METHOD_SIZE);
+  }
+  resolveTarget(wrapper, isInstanceMethod, env, api2) {
+    const thread = env.handle.add(DVM_JNI_ENV_OFFSET_SELF).readPointer();
+    let objectPtr;
+    if (isInstanceMethod) {
+      objectPtr = api2.dvmDecodeIndirectRef(thread, wrapper.$h);
+    } else {
+      const h = wrapper.$borrowClassHandle(env);
+      objectPtr = api2.dvmDecodeIndirectRef(thread, h.value);
+      h.unref(env);
+    }
+    let classObject;
+    if (isInstanceMethod) {
+      classObject = objectPtr.add(DVM_OBJECT_OFFSET_CLAZZ).readPointer();
+    } else {
+      classObject = objectPtr;
+    }
+    const classKey = classObject.toString(16);
+    let entry = patchedClasses.get(classKey);
+    if (entry === void 0) {
+      const vtablePtr = classObject.add(DVM_CLASS_OBJECT_OFFSET_VTABLE);
+      const vtableCountPtr = classObject.add(DVM_CLASS_OBJECT_OFFSET_VTABLE_COUNT);
+      const vtable2 = vtablePtr.readPointer();
+      const vtableCount = vtableCountPtr.readS32();
+      const vtableSize = vtableCount * pointerSize5;
+      const shadowVtable = Memory.alloc(2 * vtableSize);
+      Memory.copy(shadowVtable, vtable2, vtableSize);
+      vtablePtr.writePointer(shadowVtable);
+      entry = {
+        classObject,
+        vtablePtr,
+        vtableCountPtr,
+        vtable: vtable2,
+        vtableCount,
+        shadowVtable,
+        shadowVtableCount: vtableCount,
+        targetMethods: /* @__PURE__ */ new Map()
+      };
+      patchedClasses.set(classKey, entry);
+    }
+    const methodKey = this.methodId.toString(16);
+    let targetMethod = entry.targetMethods.get(methodKey);
+    if (targetMethod === void 0) {
+      targetMethod = Memory.dup(this.originalMethod, DVM_METHOD_SIZE);
+      const methodIndex = entry.shadowVtableCount++;
+      entry.shadowVtable.add(methodIndex * pointerSize5).writePointer(targetMethod);
+      targetMethod.add(DVM_METHOD_OFFSET_METHOD_INDEX).writeU16(methodIndex);
+      entry.vtableCountPtr.writeS32(entry.shadowVtableCount);
+      entry.targetMethods.set(methodKey, targetMethod);
+    }
+    return targetMethod;
+  }
+};
+function computeDalvikJniArgInfo(methodId) {
+  if (Process.arch !== "ia32") {
+    return DALVIK_JNI_NO_ARG_INFO;
+  }
+  const shorty = methodId.add(DVM_METHOD_OFFSET_SHORTY).readPointer().readCString();
+  if (shorty === null || shorty.length === 0 || shorty.length > 65535) {
+    return DALVIK_JNI_NO_ARG_INFO;
+  }
+  let returnType;
+  switch (shorty[0]) {
+    case "V":
+      returnType = DALVIK_JNI_RETURN_VOID;
+      break;
+    case "F":
+      returnType = DALVIK_JNI_RETURN_FLOAT;
+      break;
+    case "D":
+      returnType = DALVIK_JNI_RETURN_DOUBLE;
+      break;
+    case "J":
+      returnType = DALVIK_JNI_RETURN_S8;
+      break;
+    case "Z":
+    case "B":
+      returnType = DALVIK_JNI_RETURN_S1;
+      break;
+    case "C":
+      returnType = DALVIK_JNI_RETURN_U2;
+      break;
+    case "S":
+      returnType = DALVIK_JNI_RETURN_S2;
+      break;
+    default:
+      returnType = DALVIK_JNI_RETURN_S4;
+      break;
+  }
+  let hints = 0;
+  for (let i = shorty.length - 1; i > 0; i--) {
+    const ch = shorty[i];
+    hints += ch === "D" || ch === "J" ? 2 : 1;
+  }
+  return returnType << DALVIK_JNI_RETURN_SHIFT | hints;
+}
+function cloneArtMethod(method, vm3) {
+  const api2 = getApi();
+  if (getAndroidApiLevel() < 23) {
+    const thread = api2["art::Thread::CurrentFromGdb"]();
+    return api2["art::mirror::Object::Clone"](method, thread);
+  }
+  return Memory.dup(method, getArtMethodSpec(vm3).size);
+}
+function deoptimizeMethod(vm3, env, method) {
+  requestDeoptimization(vm3, env, kSelectiveDeoptimization, method);
+}
+function deoptimizeEverything(vm3, env) {
+  requestDeoptimization(vm3, env, kFullDeoptimization);
+}
+function deoptimizeBootImage(vm3, env) {
+  const api2 = getApi();
+  if (getAndroidApiLevel() < 26) {
+    throw new Error("This API is only available on Android >= 8.0");
+  }
+  withRunnableArtThread(vm3, env, (thread) => {
+    api2["art::Runtime::DeoptimizeBootImage"](api2.artRuntime);
+  });
+}
+function requestDeoptimization(vm3, env, kind, method) {
+  const api2 = getApi();
+  if (getAndroidApiLevel() < 24) {
+    throw new Error("This API is only available on Android >= 7.0");
+  }
+  withRunnableArtThread(vm3, env, (thread) => {
+    if (getAndroidApiLevel() < 30) {
+      if (!api2.isJdwpStarted()) {
+        const session = startJdwp(api2);
+        jdwpSessions.push(session);
+      }
+      if (!api2.isDebuggerActive()) {
+        api2["art::Dbg::GoActive"]();
+      }
+      const request = Memory.alloc(8 + pointerSize5);
+      request.writeU32(kind);
+      switch (kind) {
+        case kFullDeoptimization:
+          break;
+        case kSelectiveDeoptimization:
+          request.add(8).writePointer(method);
+          break;
+        default:
+          throw new Error("Unsupported deoptimization kind");
+      }
+      api2["art::Dbg::RequestDeoptimization"](request);
+      api2["art::Dbg::ManageDeoptimization"]();
+    } else {
+      const instrumentation = api2.artInstrumentation;
+      if (instrumentation === null) {
+        throw new Error("Unable to find Instrumentation class in ART; please file a bug");
+      }
+      const enableDeopt = api2["art::Instrumentation::EnableDeoptimization"];
+      if (enableDeopt !== void 0) {
+        const deoptimizationEnabled = !!instrumentation.add(getArtInstrumentationSpec().offset.deoptimizationEnabled).readU8();
+        if (!deoptimizationEnabled) {
+          enableDeopt(instrumentation);
+        }
+      }
+      switch (kind) {
+        case kFullDeoptimization:
+          api2["art::Instrumentation::DeoptimizeEverything"](instrumentation, Memory.allocUtf8String("frida"));
+          break;
+        case kSelectiveDeoptimization:
+          api2["art::Instrumentation::Deoptimize"](instrumentation, method);
+          break;
+        default:
+          throw new Error("Unsupported deoptimization kind");
+      }
+    }
+  });
+}
+var JdwpSession = class {
+  constructor() {
+    const libart = Process.getModuleByName("libart.so");
+    const acceptImpl = libart.getExportByName("_ZN3art4JDWP12JdwpAdbState6AcceptEv");
+    const receiveClientFdImpl = libart.getExportByName("_ZN3art4JDWP12JdwpAdbState15ReceiveClientFdEv");
+    const controlPair = makeSocketPair();
+    const clientPair = makeSocketPair();
+    this._controlFd = controlPair[0];
+    this._clientFd = clientPair[0];
+    let acceptListener = null;
+    acceptListener = Interceptor.attach(acceptImpl, function(args) {
+      const state = args[0];
+      const controlSockPtr = Memory.scanSync(state.add(8252), 256, "00 ff ff ff ff 00")[0].address.add(1);
+      controlSockPtr.writeS32(controlPair[1]);
+      acceptListener.detach();
+    });
+    Interceptor.replace(receiveClientFdImpl, new NativeCallback(function(state) {
+      Interceptor.revert(receiveClientFdImpl);
+      return clientPair[1];
+    }, "int", ["pointer"]));
+    Interceptor.flush();
+    this._handshakeRequest = this._performHandshake();
+  }
+  async _performHandshake() {
+    const input = new UnixInputStream(this._clientFd, { autoClose: false });
+    const output = new UnixOutputStream(this._clientFd, { autoClose: false });
+    const handshakePacket = [74, 68, 87, 80, 45, 72, 97, 110, 100, 115, 104, 97, 107, 101];
+    try {
+      await output.writeAll(handshakePacket);
+      await input.readAll(handshakePacket.length);
+    } catch (e) {
+    }
+  }
+};
+function startJdwp(api2) {
+  const session = new JdwpSession();
+  api2["art::Dbg::SetJdwpAllowed"](1);
+  const options = makeJdwpOptions();
+  api2["art::Dbg::ConfigureJdwp"](options);
+  const startDebugger = api2["art::InternalDebuggerControlCallback::StartDebugger"];
+  if (startDebugger !== void 0) {
+    startDebugger(NULL);
+  } else {
+    api2["art::Dbg::StartJdwp"]();
+  }
+  return session;
+}
+function makeJdwpOptions() {
+  const kJdwpTransportAndroidAdb = getAndroidApiLevel() < 28 ? 2 : 3;
+  const kJdwpPortFirstAvailable = 0;
+  const transport = kJdwpTransportAndroidAdb;
+  const server = true;
+  const suspend = false;
+  const port = kJdwpPortFirstAvailable;
+  const size = 8 + STD_STRING_SIZE + 2;
+  const result = Memory.alloc(size);
+  result.writeU32(transport).add(4).writeU8(server ? 1 : 0).add(1).writeU8(suspend ? 1 : 0).add(1).add(STD_STRING_SIZE).writeU16(port);
+  return result;
+}
+function makeSocketPair() {
+  if (socketpair === null) {
+    socketpair = new NativeFunction(
+      Process.getModuleByName("libc.so").getExportByName("socketpair"),
+      "int",
+      ["int", "int", "int", "pointer"]
+    );
+  }
+  const buf = Memory.alloc(8);
+  if (socketpair(AF_UNIX, SOCK_STREAM, 0, buf) === -1) {
+    throw new Error("Unable to create socketpair for JDWP");
+  }
+  return [
+    buf.readS32(),
+    buf.add(4).readS32()
+  ];
+}
+function makeAddGlobalRefFallbackForAndroid5(api2) {
+  const offset = getArtVMSpec().offset;
+  const lock = api2.vm.add(offset.globalsLock);
+  const table = api2.vm.add(offset.globals);
+  const add = api2["art::IndirectReferenceTable::Add"];
+  const acquire = api2["art::ReaderWriterMutex::ExclusiveLock"];
+  const release = api2["art::ReaderWriterMutex::ExclusiveUnlock"];
+  const IRT_FIRST_SEGMENT = 0;
+  return function(vm3, thread, obj) {
+    acquire(lock, thread);
+    try {
+      return add(table, IRT_FIRST_SEGMENT, obj);
+    } finally {
+      release(lock, thread);
+    }
+  };
+}
+function makeDecodeGlobalFallback(api2) {
+  const decode = api2["art::Thread::DecodeJObject"];
+  if (decode === void 0) {
+    throw new Error("art::Thread::DecodeJObject is not available; please file a bug");
+  }
+  return function(vm3, thread, ref) {
+    return decode(thread, ref);
+  };
+}
+var threadStateTransitionRecompilers = {
+  ia32: recompileExceptionClearForX86,
+  x64: recompileExceptionClearForX86,
+  arm: recompileExceptionClearForArm,
+  arm64: recompileExceptionClearForArm64
+};
+function makeArtThreadStateTransitionImpl(vm3, env, callback) {
+  const api2 = getApi();
+  const envVtable = env.handle.readPointer();
+  let exceptionClearImpl;
+  const innerExceptionClearImpl = api2.find("_ZN3art3JNIILb1EE14ExceptionClearEP7_JNIEnv");
+  if (innerExceptionClearImpl !== null) {
+    exceptionClearImpl = innerExceptionClearImpl;
+  } else {
+    exceptionClearImpl = envVtable.add(ENV_VTABLE_OFFSET_EXCEPTION_CLEAR).readPointer();
+  }
+  let nextFuncImpl;
+  const innerNextFuncImpl = api2.find("_ZN3art3JNIILb1EE10FatalErrorEP7_JNIEnvPKc");
+  if (innerNextFuncImpl !== null) {
+    nextFuncImpl = innerNextFuncImpl;
+  } else {
+    nextFuncImpl = envVtable.add(ENV_VTABLE_OFFSET_FATAL_ERROR).readPointer();
+  }
+  const recompile = threadStateTransitionRecompilers[Process.arch];
+  if (recompile === void 0) {
+    throw new Error("Not yet implemented for " + Process.arch);
+  }
+  let perform = null;
+  const threadOffsets = getArtThreadSpec(vm3).offset;
+  const exceptionOffset = threadOffsets.exception;
+  const neuteredOffsets = /* @__PURE__ */ new Set();
+  const isReportedOffset = threadOffsets.isExceptionReportedToInstrumentation;
+  if (isReportedOffset !== null) {
+    neuteredOffsets.add(isReportedOffset);
+  }
+  const throwLocationStartOffset = threadOffsets.throwLocation;
+  if (throwLocationStartOffset !== null) {
+    neuteredOffsets.add(throwLocationStartOffset);
+    neuteredOffsets.add(throwLocationStartOffset + pointerSize5);
+    neuteredOffsets.add(throwLocationStartOffset + 2 * pointerSize5);
+  }
+  const codeSize = 65536;
+  const code3 = Memory.alloc(codeSize);
+  Memory.patchCode(code3, codeSize, (buffer) => {
+    perform = recompile(buffer, code3, exceptionClearImpl, nextFuncImpl, exceptionOffset, neuteredOffsets, callback);
+  });
+  perform._code = code3;
+  perform._callback = callback;
+  return perform;
+}
+function recompileExceptionClearForX86(buffer, pc, exceptionClearImpl, nextFuncImpl, exceptionOffset, neuteredOffsets, callback) {
+  const blocks = {};
+  const branchTargets = /* @__PURE__ */ new Set();
+  const pending = [exceptionClearImpl];
+  while (pending.length > 0) {
+    let current = pending.shift();
+    const alreadyCovered = Object.values(blocks).some(({ begin, end }) => current.compare(begin) >= 0 && current.compare(end) < 0);
+    if (alreadyCovered) {
+      continue;
+    }
+    const blockAddressKey = current.toString();
+    let block = {
+      begin: current
+    };
+    let lastInsn = null;
+    let reachedEndOfBlock = false;
+    do {
+      if (current.equals(nextFuncImpl)) {
+        reachedEndOfBlock = true;
+        break;
+      }
+      const insn = Instruction.parse(current);
+      lastInsn = insn;
+      const existingBlock = blocks[insn.address.toString()];
+      if (existingBlock !== void 0) {
+        delete blocks[existingBlock.begin.toString()];
+        blocks[blockAddressKey] = existingBlock;
+        existingBlock.begin = block.begin;
+        block = null;
+        break;
+      }
+      let branchTarget = null;
+      switch (insn.mnemonic) {
+        case "jmp":
+          branchTarget = ptr(insn.operands[0].value);
+          reachedEndOfBlock = true;
+          break;
+        case "je":
+        case "jg":
+        case "jle":
+        case "jne":
+        case "js":
+          branchTarget = ptr(insn.operands[0].value);
+          break;
+        case "ret":
+          reachedEndOfBlock = true;
+          break;
+      }
+      if (branchTarget !== null) {
+        branchTargets.add(branchTarget.toString());
+        pending.push(branchTarget);
+        pending.sort((a, b) => a.compare(b));
+      }
+      current = insn.next;
+    } while (!reachedEndOfBlock);
+    if (block !== null) {
+      block.end = lastInsn.address.add(lastInsn.size);
+      blocks[blockAddressKey] = block;
+    }
+  }
+  const blocksOrdered = Object.keys(blocks).map((key) => blocks[key]);
+  blocksOrdered.sort((a, b) => a.begin.compare(b.begin));
+  const entryBlock = blocks[exceptionClearImpl.toString()];
+  blocksOrdered.splice(blocksOrdered.indexOf(entryBlock), 1);
+  blocksOrdered.unshift(entryBlock);
+  const writer = new X86Writer(buffer, { pc });
+  let foundCore = false;
+  let threadReg = null;
+  blocksOrdered.forEach((block) => {
+    const size = block.end.sub(block.begin).toInt32();
+    const relocator = new X86Relocator(block.begin, writer);
+    let offset;
+    while ((offset = relocator.readOne()) !== 0) {
+      const insn = relocator.input;
+      const { mnemonic } = insn;
+      const insnAddressId = insn.address.toString();
+      if (branchTargets.has(insnAddressId)) {
+        writer.putLabel(insnAddressId);
+      }
+      let keep = true;
+      switch (mnemonic) {
+        case "jmp":
+          writer.putJmpNearLabel(branchLabelFromOperand(insn.operands[0]));
+          keep = false;
+          break;
+        case "je":
+        case "jg":
+        case "jle":
+        case "jne":
+        case "js":
+          writer.putJccNearLabel(mnemonic, branchLabelFromOperand(insn.operands[0]), "no-hint");
+          keep = false;
+          break;
+        /*
+         * JNI::ExceptionClear(), when checked JNI is off.
+         */
+        case "mov": {
+          const [dst, src] = insn.operands;
+          if (dst.type === "mem" && src.type === "imm") {
+            const dstValue = dst.value;
+            const dstOffset = dstValue.disp;
+            if (dstOffset === exceptionOffset && src.value.valueOf() === 0) {
+              threadReg = dstValue.base;
+              writer.putPushfx();
+              writer.putPushax();
+              writer.putMovRegReg("xbp", "xsp");
+              if (pointerSize5 === 4) {
+                writer.putAndRegU32("esp", 4294967280);
+              } else {
+                const scratchReg = threadReg !== "rdi" ? "rdi" : "rsi";
+                writer.putMovRegU64(scratchReg, uint64("0xfffffffffffffff0"));
+                writer.putAndRegReg("rsp", scratchReg);
+              }
+              writer.putCallAddressWithAlignedArguments(callback, [threadReg]);
+              writer.putMovRegReg("xsp", "xbp");
+              writer.putPopax();
+              writer.putPopfx();
+              foundCore = true;
+              keep = false;
+            } else if (neuteredOffsets.has(dstOffset) && dstValue.base === threadReg) {
+              keep = false;
+            }
+          }
+          break;
+        }
+        /*
+         * CheckJNI::ExceptionClear, when checked JNI is on. Wrapper that calls JNI::ExceptionClear().
+         */
+        case "call": {
+          const target = insn.operands[0];
+          if (target.type === "mem" && target.value.disp === ENV_VTABLE_OFFSET_EXCEPTION_CLEAR) {
+            if (pointerSize5 === 4) {
+              writer.putPopReg("eax");
+              writer.putMovRegRegOffsetPtr("eax", "eax", 4);
+              writer.putPushReg("eax");
+            } else {
+              writer.putMovRegRegOffsetPtr("rdi", "rdi", 8);
+            }
+            writer.putCallAddressWithArguments(callback, []);
+            foundCore = true;
+            keep = false;
+          }
+          break;
+        }
+      }
+      if (keep) {
+        relocator.writeAll();
+      } else {
+        relocator.skipOne();
+      }
+      if (offset === size) {
+        break;
+      }
+    }
+    relocator.dispose();
+  });
+  writer.dispose();
+  if (!foundCore) {
+    throwThreadStateTransitionParseError();
+  }
+  return new NativeFunction(pc, "void", ["pointer"], nativeFunctionOptions3);
+}
+function recompileExceptionClearForArm(buffer, pc, exceptionClearImpl, nextFuncImpl, exceptionOffset, neuteredOffsets, callback) {
+  const blocks = {};
+  const branchTargets = /* @__PURE__ */ new Set();
+  const thumbBitRemovalMask = ptr(1).not();
+  const pending = [exceptionClearImpl];
+  while (pending.length > 0) {
+    let current = pending.shift();
+    const alreadyCovered = Object.values(blocks).some(({ begin: begin2, end }) => current.compare(begin2) >= 0 && current.compare(end) < 0);
+    if (alreadyCovered) {
+      continue;
+    }
+    const begin = current.and(thumbBitRemovalMask);
+    const blockId = begin.toString();
+    const thumbBit = current.and(1);
+    let block = {
+      begin
+    };
+    let lastInsn = null;
+    let reachedEndOfBlock = false;
+    let ifThenBlockRemaining = 0;
+    do {
+      if (current.equals(nextFuncImpl)) {
+        reachedEndOfBlock = true;
+        break;
+      }
+      const insn = Instruction.parse(current);
+      const { mnemonic } = insn;
+      lastInsn = insn;
+      const currentAddress = current.and(thumbBitRemovalMask);
+      const insnId = currentAddress.toString();
+      const existingBlock = blocks[insnId];
+      if (existingBlock !== void 0) {
+        delete blocks[existingBlock.begin.toString()];
+        blocks[blockId] = existingBlock;
+        existingBlock.begin = block.begin;
+        block = null;
+        break;
+      }
+      const isOutsideIfThenBlock = ifThenBlockRemaining === 0;
+      let branchTarget = null;
+      switch (mnemonic) {
+        case "b":
+          branchTarget = ptr(insn.operands[0].value);
+          reachedEndOfBlock = isOutsideIfThenBlock;
+          break;
+        case "beq.w":
+        case "beq":
+        case "bne":
+        case "bne.w":
+        case "bgt":
+          branchTarget = ptr(insn.operands[0].value);
+          break;
+        case "cbz":
+        case "cbnz":
+          branchTarget = ptr(insn.operands[1].value);
+          break;
+        case "pop.w":
+          if (isOutsideIfThenBlock) {
+            reachedEndOfBlock = insn.operands.filter((op) => op.value === "pc").length === 1;
+          }
+          break;
+      }
+      switch (mnemonic) {
+        case "it":
+          ifThenBlockRemaining = 1;
+          break;
+        case "itt":
+          ifThenBlockRemaining = 2;
+          break;
+        case "ittt":
+          ifThenBlockRemaining = 3;
+          break;
+        case "itttt":
+          ifThenBlockRemaining = 4;
+          break;
+        default:
+          if (ifThenBlockRemaining > 0) {
+            ifThenBlockRemaining--;
+          }
+          break;
+      }
+      if (branchTarget !== null) {
+        branchTargets.add(branchTarget.toString());
+        pending.push(branchTarget.or(thumbBit));
+        pending.sort((a, b) => a.compare(b));
+      }
+      current = insn.next;
+    } while (!reachedEndOfBlock);
+    if (block !== null) {
+      block.end = lastInsn.address.add(lastInsn.size);
+      blocks[blockId] = block;
+    }
+  }
+  const blocksOrdered = Object.keys(blocks).map((key) => blocks[key]);
+  blocksOrdered.sort((a, b) => a.begin.compare(b.begin));
+  const entryBlock = blocks[exceptionClearImpl.and(thumbBitRemovalMask).toString()];
+  blocksOrdered.splice(blocksOrdered.indexOf(entryBlock), 1);
+  blocksOrdered.unshift(entryBlock);
+  const writer = new ThumbWriter(buffer, { pc });
+  let foundCore = false;
+  let threadReg = null;
+  let realImplReg = null;
+  blocksOrdered.forEach((block) => {
+    const relocator = new ThumbRelocator(block.begin, writer);
+    let address = block.begin;
+    const end = block.end;
+    let size = 0;
+    do {
+      const offset = relocator.readOne();
+      if (offset === 0) {
+        throw new Error("Unexpected end of block");
+      }
+      const insn = relocator.input;
+      address = insn.address;
+      size = insn.size;
+      const { mnemonic } = insn;
+      const insnAddressId = address.toString();
+      if (branchTargets.has(insnAddressId)) {
+        writer.putLabel(insnAddressId);
+      }
+      let keep = true;
+      switch (mnemonic) {
+        case "b":
+          writer.putBLabel(branchLabelFromOperand(insn.operands[0]));
+          keep = false;
+          break;
+        case "beq.w":
+          writer.putBCondLabelWide("eq", branchLabelFromOperand(insn.operands[0]));
+          keep = false;
+          break;
+        case "bne.w":
+          writer.putBCondLabelWide("ne", branchLabelFromOperand(insn.operands[0]));
+          keep = false;
+          break;
+        case "beq":
+        case "bne":
+        case "bgt":
+          writer.putBCondLabelWide(mnemonic.substr(1), branchLabelFromOperand(insn.operands[0]));
+          keep = false;
+          break;
+        case "cbz": {
+          const ops = insn.operands;
+          writer.putCbzRegLabel(ops[0].value, branchLabelFromOperand(ops[1]));
+          keep = false;
+          break;
+        }
+        case "cbnz": {
+          const ops = insn.operands;
+          writer.putCbnzRegLabel(ops[0].value, branchLabelFromOperand(ops[1]));
+          keep = false;
+          break;
+        }
+        /*
+         * JNI::ExceptionClear(), when checked JNI is off.
+         */
+        case "str":
+        case "str.w": {
+          const dstValue = insn.operands[1].value;
+          const dstOffset = dstValue.disp;
+          if (dstOffset === exceptionOffset) {
+            threadReg = dstValue.base;
+            const nzcvqReg = threadReg !== "r4" ? "r4" : "r5";
+            const clobberedRegs = ["r0", "r1", "r2", "r3", nzcvqReg, "r9", "r12", "lr"];
+            writer.putPushRegs(clobberedRegs);
+            writer.putMrsRegReg(nzcvqReg, "apsr-nzcvq");
+            writer.putCallAddressWithArguments(callback, [threadReg]);
+            writer.putMsrRegReg("apsr-nzcvq", nzcvqReg);
+            writer.putPopRegs(clobberedRegs);
+            foundCore = true;
+            keep = false;
+          } else if (neuteredOffsets.has(dstOffset) && dstValue.base === threadReg) {
+            keep = false;
+          }
+          break;
+        }
+        /*
+         * CheckJNI::ExceptionClear, when checked JNI is on. Wrapper that calls JNI::ExceptionClear().
+         */
+        case "ldr": {
+          const [dstOp, srcOp] = insn.operands;
+          if (srcOp.type === "mem") {
+            const src = srcOp.value;
+            if (src.base[0] === "r" && src.disp === ENV_VTABLE_OFFSET_EXCEPTION_CLEAR) {
+              realImplReg = dstOp.value;
+            }
+          }
+          break;
+        }
+        case "blx":
+          if (insn.operands[0].value === realImplReg) {
+            writer.putLdrRegRegOffset("r0", "r0", 4);
+            writer.putCallAddressWithArguments(callback, ["r0"]);
+            foundCore = true;
+            realImplReg = null;
+            keep = false;
+          }
+          break;
+      }
+      if (keep) {
+        relocator.writeAll();
+      } else {
+        relocator.skipOne();
+      }
+    } while (!address.add(size).equals(end));
+    relocator.dispose();
+  });
+  writer.dispose();
+  if (!foundCore) {
+    throwThreadStateTransitionParseError();
+  }
+  return new NativeFunction(pc.or(1), "void", ["pointer"], nativeFunctionOptions3);
+}
+function recompileExceptionClearForArm64(buffer, pc, exceptionClearImpl, nextFuncImpl, exceptionOffset, neuteredOffsets, callback) {
+  const blocks = {};
+  const branchTargets = /* @__PURE__ */ new Set();
+  const pending = [exceptionClearImpl];
+  while (pending.length > 0) {
+    let current = pending.shift();
+    const alreadyCovered = Object.values(blocks).some(({ begin, end }) => current.compare(begin) >= 0 && current.compare(end) < 0);
+    if (alreadyCovered) {
+      continue;
+    }
+    const blockAddressKey = current.toString();
+    let block = {
+      begin: current
+    };
+    let lastInsn = null;
+    let reachedEndOfBlock = false;
+    do {
+      if (current.equals(nextFuncImpl)) {
+        reachedEndOfBlock = true;
+        break;
+      }
+      let insn;
+      try {
+        insn = Instruction.parse(current);
+      } catch (e) {
+        if (current.readU32() === 0) {
+          reachedEndOfBlock = true;
+          break;
+        } else {
+          throw e;
+        }
+      }
+      lastInsn = insn;
+      const existingBlock = blocks[insn.address.toString()];
+      if (existingBlock !== void 0) {
+        delete blocks[existingBlock.begin.toString()];
+        blocks[blockAddressKey] = existingBlock;
+        existingBlock.begin = block.begin;
+        block = null;
+        break;
+      }
+      let branchTarget = null;
+      switch (insn.mnemonic) {
+        case "b":
+          branchTarget = ptr(insn.operands[0].value);
+          reachedEndOfBlock = true;
+          break;
+        case "b.eq":
+        case "b.ne":
+        case "b.le":
+        case "b.gt":
+          branchTarget = ptr(insn.operands[0].value);
+          break;
+        case "cbz":
+        case "cbnz":
+          branchTarget = ptr(insn.operands[1].value);
+          break;
+        case "tbz":
+        case "tbnz":
+          branchTarget = ptr(insn.operands[2].value);
+          break;
+        case "ret":
+          reachedEndOfBlock = true;
+          break;
+      }
+      if (branchTarget !== null) {
+        branchTargets.add(branchTarget.toString());
+        pending.push(branchTarget);
+        pending.sort((a, b) => a.compare(b));
+      }
+      current = insn.next;
+    } while (!reachedEndOfBlock);
+    if (block !== null) {
+      block.end = lastInsn.address.add(lastInsn.size);
+      blocks[blockAddressKey] = block;
+    }
+  }
+  const blocksOrdered = Object.keys(blocks).map((key) => blocks[key]);
+  blocksOrdered.sort((a, b) => a.begin.compare(b.begin));
+  const entryBlock = blocks[exceptionClearImpl.toString()];
+  blocksOrdered.splice(blocksOrdered.indexOf(entryBlock), 1);
+  blocksOrdered.unshift(entryBlock);
+  const writer = new Arm64Writer(buffer, { pc });
+  writer.putBLabel("performTransition");
+  const invokeCallback = pc.add(writer.offset);
+  writer.putPushAllXRegisters();
+  writer.putCallAddressWithArguments(callback, ["x0"]);
+  writer.putPopAllXRegisters();
+  writer.putRet();
+  writer.putLabel("performTransition");
+  let foundCore = false;
+  let threadReg = null;
+  let realImplReg = null;
+  blocksOrdered.forEach((block) => {
+    const size = block.end.sub(block.begin).toInt32();
+    const relocator = new Arm64Relocator(block.begin, writer);
+    let offset;
+    while ((offset = relocator.readOne()) !== 0) {
+      const insn = relocator.input;
+      const { mnemonic } = insn;
+      const insnAddressId = insn.address.toString();
+      if (branchTargets.has(insnAddressId)) {
+        writer.putLabel(insnAddressId);
+      }
+      let keep = true;
+      switch (mnemonic) {
+        case "b":
+          writer.putBLabel(branchLabelFromOperand(insn.operands[0]));
+          keep = false;
+          break;
+        case "b.eq":
+        case "b.ne":
+        case "b.le":
+        case "b.gt":
+          writer.putBCondLabel(mnemonic.substr(2), branchLabelFromOperand(insn.operands[0]));
+          keep = false;
+          break;
+        case "cbz": {
+          const ops = insn.operands;
+          writer.putCbzRegLabel(ops[0].value, branchLabelFromOperand(ops[1]));
+          keep = false;
+          break;
+        }
+        case "cbnz": {
+          const ops = insn.operands;
+          writer.putCbnzRegLabel(ops[0].value, branchLabelFromOperand(ops[1]));
+          keep = false;
+          break;
+        }
+        case "tbz": {
+          const ops = insn.operands;
+          writer.putTbzRegImmLabel(ops[0].value, ops[1].value.valueOf(), branchLabelFromOperand(ops[2]));
+          keep = false;
+          break;
+        }
+        case "tbnz": {
+          const ops = insn.operands;
+          writer.putTbnzRegImmLabel(ops[0].value, ops[1].value.valueOf(), branchLabelFromOperand(ops[2]));
+          keep = false;
+          break;
+        }
+        /*
+         * JNI::ExceptionClear(), when checked JNI is off.
+         */
+        case "str": {
+          const ops = insn.operands;
+          const srcReg = ops[0].value;
+          const dstValue = ops[1].value;
+          const dstOffset = dstValue.disp;
+          if (srcReg === "xzr" && dstOffset === exceptionOffset) {
+            threadReg = dstValue.base;
+            writer.putPushRegReg("x0", "lr");
+            writer.putMovRegReg("x0", threadReg);
+            writer.putBlImm(invokeCallback);
+            writer.putPopRegReg("x0", "lr");
+            foundCore = true;
+            keep = false;
+          } else if (neuteredOffsets.has(dstOffset) && dstValue.base === threadReg) {
+            keep = false;
+          }
+          break;
+        }
+        /*
+         * CheckJNI::ExceptionClear, when checked JNI is on. Wrapper that calls JNI::ExceptionClear().
+         */
+        case "ldr": {
+          const ops = insn.operands;
+          const src = ops[1].value;
+          if (src.base[0] === "x" && src.disp === ENV_VTABLE_OFFSET_EXCEPTION_CLEAR) {
+            realImplReg = ops[0].value;
+          }
+          break;
+        }
+        case "blr":
+          if (insn.operands[0].value === realImplReg) {
+            writer.putLdrRegRegOffset("x0", "x0", 8);
+            writer.putCallAddressWithArguments(callback, ["x0"]);
+            foundCore = true;
+            realImplReg = null;
+            keep = false;
+          }
+          break;
+      }
+      if (keep) {
+        relocator.writeAll();
+      } else {
+        relocator.skipOne();
+      }
+      if (offset === size) {
+        break;
+      }
+    }
+    relocator.dispose();
+  });
+  writer.dispose();
+  if (!foundCore) {
+    throwThreadStateTransitionParseError();
+  }
+  return new NativeFunction(pc, "void", ["pointer"], nativeFunctionOptions3);
+}
+function throwThreadStateTransitionParseError() {
+  throw new Error("Unable to parse ART internals; please file a bug");
+}
+function fixupArtQuickDeliverExceptionBug(api2) {
+  const prettyMethod = api2["art::ArtMethod::PrettyMethod"];
+  if (prettyMethod === void 0) {
+    return;
+  }
+  Interceptor.attach(prettyMethod.impl, artController.hooks.ArtMethod.prettyMethod);
+  Interceptor.flush();
+}
+function branchLabelFromOperand(op) {
+  return ptr(op.value).toString();
+}
+function makeCxxMethodWrapperReturningPointerByValueGeneric(address, argTypes) {
+  return new NativeFunction(address, "pointer", argTypes, nativeFunctionOptions3);
+}
+function makeCxxMethodWrapperReturningPointerByValueInFirstArg(address, argTypes) {
+  const impl = new NativeFunction(address, "void", ["pointer"].concat(argTypes), nativeFunctionOptions3);
+  return function() {
+    const resultPtr = Memory.alloc(pointerSize5);
+    impl(resultPtr, ...arguments);
+    return resultPtr.readPointer();
+  };
+}
+function makeCxxMethodWrapperReturningStdStringByValue(impl, argTypes) {
+  const { arch } = Process;
+  switch (arch) {
+    case "ia32":
+    case "arm64": {
+      let thunk;
+      if (arch === "ia32") {
+        thunk = makeThunk(64, (writer) => {
+          const argCount = 1 + argTypes.length;
+          const argvSize = argCount * 4;
+          writer.putSubRegImm("esp", argvSize);
+          for (let i = 0; i !== argCount; i++) {
+            const offset = i * 4;
+            writer.putMovRegRegOffsetPtr("eax", "esp", argvSize + 4 + offset);
+            writer.putMovRegOffsetPtrReg("esp", offset, "eax");
+          }
+          writer.putCallAddress(impl);
+          writer.putAddRegImm("esp", argvSize - 4);
+          writer.putRet();
+        });
+      } else {
+        thunk = makeThunk(32, (writer) => {
+          writer.putMovRegReg("x8", "x0");
+          argTypes.forEach((t, i) => {
+            writer.putMovRegReg("x" + i, "x" + (i + 1));
+          });
+          writer.putLdrRegAddress("x7", impl);
+          writer.putBrReg("x7");
+        });
+      }
+      const invokeThunk = new NativeFunction(thunk, "void", ["pointer"].concat(argTypes), nativeFunctionOptions3);
+      const wrapper = function(...args) {
+        invokeThunk(...args);
+      };
+      wrapper.handle = thunk;
+      wrapper.impl = impl;
+      return wrapper;
+    }
+    default: {
+      const result = new NativeFunction(impl, "void", ["pointer"].concat(argTypes), nativeFunctionOptions3);
+      result.impl = impl;
+      return result;
+    }
+  }
+}
+var StdString = class {
+  constructor() {
+    this.handle = Memory.alloc(STD_STRING_SIZE);
+  }
+  dispose() {
+    const [data, isTiny] = this._getData();
+    if (!isTiny) {
+      getApi().$delete(data);
+    }
+  }
+  disposeToString() {
+    const result = this.toString();
+    this.dispose();
+    return result;
+  }
+  toString() {
+    const [data] = this._getData();
+    return data.readUtf8String();
+  }
+  _getData() {
+    const str = this.handle;
+    const isTiny = (str.readU8() & 1) === 0;
+    const data = isTiny ? str.add(1) : str.add(2 * pointerSize5).readPointer();
+    return [data, isTiny];
+  }
+};
+var StdVector = class {
+  $delete() {
+    this.dispose();
+    getApi().$delete(this);
+  }
+  constructor(storage, elementSize) {
+    this.handle = storage;
+    this._begin = storage;
+    this._end = storage.add(pointerSize5);
+    this._storage = storage.add(2 * pointerSize5);
+    this._elementSize = elementSize;
+  }
+  init() {
+    this.begin = NULL;
+    this.end = NULL;
+    this.storage = NULL;
+  }
+  dispose() {
+    getApi().$delete(this.begin);
+  }
+  get begin() {
+    return this._begin.readPointer();
+  }
+  set begin(value) {
+    this._begin.writePointer(value);
+  }
+  get end() {
+    return this._end.readPointer();
+  }
+  set end(value) {
+    this._end.writePointer(value);
+  }
+  get storage() {
+    return this._storage.readPointer();
+  }
+  set storage(value) {
+    this._storage.writePointer(value);
+  }
+  get size() {
+    return this.end.sub(this.begin).toInt32() / this._elementSize;
+  }
+};
+var HandleVector = class _HandleVector extends StdVector {
+  static $new() {
+    const vector = new _HandleVector(getApi().$new(STD_VECTOR_SIZE));
+    vector.init();
+    return vector;
+  }
+  constructor(storage) {
+    super(storage, pointerSize5);
+  }
+  get handles() {
+    const result = [];
+    let cur = this.begin;
+    const end = this.end;
+    while (!cur.equals(end)) {
+      result.push(cur.readPointer());
+      cur = cur.add(pointerSize5);
+    }
+    return result;
+  }
+};
+var BHS_OFFSET_LINK = 0;
+var BHS_OFFSET_NUM_REFS = pointerSize5;
+var BHS_SIZE = BHS_OFFSET_NUM_REFS + 4;
+var kNumReferencesVariableSized = -1;
+var BaseHandleScope = class _BaseHandleScope {
+  $delete() {
+    this.dispose();
+    getApi().$delete(this);
+  }
+  constructor(storage) {
+    this.handle = storage;
+    this._link = storage.add(BHS_OFFSET_LINK);
+    this._numberOfReferences = storage.add(BHS_OFFSET_NUM_REFS);
+  }
+  init(link, numberOfReferences) {
+    this.link = link;
+    this.numberOfReferences = numberOfReferences;
+  }
+  dispose() {
+  }
+  get link() {
+    return new _BaseHandleScope(this._link.readPointer());
+  }
+  set link(value) {
+    this._link.writePointer(value);
+  }
+  get numberOfReferences() {
+    return this._numberOfReferences.readS32();
+  }
+  set numberOfReferences(value) {
+    this._numberOfReferences.writeS32(value);
+  }
+};
+var VSHS_OFFSET_SELF = alignPointerOffset(BHS_SIZE);
+var VSHS_OFFSET_CURRENT_SCOPE = VSHS_OFFSET_SELF + pointerSize5;
+var VSHS_SIZE = VSHS_OFFSET_CURRENT_SCOPE + pointerSize5;
+var VariableSizedHandleScope = class _VariableSizedHandleScope extends BaseHandleScope {
+  static $new(thread, vm3) {
+    const scope = new _VariableSizedHandleScope(getApi().$new(VSHS_SIZE));
+    scope.init(thread, vm3);
+    return scope;
+  }
+  constructor(storage) {
+    super(storage);
+    this._self = storage.add(VSHS_OFFSET_SELF);
+    this._currentScope = storage.add(VSHS_OFFSET_CURRENT_SCOPE);
+    const kLocalScopeSize = 64;
+    const kSizeOfReferencesPerScope = kLocalScopeSize - pointerSize5 - 4 - 4;
+    const kNumReferencesPerScope = kSizeOfReferencesPerScope / 4;
+    this._scopeLayout = FixedSizeHandleScope.layoutForCapacity(kNumReferencesPerScope);
+    this._topHandleScopePtr = null;
+  }
+  init(thread, vm3) {
+    const topHandleScopePtr = thread.add(getArtThreadSpec(vm3).offset.topHandleScope);
+    this._topHandleScopePtr = topHandleScopePtr;
+    super.init(topHandleScopePtr.readPointer(), kNumReferencesVariableSized);
+    this.self = thread;
+    this.currentScope = FixedSizeHandleScope.$new(this._scopeLayout);
+    topHandleScopePtr.writePointer(this);
+  }
+  dispose() {
+    this._topHandleScopePtr.writePointer(this.link);
+    let scope;
+    while ((scope = this.currentScope) !== null) {
+      const next = scope.link;
+      scope.$delete();
+      this.currentScope = next;
+    }
+  }
+  get self() {
+    return this._self.readPointer();
+  }
+  set self(value) {
+    this._self.writePointer(value);
+  }
+  get currentScope() {
+    const storage = this._currentScope.readPointer();
+    if (storage.isNull()) {
+      return null;
+    }
+    return new FixedSizeHandleScope(storage, this._scopeLayout);
+  }
+  set currentScope(value) {
+    this._currentScope.writePointer(value);
+  }
+  newHandle(object) {
+    return this.currentScope.newHandle(object);
+  }
+};
+var FixedSizeHandleScope = class _FixedSizeHandleScope extends BaseHandleScope {
+  static $new(layout) {
+    const scope = new _FixedSizeHandleScope(getApi().$new(layout.size), layout);
+    scope.init();
+    return scope;
+  }
+  constructor(storage, layout) {
+    super(storage);
+    const { offset } = layout;
+    this._refsStorage = storage.add(offset.refsStorage);
+    this._pos = storage.add(offset.pos);
+    this._layout = layout;
+  }
+  init() {
+    super.init(NULL, this._layout.numberOfReferences);
+    this.pos = 0;
+  }
+  get pos() {
+    return this._pos.readU32();
+  }
+  set pos(value) {
+    this._pos.writeU32(value);
+  }
+  newHandle(object) {
+    const pos = this.pos;
+    const handle = this._refsStorage.add(pos * 4);
+    handle.writeS32(object.toInt32());
+    this.pos = pos + 1;
+    return handle;
+  }
+  static layoutForCapacity(numRefs) {
+    const refsStorage = BHS_SIZE;
+    const pos = refsStorage + numRefs * 4;
+    return {
+      size: pos + 4,
+      numberOfReferences: numRefs,
+      offset: {
+        refsStorage,
+        pos
+      }
+    };
+  }
+};
+var objectVisitorPredicateFactories = {
+  arm: function(needle, onMatch) {
+    const size = Process.pageSize;
+    const predicate = Memory.alloc(size);
+    Memory.protect(predicate, size, "rwx");
+    const onMatchCallback = new NativeCallback(onMatch, "void", ["pointer"]);
+    predicate._onMatchCallback = onMatchCallback;
+    const instructions = [
+      26625,
+      // ldr r1, [r0]
+      18947,
+      // ldr r2, =needle
+      17041,
+      // cmp r1, r2
+      53505,
+      // bne mismatch
+      19202,
+      // ldr r3, =onMatch
+      18200,
+      // bx r3
+      18288,
+      // bx lr
+      48896
+      // nop
+    ];
+    const needleOffset = instructions.length * 2;
+    const onMatchOffset = needleOffset + 4;
+    const codeSize = onMatchOffset + 4;
+    Memory.patchCode(predicate, codeSize, function(address) {
+      instructions.forEach((instruction, index) => {
+        address.add(index * 2).writeU16(instruction);
+      });
+      address.add(needleOffset).writeS32(needle);
+      address.add(onMatchOffset).writePointer(onMatchCallback);
+    });
+    return predicate.or(1);
+  },
+  arm64: function(needle, onMatch) {
+    const size = Process.pageSize;
+    const predicate = Memory.alloc(size);
+    Memory.protect(predicate, size, "rwx");
+    const onMatchCallback = new NativeCallback(onMatch, "void", ["pointer"]);
+    predicate._onMatchCallback = onMatchCallback;
+    const instructions = [
+      3107979265,
+      // ldr w1, [x0]
+      402653378,
+      // ldr w2, =needle
+      1795293247,
+      // cmp w1, w2
+      1409286241,
+      // b.ne mismatch
+      1476395139,
+      // ldr x3, =onMatch
+      3592355936,
+      // br x3
+      3596551104
+      // ret
+    ];
+    const needleOffset = instructions.length * 4;
+    const onMatchOffset = needleOffset + 4;
+    const codeSize = onMatchOffset + 8;
+    Memory.patchCode(predicate, codeSize, function(address) {
+      instructions.forEach((instruction, index) => {
+        address.add(index * 4).writeU32(instruction);
+      });
+      address.add(needleOffset).writeS32(needle);
+      address.add(onMatchOffset).writePointer(onMatchCallback);
+    });
+    return predicate;
+  }
+};
+function makeObjectVisitorPredicate(needle, onMatch) {
+  const factory = objectVisitorPredicateFactories[Process.arch] || makeGenericObjectVisitorPredicate;
+  return factory(needle, onMatch);
+}
+function makeGenericObjectVisitorPredicate(needle, onMatch) {
+  return new NativeCallback((object) => {
+    const klass = object.readS32();
+    if (klass === needle) {
+      onMatch(object);
+    }
+  }, "void", ["pointer", "pointer"]);
+}
+function alignPointerOffset(offset) {
+  const remainder = offset % pointerSize5;
+  if (remainder !== 0) {
+    return offset + pointerSize5 - remainder;
+  }
+  return offset;
+}
+
+// node_modules/frida-java-bridge/lib/jvm.js
+var jsizeSize2 = 4;
+var { pointerSize: pointerSize6 } = Process;
+var JVM_ACC_NATIVE = 256;
+var JVM_ACC_IS_OLD = 65536;
+var JVM_ACC_IS_OBSOLETE = 131072;
+var JVM_ACC_NOT_C2_COMPILABLE = 33554432;
+var JVM_ACC_NOT_C1_COMPILABLE = 67108864;
+var JVM_ACC_NOT_C2_OSR_COMPILABLE = 134217728;
+var nativeFunctionOptions4 = {
+  exceptions: "propagate"
+};
+var getJvmMethodSpec = memoize(_getJvmMethodSpec);
+var getJvmInstanceKlassSpec = memoize(_getJvmInstanceKlassSpec);
+var getJvmThreadSpec = memoize(_getJvmThreadSpec);
+var cachedApi2 = null;
+var manglersScheduled = false;
+var replaceManglers = /* @__PURE__ */ new Map();
+var revertManglers = /* @__PURE__ */ new Map();
+function getApi2() {
+  if (cachedApi2 === null) {
+    cachedApi2 = _getApi2();
+  }
+  return cachedApi2;
+}
+function _getApi2() {
+  const vmModules = Process.enumerateModules().filter((m) => /jvm.(dll|dylib|so)$/.test(m.name));
+  if (vmModules.length === 0) {
+    return null;
+  }
+  const vmModule = vmModules[0];
+  const temporaryApi = {
+    flavor: "jvm"
+  };
+  const pending = Process.platform === "windows" ? [{
+    module: vmModule,
+    functions: {
+      JNI_GetCreatedJavaVMs: ["JNI_GetCreatedJavaVMs", "int", ["pointer", "int", "pointer"]],
+      JVM_Sleep: ["JVM_Sleep", "void", ["pointer", "pointer", "long"]],
+      "VMThread::execute": ["VMThread::execute", "void", ["pointer"]],
+      "Method::size": ["Method::size", "int", ["int"]],
+      "Method::set_native_function": ["Method::set_native_function", "void", ["pointer", "pointer", "int"]],
+      "Method::clear_native_function": ["Method::clear_native_function", "void", ["pointer"]],
+      "Method::jmethod_id": ["Method::jmethod_id", "pointer", ["pointer"]],
+      "ClassLoaderDataGraph::classes_do": ["ClassLoaderDataGraph::classes_do", "void", ["pointer"]],
+      "NMethodSweeper::sweep_code_cache": ["NMethodSweeper::sweep_code_cache", "void", []],
+      "OopMapCache::flush_obsolete_entries": ["OopMapCache::flush_obsolete_entries", "void", ["pointer"]]
+    },
+    variables: {
+      "VM_RedefineClasses::`vftable'": function(address) {
+        this.vtableRedefineClasses = address;
+      },
+      "VM_RedefineClasses::doit": function(address) {
+        this.redefineClassesDoIt = address;
+      },
+      "VM_RedefineClasses::doit_prologue": function(address) {
+        this.redefineClassesDoItPrologue = address;
+      },
+      "VM_RedefineClasses::doit_epilogue": function(address) {
+        this.redefineClassesDoItEpilogue = address;
+      },
+      "VM_RedefineClasses::allow_nested_vm_operations": function(address) {
+        this.redefineClassesAllow = address;
+      },
+      "NMethodSweeper::_traversals": function(address) {
+        this.traversals = address;
+      },
+      "NMethodSweeper::_should_sweep": function(address) {
+        this.shouldSweep = address;
+      }
+    },
+    optionals: []
+  }] : [{
+    module: vmModule,
+    functions: {
+      JNI_GetCreatedJavaVMs: ["JNI_GetCreatedJavaVMs", "int", ["pointer", "int", "pointer"]],
+      _ZN6Method4sizeEb: ["Method::size", "int", ["int"]],
+      _ZN6Method19set_native_functionEPhb: ["Method::set_native_function", "void", ["pointer", "pointer", "int"]],
+      _ZN6Method21clear_native_functionEv: ["Method::clear_native_function", "void", ["pointer"]],
+      // JDK >= 17
+      _ZN6Method24restore_unshareable_infoEP10JavaThread: ["Method::restore_unshareable_info", "void", ["pointer", "pointer"]],
+      // JDK < 17
+      _ZN6Method24restore_unshareable_infoEP6Thread: ["Method::restore_unshareable_info", "void", ["pointer", "pointer"]],
+      _ZN6Method11link_methodERK12methodHandleP10JavaThread: ["Method::link_method", "void", ["pointer", "pointer", "pointer"]],
+      _ZN6Method10jmethod_idEv: ["Method::jmethod_id", "pointer", ["pointer"]],
+      _ZN6Method10clear_codeEv: function(address) {
+        const clearCode = new NativeFunction(address, "void", ["pointer"], nativeFunctionOptions4);
+        this["Method::clear_code"] = function(thisPtr) {
+          clearCode(thisPtr);
+        };
+      },
+      _ZN6Method10clear_codeEb: function(address) {
+        const clearCode = new NativeFunction(address, "void", ["pointer", "int"], nativeFunctionOptions4);
+        const lock = 0;
+        this["Method::clear_code"] = function(thisPtr) {
+          clearCode(thisPtr, lock);
+        };
+      },
+      // JDK >= 13
+      _ZN18VM_RedefineClasses19mark_dependent_codeEP13InstanceKlass: ["VM_RedefineClasses::mark_dependent_code", "void", ["pointer", "pointer"]],
+      _ZN18VM_RedefineClasses20flush_dependent_codeEv: ["VM_RedefineClasses::flush_dependent_code", "void", []],
+      // JDK < 13
+      _ZN18VM_RedefineClasses20flush_dependent_codeEP13InstanceKlassP6Thread: ["VM_RedefineClasses::flush_dependent_code", "void", ["pointer", "pointer", "pointer"]],
+      // JDK < 10
+      _ZN18VM_RedefineClasses20flush_dependent_codeE19instanceKlassHandleP6Thread: ["VM_RedefineClasses::flush_dependent_code", "void", ["pointer", "pointer", "pointer"]],
+      _ZN19ResolvedMethodTable21adjust_method_entriesEPb: ["ResolvedMethodTable::adjust_method_entries", "void", ["pointer"]],
+      // JDK < 10
+      _ZN15MemberNameTable21adjust_method_entriesEP13InstanceKlassPb: ["MemberNameTable::adjust_method_entries", "void", ["pointer", "pointer", "pointer"]],
+      _ZN17ConstantPoolCache21adjust_method_entriesEPb: function(address) {
+        const adjustMethod = new NativeFunction(address, "void", ["pointer", "pointer"], nativeFunctionOptions4);
+        this["ConstantPoolCache::adjust_method_entries"] = function(thisPtr, holderPtr, tracePtr) {
+          adjustMethod(thisPtr, tracePtr);
+        };
+      },
+      // JDK < 13
+      _ZN17ConstantPoolCache21adjust_method_entriesEP13InstanceKlassPb: function(address) {
+        const adjustMethod = new NativeFunction(address, "void", ["pointer", "pointer", "pointer"], nativeFunctionOptions4);
+        this["ConstantPoolCache::adjust_method_entries"] = function(thisPtr, holderPtr, tracePtr) {
+          adjustMethod(thisPtr, holderPtr, tracePtr);
+        };
+      },
+      _ZN20ClassLoaderDataGraph10classes_doEP12KlassClosure: ["ClassLoaderDataGraph::classes_do", "void", ["pointer"]],
+      _ZN20ClassLoaderDataGraph22clean_deallocate_listsEb: ["ClassLoaderDataGraph::clean_deallocate_lists", "void", ["int"]],
+      _ZN10JavaThread27thread_from_jni_environmentEP7JNIEnv_: ["JavaThread::thread_from_jni_environment", "pointer", ["pointer"]],
+      _ZN8VMThread7executeEP12VM_Operation: ["VMThread::execute", "void", ["pointer"]],
+      _ZN11OopMapCache22flush_obsolete_entriesEv: ["OopMapCache::flush_obsolete_entries", "void", ["pointer"]],
+      _ZN14NMethodSweeper11force_sweepEv: ["NMethodSweeper::force_sweep", "void", []],
+      _ZN14NMethodSweeper16sweep_code_cacheEv: ["NMethodSweeper::sweep_code_cache", "void", []],
+      _ZN14NMethodSweeper17sweep_in_progressEv: ["NMethodSweeper::sweep_in_progress", "bool", []],
+      JVM_Sleep: ["JVM_Sleep", "void", ["pointer", "pointer", "long"]]
+    },
+    variables: {
+      // JDK <= 9
+      _ZN18VM_RedefineClasses14_the_class_oopE: function(address) {
+        this.redefineClass = address;
+      },
+      // 9 < JDK < 13
+      _ZN18VM_RedefineClasses10_the_classE: function(address) {
+        this.redefineClass = address;
+      },
+      // JDK < 13
+      _ZN18VM_RedefineClasses25AdjustCpoolCacheAndVtable8do_klassEP5Klass: function(address) {
+        this.doKlass = address;
+      },
+      // JDK >= 13
+      _ZN18VM_RedefineClasses22AdjustAndCleanMetadata8do_klassEP5Klass: function(address) {
+        this.doKlass = address;
+      },
+      _ZTV18VM_RedefineClasses: function(address) {
+        this.vtableRedefineClasses = address;
+      },
+      _ZN18VM_RedefineClasses4doitEv: function(address) {
+        this.redefineClassesDoIt = address;
+      },
+      _ZN18VM_RedefineClasses13doit_prologueEv: function(address) {
+        this.redefineClassesDoItPrologue = address;
+      },
+      _ZN18VM_RedefineClasses13doit_epilogueEv: function(address) {
+        this.redefineClassesDoItEpilogue = address;
+      },
+      _ZN18VM_RedefineClassesD0Ev: function(address) {
+        this.redefineClassesDispose0 = address;
+      },
+      _ZN18VM_RedefineClassesD1Ev: function(address) {
+        this.redefineClassesDispose1 = address;
+      },
+      _ZNK18VM_RedefineClasses26allow_nested_vm_operationsEv: function(address) {
+        this.redefineClassesAllow = address;
+      },
+      _ZNK18VM_RedefineClasses14print_on_errorEP12outputStream: function(address) {
+        this.redefineClassesOnError = address;
+      },
+      // JDK >= 17
+      _ZN13InstanceKlass33create_new_default_vtable_indicesEiP10JavaThread: function(address) {
+        this.createNewDefaultVtableIndices = address;
+      },
+      // JDK < 17
+      _ZN13InstanceKlass33create_new_default_vtable_indicesEiP6Thread: function(address) {
+        this.createNewDefaultVtableIndices = address;
+      },
+      _ZN19Abstract_VM_Version19jre_release_versionEv: function(address) {
+        const getVersion = new NativeFunction(address, "pointer", [], nativeFunctionOptions4);
+        const versionS = getVersion().readCString();
+        this.version = versionS.startsWith("1.8") ? 8 : versionS.startsWith("9.") ? 9 : parseInt(versionS.slice(0, 2), 10);
+        this.versionS = versionS;
+      },
+      _ZN14NMethodSweeper11_traversalsE: function(address) {
+        this.traversals = address;
+      },
+      _ZN14NMethodSweeper21_sweep_fractions_leftE: function(address) {
+        this.fractions = address;
+      },
+      _ZN14NMethodSweeper13_should_sweepE: function(address) {
+        this.shouldSweep = address;
+      }
+    },
+    optionals: [
+      "_ZN6Method24restore_unshareable_infoEP10JavaThread",
+      "_ZN6Method24restore_unshareable_infoEP6Thread",
+      "_ZN6Method11link_methodERK12methodHandleP10JavaThread",
+      "_ZN6Method10clear_codeEv",
+      "_ZN6Method10clear_codeEb",
+      "_ZN18VM_RedefineClasses19mark_dependent_codeEP13InstanceKlass",
+      "_ZN18VM_RedefineClasses20flush_dependent_codeEv",
+      "_ZN18VM_RedefineClasses20flush_dependent_codeEP13InstanceKlassP6Thread",
+      "_ZN18VM_RedefineClasses20flush_dependent_codeE19instanceKlassHandleP6Thread",
+      "_ZN19ResolvedMethodTable21adjust_method_entriesEPb",
+      "_ZN15MemberNameTable21adjust_method_entriesEP13InstanceKlassPb",
+      "_ZN17ConstantPoolCache21adjust_method_entriesEPb",
+      "_ZN17ConstantPoolCache21adjust_method_entriesEP13InstanceKlassPb",
+      "_ZN20ClassLoaderDataGraph22clean_deallocate_listsEb",
+      "_ZN10JavaThread27thread_from_jni_environmentEP7JNIEnv_",
+      "_ZN14NMethodSweeper11force_sweepEv",
+      "_ZN14NMethodSweeper17sweep_in_progressEv",
+      "_ZN18VM_RedefineClasses14_the_class_oopE",
+      "_ZN18VM_RedefineClasses10_the_classE",
+      "_ZN18VM_RedefineClasses25AdjustCpoolCacheAndVtable8do_klassEP5Klass",
+      "_ZN18VM_RedefineClasses22AdjustAndCleanMetadata8do_klassEP5Klass",
+      "_ZN18VM_RedefineClassesD0Ev",
+      "_ZN18VM_RedefineClassesD1Ev",
+      "_ZNK18VM_RedefineClasses14print_on_errorEP12outputStream",
+      "_ZN13InstanceKlass33create_new_default_vtable_indicesEiP10JavaThread",
+      "_ZN13InstanceKlass33create_new_default_vtable_indicesEiP6Thread",
+      "_ZN14NMethodSweeper21_sweep_fractions_leftE"
+    ]
+  }];
+  const missing = [];
+  pending.forEach(function(api2) {
+    const module = api2.module;
+    const functions = api2.functions || {};
+    const variables = api2.variables || {};
+    const optionals = new Set(api2.optionals || []);
+    const tmp = module.enumerateExports().reduce(function(result, exp) {
+      result[exp.name] = exp;
+      return result;
+    }, {});
+    const exportByName = module.enumerateSymbols().reduce(function(result, exp) {
+      result[exp.name] = exp;
+      return result;
+    }, tmp);
+    Object.keys(functions).forEach(function(name) {
+      const exp = exportByName[name];
+      if (exp !== void 0) {
+        const signature = functions[name];
+        if (typeof signature === "function") {
+          signature.call(temporaryApi, exp.address);
+        } else {
+          temporaryApi[signature[0]] = new NativeFunction(exp.address, signature[1], signature[2], nativeFunctionOptions4);
+        }
+      } else {
+        if (!optionals.has(name)) {
+          missing.push(name);
+        }
+      }
+    });
+    Object.keys(variables).forEach(function(name) {
+      const exp = exportByName[name];
+      if (exp !== void 0) {
+        const handler = variables[name];
+        handler.call(temporaryApi, exp.address);
+      } else {
+        if (!optionals.has(name)) {
+          missing.push(name);
+        }
+      }
+    });
+  });
+  if (missing.length > 0) {
+    throw new Error("Java API only partially available; please file a bug. Missing: " + missing.join(", "));
+  }
+  const vms = Memory.alloc(pointerSize6);
+  const vmCount = Memory.alloc(jsizeSize2);
+  checkJniResult("JNI_GetCreatedJavaVMs", temporaryApi.JNI_GetCreatedJavaVMs(vms, 1, vmCount));
+  if (vmCount.readInt() === 0) {
+    return null;
+  }
+  temporaryApi.vm = vms.readPointer();
+  const allocatorFunctions = Process.platform === "windows" ? {
+    $new: ["??2@YAPEAX_K@Z", "pointer", ["ulong"]],
+    $delete: ["??3@YAXPEAX@Z", "void", ["pointer"]]
+  } : {
+    $new: ["_Znwm", "pointer", ["ulong"]],
+    $delete: ["_ZdlPv", "void", ["pointer"]]
+  };
+  for (const [name, [rawName, retType, argTypes]] of Object.entries(allocatorFunctions)) {
+    let address = Module.findGlobalExportByName(rawName);
+    if (address === null) {
+      address = DebugSymbol.fromName(rawName).address;
+      if (address.isNull()) {
+        throw new Error(`unable to find C++ allocator API, missing: '${rawName}'`);
+      }
+    }
+    temporaryApi[name] = new NativeFunction(address, retType, argTypes, nativeFunctionOptions4);
+  }
+  temporaryApi.jvmti = getEnvJvmti(temporaryApi);
+  if (temporaryApi["JavaThread::thread_from_jni_environment"] === void 0) {
+    temporaryApi["JavaThread::thread_from_jni_environment"] = makeThreadFromJniHelper(temporaryApi);
+  }
+  return temporaryApi;
+}
+function getEnvJvmti(api2) {
+  const vm3 = new VM(api2);
+  let env;
+  vm3.perform(() => {
+    const handle = vm3.tryGetEnvHandle(jvmtiVersion.v1_0);
+    if (handle === null) {
+      throw new Error("JVMTI not available");
+    }
+    env = new EnvJvmti(handle, vm3);
+    const capaBuf = Memory.alloc(8);
+    capaBuf.writeU64(jvmtiCapabilities.canTagObjects);
+    const result = env.addCapabilities(capaBuf);
+    checkJniResult("getEnvJvmti::AddCapabilities", result);
+  });
+  return env;
+}
+var threadOffsetParsers = {
+  x64: parseX64ThreadOffset
+};
+function makeThreadFromJniHelper(api2) {
+  let offset = null;
+  const tryParse = threadOffsetParsers[Process.arch];
+  if (tryParse !== void 0) {
+    const vm3 = new VM(api2);
+    const findClassImpl = vm3.perform((env) => env.handle.readPointer().add(6 * pointerSize6).readPointer());
+    offset = parseInstructionsAt(findClassImpl, tryParse, { limit: 11 });
+  }
+  if (offset === null) {
+    return () => {
+      throw new Error("Unable to make thread_from_jni_environment() helper for the current architecture");
+    };
+  }
+  return (env) => {
+    return env.add(offset);
+  };
+}
+function parseX64ThreadOffset(insn) {
+  if (insn.mnemonic !== "lea") {
+    return null;
+  }
+  const { base, disp } = insn.operands[1].value;
+  if (!(base === "rdi" && disp < 0)) {
+    return null;
+  }
+  return disp;
+}
+function ensureClassInitialized2(env, classRef) {
+}
+var JvmMethodMangler = class {
+  constructor(methodId) {
+    this.methodId = methodId;
+    this.method = methodId.readPointer();
+    this.originalMethod = null;
+    this.newMethod = null;
+    this.resolved = null;
+    this.impl = null;
+    this.key = methodId.toString(16);
+  }
+  replace(impl, isInstanceMethod, argTypes, vm3, api2) {
+    const { key } = this;
+    const mangler = revertManglers.get(key);
+    if (mangler !== void 0) {
+      revertManglers.delete(key);
+      this.method = mangler.method;
+      this.originalMethod = mangler.originalMethod;
+      this.newMethod = mangler.newMethod;
+      this.resolved = mangler.resolved;
+    }
+    this.impl = impl;
+    replaceManglers.set(key, this);
+    ensureManglersScheduled(vm3);
+  }
+  revert(vm3) {
+    const { key } = this;
+    replaceManglers.delete(key);
+    revertManglers.set(key, this);
+    ensureManglersScheduled(vm3);
+  }
+  resolveTarget(wrapper, isInstanceMethod, env, api2) {
+    const { resolved, originalMethod, methodId } = this;
+    if (resolved !== null) {
+      return resolved;
+    }
+    if (originalMethod === null) {
+      return methodId;
+    }
+    const vip = originalMethod.oldMethod.vtableIndexPtr;
+    vip.writeS32(-2);
+    const jmethodID = Memory.alloc(pointerSize6);
+    jmethodID.writePointer(this.method);
+    this.resolved = jmethodID;
+    return jmethodID;
+  }
+};
+function ensureManglersScheduled(vm3) {
+  if (!manglersScheduled) {
+    manglersScheduled = true;
+    Script.nextTick(doManglers, vm3);
+  }
+}
+function doManglers(vm3) {
+  const localReplaceManglers = new Map(replaceManglers);
+  const localRevertManglers = new Map(revertManglers);
+  replaceManglers.clear();
+  revertManglers.clear();
+  manglersScheduled = false;
+  vm3.perform((env) => {
+    const api2 = getApi2();
+    const thread = api2["JavaThread::thread_from_jni_environment"](env.handle);
+    let force = false;
+    withJvmThread(() => {
+      localReplaceManglers.forEach((mangler) => {
+        const { method, originalMethod, impl, methodId, newMethod } = mangler;
+        if (originalMethod === null) {
+          mangler.originalMethod = fetchJvmMethod(method);
+          mangler.newMethod = nativeJvmMethod(method, impl, thread);
+          installJvmMethod(mangler.newMethod, methodId, thread);
+        } else {
+          api2["Method::set_native_function"](newMethod.method, impl, 0);
+        }
+      });
+      localRevertManglers.forEach((mangler) => {
+        const { originalMethod, methodId, newMethod } = mangler;
+        if (originalMethod !== null) {
+          revertJvmMethod(originalMethod);
+          const revert = originalMethod.oldMethod;
+          revert.oldMethod = newMethod;
+          installJvmMethod(revert, methodId, thread);
+          force = true;
+        }
+      });
+    });
+    if (force) {
+      forceSweep(env.handle);
+    }
+  });
+}
+function forceSweep(env) {
+  const {
+    fractions,
+    shouldSweep,
+    traversals,
+    "NMethodSweeper::sweep_code_cache": sweep,
+    "NMethodSweeper::sweep_in_progress": inProgress,
+    "NMethodSweeper::force_sweep": force,
+    JVM_Sleep: sleep
+  } = getApi2();
+  if (force !== void 0) {
+    Thread.sleep(0.05);
+    force();
+    Thread.sleep(0.05);
+    force();
+  } else {
+    let trav = traversals.readS64();
+    const endTrav = trav + 2;
+    while (endTrav > trav) {
+      fractions.writeS32(1);
+      sleep(env, NULL, 50);
+      if (!inProgress()) {
+        withJvmThread(() => {
+          Thread.sleep(0.05);
+        });
+      }
+      const sweepNotAlreadyInProgress = shouldSweep.readU8() === 0;
+      if (sweepNotAlreadyInProgress) {
+        fractions.writeS32(1);
+        sweep();
+      }
+      trav = traversals.readS64();
+    }
+  }
+}
+function withJvmThread(fn, fnPrologue, fnEpilogue) {
+  const {
+    execute,
+    vtable: vtable2,
+    vtableSize,
+    doItOffset,
+    prologueOffset,
+    epilogueOffset
+  } = getJvmThreadSpec();
+  const vtableDup = Memory.dup(vtable2, vtableSize);
+  const vmOperation = Memory.alloc(pointerSize6 * 25);
+  vmOperation.writePointer(vtableDup);
+  const doIt = new NativeCallback(fn, "void", ["pointer"]);
+  vtableDup.add(doItOffset).writePointer(doIt);
+  let prologue = null;
+  if (fnPrologue !== void 0) {
+    prologue = new NativeCallback(fnPrologue, "int", ["pointer"]);
+    vtableDup.add(prologueOffset).writePointer(prologue);
+  }
+  let epilogue = null;
+  if (fnEpilogue !== void 0) {
+    epilogue = new NativeCallback(fnEpilogue, "void", ["pointer"]);
+    vtableDup.add(epilogueOffset).writePointer(epilogue);
+  }
+  execute(vmOperation);
+}
+function _getJvmThreadSpec() {
+  const {
+    vtableRedefineClasses,
+    redefineClassesDoIt,
+    redefineClassesDoItPrologue,
+    redefineClassesDoItEpilogue,
+    redefineClassesOnError,
+    redefineClassesAllow,
+    redefineClassesDispose0,
+    redefineClassesDispose1,
+    "VMThread::execute": execute
+  } = getApi2();
+  const vtablePtr = vtableRedefineClasses.add(2 * pointerSize6);
+  const vtableSize = 15 * pointerSize6;
+  const vtable2 = Memory.dup(vtablePtr, vtableSize);
+  const emptyCallback = new NativeCallback(() => {
+  }, "void", ["pointer"]);
+  let doItOffset, prologueOffset, epilogueOffset;
+  for (let offset = 0; offset !== vtableSize; offset += pointerSize6) {
+    const element = vtable2.add(offset);
+    const value = element.readPointer();
+    if (redefineClassesOnError !== void 0 && value.equals(redefineClassesOnError) || redefineClassesDispose0 !== void 0 && value.equals(redefineClassesDispose0) || redefineClassesDispose1 !== void 0 && value.equals(redefineClassesDispose1)) {
+      element.writePointer(emptyCallback);
+    } else if (value.equals(redefineClassesDoIt)) {
+      doItOffset = offset;
+    } else if (value.equals(redefineClassesDoItPrologue)) {
+      prologueOffset = offset;
+      element.writePointer(redefineClassesAllow);
+    } else if (value.equals(redefineClassesDoItEpilogue)) {
+      epilogueOffset = offset;
+      element.writePointer(emptyCallback);
+    }
+  }
+  return {
+    execute,
+    emptyCallback,
+    vtable: vtable2,
+    vtableSize,
+    doItOffset,
+    prologueOffset,
+    epilogueOffset
+  };
+}
+function makeMethodMangler2(methodId) {
+  return new JvmMethodMangler(methodId);
+}
+function installJvmMethod(method, methodId, thread) {
+  const { method: handle, oldMethod: old } = method;
+  const api2 = getApi2();
+  method.methodsArray.add(method.methodIndex * pointerSize6).writePointer(handle);
+  if (method.vtableIndex >= 0) {
+    method.vtable.add(method.vtableIndex * pointerSize6).writePointer(handle);
+  }
+  methodId.writePointer(handle);
+  old.accessFlagsPtr.writeU32((old.accessFlags | JVM_ACC_IS_OLD | JVM_ACC_IS_OBSOLETE) >>> 0);
+  const flushObs = api2["OopMapCache::flush_obsolete_entries"];
+  if (flushObs !== void 0) {
+    const { oopMapCache } = method;
+    if (!oopMapCache.isNull()) {
+      flushObs(oopMapCache);
+    }
+  }
+  const mark = api2["VM_RedefineClasses::mark_dependent_code"];
+  const flush = api2["VM_RedefineClasses::flush_dependent_code"];
+  if (mark !== void 0) {
+    mark(NULL, method.instanceKlass);
+    flush();
+  } else {
+    flush(NULL, method.instanceKlass, thread);
+  }
+  const traceNamePrinted = Memory.alloc(1);
+  traceNamePrinted.writeU8(1);
+  api2["ConstantPoolCache::adjust_method_entries"](method.cache, method.instanceKlass, traceNamePrinted);
+  const klassClosure = Memory.alloc(3 * pointerSize6);
+  const doKlassPtr = Memory.alloc(pointerSize6);
+  doKlassPtr.writePointer(api2.doKlass);
+  klassClosure.writePointer(doKlassPtr);
+  klassClosure.add(pointerSize6).writePointer(thread);
+  klassClosure.add(2 * pointerSize6).writePointer(thread);
+  if (api2.redefineClass !== void 0) {
+    api2.redefineClass.writePointer(method.instanceKlass);
+  }
+  api2["ClassLoaderDataGraph::classes_do"](klassClosure);
+  const rmtAdjustMethodEntries = api2["ResolvedMethodTable::adjust_method_entries"];
+  if (rmtAdjustMethodEntries !== void 0) {
+    rmtAdjustMethodEntries(traceNamePrinted);
+  } else {
+    const { memberNames } = method;
+    if (!memberNames.isNull()) {
+      const mntAdjustMethodEntries = api2["MemberNameTable::adjust_method_entries"];
+      if (mntAdjustMethodEntries !== void 0) {
+        mntAdjustMethodEntries(memberNames, method.instanceKlass, traceNamePrinted);
+      }
+    }
+  }
+  const clean = api2["ClassLoaderDataGraph::clean_deallocate_lists"];
+  if (clean !== void 0) {
+    clean(0);
+  }
+}
+function nativeJvmMethod(method, impl, thread) {
+  const api2 = getApi2();
+  const newMethod = fetchJvmMethod(method);
+  newMethod.constPtr.writePointer(newMethod.const);
+  const flags = (newMethod.accessFlags | JVM_ACC_NATIVE | JVM_ACC_NOT_C2_COMPILABLE | JVM_ACC_NOT_C1_COMPILABLE | JVM_ACC_NOT_C2_OSR_COMPILABLE) >>> 0;
+  newMethod.accessFlagsPtr.writeU32(flags);
+  newMethod.signatureHandler.writePointer(NULL);
+  newMethod.adapter.writePointer(NULL);
+  newMethod.i2iEntry.writePointer(NULL);
+  api2["Method::clear_code"](newMethod.method);
+  newMethod.dataPtr.writePointer(NULL);
+  newMethod.countersPtr.writePointer(NULL);
+  newMethod.stackmapPtr.writePointer(NULL);
+  api2["Method::clear_native_function"](newMethod.method);
+  api2["Method::set_native_function"](newMethod.method, impl, 0);
+  api2["Method::restore_unshareable_info"](newMethod.method, thread);
+  if (api2.version >= 17) {
+    const methodHandle = Memory.alloc(2 * pointerSize6);
+    methodHandle.writePointer(newMethod.method);
+    methodHandle.add(pointerSize6).writePointer(thread);
+    api2["Method::link_method"](newMethod.method, methodHandle, thread);
+  }
+  return newMethod;
+}
+function fetchJvmMethod(method) {
+  const spec = getJvmMethodSpec();
+  const constMethod = method.add(spec.method.constMethodOffset).readPointer();
+  const constMethodSize = constMethod.add(spec.constMethod.sizeOffset).readS32() * pointerSize6;
+  const newConstMethod = Memory.alloc(constMethodSize + spec.method.size);
+  Memory.copy(newConstMethod, constMethod, constMethodSize);
+  const newMethod = newConstMethod.add(constMethodSize);
+  Memory.copy(newMethod, method, spec.method.size);
+  const result = readJvmMethod(newMethod, newConstMethod, constMethodSize);
+  const oldMethod = readJvmMethod(method, constMethod, constMethodSize);
+  result.oldMethod = oldMethod;
+  return result;
+}
+function readJvmMethod(method, constMethod, constMethodSize) {
+  const api2 = getApi2();
+  const spec = getJvmMethodSpec();
+  const constPtr = method.add(spec.method.constMethodOffset);
+  const dataPtr = method.add(spec.method.methodDataOffset);
+  const countersPtr = method.add(spec.method.methodCountersOffset);
+  const accessFlagsPtr = method.add(spec.method.accessFlagsOffset);
+  const accessFlags = accessFlagsPtr.readU32();
+  const adapter = spec.getAdapterPointer(method, constMethod);
+  const i2iEntry = method.add(spec.method.i2iEntryOffset);
+  const signatureHandler = method.add(spec.method.signatureHandlerOffset);
+  const constantPool = constMethod.add(spec.constMethod.constantPoolOffset).readPointer();
+  const stackmapPtr = constMethod.add(spec.constMethod.stackmapDataOffset);
+  const instanceKlass = constantPool.add(spec.constantPool.instanceKlassOffset).readPointer();
+  const cache = constantPool.add(spec.constantPool.cacheOffset).readPointer();
+  const instanceKlassSpec = getJvmInstanceKlassSpec();
+  const methods = instanceKlass.add(instanceKlassSpec.methodsOffset).readPointer();
+  const methodsCount = methods.readS32();
+  const methodsArray = methods.add(pointerSize6);
+  const methodIndex = constMethod.add(spec.constMethod.methodIdnumOffset).readU16();
+  const vtableIndexPtr = method.add(spec.method.vtableIndexOffset);
+  const vtableIndex = vtableIndexPtr.readS32();
+  const vtable2 = instanceKlass.add(instanceKlassSpec.vtableOffset);
+  const oopMapCache = instanceKlass.add(instanceKlassSpec.oopMapCacheOffset).readPointer();
+  const memberNames = api2.version >= 10 ? instanceKlass.add(instanceKlassSpec.memberNamesOffset).readPointer() : NULL;
+  return {
+    method,
+    methodSize: spec.method.size,
+    const: constMethod,
+    constSize: constMethodSize,
+    constPtr,
+    dataPtr,
+    countersPtr,
+    stackmapPtr,
+    instanceKlass,
+    methodsArray,
+    methodsCount,
+    methodIndex,
+    vtableIndex,
+    vtableIndexPtr,
+    vtable: vtable2,
+    accessFlags,
+    accessFlagsPtr,
+    adapter,
+    i2iEntry,
+    signatureHandler,
+    memberNames,
+    cache,
+    oopMapCache
+  };
+}
+function revertJvmMethod(method) {
+  const { oldMethod: old } = method;
+  old.accessFlagsPtr.writeU32(old.accessFlags);
+  old.vtableIndexPtr.writeS32(old.vtableIndex);
+}
+function _getJvmMethodSpec() {
+  const api2 = getApi2();
+  const { version } = api2;
+  let adapterHandlerLocation;
+  if (version >= 17) {
+    adapterHandlerLocation = "method:early";
+  } else if (version >= 9 && version <= 16) {
+    adapterHandlerLocation = "const-method";
+  } else {
+    adapterHandlerLocation = "method:late";
+  }
+  const isNative = 1;
+  const methodSize = api2["Method::size"](isNative) * pointerSize6;
+  const constMethodOffset = pointerSize6;
+  const methodDataOffset = 2 * pointerSize6;
+  const methodCountersOffset = 3 * pointerSize6;
+  const adapterInMethodEarlyOffset = 4 * pointerSize6;
+  const adapterInMethodEarlySize = adapterHandlerLocation === "method:early" ? pointerSize6 : 0;
+  const accessFlagsOffset = adapterInMethodEarlyOffset + adapterInMethodEarlySize;
+  const vtableIndexOffset = accessFlagsOffset + 4;
+  const i2iEntryOffset = vtableIndexOffset + 4 + 8;
+  const adapterInMethodLateOffset = i2iEntryOffset + pointerSize6;
+  const adapterInMethodOffset = adapterInMethodEarlySize !== 0 ? adapterInMethodEarlyOffset : adapterInMethodLateOffset;
+  const nativeFunctionOffset = methodSize - 2 * pointerSize6;
+  const signatureHandlerOffset = methodSize - pointerSize6;
+  const constantPoolOffset = 8;
+  const stackmapDataOffset = constantPoolOffset + pointerSize6;
+  const adapterInConstMethodOffset = stackmapDataOffset + pointerSize6;
+  const adapterInConstMethodSize = adapterHandlerLocation === "const-method" ? pointerSize6 : 0;
+  const constMethodSizeOffset = adapterInConstMethodOffset + adapterInConstMethodSize;
+  const methodIdnumOffset = constMethodSizeOffset + 14;
+  const cacheOffset = 2 * pointerSize6;
+  const instanceKlassOffset = 3 * pointerSize6;
+  const getAdapterPointer = adapterInConstMethodSize !== 0 ? function(method, constMethod) {
+    return constMethod.add(adapterInConstMethodOffset);
+  } : function(method, constMethod) {
+    return method.add(adapterInMethodOffset);
+  };
+  return {
+    getAdapterPointer,
+    method: {
+      size: methodSize,
+      constMethodOffset,
+      methodDataOffset,
+      methodCountersOffset,
+      accessFlagsOffset,
+      vtableIndexOffset,
+      i2iEntryOffset,
+      nativeFunctionOffset,
+      signatureHandlerOffset
+    },
+    constMethod: {
+      constantPoolOffset,
+      stackmapDataOffset,
+      sizeOffset: constMethodSizeOffset,
+      methodIdnumOffset
+    },
+    constantPool: {
+      cacheOffset,
+      instanceKlassOffset
+    }
+  };
+}
+var vtableOffsetParsers = {
+  x64: parseX64VTableOffset
+};
+function _getJvmInstanceKlassSpec() {
+  const { version: jvmVersion, createNewDefaultVtableIndices } = getApi2();
+  const tryParse = vtableOffsetParsers[Process.arch];
+  if (tryParse === void 0) {
+    throw new Error(`Missing vtable offset parser for ${Process.arch}`);
+  }
+  const vtableOffset = parseInstructionsAt(createNewDefaultVtableIndices, tryParse, { limit: 32 });
+  if (vtableOffset === null) {
+    throw new Error("Unable to deduce vtable offset");
+  }
+  const oopMultiplier = jvmVersion >= 10 && jvmVersion <= 11 || jvmVersion >= 15 ? 17 : 18;
+  const methodsOffset = vtableOffset - 7 * pointerSize6;
+  const memberNamesOffset = vtableOffset - 17 * pointerSize6;
+  const oopMapCacheOffset = vtableOffset - oopMultiplier * pointerSize6;
+  return {
+    vtableOffset,
+    methodsOffset,
+    memberNamesOffset,
+    oopMapCacheOffset
+  };
+}
+function parseX64VTableOffset(insn) {
+  if (insn.mnemonic !== "mov") {
+    return null;
+  }
+  const dst = insn.operands[0];
+  if (dst.type !== "mem") {
+    return null;
+  }
+  const { value: dstValue } = dst;
+  if (dstValue.scale !== 1) {
+    return null;
+  }
+  const { disp } = dstValue;
+  if (disp < 256) {
+    return null;
+  }
+  const defaultVtableIndicesOffset = disp;
+  return defaultVtableIndicesOffset + 16;
+}
+
+// node_modules/frida-java-bridge/lib/api.js
+var getApi3 = getApi;
+try {
+  getAndroidVersion();
+} catch (e) {
+  getApi3 = getApi2;
+}
+var api_default = getApi3;
+
+// node_modules/frida-java-bridge/lib/class-model.js
+var code2 = `#include <json-glib/json-glib.h>
 #include <string.h>
 
 #define kAccStatic 0x0008
@@ -1798,27 +9009,4493 @@ std_string_c_str (StdString * self)
 
   return self->s.data;
 }
-`,jc=/(.+)!([^/]+)\/?([isu]+)?/,ye=null,mo=null,Je=class t{static build(e,n){return _o(n),mo(e,n,r=>new t(ye.new(e,r,n)))}static enumerateMethods(e,n,r){_o(r);let o=e.match(jc);if(o===null)throw new Error("Invalid query; format is: class!method -- see documentation of Java.enumerateMethods(query) for details");let s=Memory.allocUtf8String(o[1]),i=Memory.allocUtf8String(o[2]),l=!1,a=!1,c=!1,d=o[3];d!==void 0&&(l=d.indexOf("s")!==-1,a=d.indexOf("i")!==-1,c=d.indexOf("u")!==-1);let p;if(n.flavor==="jvm"){let f=ye.enumerateMethodsJvm(s,i,Qe(l),Qe(a),Qe(c),r,n.jvmti);try{p=JSON.parse(f.readUtf8String()).map(u=>{let _=ptr(u.loader);return u.loader=_.isNull()?null:_,u})}finally{ye.dealloc(f)}}else Se(r.vm,r,f=>{let u=ye.enumerateMethodsArt(s,i,Qe(l),Qe(a),Qe(c));try{let _=n["art::JavaVMExt::AddGlobalRef"],{vm:h}=n;p=JSON.parse(u.readUtf8String()).map(g=>{let m=g.loader;return g.loader=m!==0?_(h,f,ptr(m)):null,g})}finally{ye.dealloc(u)}});return p}constructor(e){this.handle=e}has(e){return ye.has(this.handle,Memory.allocUtf8String(e))!==0}find(e){return ye.find(this.handle,Memory.allocUtf8String(e)).readUtf8String()}list(){let e=ye.list(this.handle);try{return JSON.parse(e.readUtf8String())}finally{ye.dealloc(e)}}};function _o(t){ye===null&&(ye=Pc(t),mo=Fc(ye,t.vm))}function Pc(t){let{pointerSize:e}=Process,n=8,r=e,o=6*e,s=40+5*e,i=n+r+o+s,a=Memory.alloc(i),c=a.add(n),d=c.add(r),{getDeclaredMethods:p,getDeclaredFields:f}=t.javaLangClass(),u=t.javaLangReflectMethod(),_=t.javaLangReflectField(),h=d;[p,f,u.getName,u.getModifiers,_.getName,_.getModifiers].forEach(j=>{h=h.writePointer(j).add(e)});let g=d.add(o),{vm:m}=t,E=jn(m);if(E!==null){let j=E.offset,S=Te(m),N=Pn(m),v=g;[1,j.ifields,j.methods,j.sfields,j.copiedMethodsOffset,S.size,S.offset.accessFlags,N.size,N.offset.accessFlags,4294967295].forEach(M=>{v=v.writeUInt(M).add(4)});let T=B();[T.artClassLinker.address,T["art::ClassLinker::VisitClasses"],T["art::mirror::Class::GetDescriptor"],T["art::ArtMethod::PrettyMethod"],Process.getModuleByName("libc.so").getExportByName("free")].forEach((M,w)=>{M===void 0&&(M=NULL),v=v.writePointer(M).add(e)})}let I=new CModule(Rc,{lock:a,models:c,java_api:d,art_api:g}),k={exceptions:"propagate"},R={exceptions:"propagate",scheduling:"exclusive"};return{handle:I,mode:E!==null?"full":"basic",new:new NativeFunction(I.model_new,"pointer",["pointer","pointer","pointer"],k),has:new NativeFunction(I.model_has,"bool",["pointer","pointer"],R),find:new NativeFunction(I.model_find,"pointer",["pointer","pointer"],R),list:new NativeFunction(I.model_list,"pointer",["pointer"],R),enumerateMethodsArt:new NativeFunction(I.enumerate_methods_art,"pointer",["pointer","pointer","bool","bool","bool"],k),enumerateMethodsJvm:new NativeFunction(I.enumerate_methods_jvm,"pointer",["pointer","pointer","bool","bool","bool","pointer","pointer"],k),dealloc:new NativeFunction(I.dealloc,"void",["pointer"],R)}}function Fc(t,e){if(t.mode==="basic")return Dc;let n=B()["art::JavaVMExt::DecodeGlobal"];return function(r,o,s){let i;return Se(e,o,l=>{let a=n(e,l,r);i=s(a)}),i}}function Dc(t,e,n){return n(NULL)}function Qe(t){return t?1:0}var _t=class{constructor(e,n){this.items=new Map,this.capacity=e,this.destroy=n}dispose(e){let{items:n,destroy:r}=this;n.forEach(o=>{r(o,e)}),n.clear()}get(e){let{items:n}=this,r=n.get(e);return r!==void 0&&(n.delete(e),n.set(e,r)),r}set(e,n,r){let{items:o}=this,s=o.get(e);if(s!==void 0)o.delete(e),this.destroy(s,r);else if(o.size===this.capacity){let i=o.keys().next().value,l=o.get(i);o.delete(i),this.destroy(l,r)}o.set(e,n)}};var xe=Cs(Oo(),1),mt=1,lr=256,Ro=65536,_d=305419896,jo=32,Po=12,Fo=8,Do=8,Uo=4,Vo=4,zo=12,md=0,gd=1,bd=2,yd=3,vd=4,Ed=5,Sd=6,wd=4096,Cd=4097,Td=4099,Id=8192,Ad=8193,Ld=8194,xd=8195,kd=8196,Nd=8198,Md=24,Od=28,Rd=2,jd=24,Jo=xe.Buffer.from([3,0,7,14,0]),ir="Ldalvik/annotation/Throws;",Pd=xe.Buffer.from([0]);function Fd(t){let e=new cr,n=Object.assign({},t);return e.addClass(n),e.build()}var cr=class{constructor(){this.classes=[]}addClass(e){this.classes.push(e)}build(){let e=Vd(this.classes),{classes:n,interfaces:r,fields:o,methods:s,protos:i,parameters:l,annotationDirectories:a,annotationSets:c,throwsAnnotations:d,types:p,strings:f}=e,u=0,_=0,h=8,g=12,m=20,E=112;u+=E;let I=u,k=f.length*Vo;u+=k;let R=u,j=p.length*Uo;u+=j;let S=u,N=i.length*Po;u+=N;let v=u,T=o.length*Fo;u+=T;let M=u,w=s.length*Do;u+=w;let O=u,D=n.length*jo;u+=D;let U=u,P=c.map(L=>{let F=u;return L.offset=F,u+=4+L.items.length*4,F}),V=n.reduce((L,F)=>(F.classData.constructorMethods.forEach($=>{let[,W,Z]=$;(W&lr)===0&&Z>=0&&($.push(u),L.push({offset:u,superConstructor:Z}),u+=jd)}),L),[]);a.forEach(L=>{L.offset=u,u+=16+L.methods.length*8});let Y=r.map(L=>{u=ar(u,4);let F=u;return L.offset=F,u+=4+2*L.types.length,F}),X=l.map(L=>{u=ar(u,4);let F=u;return L.offset=F,u+=4+2*L.types.length,F}),ee=[],te=f.map(L=>{let F=u,z=xe.Buffer.from(ge(L.length)),$=xe.Buffer.from(L,"utf8"),W=xe.Buffer.concat([z,$,Pd]);return ee.push(W),u+=W.length,F}),ie=V.map(L=>{let F=u;return u+=Jo.length,F}),ne=d.map(L=>{let F=Ud(L);return L.offset=u,u+=F.length,F}),se=n.map((L,F)=>{L.classData.offset=u;let z=Dd(L);return u+=z.length,z}),we=0,rt=0;u=ar(u,4);let H=u,_e=r.length+l.length,ke=4+(o.length>0?1:0)+2+c.length+V.length+a.length+(_e>0?1:0)+1+ie.length+d.length+n.length+1,De=4+ke*zo;u+=De;let Re=u-U,Ze=u,A=xe.Buffer.alloc(Ze);A.write(`dex
-035`),A.writeUInt32LE(Ze,32),A.writeUInt32LE(E,36),A.writeUInt32LE(_d,40),A.writeUInt32LE(we,44),A.writeUInt32LE(rt,48),A.writeUInt32LE(H,52),A.writeUInt32LE(f.length,56),A.writeUInt32LE(I,60),A.writeUInt32LE(p.length,64),A.writeUInt32LE(R,68),A.writeUInt32LE(i.length,72),A.writeUInt32LE(S,76),A.writeUInt32LE(o.length,80),A.writeUInt32LE(o.length>0?v:0,84),A.writeUInt32LE(s.length,88),A.writeUInt32LE(M,92),A.writeUInt32LE(n.length,96),A.writeUInt32LE(O,100),A.writeUInt32LE(Re,104),A.writeUInt32LE(U,108),te.forEach((L,F)=>{A.writeUInt32LE(L,I+F*Vo)}),p.forEach((L,F)=>{A.writeUInt32LE(L,R+F*Uo)}),i.forEach((L,F)=>{let[z,$,W]=L,Z=S+F*Po;A.writeUInt32LE(z,Z),A.writeUInt32LE($,Z+4),A.writeUInt32LE(W!==null?W.offset:0,Z+8)}),o.forEach((L,F)=>{let[z,$,W]=L,Z=v+F*Fo;A.writeUInt16LE(z,Z),A.writeUInt16LE($,Z+2),A.writeUInt32LE(W,Z+4)}),s.forEach((L,F)=>{let[z,$,W]=L,Z=M+F*Do;A.writeUInt16LE(z,Z),A.writeUInt16LE($,Z+2),A.writeUInt32LE(W,Z+4)}),n.forEach((L,F)=>{let{interfaces:z,annotationsDirectory:$}=L,W=z!==null?z.offset:0,Z=$!==null?$.offset:0,ot=0,be=O+F*jo;A.writeUInt32LE(L.index,be),A.writeUInt32LE(L.accessFlags,be+4),A.writeUInt32LE(L.superClassIndex,be+8),A.writeUInt32LE(W,be+12),A.writeUInt32LE(L.sourceFileIndex,be+16),A.writeUInt32LE(Z,be+20),A.writeUInt32LE(L.classData.offset,be+24),A.writeUInt32LE(ot,be+28)}),c.forEach((L,F)=>{let{items:z}=L,$=P[F];A.writeUInt32LE(z.length,$),z.forEach((W,Z)=>{A.writeUInt32LE(W.offset,$+4+Z*4)})}),V.forEach((L,F)=>{let{offset:z,superConstructor:$}=L,W=1,Z=1,ot=1,be=0,yt=4;A.writeUInt16LE(W,z),A.writeUInt16LE(Z,z+2),A.writeUInt16LE(ot,z+4),A.writeUInt16LE(be,z+6),A.writeUInt32LE(ie[F],z+8),A.writeUInt32LE(yt,z+12),A.writeUInt16LE(4208,z+16),A.writeUInt16LE($,z+18),A.writeUInt16LE(0,z+20),A.writeUInt16LE(14,z+22)}),a.forEach(L=>{let F=L.offset,z=0,$=0,W=L.methods.length,Z=0;A.writeUInt32LE(z,F),A.writeUInt32LE($,F+4),A.writeUInt32LE(W,F+8),A.writeUInt32LE(Z,F+12),L.methods.forEach((ot,be)=>{let yt=F+16+be*8,[hs,_s]=ot;A.writeUInt32LE(hs,yt),A.writeUInt32LE(_s.offset,yt+4)})}),r.forEach((L,F)=>{let z=Y[F];A.writeUInt32LE(L.types.length,z),L.types.forEach(($,W)=>{A.writeUInt16LE($,z+4+W*2)})}),l.forEach((L,F)=>{let z=X[F];A.writeUInt32LE(L.types.length,z),L.types.forEach(($,W)=>{A.writeUInt16LE($,z+4+W*2)})}),ee.forEach((L,F)=>{L.copy(A,te[F])}),ie.forEach(L=>{Jo.copy(A,L)}),ne.forEach((L,F)=>{L.copy(A,d[F].offset)}),se.forEach((L,F)=>{L.copy(A,n[F].classData.offset)}),A.writeUInt32LE(ke,H);let le=[[md,1,_],[gd,f.length,I],[bd,p.length,R],[yd,i.length,S]];o.length>0&&le.push([vd,o.length,v]),le.push([Ed,s.length,M]),le.push([Sd,n.length,O]),c.forEach((L,F)=>{le.push([Td,L.items.length,P[F]])}),V.forEach(L=>{le.push([Ad,1,L.offset])}),a.forEach(L=>{le.push([Nd,1,L.offset])}),_e>0&&le.push([Cd,_e,Y.concat(X)[0]]),le.push([Ld,f.length,te[0]]),ie.forEach(L=>{le.push([xd,1,L])}),d.forEach(L=>{le.push([kd,1,L.offset])}),n.forEach(L=>{le.push([Id,1,L.classData.offset])}),le.push([wd,1,H]),le.forEach((L,F)=>{let[z,$,W]=L,Z=H+4+F*zo;A.writeUInt16LE(z,Z),A.writeUInt32LE($,Z+4),A.writeUInt32LE(W,Z+8)});let Tr=new Checksum("sha1");return Tr.update(A.slice(g+m)),xe.Buffer.from(Tr.getDigest()).copy(A,g),A.writeUInt32LE($d(A,g),h),A}};function Dd(t){let{instanceFields:e,constructorMethods:n,virtualMethods:r}=t.classData;return xe.Buffer.from([0].concat(ge(e.length)).concat(ge(n.length)).concat(ge(r.length)).concat(e.reduce((s,[i,l])=>s.concat(ge(i)).concat(ge(l)),[])).concat(n.reduce((s,[i,l,,a])=>s.concat(ge(i)).concat(ge(l)).concat(ge(a||0)),[])).concat(r.reduce((s,[i,l])=>s.concat(ge(i)).concat(ge(l)).concat([0]),[])))}function Ud(t){let{thrownTypes:e}=t;return xe.Buffer.from([Rd].concat(ge(t.type)).concat([1]).concat(ge(t.value)).concat([Od,e.length]).concat(e.reduce((n,r)=>(n.push(Md,r),n),[])))}function Vd(t){let e=new Set,n=new Set,r={},o=[],s=[],i={},l=new Set,a=new Set;t.forEach(w=>{let{name:O,superClass:D,sourceFileName:U}=w;e.add("this"),e.add(O),n.add(O),e.add(D),n.add(D),e.add(U),w.interfaces.forEach(P=>{e.add(P),n.add(P)}),w.fields.forEach(P=>{let[V,Y]=P;e.add(V),e.add(Y),n.add(Y),o.push([w.name,Y,V])}),w.methods.some(([P])=>P==="<init>")||(w.methods.unshift(["<init>","V",[]]),l.add(O)),w.methods.forEach(P=>{let[V,Y,X,ee=[],te]=P;e.add(V);let ie=c(Y,X),ne=null;if(ee.length>0){let se=ee.slice();se.sort(),ne=se.join("|");let we=i[ne];we===void 0&&(we={id:ne,types:se},i[ne]=we),e.add(ir),n.add(ir),ee.forEach(rt=>{e.add(rt),n.add(rt)}),e.add("value")}if(s.push([w.name,ie,V,ne,te]),V==="<init>"){a.add(O+"|"+ie);let se=D+"|"+ie;l.has(O)&&!a.has(se)&&(s.push([D,ie,V,null,0]),a.add(se))}})});function c(w,O){let D=[w].concat(O),U=D.join("|");if(r[U]!==void 0)return U;e.add(w),n.add(w),O.forEach(V=>{e.add(V),n.add(V)});let P=D.map(Hd).join("");return e.add(P),r[U]=[U,P,w,O],U}let d=Array.from(e);d.sort();let p=d.reduce((w,O,D)=>(w[O]=D,w),{}),f=Array.from(n).map(w=>p[w]);f.sort(Bo);let u=f.reduce((w,O,D)=>(w[d[O]]=D,w),{}),_=Object.keys(r).map(w=>r[w]);_.sort(Jd);let h={},g=_.map(w=>{let[,O,D,U]=w,P;if(U.length>0){let V=U.join("|");P=h[V],P===void 0&&(P={types:U.map(Y=>u[Y]),offset:-1},h[V]=P)}else P=null;return[p[O],u[D],P]}),m=_.reduce((w,O,D)=>{let[U]=O;return w[U]=D,w},{}),E=Object.keys(h).map(w=>h[w]),I=o.map(w=>{let[O,D,U]=w;return[u[O],u[D],p[U]]});I.sort(Bd);let k=s.map(w=>{let[O,D,U,P,V]=w;return[u[O],m[D],p[U],P,V]});k.sort(Gd);let R=Object.keys(i).map(w=>i[w]).map(w=>({id:w.id,type:u[ir],value:p.value,thrownTypes:w.types.map(O=>u[O]),offset:-1})),j=R.map(w=>({id:w.id,items:[w],offset:-1})),S=j.reduce((w,O,D)=>(w[O.id]=D,w),{}),N={},v=[],T=t.map(w=>{let O=u[w.name],D=mt,U=u[w.superClass],P,V=w.interfaces.map(H=>u[H]);if(V.length>0){V.sort(Bo);let H=V.join("|");P=N[H],P===void 0&&(P={types:V,offset:-1},N[H]=P)}else P=null;let Y=p[w.sourceFileName],X=k.reduce((H,_e,ke)=>{let[De,Re,Ze,A,le]=_e;return De===O&&H.push([ke,Ze,A,Re,le]),H},[]),ee=null,te=X.filter(([,,H])=>H!==null).map(([H,,_e])=>[H,j[S[_e]]]);te.length>0&&(ee={methods:te,offset:-1},v.push(ee));let ie=I.reduce((H,_e,ke)=>{let[De]=_e;return De===O&&H.push([ke>0?1:0,mt]),H},[]),ne=p["<init>"],se=X.filter(([,H])=>H===ne).map(([H,,,_e])=>{if(l.has(w.name)){let ke=-1,De=k.length;for(let Re=0;Re!==De;Re++){let[Ze,A,le]=k[Re];if(Ze===U&&le===ne&&A===_e){ke=Re;break}}return[H,mt|Ro,ke]}else return[H,mt|Ro|lr,-1]}),we=zd(X.filter(([,H])=>H!==ne).map(([H,,,,_e])=>[H,_e|mt|lr]));return{index:O,accessFlags:D,superClassIndex:U,interfaces:P,sourceFileIndex:Y,annotationsDirectory:ee,classData:{instanceFields:ie,constructorMethods:se,virtualMethods:we,offset:-1}}}),M=Object.keys(N).map(w=>N[w]);return{classes:T,interfaces:M,fields:I,methods:k,protos:g,parameters:E,annotationDirectories:v,annotationSets:j,throwsAnnotations:R,types:f,strings:d}}function zd(t){let e=0;return t.map(([n,r],o)=>{let s;return o===0?s=[n,r]:s=[n-e,r],e=n,s})}function Bo(t,e){return t-e}function Jd(t,e){let[,,n,r]=t,[,,o,s]=e;if(n<o)return-1;if(n>o)return 1;let i=r.join("|"),l=s.join("|");return i<l?-1:i>l?1:0}function Bd(t,e){let[n,r,o]=t,[s,i,l]=e;return n!==s?n-s:o!==l?o-l:r-i}function Gd(t,e){let[n,r,o]=t,[s,i,l]=e;return n!==s?n-s:o!==l?o-l:r-i}function Hd(t){let e=t[0];return e==="L"||e==="["?"L":t}function ge(t){if(t<=127)return[t];let e=[],n=!1;do{let r=t&127;t>>=7,n=t!==0,n&&(r|=128),e.push(r)}while(n);return e}function ar(t,e){let n=t%e;return n===0?t:t+e-n}function $d(t,e){let n=1,r=0,o=t.length;for(let s=e;s<o;s++)n=(n+t[s])%65521,r=(r+n)%65521;return(r<<16|n)>>>0}var Go=Fd;var Zd=1,dr=null,Ho=null;function $o(t){dr=t}function ur(t,e,n){let r=et(t);return r===null&&(t.indexOf("[")===0?r=pr(t,e,n):(t[0]==="L"&&t[t.length-1]===";"&&(t=t.substring(1,t.length-1)),r=qd(t,e,n))),Object.assign({className:t},r)}var Zo={boolean:{name:"Z",type:"uint8",size:1,byteSize:1,defaultValue:!1,isCompatible(t){return typeof t=="boolean"},fromJni(t){return!!t},toJni(t){return t?1:0},read(t){return t.readU8()},write(t,e){t.writeU8(e)},toString(){return this.name}},byte:{name:"B",type:"int8",size:1,byteSize:1,defaultValue:0,isCompatible(t){return Number.isInteger(t)&&t>=-128&&t<=127},fromJni:Ee,toJni:Ee,read(t){return t.readS8()},write(t,e){t.writeS8(e)},toString(){return this.name}},char:{name:"C",type:"uint16",size:1,byteSize:2,defaultValue:0,isCompatible(t){if(typeof t!="string"||t.length!==1)return!1;let e=t.charCodeAt(0);return e>=0&&e<=65535},fromJni(t){return String.fromCharCode(t)},toJni(t){return t.charCodeAt(0)},read(t){return t.readU16()},write(t,e){t.writeU16(e)},toString(){return this.name}},short:{name:"S",type:"int16",size:1,byteSize:2,defaultValue:0,isCompatible(t){return Number.isInteger(t)&&t>=-32768&&t<=32767},fromJni:Ee,toJni:Ee,read(t){return t.readS16()},write(t,e){t.writeS16(e)},toString(){return this.name}},int:{name:"I",type:"int32",size:1,byteSize:4,defaultValue:0,isCompatible(t){return Number.isInteger(t)&&t>=-2147483648&&t<=2147483647},fromJni:Ee,toJni:Ee,read(t){return t.readS32()},write(t,e){t.writeS32(e)},toString(){return this.name}},long:{name:"J",type:"int64",size:2,byteSize:8,defaultValue:0,isCompatible(t){return typeof t=="number"||t instanceof Int64},fromJni:Ee,toJni:Ee,read(t){return t.readS64()},write(t,e){t.writeS64(e)},toString(){return this.name}},float:{name:"F",type:"float",size:1,byteSize:4,defaultValue:0,isCompatible(t){return typeof t=="number"},fromJni:Ee,toJni:Ee,read(t){return t.readFloat()},write(t,e){t.writeFloat(e)},toString(){return this.name}},double:{name:"D",type:"double",size:2,byteSize:8,defaultValue:0,isCompatible(t){return typeof t=="number"},fromJni:Ee,toJni:Ee,read(t){return t.readDouble()},write(t,e){t.writeDouble(e)},toString(){return this.name}},void:{name:"V",type:"void",size:0,byteSize:0,defaultValue:void 0,isCompatible(t){return t===void 0},fromJni(){},toJni(){return NULL},toString(){return this.name}}},Wd=new Set(Object.values(Zo).map(t=>t.name));function et(t){let e=Zo[t];return e!==void 0?e:null}function qd(t,e,n){let r=n._types[e?1:0],o=r[t];return o!==void 0||(t==="java.lang.Object"?o=Kd(n):o=Qd(t,e,n),r[t]=o),o}function Kd(t){return{name:"Ljava/lang/Object;",type:"pointer",size:1,defaultValue:NULL,isCompatible(e){return e===null?!0:e===void 0?!1:e.$h instanceof NativePointer?!0:typeof e=="string"},fromJni(e,n,r){return e.isNull()?null:t.cast(e,t.use("java.lang.Object"),r)},toJni(e,n){return e===null?NULL:typeof e=="string"?n.newStringUtf(e):e.$h}}}function Qd(t,e,n){let r=null,o=null,s=null;function i(){return r===null&&(r=n.use(t).class),r}function l(c){let d=i();return o===null&&(o=d.isInstance.overload("java.lang.Object")),o.call(d,c)}function a(){if(s===null){let c=i();s=n.use("java.lang.String").class.isAssignableFrom(c)}return s}return{name:He(t),type:"pointer",size:1,defaultValue:NULL,isCompatible(c){return c===null?!0:c===void 0?!1:c.$h instanceof NativePointer?l(c):typeof c=="string"&&a()},fromJni(c,d,p){return c.isNull()?null:a()&&e?d.stringFromJni(c):n.cast(c,n.use(t),p)},toJni(c,d){return c===null?NULL:typeof c=="string"?d.newStringUtf(c):c.$h},toString(){return this.name}}}var Yd=[["Z","boolean"],["B","byte"],["C","char"],["D","double"],["F","float"],["I","int"],["J","long"],["S","short"]].reduce((t,[e,n])=>(t["["+e]=Xd("["+e,n),t),{});function Xd(t,e){let n=y.prototype,r=ou(e),o={typeName:e,newArray:n["new"+r+"Array"],setRegion:n["set"+r+"ArrayRegion"],getElements:n["get"+r+"ArrayElements"],releaseElements:n["release"+r+"ArrayElements"]};return{name:t,type:"pointer",size:1,defaultValue:NULL,isCompatible(s){return ru(s,e)},fromJni(s,i,l){return tu(s,o,i,l)},toJni(s,i){return nu(s,o,i)}}}function pr(t,e,n){let r=Yd[t];if(r!==void 0)return r;if(t.indexOf("[")!==0)throw new Error("Unsupported type: "+t);let o=t.substring(1),s=ur(o,e,n),i=0,l=o.length;for(;i!==l&&o[i]==="[";)i++;o=o.substring(i),o[0]==="L"&&o[o.length-1]===";"&&(o=o.substring(1,o.length-1));let a=o.replace(/\./g,"/");Wd.has(a)?a="[".repeat(i)+a:a="[".repeat(i)+"L"+a+";";let c="["+a;return o="[".repeat(i)+o,{name:t.replace(/\./g,"/"),type:"pointer",size:1,defaultValue:NULL,isCompatible(d){return d===null?!0:typeof d!="object"||d.length===void 0?!1:d.every(function(p){return s.isCompatible(p)})},fromJni(d,p,f){if(d.isNull())return null;let u=[],_=p.getArrayLength(d);for(let h=0;h!==_;h++){let g=p.getObjectArrayElement(d,h);try{u.push(s.fromJni(g,p))}finally{p.deleteLocalRef(g)}}try{u.$w=n.cast(d,n.use(c),f)}catch{n.use("java.lang.reflect.Array").newInstance(n.use(o).class,0),u.$w=n.cast(d,n.use(c),f)}return u.$dispose=eu,u},toJni(d,p){if(d===null)return NULL;if(!(d instanceof Array))throw new Error("Expected an array");let f=d.$w;if(f!==void 0)return f.$h;let u=d.length,h=n.use(o).$borrowClassHandle(p);try{let g=p.newObjectArray(u,h.value,NULL);p.throwIfExceptionPending();for(let m=0;m!==u;m++){let E=s.toJni(d[m],p);try{p.setObjectArrayElement(g,m,E)}finally{s.type==="pointer"&&p.getObjectRefType(E)===Zd&&p.deleteLocalRef(E)}p.throwIfExceptionPending()}return g}finally{h.unref(p)}}}}function eu(){let t=this.length;for(let e=0;e!==t;e++){let n=this[e];if(n===null)continue;let r=n.$dispose;if(r===void 0)break;r.call(n)}this.$w.$dispose()}function tu(t,e,n,r){if(t.isNull())return null;let o=et(e.typeName),s=n.getArrayLength(t);return new Bt(t,e,o,s,n,r)}function nu(t,e,n){if(t===null)return NULL;let r=t.$h;if(r!==void 0)return r;let o=t.length,s=et(e.typeName),i=e.newArray.call(n,o);if(i.isNull())throw new Error("Unable to construct array");if(o>0){let l=s.byteSize,a=s.write,c=s.toJni,d=Memory.alloc(o*s.byteSize);for(let p=0;p!==o;p++)a(d.add(p*l),c(t[p]));e.setRegion.call(n,i,0,o,d),n.throwIfExceptionPending()}return i}function ru(t,e){if(t===null)return!0;if(t instanceof Bt)return t.$s.typeName===e;if(!(typeof t=="object"&&t.length!==void 0))return!1;let r=et(e);return Array.prototype.every.call(t,o=>r.isCompatible(o))}function Bt(t,e,n,r,o,s=!0){if(s){let i=o.newGlobalRef(t);this.$h=i,this.$r=Script.bindWeak(this,o.vm.makeHandleDestructor(i))}else this.$h=t,this.$r=null;return this.$s=e,this.$t=n,this.length=r,new Proxy(this,Ho)}Ho={has(t,e){return e in t?!0:t.tryParseIndex(e)!==null},get(t,e,n){let r=t.tryParseIndex(e);return r===null?t[e]:t.readElement(r)},set(t,e,n,r){let o=t.tryParseIndex(e);return o===null?(t[e]=n,!0):(t.writeElement(o,n),!0)},ownKeys(t){let e=[],{length:n}=t;for(let r=0;r!==n;r++){let o=r.toString();e.push(o)}return e.push("length"),e},getOwnPropertyDescriptor(t,e){return t.tryParseIndex(e)!==null?{writable:!0,configurable:!0,enumerable:!0}:Object.getOwnPropertyDescriptor(t,e)}};Object.defineProperties(Bt.prototype,{$dispose:{enumerable:!0,value(){let t=this.$r;t!==null&&(this.$r=null,Script.unbindWeak(t))}},$clone:{value(t){return new Bt(this.$h,this.$s,this.$t,this.length,t)}},tryParseIndex:{value(t){if(typeof t=="symbol")return null;let e=parseInt(t);return isNaN(e)||e<0||e>=this.length?null:e}},readElement:{value(t){return this.withElements(e=>{let n=this.$t;return n.fromJni(n.read(e.add(t*n.byteSize)))})}},writeElement:{value(t,e){let{$h:n,$s:r,$t:o}=this,s=dr.getEnv(),i=Memory.alloc(o.byteSize);o.write(i,o.toJni(e)),r.setRegion.call(s,n,t,1,i)}},withElements:{value(t){let{$h:e,$s:n}=this,r=dr.getEnv(),o=n.getElements.call(r,e);if(o.isNull())throw new Error("Unable to get array elements");try{return t(o)}finally{n.releaseElements.call(r,e,o)}}},toJSON:{value(){let{length:t,$t:e}=this,{byteSize:n,fromJni:r,read:o}=e;return this.withElements(s=>{let i=[];for(let l=0;l!==t;l++){let a=r(o(s.add(l*n)));i.push(a)}return i})}},toString:{value(){return this.toJSON().toString()}}});function He(t){return"L"+t.replace(/\./g,"/")+";"}function ou(t){return t.charAt(0).toUpperCase()+t.slice(1)}function Ee(t){return t}var su=4,{ensureClassInitialized:Wo,makeMethodMangler:es}=Dt,iu=8,_r=1,bt=2,Oe=3,fr=1,mr=2,Gt=1,ts=2,qo=Symbol("PENDING_USE"),Ko="/data/local/tmp",{getCurrentThreadId:$t,pointerSize:gt}=Process,pe={state:"empty",factories:[],loaders:null,Integer:null},G=null,K=null,ns=null,rs=null,os=null,ss=null,is=null,Qo=null,hr=null,nt=new Map,Fe=class t{static _initialize(e,n){G=e,K=n,ns=n.flavor==="art",n.flavor==="jvm"&&(Wo=lo,es=uo)}static _disposeAll(e){pe.factories.forEach(n=>{n._dispose(e)})}static get(e){let n=Iu(),r=n.factories[0];if(e===null)return r;let o=n.loaders.get(e);if(o!==null){let i=r.cast(o,n.Integer);return n.factories[i.intValue()]}let s=new t;return s.loader=e,s.cacheDir=r.cacheDir,yr(s,e),s}constructor(){this.cacheDir=Ko,this.codeCacheDir=Ko+"/dalvik-cache",this.tempFileNaming={prefix:"frida",suffix:""},this._classes={},this._classHandles=new _t(10,lu),this._patchedMethods=new Set,this._loader=null,this._types=[{},{}],pe.factories.push(this)}_dispose(e){Array.from(this._patchedMethods).forEach(n=>{n.implementation=null}),this._patchedMethods.clear(),Jn(),this._classHandles.dispose(e),this._classes={}}get loader(){return this._loader}set loader(e){let n=this._loader===null&&e!==null;this._loader=e,n&&pe.state==="ready"&&this===pe.factories[0]&&yr(this,e)}use(e,n={}){let r=n.cache!=="skip",o=r?this._getUsedClass(e):void 0;if(o===void 0)try{let s=G.getEnv(),{_loader:i}=this,l=i!==null?du(e,i,s):cu(e);o=this._make(e,l,s)}finally{r&&this._setUsedClass(e,o)}return o}_getUsedClass(e){let n;for(;(n=this._classes[e])===qo;)Thread.sleep(.05);return n===void 0&&(this._classes[e]=qo),n}_setUsedClass(e,n){n!==void 0?this._classes[e]=n:delete this._classes[e]}_make(e,n,r){let o=au(),s=Object.create(Er.prototype,{[Symbol.for("n")]:{value:e},$n:{get(){return this[Symbol.for("n")]}},[Symbol.for("C")]:{value:o},$C:{get(){return this[Symbol.for("C")]}},[Symbol.for("w")]:{value:null,writable:!0},$w:{get(){return this[Symbol.for("w")]},set(a){this[Symbol.for("w")]=a}},[Symbol.for("_s")]:{writable:!0},$_s:{get(){return this[Symbol.for("_s")]},set(a){this[Symbol.for("_s")]=a}},[Symbol.for("c")]:{value:[null]},$c:{get(){return this[Symbol.for("c")]}},[Symbol.for("m")]:{value:new Map},$m:{get(){return this[Symbol.for("m")]}},[Symbol.for("l")]:{value:null,writable:!0},$l:{get(){return this[Symbol.for("l")]},set(a){this[Symbol.for("l")]=a}},[Symbol.for("gch")]:{value:n},$gch:{get(){return this[Symbol.for("gch")]}},[Symbol.for("f")]:{value:this},$f:{get(){return this[Symbol.for("f")]}}});o.prototype=s;let i=new o(null);s[Symbol.for("w")]=i,s.$w=i;let l=i.$borrowClassHandle(r);try{let a=l.value;Wo(r,a),s.$l=Je.build(a,r)}finally{l.unref(r)}return i}retain(e){let n=G.getEnv();return e.$clone(n)}cast(e,n,r){let o=G.getEnv(),s=e.$h;s===void 0&&(s=e);let i=n.$borrowClassHandle(o);try{if(!o.isInstanceOf(s,i.value))throw new Error(`Cast from '${o.getObjectClassName(s)}' to '${n.$n}' isn't possible`)}finally{i.unref(o)}let l=n.$C;return new l(s,Gt,o,r)}wrap(e,n,r){let o=n.$C,s=new o(e,Gt,r,!1);return s.$r=Script.bindWeak(s,G.makeHandleDestructor(e)),s}array(e,n){let r=G.getEnv(),o=et(e);o!==null&&(e=o.name);let s=pr("["+e,!1,this),i=s.toJni(n,r);return s.fromJni(i,r,!0)}registerClass(e){let n=G.getEnv(),r=[];try{let o=this.use("java.lang.Class"),s=n.javaLangReflectMethod(),i=n.vaMethod("pointer",[]),l=e.name,a=e.implements||[],c=e.superClass||this.use("java.lang.Object"),d=[],p=[],f={name:He(l),sourceFileName:Lu(l),superClass:He(c.$n),interfaces:a.map(v=>He(v.$n)),fields:d,methods:p},u=a.slice();a.forEach(v=>{Array.prototype.slice.call(v.class.getInterfaces()).forEach(T=>{let M=this.cast(T,o).getCanonicalName();u.push(this.use(M))})});let _=e.fields||{};Object.getOwnPropertyNames(_).forEach(v=>{let T=this._getType(_[v]);d.push([v,T.name])});let h={},g={};u.forEach(v=>{let T=v.$borrowClassHandle(n);r.push(T);let M=T.value;v.$ownMembers.filter(w=>v[w].overloads!==void 0).forEach(w=>{let O=v[w],D=O.overloads,U=D.map(P=>Yo(w,P.returnType,P.argumentTypes));h[w]=[O,U,M],D.forEach((P,V)=>{let Y=U[V];g[Y]=[P,M]})})});let m=e.methods||{},I=Object.keys(m).reduce((v,T)=>{let M=m[T],w=T==="$init"?"<init>":T;return M instanceof Array?v.push(...M.map(O=>[w,O])):v.push([w,M]),v},[]),k=[];I.forEach(([v,T])=>{let M=Oe,w,O,D=[],U;if(typeof T=="function"){let X=h[v];if(X!==void 0&&Array.isArray(X)){let[ee,te,ie]=X;if(te.length>1)throw new Error(`More than one overload matching '${v}': signature must be specified`);delete g[te[0]];let ne=ee.overloads[0];M=ne.type,w=ne.returnType,O=ne.argumentTypes,U=T;let se=n.toReflectedMethod(ie,ne.handle,0),we=i(n.handle,se,s.getGenericExceptionTypes);D=vr(n,we).map(He),n.deleteLocalRef(we),n.deleteLocalRef(se)}else w=this._getType("void"),O=[],U=T}else{if(T.isStatic&&(M=bt),w=this._getType(T.returnType||"void"),O=(T.argumentTypes||[]).map(te=>this._getType(te)),U=T.implementation,typeof U!="function")throw new Error("Expected a function implementation for method: "+v);let X=Yo(v,w,O),ee=g[X];if(ee!==void 0){let[te,ie]=ee;delete g[X],M=te.type,w=te.returnType,O=te.argumentTypes;let ne=n.toReflectedMethod(ie,te.handle,0),se=i(n.handle,ne,s.getGenericExceptionTypes);D=vr(n,se).map(He),n.deleteLocalRef(se),n.deleteLocalRef(ne)}}let P=w.name,V=O.map(X=>X.name),Y="("+V.join("")+")"+P;p.push([v,P,V,D,M===bt?iu:0]),k.push([v,Y,M,w,O,U])});let R=Object.keys(g);if(R.length>0)throw new Error("Missing implementation for: "+R.join(", "));let j=Ht.fromBuffer(Go(f),this);try{j.load()}finally{j.file.delete()}let S=this.use(e.name),N=I.length;if(N>0){let v=3*gt,T=Memory.alloc(N*v),M=[],w=[];k.forEach(([U,P,V,Y,X,ee],te)=>{let ie=Memory.allocUtf8String(U),ne=Memory.allocUtf8String(P),se=as(U,S,V,Y,X,ee);T.add(te*v).writePointer(ie),T.add(te*v+gt).writePointer(ne),T.add(te*v+2*gt).writePointer(se),w.push(ie,ne),M.push(se)});let O=S.$borrowClassHandle(n);r.push(O);let D=O.value;n.registerNatives(D,T,N),n.throwIfExceptionPending(),S.$nativeMethods=M}return S}finally{r.forEach(o=>{o.unref(n)})}}choose(e,n){let r=G.getEnv(),{flavor:o}=K;if(o==="jvm")this._chooseObjectsJvm(e,r,n);else if(o==="art"){let s=K["art::gc::Heap::VisitObjects"]===void 0;if(s&&K["art::gc::Heap::GetInstances"]===void 0)return this._chooseObjectsJvm(e,r,n);Se(G,r,i=>{s?this._chooseObjectsArtPreA12(e,r,i,n):this._chooseObjectsArtLegacy(e,r,i,n)})}else this._chooseObjectsDalvik(e,r,n)}_chooseObjectsJvm(e,n,r){let o=this.use(e),{jvmti:s}=K,i=1,l=3,a=o.$borrowClassHandle(n),c=int64(a.value.toString());try{let d=new NativeCallback((m,E,I,k)=>(I.writeS64(c),i),"int",["int64","int64","pointer","pointer"]);s.iterateOverInstancesOfClass(a.value,l,d,a.value);let p=Memory.alloc(8);p.writeS64(c);let f=Memory.alloc(su),u=Memory.alloc(gt);s.getObjectsWithTags(1,p,f,u,NULL);let _=f.readS32(),h=u.readPointer(),g=[];for(let m=0;m!==_;m++)g.push(h.add(m*gt).readPointer());s.deallocate(h);try{for(let m of g){let E=this.cast(m,o);if(r.onMatch(E)==="stop")break}r.onComplete()}finally{g.forEach(m=>{n.deleteLocalRef(m)})}}finally{a.unref(n)}}_chooseObjectsArtPreA12(e,n,r,o){let s=this.use(e),i=pt.$new(r,G),l,a=s.$borrowClassHandle(n);try{let f=K["art::JavaVMExt::DecodeGlobal"](K.vm,r,a.value);l=i.newHandle(f)}finally{a.unref(n)}let c=0,d=ut.$new();K["art::gc::Heap::GetInstances"](K.artHeap,i,l,c,d);let p=d.handles.map(f=>n.newGlobalRef(f));d.$delete(),i.$delete();try{for(let f of p){let u=this.cast(f,s);if(o.onMatch(u)==="stop")break}o.onComplete()}finally{p.forEach(f=>{n.deleteGlobalRef(f)})}}_chooseObjectsArtLegacy(e,n,r,o){let s=this.use(e),i=[],l=K["art::JavaVMExt::AddGlobalRef"],a=K.vm,c,d=s.$borrowClassHandle(n);try{c=K["art::JavaVMExt::DecodeGlobal"](a,r,d.value).toInt32()}finally{d.unref(n)}let p=Zn(c,f=>{i.push(l(a,r,f))});K["art::gc::Heap::VisitObjects"](K.artHeap,p,NULL);try{for(let f of i){let u=this.cast(f,s);if(o.onMatch(u)==="stop")break}}finally{i.forEach(f=>{n.deleteGlobalRef(f)})}o.onComplete()}_chooseObjectsDalvik(e,n,r){let o=this.use(e);if(K.addLocalReference===null){let i=Process.getModuleByName("libdvm.so"),l;switch(Process.arch){case"arm":l="2d e9 f0 41 05 46 15 4e 0c 46 7e 44 11 b3 43 68";break;case"ia32":l="8d 64 24 d4 89 5c 24 1c 89 74 24 20 e8 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 85 d2";break}Memory.scan(i.base,i.size,l,{onMatch:(a,c)=>{let d;if(Process.arch==="arm")a=a.or(1),d=new NativeFunction(a,"pointer",["pointer","pointer"]);else{let p=Memory.alloc(Process.pageSize);Memory.patchCode(p,16,f=>{let u=new X86Writer(f,{pc:p});u.putMovRegRegOffsetPtr("eax","esp",4),u.putMovRegRegOffsetPtr("edx","esp",8),u.putJmpAddress(a),u.flush()}),d=new NativeFunction(p,"pointer",["pointer","pointer"]),d._thunk=p}return K.addLocalReference=d,G.perform(p=>{s(this,p)}),"stop"},onError(a){},onComplete(){K.addLocalReference===null&&r.onComplete()}})}else s(this,n);function s(i,l){let{DVM_JNI_ENV_OFFSET_SELF:a}=Dt,c=l.handle.add(a).readPointer(),d,p=o.$borrowClassHandle(l);try{d=K.dvmDecodeIndirectRef(c,p.value)}finally{p.unref(l)}let f=d.toMatchPattern(),u=K.dvmHeapSourceGetBase(),h=K.dvmHeapSourceGetLimit().sub(u).toInt32();Memory.scan(u,h,f,{onMatch:(g,m)=>{K.dvmIsValidObject(g)&&G.perform(E=>{let I=E.handle.add(a).readPointer(),k,R=K.addLocalReference(I,g);try{k=i.cast(R,o)}finally{E.deleteLocalRef(R)}if(r.onMatch(k)==="stop")return"stop"})},onError(g){},onComplete(){r.onComplete()}})}}openClassFile(e){return new Ht(e,null,this)}_getType(e,n=!0){return ur(e,n,this)}};function au(){return function(t,e,n,r){return Er.call(this,t,e,n,r)}}function Er(t,e,n,r=!0){if(t!==null)if(r){let o=n.newGlobalRef(t);this.$h=o,this.$r=Script.bindWeak(this,G.makeHandleDestructor(o))}else this.$h=t,this.$r=null;else this.$h=null,this.$r=null;return this.$t=e,new Proxy(this,rs)}rs={has(t,e){return e in t?!0:t.$has(e)},get(t,e,n){if(typeof e!="string"||e.startsWith("$")||e==="class")return t[e];let r=t.$find(e);return r!==null?r(n):t[e]},set(t,e,n,r){return t[e]=n,!0},ownKeys(t){return t.$list()},getOwnPropertyDescriptor(t,e){return Object.prototype.hasOwnProperty.call(t,e)?Object.getOwnPropertyDescriptor(t,e):{writable:!1,configurable:!0,enumerable:!0}}};Object.defineProperties(Er.prototype,{[Symbol.for("new")]:{enumerable:!1,get(){return this.$getCtor("allocAndInit")}},$new:{enumerable:!0,get(){return this[Symbol.for("new")]}},[Symbol.for("alloc")]:{enumerable:!1,value(){let t=G.getEnv(),e=this.$borrowClassHandle(t);try{let n=t.allocObject(e.value);return this.$f.cast(n,this)}finally{e.unref(t)}}},$alloc:{enumerable:!0,get(){return this[Symbol.for("alloc")]}},[Symbol.for("init")]:{enumerable:!1,get(){return this.$getCtor("initOnly")}},$init:{enumerable:!0,get(){return this[Symbol.for("init")]}},[Symbol.for("dispose")]:{enumerable:!1,value(){let t=this.$r;t!==null&&(this.$r=null,Script.unbindWeak(t)),this.$h!==null&&(this.$h=void 0)}},$dispose:{enumerable:!0,get(){return this[Symbol.for("dispose")]}},[Symbol.for("clone")]:{enumerable:!1,value(t){let e=this.$C;return new e(this.$h,this.$t,t)}},$clone:{value(t){return this[Symbol.for("clone")](t)}},[Symbol.for("class")]:{enumerable:!1,get(){let t=G.getEnv(),e=this.$borrowClassHandle(t);try{let n=this.$f;return n.cast(e.value,n.use("java.lang.Class"))}finally{e.unref(t)}}},class:{enumerable:!0,get(){return this[Symbol.for("class")]}},[Symbol.for("className")]:{enumerable:!1,get(){let t=this.$h;return t===null?this.$n:G.getEnv().getObjectClassName(t)}},$className:{enumerable:!0,get(){return this[Symbol.for("className")]}},[Symbol.for("ownMembers")]:{enumerable:!1,get(){return this.$l.list()}},$ownMembers:{enumerable:!0,get(){return this[Symbol.for("ownMembers")]}},[Symbol.for("super")]:{enumerable:!1,get(){let t=G.getEnv(),e=this.$s.$C;return new e(this.$h,ts,t)}},$super:{enumerable:!0,get(){return this[Symbol.for("super")]}},[Symbol.for("s")]:{enumerable:!1,get(){let t=Object.getPrototypeOf(this),e=t.$_s;if(e===void 0){let n=G.getEnv(),r=this.$borrowClassHandle(n);try{let o=n.getSuperclass(r.value);if(o.isNull())e=null;else try{let s=n.getClassName(o),i=t.$f;if(e=i._getUsedClass(s),e===void 0)try{let l=uu(this);e=i._make(s,l,n)}finally{i._setUsedClass(s,e)}}finally{n.deleteLocalRef(o)}}finally{r.unref(n)}t.$_s=e}return e}},$s:{get(){return this[Symbol.for("s")]}},[Symbol.for("isSameObject")]:{enumerable:!1,value(t){return G.getEnv().isSameObject(t.$h,this.$h)}},$isSameObject:{value(t){return this[Symbol.for("isSameObject")](t)}},[Symbol.for("getCtor")]:{enumerable:!1,value(t){let e=this.$c,n=e[0];if(n===null){let r=G.getEnv(),o=this.$borrowClassHandle(r);try{n=pu(o.value,this.$w,r),e[0]=n}finally{o.unref(r)}}return n[t]}},$getCtor:{value(t){return this[Symbol.for("getCtor")](t)}},[Symbol.for("borrowClassHandle")]:{enumerable:!1,value(t){let e=this.$n,n=this.$f._classHandles,r=n.get(e);return r===void 0&&(r=new Sr(this.$gch(t),t),n.set(e,r,t)),r.ref()}},$borrowClassHandle:{value(t){return this[Symbol.for("borrowClassHandle")](t)}},[Symbol.for("copyClassHandle")]:{enumerable:!1,value(t){let e=this.$borrowClassHandle(t);try{return t.newLocalRef(e.value)}finally{e.unref(t)}}},$copyClassHandle:{value(t){return this[Symbol.for("copyClassHandle")](t)}},[Symbol.for("getHandle")]:{enumerable:!1,value(t){let e=this.$h;if(e===void 0)throw new Error("Wrapper is disposed; perhaps it was borrowed from a hook instead of calling Java.retain() to make a long-lived wrapper?");return e}},$getHandle:{value(t){return this[Symbol.for("getHandle")](t)}},[Symbol.for("list")]:{enumerable:!1,value(){let t=this.$s,e=t!==null?t.$list():[],n=this.$l;return Array.from(new Set(e.concat(n.list())))}},$list:{get(){return this[Symbol.for("list")]}},[Symbol.for("has")]:{enumerable:!1,value(t){if(this.$m.has(t)||this.$l.has(t))return!0;let r=this.$s;return!!(r!==null&&r.$has(t))}},$has:{value(t){return this[Symbol.for("has")](t)}},[Symbol.for("find")]:{enumerable:!1,value(t){let e=this.$m,n=e.get(t);if(n!==void 0)return n;let o=this.$l.find(t);if(o!==null){let i=G.getEnv(),l=this.$borrowClassHandle(i);try{n=fu(t,o,l.value,this.$w,i)}finally{l.unref(i)}return e.set(t,n),n}let s=this.$s;return s!==null?s.$find(t):null}},$find:{value(t){return this[Symbol.for("find")](t)}},[Symbol.for("toJSON")]:{enumerable:!1,value(){let t=this.$n;if(this.$h===null)return`<class: ${t}>`;let n=this.$className;return t===n?`<instance: ${t}>`:`<instance: ${t}, $className: ${n}>`}},toJSON:{get(){return this[Symbol.for("toJSON")]}}});function Sr(t,e){this.value=e.newGlobalRef(t),e.deleteLocalRef(t),this.refs=1}Sr.prototype.ref=function(){return this.refs++,this};Sr.prototype.unref=function(t){--this.refs===0&&t.deleteGlobalRef(this.value)};function lu(t,e){t.unref(e)}function cu(t){let e=t.replace(/\./g,"/");return function(n){let r=$t();cs(r);try{return n.findClass(e)}finally{ds(r)}}}function du(t,e,n){return hr===null&&(Qo=n.vaMethod("pointer",["pointer"]),hr=e.loadClass.overload("java.lang.String").handle),n=null,function(r){let o=r.newStringUtf(t),s=$t();cs(s);try{let i=Qo(r.handle,e.$h,hr,o);return r.throwIfExceptionPending(),i}finally{ds(s),r.deleteLocalRef(o)}}}function uu(t){return function(e){let n=t.$borrowClassHandle(e);try{return e.getSuperclass(n.value)}finally{n.unref(e)}}}function pu(t,e,n){let{$n:r,$f:o}=e,s=Au(r),i=n.javaLangClass(),l=n.javaLangReflectConstructor(),a=n.vaMethod("pointer",[]),c=n.vaMethod("uint8",[]),d=[],p=[],f=o._getType(r,!1),u=o._getType("void",!1),_=a(n.handle,t,i.getDeclaredConstructors);try{let h=n.getArrayLength(_);if(h!==0)for(let g=0;g!==h;g++){let m,E,I=n.getObjectArrayElement(_,g);try{m=n.fromReflectedMethod(I),E=a(n.handle,I,l.getGenericParameterTypes)}finally{n.deleteLocalRef(I)}let k;try{k=vr(n,E).map(R=>o._getType(R))}finally{n.deleteLocalRef(E)}d.push(tt(s,e,_r,m,f,k,n)),p.push(tt(s,e,Oe,m,u,k,n))}else{if(c(n.handle,t,i.isInterface))throw new Error("cannot instantiate an interface");let m=n.javaLangObject(),E=n.getMethodId(m,"<init>","()V");d.push(tt(s,e,_r,E,f,[],n)),p.push(tt(s,e,Oe,E,u,[],n))}}finally{n.deleteLocalRef(_)}if(p.length===0)throw new Error("no supported overloads");return{allocAndInit:gr(d),initOnly:gr(p)}}function fu(t,e,n,r,o){return e.startsWith("m")?hu(t,e,n,r,o):wu(t,e,n,r,o)}function hu(t,e,n,r,o){let{$f:s}=r,i=e.split(":").slice(1),l=o.javaLangReflectMethod(),a=o.vaMethod("pointer",[]),c=o.vaMethod("uint8",[]),d=i.map(f=>{let u=f[0]==="s"?bt:Oe,_=ptr(f.substr(1)),h,g=[],m=o.toReflectedMethod(n,_,u===bt?1:0);try{let E=!!c(o.handle,m,l.isVarArgs),I=a(o.handle,m,l.getGenericReturnType);o.throwIfExceptionPending();try{h=s._getType(o.getTypeName(I))}finally{o.deleteLocalRef(I)}let k=a(o.handle,m,l.getParameterTypes);try{let R=o.getArrayLength(k);for(let j=0;j!==R;j++){let S=o.getObjectArrayElement(k,j),N;try{N=E&&j===R-1?o.getArrayTypeName(S):o.getTypeName(S)}finally{o.deleteLocalRef(S)}let v=s._getType(N);g.push(v)}}finally{o.deleteLocalRef(k)}}catch{return null}finally{o.deleteLocalRef(m)}return tt(t,r,u,_,h,g,o)}).filter(f=>f!==null);if(d.length===0)throw new Error("No supported overloads");t==="valueOf"&&vu(d);let p=gr(d);return function(f){return p}}function gr(t){let e=_u();return Object.setPrototypeOf(e,os),e._o=t,e}function _u(){let t=function(){return t.invoke(this,arguments)};return t}os=Object.create(Function.prototype,{overloads:{enumerable:!0,get(){return this._o}},overload:{value(...t){let e=this._o,n=t.length,r=t.join(":");for(let o=0;o!==e.length;o++){let s=e[o],{argumentTypes:i}=s;if(i.length!==n)continue;if(i.map(a=>a.className).join(":")===r)return s}br(this.methodName,this.overloads,"specified argument types do not match any of:")}},methodName:{enumerable:!0,get(){return this._o[0].methodName}},holder:{enumerable:!0,get(){return this._o[0].holder}},type:{enumerable:!0,get(){return this._o[0].type}},handle:{enumerable:!0,get(){return $e(this),this._o[0].handle}},implementation:{enumerable:!0,get(){return $e(this),this._o[0].implementation},set(t){$e(this),this._o[0].implementation=t}},returnType:{enumerable:!0,get(){return $e(this),this._o[0].returnType}},argumentTypes:{enumerable:!0,get(){return $e(this),this._o[0].argumentTypes}},canInvokeWith:{enumerable:!0,get(t){return $e(this),this._o[0].canInvokeWith}},clone:{enumerable:!0,value(t){return $e(this),this._o[0].clone(t)}},invoke:{value(t,e){let n=this._o,r=t.$h!==null;for(let o=0;o!==n.length;o++){let s=n[o];if(s.canInvokeWith(e)){if(s.type===Oe&&!r){let i=this.methodName;if(i==="toString")return`<class: ${t.$n}>`;throw new Error(i+": cannot call instance method without an instance")}return s.apply(t,e)}}if(this.methodName==="toString")return`<class: ${t.$n}>`;br(this.methodName,this.overloads,"argument types do not match any of:")}}});function Yo(t,e,n){return`${e.className} ${t}(${n.map(r=>r.className).join(", ")})`}function $e(t){let e=t._o;e.length>1&&br(e[0].methodName,e,"has more than one overload, use .overload(<signature>) to choose from:")}function br(t,e,n){let o=e.slice().sort((s,i)=>s.argumentTypes.length-i.argumentTypes.length).map(s=>s.argumentTypes.length>0?".overload('"+s.argumentTypes.map(l=>l.className).join("', '")+"')":".overload()");throw new Error(`${t}(): ${n}
-	${o.join(`
-	`)}`)}function tt(t,e,n,r,o,s,i,l){let a=o.type,c=s.map(f=>f.type);i===null&&(i=G.getEnv());let d,p;return n===Oe?(d=i.vaMethod(a,c,l),p=i.nonvirtualVaMethod(a,c,l)):n===bt?(d=i.staticVaMethod(a,c,l),p=d):(d=i.constructor(c,l),p=d),mu([t,e,n,r,o,s,d,p])}function mu(t){let e=gu();return Object.setPrototypeOf(e,ss),e._p=t,e}function gu(){let t=function(){return t.invoke(this,arguments)};return t}ss=Object.create(Function.prototype,{methodName:{enumerable:!0,get(){return this._p[0]}},holder:{enumerable:!0,get(){return this._p[1]}},type:{enumerable:!0,get(){return this._p[2]}},handle:{enumerable:!0,get(){return this._p[3]}},implementation:{enumerable:!0,get(){let t=this._r;return t!==void 0?t:null},set(t){let e=this._p,n=e[1];if(e[2]===_r)throw new Error("Reimplementing $new is not possible; replace implementation of $init instead");let o=this._r;if(o!==void 0&&(n.$f._patchedMethods.delete(this),o._m.revert(G),this._r=void 0),t!==null){let[s,i,l,a,c,d]=e,p=as(s,i,l,c,d,t,this),f=es(a);p._m=f,this._r=p,f.replace(p,l===Oe,d,G,K),n.$f._patchedMethods.add(this)}}},returnType:{enumerable:!0,get(){return this._p[4]}},argumentTypes:{enumerable:!0,get(){return this._p[5]}},canInvokeWith:{enumerable:!0,value(t){let e=this._p[5];return t.length!==e.length?!1:e.every((n,r)=>n.isCompatible(t[r]))}},clone:{enumerable:!0,value(t){let e=this._p.slice(0,6);return tt(...e,null,t)}},invoke:{value(t,e){let n=G.getEnv(),r=this._p,o=r[2],s=r[4],i=r[5],l=this._r,a=o===Oe,c=e.length,d=2+c;n.pushLocalFrame(d);let p=null;try{let f;a?f=t.$getHandle():(p=t.$borrowClassHandle(n),f=p.value);let u,_=t.$t;l===void 0?u=r[3]:(u=l._m.resolveTarget(t,a,n,K),ns&&l._c.has($t())&&(_=ts));let h=[n.handle,f,u];for(let E=0;E!==c;E++)h.push(i[E].toJni(e[E],n));let g;_===Gt?g=r[6]:(g=r[7],a&&h.splice(2,0,t.$copyClassHandle(n)));let m=g.apply(null,h);return n.throwIfExceptionPending(),s.fromJni(m,n,!0)}finally{p!==null&&p.unref(n),n.popLocalFrame(NULL)}}},toString:{enumerable:!0,value(){return`function ${this.methodName}(${this.argumentTypes.map(t=>t.className).join(", ")}): ${this.returnType.className}`}}});function as(t,e,n,r,o,s,i=null){let l=new Set,a=bu([t,e,n,r,o,s,i,l]),c=new NativeCallback(a,r.type,["pointer","pointer"].concat(o.map(d=>d.type)));return c._c=l,c}function bu(t){return function(){return yu(arguments,t)}}function yu(t,e){let n=new y(t[0],G),[r,o,s,i,l,a,c,d]=e,p=[],f;if(s===Oe){let h=o.$C;f=new h(t[1],Gt,n,!1)}else f=o;let u=$t();n.pushLocalFrame(3);let _=!0;G.link(u,n);try{d.add(u);let h;c===null||!nt.has(u)?h=a:h=c;let g=[],m=t.length-2;for(let k=0;k!==m;k++){let j=l[k].fromJni(t[2+k],n,!1);g.push(j),p.push(j)}let E=h.apply(f,g);if(!i.isCompatible(E))throw new Error(`Implementation for ${r} expected return value compatible with ${i.className}`);let I=i.toJni(E,n);return i.type==="pointer"&&(I=n.popLocalFrame(I),_=!1,p.push(E)),I}catch(h){let g=h.$h;return g!==void 0?n.throw(g):Script.nextTick(()=>{throw h}),i.defaultValue}finally{G.unlink(u),_&&n.popLocalFrame(NULL),d.delete(u),p.forEach(h=>{if(h===null)return;let g=h.$dispose;g!==void 0&&g.call(h)})}}function vu(t){let{holder:e,type:n}=t[0];t.some(o=>o.type===n&&o.argumentTypes.length===0)||t.push(Eu([e,n]))}function Eu(t){let e=Su();return Object.setPrototypeOf(e,is),e._p=t,e}function Su(){return function(){return this}}is=Object.create(Function.prototype,{methodName:{enumerable:!0,get(){return"valueOf"}},holder:{enumerable:!0,get(){return this._p[0]}},type:{enumerable:!0,get(){return this._p[1]}},handle:{enumerable:!0,get(){return NULL}},implementation:{enumerable:!0,get(){return null},set(t){}},returnType:{enumerable:!0,get(){let t=this.holder;return t.$f.use(t.$n)}},argumentTypes:{enumerable:!0,get(){return[]}},canInvokeWith:{enumerable:!0,value(t){return t.length===0}},clone:{enumerable:!0,value(t){throw new Error("Invalid operation")}}});function wu(t,e,n,r,o){let s=e[2]==="s"?fr:mr,i=ptr(e.substr(3)),{$f:l}=r,a,c=o.toReflectedField(n,i,s===fr?1:0);try{a=o.vaMethod("pointer",[])(o.handle,c,o.javaLangReflectField().getGenericType),o.throwIfExceptionPending()}finally{o.deleteLocalRef(c)}let d;try{d=l._getType(o.getTypeName(a))}finally{o.deleteLocalRef(a)}let p,f,u=d.type;return s===fr?(p=o.getStaticField(u),f=o.setStaticField(u)):(p=o.getField(u),f=o.setField(u)),Cu([s,d,i,p,f])}function Cu(t){return function(e){return new ls([e].concat(t))}}function ls(t){this._p=t}Object.defineProperties(ls.prototype,{value:{enumerable:!0,get(){let[t,e,n,r,o]=this._p,s=G.getEnv();s.pushLocalFrame(4);let i=null;try{let l;if(e===mr){if(l=t.$getHandle(),l===null)throw new Error("Cannot access an instance field without an instance")}else i=t.$borrowClassHandle(s),l=i.value;let a=o(s.handle,l,r);return s.throwIfExceptionPending(),n.fromJni(a,s,!0)}finally{i!==null&&i.unref(s),s.popLocalFrame(NULL)}},set(t){let[e,n,r,o,,s]=this._p,i=G.getEnv();i.pushLocalFrame(4);let l=null;try{let a;if(n===mr){if(a=e.$getHandle(),a===null)throw new Error("Cannot access an instance field without an instance")}else l=e.$borrowClassHandle(i),a=l.value;if(!r.isCompatible(t))throw new Error(`Expected value compatible with ${r.className}`);let c=r.toJni(t,i);s(i.handle,a,o,c),i.throwIfExceptionPending()}finally{l!==null&&l.unref(i),i.popLocalFrame(NULL)}}},holder:{enumerable:!0,get(){return this._p[0]}},fieldType:{enumerable:!0,get(){return this._p[1]}},fieldReturnType:{enumerable:!0,get(){return this._p[2]}},toString:{enumerable:!0,value(){let t=`Java.Field{holder: ${this.holder}, fieldType: ${this.fieldType}, fieldReturnType: ${this.fieldReturnType}, value: ${this.value}}`;return t.length<200?t:`Java.Field{
+`;
+var methodQueryPattern = /(.+)!([^/]+)\/?([isu]+)?/;
+var cm = null;
+var unwrap = null;
+var Model = class _Model {
+  static build(handle, env) {
+    ensureInitialized(env);
+    return unwrap(handle, env, (object) => {
+      return new _Model(cm.new(handle, object, env));
+    });
+  }
+  static enumerateMethods(query, api2, env) {
+    ensureInitialized(env);
+    const params = query.match(methodQueryPattern);
+    if (params === null) {
+      throw new Error("Invalid query; format is: class!method -- see documentation of Java.enumerateMethods(query) for details");
+    }
+    const classQuery = Memory.allocUtf8String(params[1]);
+    const methodQuery = Memory.allocUtf8String(params[2]);
+    let includeSignature = false;
+    let ignoreCase = false;
+    let skipSystemClasses = false;
+    const modifiers = params[3];
+    if (modifiers !== void 0) {
+      includeSignature = modifiers.indexOf("s") !== -1;
+      ignoreCase = modifiers.indexOf("i") !== -1;
+      skipSystemClasses = modifiers.indexOf("u") !== -1;
+    }
+    let result;
+    if (api2.flavor === "jvm") {
+      const json = cm.enumerateMethodsJvm(
+        classQuery,
+        methodQuery,
+        boolToNative(includeSignature),
+        boolToNative(ignoreCase),
+        boolToNative(skipSystemClasses),
+        env,
+        api2.jvmti
+      );
+      try {
+        result = JSON.parse(json.readUtf8String()).map((group) => {
+          const loaderRef = ptr(group.loader);
+          group.loader = !loaderRef.isNull() ? loaderRef : null;
+          return group;
+        });
+      } finally {
+        cm.dealloc(json);
+      }
+    } else {
+      withRunnableArtThread(env.vm, env, (thread) => {
+        const json = cm.enumerateMethodsArt(
+          classQuery,
+          methodQuery,
+          boolToNative(includeSignature),
+          boolToNative(ignoreCase),
+          boolToNative(skipSystemClasses)
+        );
+        try {
+          const addGlobalReference = api2["art::JavaVMExt::AddGlobalRef"];
+          const { vm: vmHandle } = api2;
+          result = JSON.parse(json.readUtf8String()).map((group) => {
+            const loaderObj = group.loader;
+            group.loader = loaderObj !== 0 ? addGlobalReference(vmHandle, thread, ptr(loaderObj)) : null;
+            return group;
+          });
+        } finally {
+          cm.dealloc(json);
+        }
+      });
+    }
+    return result;
+  }
+  constructor(handle) {
+    this.handle = handle;
+  }
+  has(member) {
+    return cm.has(this.handle, Memory.allocUtf8String(member)) !== 0;
+  }
+  find(member) {
+    return cm.find(this.handle, Memory.allocUtf8String(member)).readUtf8String();
+  }
+  list() {
+    const str = cm.list(this.handle);
+    try {
+      return JSON.parse(str.readUtf8String());
+    } finally {
+      cm.dealloc(str);
+    }
+  }
+};
+function ensureInitialized(env) {
+  if (cm === null) {
+    cm = compileModule(env);
+    unwrap = makeHandleUnwrapper(cm, env.vm);
+  }
+}
+function compileModule(env) {
+  const { pointerSize: pointerSize9 } = Process;
+  const lockSize = 8;
+  const modelsSize = pointerSize9;
+  const javaApiSize = 6 * pointerSize9;
+  const artApiSize = 10 * 4 + 5 * pointerSize9;
+  const dataSize = lockSize + modelsSize + javaApiSize + artApiSize;
+  const data = Memory.alloc(dataSize);
+  const lock = data;
+  const models = lock.add(lockSize);
+  const javaApi = models.add(modelsSize);
+  const { getDeclaredMethods, getDeclaredFields } = env.javaLangClass();
+  const method = env.javaLangReflectMethod();
+  const field = env.javaLangReflectField();
+  let j = javaApi;
+  [
+    getDeclaredMethods,
+    getDeclaredFields,
+    method.getName,
+    method.getModifiers,
+    field.getName,
+    field.getModifiers
+  ].forEach((value) => {
+    j = j.writePointer(value).add(pointerSize9);
+  });
+  const artApi = javaApi.add(javaApiSize);
+  const { vm: vm3 } = env;
+  const artClass = getArtClassSpec(vm3);
+  if (artClass !== null) {
+    const c = artClass.offset;
+    const m = getArtMethodSpec(vm3);
+    const f = getArtFieldSpec(vm3);
+    let s = artApi;
+    [
+      1,
+      c.ifields,
+      c.methods,
+      c.sfields,
+      c.copiedMethodsOffset,
+      m.size,
+      m.offset.accessFlags,
+      f.size,
+      f.offset.accessFlags,
+      4294967295
+    ].forEach((value) => {
+      s = s.writeUInt(value).add(4);
+    });
+    const api2 = getApi();
+    [
+      api2.artClassLinker.address,
+      api2["art::ClassLinker::VisitClasses"],
+      api2["art::mirror::Class::GetDescriptor"],
+      api2["art::ArtMethod::PrettyMethod"],
+      Process.getModuleByName("libc.so").getExportByName("free")
+    ].forEach((value, i) => {
+      if (value === void 0) {
+        value = NULL;
+      }
+      s = s.writePointer(value).add(pointerSize9);
+    });
+  }
+  const cm2 = new CModule(code2, {
+    lock,
+    models,
+    java_api: javaApi,
+    art_api: artApi
+  });
+  const reentrantOptions = { exceptions: "propagate" };
+  const fastOptions = { exceptions: "propagate", scheduling: "exclusive" };
+  return {
+    handle: cm2,
+    mode: artClass !== null ? "full" : "basic",
+    new: new NativeFunction(cm2.model_new, "pointer", ["pointer", "pointer", "pointer"], reentrantOptions),
+    has: new NativeFunction(cm2.model_has, "bool", ["pointer", "pointer"], fastOptions),
+    find: new NativeFunction(cm2.model_find, "pointer", ["pointer", "pointer"], fastOptions),
+    list: new NativeFunction(cm2.model_list, "pointer", ["pointer"], fastOptions),
+    enumerateMethodsArt: new NativeFunction(
+      cm2.enumerate_methods_art,
+      "pointer",
+      ["pointer", "pointer", "bool", "bool", "bool"],
+      reentrantOptions
+    ),
+    enumerateMethodsJvm: new NativeFunction(cm2.enumerate_methods_jvm, "pointer", [
+      "pointer",
+      "pointer",
+      "bool",
+      "bool",
+      "bool",
+      "pointer",
+      "pointer"
+    ], reentrantOptions),
+    dealloc: new NativeFunction(cm2.dealloc, "void", ["pointer"], fastOptions)
+  };
+}
+function makeHandleUnwrapper(cm2, vm3) {
+  if (cm2.mode === "basic") {
+    return nullUnwrap;
+  }
+  const decodeGlobal = getApi()["art::JavaVMExt::DecodeGlobal"];
+  return function(handle, env, fn) {
+    let result;
+    withRunnableArtThread(vm3, env, (thread) => {
+      const object = decodeGlobal(vm3, thread, handle);
+      result = fn(object);
+    });
+    return result;
+  };
+}
+function nullUnwrap(handle, env, fn) {
+  return fn(NULL);
+}
+function boolToNative(val) {
+  return val ? 1 : 0;
+}
+
+// node_modules/frida-java-bridge/lib/lru.js
+var LRU = class {
+  constructor(capacity, destroy) {
+    this.items = /* @__PURE__ */ new Map();
+    this.capacity = capacity;
+    this.destroy = destroy;
+  }
+  dispose(env) {
+    const { items, destroy } = this;
+    items.forEach((val) => {
+      destroy(val, env);
+    });
+    items.clear();
+  }
+  get(key) {
+    const { items } = this;
+    const item = items.get(key);
+    if (item !== void 0) {
+      items.delete(key);
+      items.set(key, item);
+    }
+    return item;
+  }
+  set(key, val, env) {
+    const { items } = this;
+    const existingVal = items.get(key);
+    if (existingVal !== void 0) {
+      items.delete(key);
+      this.destroy(existingVal, env);
+    } else if (items.size === this.capacity) {
+      const oldestKey = items.keys().next().value;
+      const oldestVal = items.get(oldestKey);
+      items.delete(oldestKey);
+      this.destroy(oldestVal, env);
+    }
+    items.set(key, val);
+  }
+};
+
+// node_modules/frida-java-bridge/lib/mkdex.js
+var kAccPublic2 = 1;
+var kAccNative2 = 256;
+var kAccConstructor = 65536;
+var kEndianTag = 305419896;
+var kClassDefSize = 32;
+var kProtoIdSize = 12;
+var kFieldIdSize = 8;
+var kMethodIdSize = 8;
+var kTypeIdSize = 4;
+var kStringIdSize = 4;
+var kMapItemSize = 12;
+var TYPE_HEADER_ITEM = 0;
+var TYPE_STRING_ID_ITEM = 1;
+var TYPE_TYPE_ID_ITEM = 2;
+var TYPE_PROTO_ID_ITEM = 3;
+var TYPE_FIELD_ID_ITEM = 4;
+var TYPE_METHOD_ID_ITEM = 5;
+var TYPE_CLASS_DEF_ITEM = 6;
+var TYPE_MAP_LIST = 4096;
+var TYPE_TYPE_LIST = 4097;
+var TYPE_ANNOTATION_SET_ITEM = 4099;
+var TYPE_CLASS_DATA_ITEM = 8192;
+var TYPE_CODE_ITEM = 8193;
+var TYPE_STRING_DATA_ITEM = 8194;
+var TYPE_DEBUG_INFO_ITEM = 8195;
+var TYPE_ANNOTATION_ITEM = 8196;
+var TYPE_ANNOTATIONS_DIRECTORY_ITEM = 8198;
+var VALUE_TYPE = 24;
+var VALUE_ARRAY = 28;
+var VISIBILITY_SYSTEM = 2;
+var kDefaultConstructorSize = 24;
+var kDefaultConstructorDebugInfo = Buffer2.from([3, 0, 7, 14, 0]);
+var kDalvikAnnotationTypeThrows = "Ldalvik/annotation/Throws;";
+var kNullTerminator = Buffer2.from([0]);
+function mkdex(spec) {
+  const builder = new DexBuilder();
+  const fullSpec = Object.assign({}, spec);
+  builder.addClass(fullSpec);
+  return builder.build();
+}
+var DexBuilder = class {
+  constructor() {
+    this.classes = [];
+  }
+  addClass(spec) {
+    this.classes.push(spec);
+  }
+  build() {
+    const model = computeModel(this.classes);
+    const {
+      classes,
+      interfaces,
+      fields,
+      methods,
+      protos,
+      parameters,
+      annotationDirectories,
+      annotationSets,
+      throwsAnnotations,
+      types,
+      strings
+    } = model;
+    let offset = 0;
+    const headerOffset = 0;
+    const checksumOffset = 8;
+    const signatureOffset = 12;
+    const signatureSize = 20;
+    const headerSize = 112;
+    offset += headerSize;
+    const stringIdsOffset = offset;
+    const stringIdsSize = strings.length * kStringIdSize;
+    offset += stringIdsSize;
+    const typeIdsOffset = offset;
+    const typeIdsSize = types.length * kTypeIdSize;
+    offset += typeIdsSize;
+    const protoIdsOffset = offset;
+    const protoIdsSize = protos.length * kProtoIdSize;
+    offset += protoIdsSize;
+    const fieldIdsOffset = offset;
+    const fieldIdsSize = fields.length * kFieldIdSize;
+    offset += fieldIdsSize;
+    const methodIdsOffset = offset;
+    const methodIdsSize = methods.length * kMethodIdSize;
+    offset += methodIdsSize;
+    const classDefsOffset = offset;
+    const classDefsSize = classes.length * kClassDefSize;
+    offset += classDefsSize;
+    const dataOffset = offset;
+    const annotationSetOffsets = annotationSets.map((set) => {
+      const setOffset = offset;
+      set.offset = setOffset;
+      offset += 4 + set.items.length * 4;
+      return setOffset;
+    });
+    const javaCodeItems = classes.reduce((result, klass) => {
+      const constructorMethods = klass.classData.constructorMethods;
+      constructorMethods.forEach((method) => {
+        const [, accessFlags, superConstructor] = method;
+        if ((accessFlags & kAccNative2) === 0 && superConstructor >= 0) {
+          method.push(offset);
+          result.push({ offset, superConstructor });
+          offset += kDefaultConstructorSize;
+        }
+      });
+      return result;
+    }, []);
+    annotationDirectories.forEach((dir) => {
+      dir.offset = offset;
+      offset += 16 + dir.methods.length * 8;
+    });
+    const interfaceOffsets = interfaces.map((iface) => {
+      offset = align(offset, 4);
+      const ifaceOffset = offset;
+      iface.offset = ifaceOffset;
+      offset += 4 + 2 * iface.types.length;
+      return ifaceOffset;
+    });
+    const parameterOffsets = parameters.map((param) => {
+      offset = align(offset, 4);
+      const paramOffset = offset;
+      param.offset = paramOffset;
+      offset += 4 + 2 * param.types.length;
+      return paramOffset;
+    });
+    const stringChunks = [];
+    const stringOffsets = strings.map((str) => {
+      const strOffset = offset;
+      const header = Buffer2.from(createUleb128(str.length));
+      const data = Buffer2.from(str, "utf8");
+      const chunk = Buffer2.concat([header, data, kNullTerminator]);
+      stringChunks.push(chunk);
+      offset += chunk.length;
+      return strOffset;
+    });
+    const debugInfoOffsets = javaCodeItems.map((codeItem) => {
+      const debugOffset = offset;
+      offset += kDefaultConstructorDebugInfo.length;
+      return debugOffset;
+    });
+    const throwsAnnotationBlobs = throwsAnnotations.map((annotation) => {
+      const blob = makeThrowsAnnotation(annotation);
+      annotation.offset = offset;
+      offset += blob.length;
+      return blob;
+    });
+    const classDataBlobs = classes.map((klass, index) => {
+      klass.classData.offset = offset;
+      const blob = makeClassData(klass);
+      offset += blob.length;
+      return blob;
+    });
+    const linkSize = 0;
+    const linkOffset = 0;
+    offset = align(offset, 4);
+    const mapOffset = offset;
+    const typeListLength = interfaces.length + parameters.length;
+    const mapNumItems = 4 + (fields.length > 0 ? 1 : 0) + 2 + annotationSets.length + javaCodeItems.length + annotationDirectories.length + (typeListLength > 0 ? 1 : 0) + 1 + debugInfoOffsets.length + throwsAnnotations.length + classes.length + 1;
+    const mapSize = 4 + mapNumItems * kMapItemSize;
+    offset += mapSize;
+    const dataSize = offset - dataOffset;
+    const fileSize = offset;
+    const dex = Buffer2.alloc(fileSize);
+    dex.write("dex\n035");
+    dex.writeUInt32LE(fileSize, 32);
+    dex.writeUInt32LE(headerSize, 36);
+    dex.writeUInt32LE(kEndianTag, 40);
+    dex.writeUInt32LE(linkSize, 44);
+    dex.writeUInt32LE(linkOffset, 48);
+    dex.writeUInt32LE(mapOffset, 52);
+    dex.writeUInt32LE(strings.length, 56);
+    dex.writeUInt32LE(stringIdsOffset, 60);
+    dex.writeUInt32LE(types.length, 64);
+    dex.writeUInt32LE(typeIdsOffset, 68);
+    dex.writeUInt32LE(protos.length, 72);
+    dex.writeUInt32LE(protoIdsOffset, 76);
+    dex.writeUInt32LE(fields.length, 80);
+    dex.writeUInt32LE(fields.length > 0 ? fieldIdsOffset : 0, 84);
+    dex.writeUInt32LE(methods.length, 88);
+    dex.writeUInt32LE(methodIdsOffset, 92);
+    dex.writeUInt32LE(classes.length, 96);
+    dex.writeUInt32LE(classDefsOffset, 100);
+    dex.writeUInt32LE(dataSize, 104);
+    dex.writeUInt32LE(dataOffset, 108);
+    stringOffsets.forEach((offset2, index) => {
+      dex.writeUInt32LE(offset2, stringIdsOffset + index * kStringIdSize);
+    });
+    types.forEach((id, index) => {
+      dex.writeUInt32LE(id, typeIdsOffset + index * kTypeIdSize);
+    });
+    protos.forEach((proto, index) => {
+      const [shortyIndex, returnTypeIndex, params] = proto;
+      const protoOffset = protoIdsOffset + index * kProtoIdSize;
+      dex.writeUInt32LE(shortyIndex, protoOffset);
+      dex.writeUInt32LE(returnTypeIndex, protoOffset + 4);
+      dex.writeUInt32LE(params !== null ? params.offset : 0, protoOffset + 8);
+    });
+    fields.forEach((field, index) => {
+      const [classIndex, typeIndex, nameIndex] = field;
+      const fieldOffset = fieldIdsOffset + index * kFieldIdSize;
+      dex.writeUInt16LE(classIndex, fieldOffset);
+      dex.writeUInt16LE(typeIndex, fieldOffset + 2);
+      dex.writeUInt32LE(nameIndex, fieldOffset + 4);
+    });
+    methods.forEach((method, index) => {
+      const [classIndex, protoIndex, nameIndex] = method;
+      const methodOffset = methodIdsOffset + index * kMethodIdSize;
+      dex.writeUInt16LE(classIndex, methodOffset);
+      dex.writeUInt16LE(protoIndex, methodOffset + 2);
+      dex.writeUInt32LE(nameIndex, methodOffset + 4);
+    });
+    classes.forEach((klass, index) => {
+      const { interfaces: interfaces2, annotationsDirectory } = klass;
+      const interfacesOffset = interfaces2 !== null ? interfaces2.offset : 0;
+      const annotationsOffset = annotationsDirectory !== null ? annotationsDirectory.offset : 0;
+      const staticValuesOffset = 0;
+      const classOffset = classDefsOffset + index * kClassDefSize;
+      dex.writeUInt32LE(klass.index, classOffset);
+      dex.writeUInt32LE(klass.accessFlags, classOffset + 4);
+      dex.writeUInt32LE(klass.superClassIndex, classOffset + 8);
+      dex.writeUInt32LE(interfacesOffset, classOffset + 12);
+      dex.writeUInt32LE(klass.sourceFileIndex, classOffset + 16);
+      dex.writeUInt32LE(annotationsOffset, classOffset + 20);
+      dex.writeUInt32LE(klass.classData.offset, classOffset + 24);
+      dex.writeUInt32LE(staticValuesOffset, classOffset + 28);
+    });
+    annotationSets.forEach((set, index) => {
+      const { items } = set;
+      const setOffset = annotationSetOffsets[index];
+      dex.writeUInt32LE(items.length, setOffset);
+      items.forEach((item, index2) => {
+        dex.writeUInt32LE(item.offset, setOffset + 4 + index2 * 4);
+      });
+    });
+    javaCodeItems.forEach((codeItem, index) => {
+      const { offset: offset2, superConstructor } = codeItem;
+      const registersSize = 1;
+      const insSize = 1;
+      const outsSize = 1;
+      const triesSize = 0;
+      const insnsSize = 4;
+      dex.writeUInt16LE(registersSize, offset2);
+      dex.writeUInt16LE(insSize, offset2 + 2);
+      dex.writeUInt16LE(outsSize, offset2 + 4);
+      dex.writeUInt16LE(triesSize, offset2 + 6);
+      dex.writeUInt32LE(debugInfoOffsets[index], offset2 + 8);
+      dex.writeUInt32LE(insnsSize, offset2 + 12);
+      dex.writeUInt16LE(4208, offset2 + 16);
+      dex.writeUInt16LE(superConstructor, offset2 + 18);
+      dex.writeUInt16LE(0, offset2 + 20);
+      dex.writeUInt16LE(14, offset2 + 22);
+    });
+    annotationDirectories.forEach((dir) => {
+      const dirOffset = dir.offset;
+      const classAnnotationsOffset = 0;
+      const fieldsSize = 0;
+      const annotatedMethodsSize = dir.methods.length;
+      const annotatedParametersSize = 0;
+      dex.writeUInt32LE(classAnnotationsOffset, dirOffset);
+      dex.writeUInt32LE(fieldsSize, dirOffset + 4);
+      dex.writeUInt32LE(annotatedMethodsSize, dirOffset + 8);
+      dex.writeUInt32LE(annotatedParametersSize, dirOffset + 12);
+      dir.methods.forEach((method, index) => {
+        const entryOffset = dirOffset + 16 + index * 8;
+        const [methodIndex, annotationSet] = method;
+        dex.writeUInt32LE(methodIndex, entryOffset);
+        dex.writeUInt32LE(annotationSet.offset, entryOffset + 4);
+      });
+    });
+    interfaces.forEach((iface, index) => {
+      const ifaceOffset = interfaceOffsets[index];
+      dex.writeUInt32LE(iface.types.length, ifaceOffset);
+      iface.types.forEach((type, typeIndex) => {
+        dex.writeUInt16LE(type, ifaceOffset + 4 + typeIndex * 2);
+      });
+    });
+    parameters.forEach((param, index) => {
+      const paramOffset = parameterOffsets[index];
+      dex.writeUInt32LE(param.types.length, paramOffset);
+      param.types.forEach((type, typeIndex) => {
+        dex.writeUInt16LE(type, paramOffset + 4 + typeIndex * 2);
+      });
+    });
+    stringChunks.forEach((chunk, index) => {
+      chunk.copy(dex, stringOffsets[index]);
+    });
+    debugInfoOffsets.forEach((debugInfoOffset) => {
+      kDefaultConstructorDebugInfo.copy(dex, debugInfoOffset);
+    });
+    throwsAnnotationBlobs.forEach((annotationBlob, index) => {
+      annotationBlob.copy(dex, throwsAnnotations[index].offset);
+    });
+    classDataBlobs.forEach((classDataBlob, index) => {
+      classDataBlob.copy(dex, classes[index].classData.offset);
+    });
+    dex.writeUInt32LE(mapNumItems, mapOffset);
+    const mapItems = [
+      [TYPE_HEADER_ITEM, 1, headerOffset],
+      [TYPE_STRING_ID_ITEM, strings.length, stringIdsOffset],
+      [TYPE_TYPE_ID_ITEM, types.length, typeIdsOffset],
+      [TYPE_PROTO_ID_ITEM, protos.length, protoIdsOffset]
+    ];
+    if (fields.length > 0) {
+      mapItems.push([TYPE_FIELD_ID_ITEM, fields.length, fieldIdsOffset]);
+    }
+    mapItems.push([TYPE_METHOD_ID_ITEM, methods.length, methodIdsOffset]);
+    mapItems.push([TYPE_CLASS_DEF_ITEM, classes.length, classDefsOffset]);
+    annotationSets.forEach((set, index) => {
+      mapItems.push([TYPE_ANNOTATION_SET_ITEM, set.items.length, annotationSetOffsets[index]]);
+    });
+    javaCodeItems.forEach((codeItem) => {
+      mapItems.push([TYPE_CODE_ITEM, 1, codeItem.offset]);
+    });
+    annotationDirectories.forEach((dir) => {
+      mapItems.push([TYPE_ANNOTATIONS_DIRECTORY_ITEM, 1, dir.offset]);
+    });
+    if (typeListLength > 0) {
+      mapItems.push([TYPE_TYPE_LIST, typeListLength, interfaceOffsets.concat(parameterOffsets)[0]]);
+    }
+    mapItems.push([TYPE_STRING_DATA_ITEM, strings.length, stringOffsets[0]]);
+    debugInfoOffsets.forEach((debugInfoOffset) => {
+      mapItems.push([TYPE_DEBUG_INFO_ITEM, 1, debugInfoOffset]);
+    });
+    throwsAnnotations.forEach((annotation) => {
+      mapItems.push([TYPE_ANNOTATION_ITEM, 1, annotation.offset]);
+    });
+    classes.forEach((klass) => {
+      mapItems.push([TYPE_CLASS_DATA_ITEM, 1, klass.classData.offset]);
+    });
+    mapItems.push([TYPE_MAP_LIST, 1, mapOffset]);
+    mapItems.forEach((item, index) => {
+      const [type, size, offset2] = item;
+      const itemOffset = mapOffset + 4 + index * kMapItemSize;
+      dex.writeUInt16LE(type, itemOffset);
+      dex.writeUInt32LE(size, itemOffset + 4);
+      dex.writeUInt32LE(offset2, itemOffset + 8);
+    });
+    const hash = new Checksum("sha1");
+    hash.update(dex.slice(signatureOffset + signatureSize));
+    Buffer2.from(hash.getDigest()).copy(dex, signatureOffset);
+    dex.writeUInt32LE(adler32(dex, signatureOffset), checksumOffset);
+    return dex;
+  }
+};
+function makeClassData(klass) {
+  const { instanceFields, constructorMethods, virtualMethods } = klass.classData;
+  const staticFieldsSize = 0;
+  return Buffer2.from([
+    staticFieldsSize
+  ].concat(createUleb128(instanceFields.length)).concat(createUleb128(constructorMethods.length)).concat(createUleb128(virtualMethods.length)).concat(instanceFields.reduce((result, [indexDiff, accessFlags]) => {
+    return result.concat(createUleb128(indexDiff)).concat(createUleb128(accessFlags));
+  }, [])).concat(constructorMethods.reduce((result, [indexDiff, accessFlags, , codeOffset]) => {
+    return result.concat(createUleb128(indexDiff)).concat(createUleb128(accessFlags)).concat(createUleb128(codeOffset || 0));
+  }, [])).concat(virtualMethods.reduce((result, [indexDiff, accessFlags]) => {
+    const codeOffset = 0;
+    return result.concat(createUleb128(indexDiff)).concat(createUleb128(accessFlags)).concat([codeOffset]);
+  }, [])));
+}
+function makeThrowsAnnotation(annotation) {
+  const { thrownTypes } = annotation;
+  return Buffer2.from(
+    [
+      VISIBILITY_SYSTEM
+    ].concat(createUleb128(annotation.type)).concat([1]).concat(createUleb128(annotation.value)).concat([VALUE_ARRAY, thrownTypes.length]).concat(thrownTypes.reduce((result, type) => {
+      result.push(VALUE_TYPE, type);
+      return result;
+    }, []))
+  );
+}
+function computeModel(classes) {
+  const strings = /* @__PURE__ */ new Set();
+  const types = /* @__PURE__ */ new Set();
+  const protos = {};
+  const fields = [];
+  const methods = [];
+  const throwsAnnotations = {};
+  const javaConstructors = /* @__PURE__ */ new Set();
+  const superConstructors = /* @__PURE__ */ new Set();
+  classes.forEach((klass) => {
+    const { name, superClass, sourceFileName } = klass;
+    strings.add("this");
+    strings.add(name);
+    types.add(name);
+    strings.add(superClass);
+    types.add(superClass);
+    strings.add(sourceFileName);
+    klass.interfaces.forEach((iface) => {
+      strings.add(iface);
+      types.add(iface);
+    });
+    klass.fields.forEach((field) => {
+      const [fieldName, fieldType] = field;
+      strings.add(fieldName);
+      strings.add(fieldType);
+      types.add(fieldType);
+      fields.push([klass.name, fieldType, fieldName]);
+    });
+    if (!klass.methods.some(([methodName]) => methodName === "<init>")) {
+      klass.methods.unshift(["<init>", "V", []]);
+      javaConstructors.add(name);
+    }
+    klass.methods.forEach((method) => {
+      const [methodName, retType, argTypes, thrownTypes = [], accessFlags] = method;
+      strings.add(methodName);
+      const protoId = addProto(retType, argTypes);
+      let throwsAnnotationId = null;
+      if (thrownTypes.length > 0) {
+        const typesNormalized = thrownTypes.slice();
+        typesNormalized.sort();
+        throwsAnnotationId = typesNormalized.join("|");
+        let throwsAnnotation = throwsAnnotations[throwsAnnotationId];
+        if (throwsAnnotation === void 0) {
+          throwsAnnotation = {
+            id: throwsAnnotationId,
+            types: typesNormalized
+          };
+          throwsAnnotations[throwsAnnotationId] = throwsAnnotation;
+        }
+        strings.add(kDalvikAnnotationTypeThrows);
+        types.add(kDalvikAnnotationTypeThrows);
+        thrownTypes.forEach((type) => {
+          strings.add(type);
+          types.add(type);
+        });
+        strings.add("value");
+      }
+      methods.push([klass.name, protoId, methodName, throwsAnnotationId, accessFlags]);
+      if (methodName === "<init>") {
+        superConstructors.add(name + "|" + protoId);
+        const superConstructorId = superClass + "|" + protoId;
+        if (javaConstructors.has(name) && !superConstructors.has(superConstructorId)) {
+          methods.push([superClass, protoId, methodName, null, 0]);
+          superConstructors.add(superConstructorId);
+        }
+      }
+    });
+  });
+  function addProto(retType, argTypes) {
+    const signature = [retType].concat(argTypes);
+    const id = signature.join("|");
+    if (protos[id] !== void 0) {
+      return id;
+    }
+    strings.add(retType);
+    types.add(retType);
+    argTypes.forEach((argType) => {
+      strings.add(argType);
+      types.add(argType);
+    });
+    const shorty = signature.map(typeToShorty).join("");
+    strings.add(shorty);
+    protos[id] = [id, shorty, retType, argTypes];
+    return id;
+  }
+  const stringItems = Array.from(strings);
+  stringItems.sort();
+  const stringToIndex = stringItems.reduce((result, string, index) => {
+    result[string] = index;
+    return result;
+  }, {});
+  const typeItems = Array.from(types).map((name) => stringToIndex[name]);
+  typeItems.sort(compareNumbers);
+  const typeToIndex = typeItems.reduce((result, stringIndex, typeIndex) => {
+    result[stringItems[stringIndex]] = typeIndex;
+    return result;
+  }, {});
+  const literalProtoItems = Object.keys(protos).map((id) => protos[id]);
+  literalProtoItems.sort(compareProtoItems);
+  const parameters = {};
+  const protoItems = literalProtoItems.map((item) => {
+    const [, shorty, retType, argTypes] = item;
+    let params;
+    if (argTypes.length > 0) {
+      const argTypesSig = argTypes.join("|");
+      params = parameters[argTypesSig];
+      if (params === void 0) {
+        params = {
+          types: argTypes.map((type) => typeToIndex[type]),
+          offset: -1
+        };
+        parameters[argTypesSig] = params;
+      }
+    } else {
+      params = null;
+    }
+    return [
+      stringToIndex[shorty],
+      typeToIndex[retType],
+      params
+    ];
+  });
+  const protoToIndex = literalProtoItems.reduce((result, item, index) => {
+    const [id] = item;
+    result[id] = index;
+    return result;
+  }, {});
+  const parameterItems = Object.keys(parameters).map((id) => parameters[id]);
+  const fieldItems = fields.map((field) => {
+    const [klass, fieldType, fieldName] = field;
+    return [
+      typeToIndex[klass],
+      typeToIndex[fieldType],
+      stringToIndex[fieldName]
+    ];
+  });
+  fieldItems.sort(compareFieldItems);
+  const methodItems = methods.map((method) => {
+    const [klass, protoId, name, annotationsId, accessFlags] = method;
+    return [
+      typeToIndex[klass],
+      protoToIndex[protoId],
+      stringToIndex[name],
+      annotationsId,
+      accessFlags
+    ];
+  });
+  methodItems.sort(compareMethodItems);
+  const throwsAnnotationItems = Object.keys(throwsAnnotations).map((id) => throwsAnnotations[id]).map((item) => {
+    return {
+      id: item.id,
+      type: typeToIndex[kDalvikAnnotationTypeThrows],
+      value: stringToIndex.value,
+      thrownTypes: item.types.map((type) => typeToIndex[type]),
+      offset: -1
+    };
+  });
+  const annotationSetItems = throwsAnnotationItems.map((item) => {
+    return {
+      id: item.id,
+      items: [item],
+      offset: -1
+    };
+  });
+  const annotationSetIdToIndex = annotationSetItems.reduce((result, item, index) => {
+    result[item.id] = index;
+    return result;
+  }, {});
+  const interfaceLists = {};
+  const annotationDirectories = [];
+  const classItems = classes.map((klass) => {
+    const classIndex = typeToIndex[klass.name];
+    const accessFlags = kAccPublic2;
+    const superClassIndex = typeToIndex[klass.superClass];
+    let ifaceList;
+    const ifaces = klass.interfaces.map((type) => typeToIndex[type]);
+    if (ifaces.length > 0) {
+      ifaces.sort(compareNumbers);
+      const ifacesId = ifaces.join("|");
+      ifaceList = interfaceLists[ifacesId];
+      if (ifaceList === void 0) {
+        ifaceList = {
+          types: ifaces,
+          offset: -1
+        };
+        interfaceLists[ifacesId] = ifaceList;
+      }
+    } else {
+      ifaceList = null;
+    }
+    const sourceFileIndex = stringToIndex[klass.sourceFileName];
+    const classMethods = methodItems.reduce((result, method, index) => {
+      const [holder, protoIndex, name, annotationsId, accessFlags2] = method;
+      if (holder === classIndex) {
+        result.push([index, name, annotationsId, protoIndex, accessFlags2]);
+      }
+      return result;
+    }, []);
+    let annotationsDirectory = null;
+    const methodAnnotations = classMethods.filter(([, , annotationsId]) => {
+      return annotationsId !== null;
+    }).map(([index, , annotationsId]) => {
+      return [index, annotationSetItems[annotationSetIdToIndex[annotationsId]]];
+    });
+    if (methodAnnotations.length > 0) {
+      annotationsDirectory = {
+        methods: methodAnnotations,
+        offset: -1
+      };
+      annotationDirectories.push(annotationsDirectory);
+    }
+    const instanceFields = fieldItems.reduce((result, field, index) => {
+      const [holder] = field;
+      if (holder === classIndex) {
+        result.push([index > 0 ? 1 : 0, kAccPublic2]);
+      }
+      return result;
+    }, []);
+    const constructorNameIndex = stringToIndex["<init>"];
+    const constructorMethods = classMethods.filter(([, name]) => name === constructorNameIndex).map(([index, , , protoIndex]) => {
+      if (javaConstructors.has(klass.name)) {
+        let superConstructor = -1;
+        const numMethodItems = methodItems.length;
+        for (let i = 0; i !== numMethodItems; i++) {
+          const [methodClass, methodProto, methodName] = methodItems[i];
+          if (methodClass === superClassIndex && methodName === constructorNameIndex && methodProto === protoIndex) {
+            superConstructor = i;
+            break;
+          }
+        }
+        return [index, kAccPublic2 | kAccConstructor, superConstructor];
+      } else {
+        return [index, kAccPublic2 | kAccConstructor | kAccNative2, -1];
+      }
+    });
+    const virtualMethods = compressClassMethodIndexes(classMethods.filter(([, name]) => name !== constructorNameIndex).map(([index, , , , accessFlags2]) => {
+      return [index, accessFlags2 | kAccPublic2 | kAccNative2];
+    }));
+    const classData = {
+      instanceFields,
+      constructorMethods,
+      virtualMethods,
+      offset: -1
+    };
+    return {
+      index: classIndex,
+      accessFlags,
+      superClassIndex,
+      interfaces: ifaceList,
+      sourceFileIndex,
+      annotationsDirectory,
+      classData
+    };
+  });
+  const interfaceItems = Object.keys(interfaceLists).map((id) => interfaceLists[id]);
+  return {
+    classes: classItems,
+    interfaces: interfaceItems,
+    fields: fieldItems,
+    methods: methodItems,
+    protos: protoItems,
+    parameters: parameterItems,
+    annotationDirectories,
+    annotationSets: annotationSetItems,
+    throwsAnnotations: throwsAnnotationItems,
+    types: typeItems,
+    strings: stringItems
+  };
+}
+function compressClassMethodIndexes(items) {
+  let previousIndex = 0;
+  return items.map(([index, accessFlags], elementIndex) => {
+    let result;
+    if (elementIndex === 0) {
+      result = [index, accessFlags];
+    } else {
+      result = [index - previousIndex, accessFlags];
+    }
+    previousIndex = index;
+    return result;
+  });
+}
+function compareNumbers(a, b) {
+  return a - b;
+}
+function compareProtoItems(a, b) {
+  const [, , aRetType, aArgTypes] = a;
+  const [, , bRetType, bArgTypes] = b;
+  if (aRetType < bRetType) {
+    return -1;
+  }
+  if (aRetType > bRetType) {
+    return 1;
+  }
+  const aArgTypesSig = aArgTypes.join("|");
+  const bArgTypesSig = bArgTypes.join("|");
+  if (aArgTypesSig < bArgTypesSig) {
+    return -1;
+  }
+  if (aArgTypesSig > bArgTypesSig) {
+    return 1;
+  }
+  return 0;
+}
+function compareFieldItems(a, b) {
+  const [aClass, aType, aName] = a;
+  const [bClass, bType, bName] = b;
+  if (aClass !== bClass) {
+    return aClass - bClass;
+  }
+  if (aName !== bName) {
+    return aName - bName;
+  }
+  return aType - bType;
+}
+function compareMethodItems(a, b) {
+  const [aClass, aProto, aName] = a;
+  const [bClass, bProto, bName] = b;
+  if (aClass !== bClass) {
+    return aClass - bClass;
+  }
+  if (aName !== bName) {
+    return aName - bName;
+  }
+  return aProto - bProto;
+}
+function typeToShorty(type) {
+  const firstCharacter = type[0];
+  return firstCharacter === "L" || firstCharacter === "[" ? "L" : type;
+}
+function createUleb128(value) {
+  if (value <= 127) {
+    return [value];
+  }
+  const result = [];
+  let moreSlicesNeeded = false;
+  do {
+    let slice2 = value & 127;
+    value >>= 7;
+    moreSlicesNeeded = value !== 0;
+    if (moreSlicesNeeded) {
+      slice2 |= 128;
+    }
+    result.push(slice2);
+  } while (moreSlicesNeeded);
+  return result;
+}
+function align(value, alignment) {
+  const alignmentDelta = value % alignment;
+  if (alignmentDelta === 0) {
+    return value;
+  }
+  return value + alignment - alignmentDelta;
+}
+function adler32(buffer, offset) {
+  let a = 1;
+  let b = 0;
+  const length = buffer.length;
+  for (let i = offset; i < length; i++) {
+    a = (a + buffer[i]) % 65521;
+    b = (b + a) % 65521;
+  }
+  return (b << 16 | a) >>> 0;
+}
+var mkdex_default = mkdex;
+
+// node_modules/frida-java-bridge/lib/types.js
+var JNILocalRefType = 1;
+var vm = null;
+var primitiveArrayHandler = null;
+function initialize(_vm) {
+  vm = _vm;
+}
+function getType(typeName, unbox, factory) {
+  let type = getPrimitiveType(typeName);
+  if (type === null) {
+    if (typeName.indexOf("[") === 0) {
+      type = getArrayType(typeName, unbox, factory);
+    } else {
+      if (typeName[0] === "L" && typeName[typeName.length - 1] === ";") {
+        typeName = typeName.substring(1, typeName.length - 1);
+      }
+      type = getObjectType(typeName, unbox, factory);
+    }
+  }
+  return Object.assign({ className: typeName }, type);
+}
+var primitiveTypes = {
+  boolean: {
+    name: "Z",
+    type: "uint8",
+    size: 1,
+    byteSize: 1,
+    defaultValue: false,
+    isCompatible(v) {
+      return typeof v === "boolean";
+    },
+    fromJni(v) {
+      return !!v;
+    },
+    toJni(v) {
+      return v ? 1 : 0;
+    },
+    read(address) {
+      return address.readU8();
+    },
+    write(address, value) {
+      address.writeU8(value);
+    },
+    toString() {
+      return this.name;
+    }
+  },
+  byte: {
+    name: "B",
+    type: "int8",
+    size: 1,
+    byteSize: 1,
+    defaultValue: 0,
+    isCompatible(v) {
+      return Number.isInteger(v) && v >= -128 && v <= 127;
+    },
+    fromJni: identity,
+    toJni: identity,
+    read(address) {
+      return address.readS8();
+    },
+    write(address, value) {
+      address.writeS8(value);
+    },
+    toString() {
+      return this.name;
+    }
+  },
+  char: {
+    name: "C",
+    type: "uint16",
+    size: 1,
+    byteSize: 2,
+    defaultValue: 0,
+    isCompatible(v) {
+      if (typeof v !== "string" || v.length !== 1) {
+        return false;
+      }
+      const code3 = v.charCodeAt(0);
+      return code3 >= 0 && code3 <= 65535;
+    },
+    fromJni(c) {
+      return String.fromCharCode(c);
+    },
+    toJni(s) {
+      return s.charCodeAt(0);
+    },
+    read(address) {
+      return address.readU16();
+    },
+    write(address, value) {
+      address.writeU16(value);
+    },
+    toString() {
+      return this.name;
+    }
+  },
+  short: {
+    name: "S",
+    type: "int16",
+    size: 1,
+    byteSize: 2,
+    defaultValue: 0,
+    isCompatible(v) {
+      return Number.isInteger(v) && v >= -32768 && v <= 32767;
+    },
+    fromJni: identity,
+    toJni: identity,
+    read(address) {
+      return address.readS16();
+    },
+    write(address, value) {
+      address.writeS16(value);
+    },
+    toString() {
+      return this.name;
+    }
+  },
+  int: {
+    name: "I",
+    type: "int32",
+    size: 1,
+    byteSize: 4,
+    defaultValue: 0,
+    isCompatible(v) {
+      return Number.isInteger(v) && v >= -2147483648 && v <= 2147483647;
+    },
+    fromJni: identity,
+    toJni: identity,
+    read(address) {
+      return address.readS32();
+    },
+    write(address, value) {
+      address.writeS32(value);
+    },
+    toString() {
+      return this.name;
+    }
+  },
+  long: {
+    name: "J",
+    type: "int64",
+    size: 2,
+    byteSize: 8,
+    defaultValue: 0,
+    isCompatible(v) {
+      return typeof v === "number" || v instanceof Int64;
+    },
+    fromJni: identity,
+    toJni: identity,
+    read(address) {
+      return address.readS64();
+    },
+    write(address, value) {
+      address.writeS64(value);
+    },
+    toString() {
+      return this.name;
+    }
+  },
+  float: {
+    name: "F",
+    type: "float",
+    size: 1,
+    byteSize: 4,
+    defaultValue: 0,
+    isCompatible(v) {
+      return typeof v === "number";
+    },
+    fromJni: identity,
+    toJni: identity,
+    read(address) {
+      return address.readFloat();
+    },
+    write(address, value) {
+      address.writeFloat(value);
+    },
+    toString() {
+      return this.name;
+    }
+  },
+  double: {
+    name: "D",
+    type: "double",
+    size: 2,
+    byteSize: 8,
+    defaultValue: 0,
+    isCompatible(v) {
+      return typeof v === "number";
+    },
+    fromJni: identity,
+    toJni: identity,
+    read(address) {
+      return address.readDouble();
+    },
+    write(address, value) {
+      address.writeDouble(value);
+    },
+    toString() {
+      return this.name;
+    }
+  },
+  void: {
+    name: "V",
+    type: "void",
+    size: 0,
+    byteSize: 0,
+    defaultValue: void 0,
+    isCompatible(v) {
+      return v === void 0;
+    },
+    fromJni() {
+      return void 0;
+    },
+    toJni() {
+      return NULL;
+    },
+    toString() {
+      return this.name;
+    }
+  }
+};
+var primitiveTypesNames = new Set(Object.values(primitiveTypes).map((t) => t.name));
+function getPrimitiveType(name) {
+  const result = primitiveTypes[name];
+  return result !== void 0 ? result : null;
+}
+function getObjectType(typeName, unbox, factory) {
+  const cache = factory._types[unbox ? 1 : 0];
+  let type = cache[typeName];
+  if (type !== void 0) {
+    return type;
+  }
+  if (typeName === "java.lang.Object") {
+    type = getJavaLangObjectType(factory);
+  } else {
+    type = getAnyObjectType(typeName, unbox, factory);
+  }
+  cache[typeName] = type;
+  return type;
+}
+function getJavaLangObjectType(factory) {
+  return {
+    name: "Ljava/lang/Object;",
+    type: "pointer",
+    size: 1,
+    defaultValue: NULL,
+    isCompatible(v) {
+      if (v === null) {
+        return true;
+      }
+      if (v === void 0) {
+        return false;
+      }
+      const isWrapper = v.$h instanceof NativePointer;
+      if (isWrapper) {
+        return true;
+      }
+      return typeof v === "string";
+    },
+    fromJni(h, env, owned) {
+      if (h.isNull()) {
+        return null;
+      }
+      return factory.cast(h, factory.use("java.lang.Object"), owned);
+    },
+    toJni(o, env) {
+      if (o === null) {
+        return NULL;
+      }
+      if (typeof o === "string") {
+        return env.newStringUtf(o);
+      }
+      return o.$h;
+    }
+  };
+}
+function getAnyObjectType(typeName, unbox, factory) {
+  let cachedClass = null;
+  let cachedIsInstance = null;
+  let cachedIsDefaultString = null;
+  function getClass() {
+    if (cachedClass === null) {
+      cachedClass = factory.use(typeName).class;
+    }
+    return cachedClass;
+  }
+  function isInstance(v) {
+    const klass = getClass();
+    if (cachedIsInstance === null) {
+      cachedIsInstance = klass.isInstance.overload("java.lang.Object");
+    }
+    return cachedIsInstance.call(klass, v);
+  }
+  function typeIsDefaultString() {
+    if (cachedIsDefaultString === null) {
+      const x = getClass();
+      cachedIsDefaultString = factory.use("java.lang.String").class.isAssignableFrom(x);
+    }
+    return cachedIsDefaultString;
+  }
+  return {
+    name: makeJniObjectTypeName(typeName),
+    type: "pointer",
+    size: 1,
+    defaultValue: NULL,
+    isCompatible(v) {
+      if (v === null) {
+        return true;
+      }
+      if (v === void 0) {
+        return false;
+      }
+      const isWrapper = v.$h instanceof NativePointer;
+      if (isWrapper) {
+        return isInstance(v);
+      }
+      return typeof v === "string" && typeIsDefaultString();
+    },
+    fromJni(h, env, owned) {
+      if (h.isNull()) {
+        return null;
+      }
+      if (typeIsDefaultString() && unbox) {
+        return env.stringFromJni(h);
+      }
+      return factory.cast(h, factory.use(typeName), owned);
+    },
+    toJni(o, env) {
+      if (o === null) {
+        return NULL;
+      }
+      if (typeof o === "string") {
+        return env.newStringUtf(o);
+      }
+      return o.$h;
+    },
+    toString() {
+      return this.name;
+    }
+  };
+}
+var primitiveArrayTypes = [
+  ["Z", "boolean"],
+  ["B", "byte"],
+  ["C", "char"],
+  ["D", "double"],
+  ["F", "float"],
+  ["I", "int"],
+  ["J", "long"],
+  ["S", "short"]
+].reduce((result, [shorty, name]) => {
+  result["[" + shorty] = makePrimitiveArrayType("[" + shorty, name);
+  return result;
+}, {});
+function makePrimitiveArrayType(shorty, name) {
+  const envProto = Env.prototype;
+  const nameTitled = toTitleCase(name);
+  const spec = {
+    typeName: name,
+    newArray: envProto["new" + nameTitled + "Array"],
+    setRegion: envProto["set" + nameTitled + "ArrayRegion"],
+    getElements: envProto["get" + nameTitled + "ArrayElements"],
+    releaseElements: envProto["release" + nameTitled + "ArrayElements"]
+  };
+  return {
+    name: shorty,
+    type: "pointer",
+    size: 1,
+    defaultValue: NULL,
+    isCompatible(v) {
+      return isCompatiblePrimitiveArray(v, name);
+    },
+    fromJni(h, env, owned) {
+      return fromJniPrimitiveArray(h, spec, env, owned);
+    },
+    toJni(arr, env) {
+      return toJniPrimitiveArray(arr, spec, env);
+    }
+  };
+}
+function getArrayType(typeName, unbox, factory) {
+  const primitiveType = primitiveArrayTypes[typeName];
+  if (primitiveType !== void 0) {
+    return primitiveType;
+  }
+  if (typeName.indexOf("[") !== 0) {
+    throw new Error("Unsupported type: " + typeName);
+  }
+  let elementTypeName = typeName.substring(1);
+  const elementType = getType(elementTypeName, unbox, factory);
+  let numInternalArrays = 0;
+  const end = elementTypeName.length;
+  while (numInternalArrays !== end && elementTypeName[numInternalArrays] === "[") {
+    numInternalArrays++;
+  }
+  elementTypeName = elementTypeName.substring(numInternalArrays);
+  if (elementTypeName[0] === "L" && elementTypeName[elementTypeName.length - 1] === ";") {
+    elementTypeName = elementTypeName.substring(1, elementTypeName.length - 1);
+  }
+  let internalElementTypeName = elementTypeName.replace(/\./g, "/");
+  if (primitiveTypesNames.has(internalElementTypeName)) {
+    internalElementTypeName = "[".repeat(numInternalArrays) + internalElementTypeName;
+  } else {
+    internalElementTypeName = "[".repeat(numInternalArrays) + "L" + internalElementTypeName + ";";
+  }
+  const internalTypeName = "[" + internalElementTypeName;
+  elementTypeName = "[".repeat(numInternalArrays) + elementTypeName;
+  return {
+    name: typeName.replace(/\./g, "/"),
+    type: "pointer",
+    size: 1,
+    defaultValue: NULL,
+    isCompatible(v) {
+      if (v === null) {
+        return true;
+      }
+      if (typeof v !== "object" || v.length === void 0) {
+        return false;
+      }
+      return v.every(function(element) {
+        return elementType.isCompatible(element);
+      });
+    },
+    fromJni(arr, env, owned) {
+      if (arr.isNull()) {
+        return null;
+      }
+      const result = [];
+      const n = env.getArrayLength(arr);
+      for (let i = 0; i !== n; i++) {
+        const element = env.getObjectArrayElement(arr, i);
+        try {
+          result.push(elementType.fromJni(element, env));
+        } finally {
+          env.deleteLocalRef(element);
+        }
+      }
+      try {
+        result.$w = factory.cast(arr, factory.use(internalTypeName), owned);
+      } catch (e) {
+        factory.use("java.lang.reflect.Array").newInstance(factory.use(elementTypeName).class, 0);
+        result.$w = factory.cast(arr, factory.use(internalTypeName), owned);
+      }
+      result.$dispose = disposeObjectArray;
+      return result;
+    },
+    toJni(elements, env) {
+      if (elements === null) {
+        return NULL;
+      }
+      if (!(elements instanceof Array)) {
+        throw new Error("Expected an array");
+      }
+      const wrapper = elements.$w;
+      if (wrapper !== void 0) {
+        return wrapper.$h;
+      }
+      const n = elements.length;
+      const klassObj = factory.use(elementTypeName);
+      const classHandle = klassObj.$borrowClassHandle(env);
+      try {
+        const result = env.newObjectArray(n, classHandle.value, NULL);
+        env.throwIfExceptionPending();
+        for (let i = 0; i !== n; i++) {
+          const handle = elementType.toJni(elements[i], env);
+          try {
+            env.setObjectArrayElement(result, i, handle);
+          } finally {
+            if (elementType.type === "pointer" && env.getObjectRefType(handle) === JNILocalRefType) {
+              env.deleteLocalRef(handle);
+            }
+          }
+          env.throwIfExceptionPending();
+        }
+        return result;
+      } finally {
+        classHandle.unref(env);
+      }
+    }
+  };
+}
+function disposeObjectArray() {
+  const n = this.length;
+  for (let i = 0; i !== n; i++) {
+    const obj = this[i];
+    if (obj === null) {
+      continue;
+    }
+    const dispose = obj.$dispose;
+    if (dispose === void 0) {
+      break;
+    }
+    dispose.call(obj);
+  }
+  this.$w.$dispose();
+}
+function fromJniPrimitiveArray(arr, spec, env, owned) {
+  if (arr.isNull()) {
+    return null;
+  }
+  const type = getPrimitiveType(spec.typeName);
+  const length = env.getArrayLength(arr);
+  return new PrimitiveArray(arr, spec, type, length, env, owned);
+}
+function toJniPrimitiveArray(arr, spec, env) {
+  if (arr === null) {
+    return NULL;
+  }
+  const handle = arr.$h;
+  if (handle !== void 0) {
+    return handle;
+  }
+  const length = arr.length;
+  const type = getPrimitiveType(spec.typeName);
+  const result = spec.newArray.call(env, length);
+  if (result.isNull()) {
+    throw new Error("Unable to construct array");
+  }
+  if (length > 0) {
+    const elementSize = type.byteSize;
+    const writeElement = type.write;
+    const unparseElementValue = type.toJni;
+    const elements = Memory.alloc(length * type.byteSize);
+    for (let index = 0; index !== length; index++) {
+      writeElement(elements.add(index * elementSize), unparseElementValue(arr[index]));
+    }
+    spec.setRegion.call(env, result, 0, length, elements);
+    env.throwIfExceptionPending();
+  }
+  return result;
+}
+function isCompatiblePrimitiveArray(value, typeName) {
+  if (value === null) {
+    return true;
+  }
+  if (value instanceof PrimitiveArray) {
+    return value.$s.typeName === typeName;
+  }
+  const isArrayLike = typeof value === "object" && value.length !== void 0;
+  if (!isArrayLike) {
+    return false;
+  }
+  const elementType = getPrimitiveType(typeName);
+  return Array.prototype.every.call(value, (element) => elementType.isCompatible(element));
+}
+function PrimitiveArray(handle, spec, type, length, env, owned = true) {
+  if (owned) {
+    const h = env.newGlobalRef(handle);
+    this.$h = h;
+    this.$r = Script.bindWeak(this, env.vm.makeHandleDestructor(h));
+  } else {
+    this.$h = handle;
+    this.$r = null;
+  }
+  this.$s = spec;
+  this.$t = type;
+  this.length = length;
+  return new Proxy(this, primitiveArrayHandler);
+}
+primitiveArrayHandler = {
+  has(target, property) {
+    if (property in target) {
+      return true;
+    }
+    return target.tryParseIndex(property) !== null;
+  },
+  get(target, property, receiver) {
+    const index = target.tryParseIndex(property);
+    if (index === null) {
+      return target[property];
+    }
+    return target.readElement(index);
+  },
+  set(target, property, value, receiver) {
+    const index = target.tryParseIndex(property);
+    if (index === null) {
+      target[property] = value;
+      return true;
+    }
+    target.writeElement(index, value);
+    return true;
+  },
+  ownKeys(target) {
+    const keys = [];
+    const { length } = target;
+    for (let i = 0; i !== length; i++) {
+      const key = i.toString();
+      keys.push(key);
+    }
+    keys.push("length");
+    return keys;
+  },
+  getOwnPropertyDescriptor(target, property) {
+    const index = target.tryParseIndex(property);
+    if (index !== null) {
+      return {
+        writable: true,
+        configurable: true,
+        enumerable: true
+      };
+    }
+    return Object.getOwnPropertyDescriptor(target, property);
+  }
+};
+Object.defineProperties(PrimitiveArray.prototype, {
+  $dispose: {
+    enumerable: true,
+    value() {
+      const ref = this.$r;
+      if (ref !== null) {
+        this.$r = null;
+        Script.unbindWeak(ref);
+      }
+    }
+  },
+  $clone: {
+    value(env) {
+      return new PrimitiveArray(this.$h, this.$s, this.$t, this.length, env);
+    }
+  },
+  tryParseIndex: {
+    value(rawIndex) {
+      if (typeof rawIndex === "symbol") {
+        return null;
+      }
+      const index = parseInt(rawIndex);
+      if (isNaN(index) || index < 0 || index >= this.length) {
+        return null;
+      }
+      return index;
+    }
+  },
+  readElement: {
+    value(index) {
+      return this.withElements((elements) => {
+        const type = this.$t;
+        return type.fromJni(type.read(elements.add(index * type.byteSize)));
+      });
+    }
+  },
+  writeElement: {
+    value(index, value) {
+      const { $h: handle, $s: spec, $t: type } = this;
+      const env = vm.getEnv();
+      const element = Memory.alloc(type.byteSize);
+      type.write(element, type.toJni(value));
+      spec.setRegion.call(env, handle, index, 1, element);
+    }
+  },
+  withElements: {
+    value(perform) {
+      const { $h: handle, $s: spec } = this;
+      const env = vm.getEnv();
+      const elements = spec.getElements.call(env, handle);
+      if (elements.isNull()) {
+        throw new Error("Unable to get array elements");
+      }
+      try {
+        return perform(elements);
+      } finally {
+        spec.releaseElements.call(env, handle, elements);
+      }
+    }
+  },
+  toJSON: {
+    value() {
+      const { length, $t: type } = this;
+      const { byteSize: elementSize, fromJni, read: read2 } = type;
+      return this.withElements((elements) => {
+        const values = [];
+        for (let i = 0; i !== length; i++) {
+          const value = fromJni(read2(elements.add(i * elementSize)));
+          values.push(value);
+        }
+        return values;
+      });
+    }
+  },
+  toString: {
+    value() {
+      return this.toJSON().toString();
+    }
+  }
+});
+function makeJniObjectTypeName(typeName) {
+  return "L" + typeName.replace(/\./g, "/") + ";";
+}
+function toTitleCase(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+function identity(value) {
+  return value;
+}
+
+// node_modules/frida-java-bridge/lib/class-factory.js
+var jsizeSize3 = 4;
+var {
+  ensureClassInitialized: ensureClassInitialized3,
+  makeMethodMangler: makeMethodMangler3
+} = android_exports;
+var kAccStatic2 = 8;
+var CONSTRUCTOR_METHOD = 1;
+var STATIC_METHOD = 2;
+var INSTANCE_METHOD = 3;
+var STATIC_FIELD = 1;
+var INSTANCE_FIELD = 2;
+var STRATEGY_VIRTUAL = 1;
+var STRATEGY_DIRECT = 2;
+var PENDING_USE = Symbol("PENDING_USE");
+var DEFAULT_CACHE_DIR = "/data/local/tmp";
+var {
+  getCurrentThreadId,
+  pointerSize: pointerSize7
+} = Process;
+var factoryCache = {
+  state: "empty",
+  factories: [],
+  loaders: null,
+  Integer: null
+};
+var vm2 = null;
+var api = null;
+var isArtVm = null;
+var wrapperHandler = null;
+var dispatcherPrototype = null;
+var methodPrototype = null;
+var valueOfPrototype = null;
+var cachedLoaderInvoke = null;
+var cachedLoaderMethod = null;
+var ignoredThreads = /* @__PURE__ */ new Map();
+var ClassFactory = class _ClassFactory {
+  static _initialize(_vm, _api) {
+    vm2 = _vm;
+    api = _api;
+    isArtVm = _api.flavor === "art";
+    if (_api.flavor === "jvm") {
+      ensureClassInitialized3 = ensureClassInitialized2;
+      makeMethodMangler3 = makeMethodMangler2;
+    }
+  }
+  static _disposeAll(env) {
+    factoryCache.factories.forEach((factory) => {
+      factory._dispose(env);
+    });
+  }
+  static get(classLoader) {
+    const cache = getFactoryCache();
+    const defaultFactory = cache.factories[0];
+    if (classLoader === null) {
+      return defaultFactory;
+    }
+    const indexObj = cache.loaders.get(classLoader);
+    if (indexObj !== null) {
+      const index = defaultFactory.cast(indexObj, cache.Integer);
+      return cache.factories[index.intValue()];
+    }
+    const factory = new _ClassFactory();
+    factory.loader = classLoader;
+    factory.cacheDir = defaultFactory.cacheDir;
+    addFactoryToCache(factory, classLoader);
+    return factory;
+  }
+  constructor() {
+    this.cacheDir = DEFAULT_CACHE_DIR;
+    this.codeCacheDir = DEFAULT_CACHE_DIR + "/dalvik-cache";
+    this.tempFileNaming = {
+      prefix: "frida",
+      suffix: ""
+    };
+    this._classes = {};
+    this._classHandles = new LRU(10, releaseClassHandle);
+    this._patchedMethods = /* @__PURE__ */ new Set();
+    this._loader = null;
+    this._types = [{}, {}];
+    factoryCache.factories.push(this);
+  }
+  _dispose(env) {
+    Array.from(this._patchedMethods).forEach((method) => {
+      method.implementation = null;
+    });
+    this._patchedMethods.clear();
+    revertGlobalPatches();
+    this._classHandles.dispose(env);
+    this._classes = {};
+  }
+  get loader() {
+    return this._loader;
+  }
+  set loader(value) {
+    const isInitial = this._loader === null && value !== null;
+    this._loader = value;
+    if (isInitial && factoryCache.state === "ready" && this === factoryCache.factories[0]) {
+      addFactoryToCache(this, value);
+    }
+  }
+  use(className, options = {}) {
+    const allowCached = options.cache !== "skip";
+    let C = allowCached ? this._getUsedClass(className) : void 0;
+    if (C === void 0) {
+      try {
+        const env = vm2.getEnv();
+        const { _loader: loader } = this;
+        const getClassHandle = loader !== null ? makeLoaderClassHandleGetter(className, loader, env) : makeBasicClassHandleGetter(className);
+        C = this._make(className, getClassHandle, env);
+      } finally {
+        if (allowCached) {
+          this._setUsedClass(className, C);
+        }
+      }
+    }
+    return C;
+  }
+  _getUsedClass(className) {
+    let c;
+    while ((c = this._classes[className]) === PENDING_USE) {
+      Thread.sleep(0.05);
+    }
+    if (c === void 0) {
+      this._classes[className] = PENDING_USE;
+    }
+    return c;
+  }
+  _setUsedClass(className, c) {
+    if (c !== void 0) {
+      this._classes[className] = c;
+    } else {
+      delete this._classes[className];
+    }
+  }
+  _make(name, getClassHandle, env) {
+    const C = makeClassWrapperConstructor();
+    const proto = Object.create(Wrapper.prototype, {
+      [Symbol.for("n")]: {
+        value: name
+      },
+      $n: {
+        get() {
+          return this[Symbol.for("n")];
+        }
+      },
+      [Symbol.for("C")]: {
+        value: C
+      },
+      $C: {
+        get() {
+          return this[Symbol.for("C")];
+        }
+      },
+      [Symbol.for("w")]: {
+        value: null,
+        writable: true
+      },
+      $w: {
+        get() {
+          return this[Symbol.for("w")];
+        },
+        set(val) {
+          this[Symbol.for("w")] = val;
+        }
+      },
+      [Symbol.for("_s")]: {
+        writable: true
+      },
+      $_s: {
+        get() {
+          return this[Symbol.for("_s")];
+        },
+        set(val) {
+          this[Symbol.for("_s")] = val;
+        }
+      },
+      [Symbol.for("c")]: {
+        value: [null]
+      },
+      $c: {
+        get() {
+          return this[Symbol.for("c")];
+        }
+      },
+      [Symbol.for("m")]: {
+        value: /* @__PURE__ */ new Map()
+      },
+      $m: {
+        get() {
+          return this[Symbol.for("m")];
+        }
+      },
+      [Symbol.for("l")]: {
+        value: null,
+        writable: true
+      },
+      $l: {
+        get() {
+          return this[Symbol.for("l")];
+        },
+        set(val) {
+          this[Symbol.for("l")] = val;
+        }
+      },
+      [Symbol.for("gch")]: {
+        value: getClassHandle
+      },
+      $gch: {
+        get() {
+          return this[Symbol.for("gch")];
+        }
+      },
+      [Symbol.for("f")]: {
+        value: this
+      },
+      $f: {
+        get() {
+          return this[Symbol.for("f")];
+        }
+      }
+    });
+    C.prototype = proto;
+    const classWrapper = new C(null);
+    proto[Symbol.for("w")] = classWrapper;
+    proto.$w = classWrapper;
+    const h = classWrapper.$borrowClassHandle(env);
+    try {
+      const classHandle = h.value;
+      ensureClassInitialized3(env, classHandle);
+      proto.$l = Model.build(classHandle, env);
+    } finally {
+      h.unref(env);
+    }
+    return classWrapper;
+  }
+  retain(obj) {
+    const env = vm2.getEnv();
+    return obj.$clone(env);
+  }
+  cast(obj, klass, owned) {
+    const env = vm2.getEnv();
+    let handle = obj.$h;
+    if (handle === void 0) {
+      handle = obj;
+    }
+    const h = klass.$borrowClassHandle(env);
+    try {
+      const isValidCast = env.isInstanceOf(handle, h.value);
+      if (!isValidCast) {
+        throw new Error(`Cast from '${env.getObjectClassName(handle)}' to '${klass.$n}' isn't possible`);
+      }
+    } finally {
+      h.unref(env);
+    }
+    const C = klass.$C;
+    return new C(handle, STRATEGY_VIRTUAL, env, owned);
+  }
+  wrap(handle, klass, env) {
+    const C = klass.$C;
+    const wrapper = new C(handle, STRATEGY_VIRTUAL, env, false);
+    wrapper.$r = Script.bindWeak(wrapper, vm2.makeHandleDestructor(handle));
+    return wrapper;
+  }
+  array(type, elements) {
+    const env = vm2.getEnv();
+    const primitiveType = getPrimitiveType(type);
+    if (primitiveType !== null) {
+      type = primitiveType.name;
+    }
+    const arrayType = getArrayType("[" + type, false, this);
+    const rawArray = arrayType.toJni(elements, env);
+    return arrayType.fromJni(rawArray, env, true);
+  }
+  registerClass(spec) {
+    const env = vm2.getEnv();
+    const tempHandles = [];
+    try {
+      const Class = this.use("java.lang.Class");
+      const Method = env.javaLangReflectMethod();
+      const invokeObjectMethodNoArgs = env.vaMethod("pointer", []);
+      const className = spec.name;
+      const interfaces = spec.implements || [];
+      const superClass = spec.superClass || this.use("java.lang.Object");
+      const dexFields = [];
+      const dexMethods = [];
+      const dexSpec = {
+        name: makeJniObjectTypeName(className),
+        sourceFileName: makeSourceFileName(className),
+        superClass: makeJniObjectTypeName(superClass.$n),
+        interfaces: interfaces.map((iface) => makeJniObjectTypeName(iface.$n)),
+        fields: dexFields,
+        methods: dexMethods
+      };
+      const allInterfaces = interfaces.slice();
+      interfaces.forEach((iface) => {
+        Array.prototype.slice.call(iface.class.getInterfaces()).forEach((baseIface) => {
+          const baseIfaceName = this.cast(baseIface, Class).getCanonicalName();
+          allInterfaces.push(this.use(baseIfaceName));
+        });
+      });
+      const fields = spec.fields || {};
+      Object.getOwnPropertyNames(fields).forEach((name) => {
+        const fieldType = this._getType(fields[name]);
+        dexFields.push([name, fieldType.name]);
+      });
+      const baseMethods = {};
+      const pendingOverloads = {};
+      allInterfaces.forEach((iface) => {
+        const h = iface.$borrowClassHandle(env);
+        tempHandles.push(h);
+        const ifaceHandle = h.value;
+        iface.$ownMembers.filter((name) => {
+          return iface[name].overloads !== void 0;
+        }).forEach((name) => {
+          const method = iface[name];
+          const overloads = method.overloads;
+          const overloadIds = overloads.map((overload) => makeOverloadId(name, overload.returnType, overload.argumentTypes));
+          baseMethods[name] = [method, overloadIds, ifaceHandle];
+          overloads.forEach((overload, index) => {
+            const id = overloadIds[index];
+            pendingOverloads[id] = [overload, ifaceHandle];
+          });
+        });
+      });
+      const methods = spec.methods || {};
+      const methodNames = Object.keys(methods);
+      const methodEntries = methodNames.reduce((result, name) => {
+        const entry = methods[name];
+        const rawName = name === "$init" ? "<init>" : name;
+        if (entry instanceof Array) {
+          result.push(...entry.map((e) => [rawName, e]));
+        } else {
+          result.push([rawName, entry]);
+        }
+        return result;
+      }, []);
+      const implMethods = [];
+      methodEntries.forEach(([name, methodValue]) => {
+        let type = INSTANCE_METHOD;
+        let returnType;
+        let argumentTypes;
+        let thrownTypeNames = [];
+        let impl;
+        if (typeof methodValue === "function") {
+          const m = baseMethods[name];
+          if (m !== void 0 && Array.isArray(m)) {
+            const [baseMethod, overloadIds, parentTypeHandle] = m;
+            if (overloadIds.length > 1) {
+              throw new Error(`More than one overload matching '${name}': signature must be specified`);
+            }
+            delete pendingOverloads[overloadIds[0]];
+            const overload = baseMethod.overloads[0];
+            type = overload.type;
+            returnType = overload.returnType;
+            argumentTypes = overload.argumentTypes;
+            impl = methodValue;
+            const reflectedMethod = env.toReflectedMethod(parentTypeHandle, overload.handle, 0);
+            const thrownTypes = invokeObjectMethodNoArgs(env.handle, reflectedMethod, Method.getGenericExceptionTypes);
+            thrownTypeNames = readTypeNames(env, thrownTypes).map(makeJniObjectTypeName);
+            env.deleteLocalRef(thrownTypes);
+            env.deleteLocalRef(reflectedMethod);
+          } else {
+            returnType = this._getType("void");
+            argumentTypes = [];
+            impl = methodValue;
+          }
+        } else {
+          if (methodValue.isStatic) {
+            type = STATIC_METHOD;
+          }
+          returnType = this._getType(methodValue.returnType || "void");
+          argumentTypes = (methodValue.argumentTypes || []).map((name2) => this._getType(name2));
+          impl = methodValue.implementation;
+          if (typeof impl !== "function") {
+            throw new Error("Expected a function implementation for method: " + name);
+          }
+          const id = makeOverloadId(name, returnType, argumentTypes);
+          const pendingOverload = pendingOverloads[id];
+          if (pendingOverload !== void 0) {
+            const [overload, parentTypeHandle] = pendingOverload;
+            delete pendingOverloads[id];
+            type = overload.type;
+            returnType = overload.returnType;
+            argumentTypes = overload.argumentTypes;
+            const reflectedMethod = env.toReflectedMethod(parentTypeHandle, overload.handle, 0);
+            const thrownTypes = invokeObjectMethodNoArgs(env.handle, reflectedMethod, Method.getGenericExceptionTypes);
+            thrownTypeNames = readTypeNames(env, thrownTypes).map(makeJniObjectTypeName);
+            env.deleteLocalRef(thrownTypes);
+            env.deleteLocalRef(reflectedMethod);
+          }
+        }
+        const returnTypeName = returnType.name;
+        const argumentTypeNames = argumentTypes.map((t) => t.name);
+        const signature = "(" + argumentTypeNames.join("") + ")" + returnTypeName;
+        dexMethods.push([name, returnTypeName, argumentTypeNames, thrownTypeNames, type === STATIC_METHOD ? kAccStatic2 : 0]);
+        implMethods.push([name, signature, type, returnType, argumentTypes, impl]);
+      });
+      const unimplementedMethodIds = Object.keys(pendingOverloads);
+      if (unimplementedMethodIds.length > 0) {
+        throw new Error("Missing implementation for: " + unimplementedMethodIds.join(", "));
+      }
+      const dex = DexFile.fromBuffer(mkdex_default(dexSpec), this);
+      try {
+        dex.load();
+      } finally {
+        dex.file.delete();
+      }
+      const classWrapper = this.use(spec.name);
+      const numMethods = methodEntries.length;
+      if (numMethods > 0) {
+        const methodElementSize = 3 * pointerSize7;
+        const methodElements = Memory.alloc(numMethods * methodElementSize);
+        const nativeMethods = [];
+        const temporaryHandles = [];
+        implMethods.forEach(([name, signature, type, returnType, argumentTypes, impl], index) => {
+          const rawName = Memory.allocUtf8String(name);
+          const rawSignature = Memory.allocUtf8String(signature);
+          const rawImpl = implement(name, classWrapper, type, returnType, argumentTypes, impl);
+          methodElements.add(index * methodElementSize).writePointer(rawName);
+          methodElements.add(index * methodElementSize + pointerSize7).writePointer(rawSignature);
+          methodElements.add(index * methodElementSize + 2 * pointerSize7).writePointer(rawImpl);
+          temporaryHandles.push(rawName, rawSignature);
+          nativeMethods.push(rawImpl);
+        });
+        const h = classWrapper.$borrowClassHandle(env);
+        tempHandles.push(h);
+        const classHandle = h.value;
+        env.registerNatives(classHandle, methodElements, numMethods);
+        env.throwIfExceptionPending();
+        classWrapper.$nativeMethods = nativeMethods;
+      }
+      return classWrapper;
+    } finally {
+      tempHandles.forEach((h) => {
+        h.unref(env);
+      });
+    }
+  }
+  choose(specifier, callbacks) {
+    const env = vm2.getEnv();
+    const { flavor } = api;
+    if (flavor === "jvm") {
+      this._chooseObjectsJvm(specifier, env, callbacks);
+    } else if (flavor === "art") {
+      const legacyApiMissing = api["art::gc::Heap::VisitObjects"] === void 0;
+      if (legacyApiMissing) {
+        const preA12ApiMissing = api["art::gc::Heap::GetInstances"] === void 0;
+        if (preA12ApiMissing) {
+          return this._chooseObjectsJvm(specifier, env, callbacks);
+        }
+      }
+      withRunnableArtThread(vm2, env, (thread) => {
+        if (legacyApiMissing) {
+          this._chooseObjectsArtPreA12(specifier, env, thread, callbacks);
+        } else {
+          this._chooseObjectsArtLegacy(specifier, env, thread, callbacks);
+        }
+      });
+    } else {
+      this._chooseObjectsDalvik(specifier, env, callbacks);
+    }
+  }
+  _chooseObjectsJvm(className, env, callbacks) {
+    const classWrapper = this.use(className);
+    const { jvmti } = api;
+    const JVMTI_ITERATION_CONTINUE = 1;
+    const JVMTI_HEAP_OBJECT_EITHER = 3;
+    const h = classWrapper.$borrowClassHandle(env);
+    const tag = int64(h.value.toString());
+    try {
+      const heapObjectCallback = new NativeCallback((classTag, size, tagPtr2, userData) => {
+        tagPtr2.writeS64(tag);
+        return JVMTI_ITERATION_CONTINUE;
+      }, "int", ["int64", "int64", "pointer", "pointer"]);
+      jvmti.iterateOverInstancesOfClass(h.value, JVMTI_HEAP_OBJECT_EITHER, heapObjectCallback, h.value);
+      const tagPtr = Memory.alloc(8);
+      tagPtr.writeS64(tag);
+      const countPtr = Memory.alloc(jsizeSize3);
+      const objectsPtr = Memory.alloc(pointerSize7);
+      jvmti.getObjectsWithTags(1, tagPtr, countPtr, objectsPtr, NULL);
+      const count = countPtr.readS32();
+      const objects = objectsPtr.readPointer();
+      const handles = [];
+      for (let i = 0; i !== count; i++) {
+        handles.push(objects.add(i * pointerSize7).readPointer());
+      }
+      jvmti.deallocate(objects);
+      try {
+        for (const handle of handles) {
+          const instance = this.cast(handle, classWrapper);
+          const result = callbacks.onMatch(instance);
+          if (result === "stop") {
+            break;
+          }
+        }
+        callbacks.onComplete();
+      } finally {
+        handles.forEach((handle) => {
+          env.deleteLocalRef(handle);
+        });
+      }
+    } finally {
+      h.unref(env);
+    }
+  }
+  _chooseObjectsArtPreA12(className, env, thread, callbacks) {
+    const classWrapper = this.use(className);
+    const scope = VariableSizedHandleScope.$new(thread, vm2);
+    let needle;
+    const h = classWrapper.$borrowClassHandle(env);
+    try {
+      const object = api["art::JavaVMExt::DecodeGlobal"](api.vm, thread, h.value);
+      needle = scope.newHandle(object);
+    } finally {
+      h.unref(env);
+    }
+    const maxCount = 0;
+    const instances = HandleVector.$new();
+    api["art::gc::Heap::GetInstances"](api.artHeap, scope, needle, maxCount, instances);
+    const instanceHandles = instances.handles.map((handle) => env.newGlobalRef(handle));
+    instances.$delete();
+    scope.$delete();
+    try {
+      for (const handle of instanceHandles) {
+        const instance = this.cast(handle, classWrapper);
+        const result = callbacks.onMatch(instance);
+        if (result === "stop") {
+          break;
+        }
+      }
+      callbacks.onComplete();
+    } finally {
+      instanceHandles.forEach((handle) => {
+        env.deleteGlobalRef(handle);
+      });
+    }
+  }
+  _chooseObjectsArtLegacy(className, env, thread, callbacks) {
+    const classWrapper = this.use(className);
+    const instanceHandles = [];
+    const addGlobalReference = api["art::JavaVMExt::AddGlobalRef"];
+    const vmHandle = api.vm;
+    let needle;
+    const h = classWrapper.$borrowClassHandle(env);
+    try {
+      needle = api["art::JavaVMExt::DecodeGlobal"](vmHandle, thread, h.value).toInt32();
+    } finally {
+      h.unref(env);
+    }
+    const collectMatchingInstanceHandles = makeObjectVisitorPredicate(needle, (object) => {
+      instanceHandles.push(addGlobalReference(vmHandle, thread, object));
+    });
+    api["art::gc::Heap::VisitObjects"](api.artHeap, collectMatchingInstanceHandles, NULL);
+    try {
+      for (const handle of instanceHandles) {
+        const instance = this.cast(handle, classWrapper);
+        const result = callbacks.onMatch(instance);
+        if (result === "stop") {
+          break;
+        }
+      }
+    } finally {
+      instanceHandles.forEach((handle) => {
+        env.deleteGlobalRef(handle);
+      });
+    }
+    callbacks.onComplete();
+  }
+  _chooseObjectsDalvik(className, callerEnv, callbacks) {
+    const classWrapper = this.use(className);
+    if (api.addLocalReference === null) {
+      const libdvm = Process.getModuleByName("libdvm.so");
+      let pattern;
+      switch (Process.arch) {
+        case "arm":
+          pattern = "2d e9 f0 41 05 46 15 4e 0c 46 7e 44 11 b3 43 68";
+          break;
+        case "ia32":
+          pattern = "8d 64 24 d4 89 5c 24 1c 89 74 24 20 e8 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 85 d2";
+          break;
+      }
+      Memory.scan(libdvm.base, libdvm.size, pattern, {
+        onMatch: (address, size) => {
+          let wrapper;
+          if (Process.arch === "arm") {
+            address = address.or(1);
+            wrapper = new NativeFunction(address, "pointer", ["pointer", "pointer"]);
+          } else {
+            const thunk = Memory.alloc(Process.pageSize);
+            Memory.patchCode(thunk, 16, (code3) => {
+              const cw = new X86Writer(code3, { pc: thunk });
+              cw.putMovRegRegOffsetPtr("eax", "esp", 4);
+              cw.putMovRegRegOffsetPtr("edx", "esp", 8);
+              cw.putJmpAddress(address);
+              cw.flush();
+            });
+            wrapper = new NativeFunction(thunk, "pointer", ["pointer", "pointer"]);
+            wrapper._thunk = thunk;
+          }
+          api.addLocalReference = wrapper;
+          vm2.perform((env) => {
+            enumerateInstances(this, env);
+          });
+          return "stop";
+        },
+        onError(reason) {
+        },
+        onComplete() {
+          if (api.addLocalReference === null) {
+            callbacks.onComplete();
+          }
+        }
+      });
+    } else {
+      enumerateInstances(this, callerEnv);
+    }
+    function enumerateInstances(factory, env) {
+      const { DVM_JNI_ENV_OFFSET_SELF: DVM_JNI_ENV_OFFSET_SELF2 } = android_exports;
+      const thread = env.handle.add(DVM_JNI_ENV_OFFSET_SELF2).readPointer();
+      let ptrClassObject;
+      const h = classWrapper.$borrowClassHandle(env);
+      try {
+        ptrClassObject = api.dvmDecodeIndirectRef(thread, h.value);
+      } finally {
+        h.unref(env);
+      }
+      const pattern = ptrClassObject.toMatchPattern();
+      const heapSourceBase = api.dvmHeapSourceGetBase();
+      const heapSourceLimit = api.dvmHeapSourceGetLimit();
+      const size = heapSourceLimit.sub(heapSourceBase).toInt32();
+      Memory.scan(heapSourceBase, size, pattern, {
+        onMatch: (address, size2) => {
+          if (api.dvmIsValidObject(address)) {
+            vm2.perform((env2) => {
+              const thread2 = env2.handle.add(DVM_JNI_ENV_OFFSET_SELF2).readPointer();
+              let instance;
+              const localReference = api.addLocalReference(thread2, address);
+              try {
+                instance = factory.cast(localReference, classWrapper);
+              } finally {
+                env2.deleteLocalRef(localReference);
+              }
+              const result = callbacks.onMatch(instance);
+              if (result === "stop") {
+                return "stop";
+              }
+            });
+          }
+        },
+        onError(reason) {
+        },
+        onComplete() {
+          callbacks.onComplete();
+        }
+      });
+    }
+  }
+  openClassFile(filePath) {
+    return new DexFile(filePath, null, this);
+  }
+  _getType(typeName, unbox = true) {
+    return getType(typeName, unbox, this);
+  }
+};
+function makeClassWrapperConstructor() {
+  return function(handle, strategy, env, owned) {
+    return Wrapper.call(this, handle, strategy, env, owned);
+  };
+}
+function Wrapper(handle, strategy, env, owned = true) {
+  if (handle !== null) {
+    if (owned) {
+      const h = env.newGlobalRef(handle);
+      this.$h = h;
+      this.$r = Script.bindWeak(this, vm2.makeHandleDestructor(h));
+    } else {
+      this.$h = handle;
+      this.$r = null;
+    }
+  } else {
+    this.$h = null;
+    this.$r = null;
+  }
+  this.$t = strategy;
+  return new Proxy(this, wrapperHandler);
+}
+wrapperHandler = {
+  has(target, property) {
+    if (property in target) {
+      return true;
+    }
+    return target.$has(property);
+  },
+  get(target, property, receiver) {
+    if (typeof property !== "string" || property.startsWith("$") || property === "class") {
+      return target[property];
+    }
+    const unwrap2 = target.$find(property);
+    if (unwrap2 !== null) {
+      return unwrap2(receiver);
+    }
+    return target[property];
+  },
+  set(target, property, value, receiver) {
+    target[property] = value;
+    return true;
+  },
+  ownKeys(target) {
+    return target.$list();
+  },
+  getOwnPropertyDescriptor(target, property) {
+    if (Object.prototype.hasOwnProperty.call(target, property)) {
+      return Object.getOwnPropertyDescriptor(target, property);
+    }
+    return {
+      writable: false,
+      configurable: true,
+      enumerable: true
+    };
+  }
+};
+Object.defineProperties(Wrapper.prototype, {
+  [Symbol.for("new")]: {
+    enumerable: false,
+    get() {
+      return this.$getCtor("allocAndInit");
+    }
+  },
+  $new: {
+    enumerable: true,
+    get() {
+      return this[Symbol.for("new")];
+    }
+  },
+  [Symbol.for("alloc")]: {
+    enumerable: false,
+    value() {
+      const env = vm2.getEnv();
+      const h = this.$borrowClassHandle(env);
+      try {
+        const obj = env.allocObject(h.value);
+        const factory = this.$f;
+        return factory.cast(obj, this);
+      } finally {
+        h.unref(env);
+      }
+    }
+  },
+  $alloc: {
+    enumerable: true,
+    get() {
+      return this[Symbol.for("alloc")];
+    }
+  },
+  [Symbol.for("init")]: {
+    enumerable: false,
+    get() {
+      return this.$getCtor("initOnly");
+    }
+  },
+  $init: {
+    enumerable: true,
+    get() {
+      return this[Symbol.for("init")];
+    }
+  },
+  [Symbol.for("dispose")]: {
+    enumerable: false,
+    value() {
+      const ref = this.$r;
+      if (ref !== null) {
+        this.$r = null;
+        Script.unbindWeak(ref);
+      }
+      if (this.$h !== null) {
+        this.$h = void 0;
+      }
+    }
+  },
+  $dispose: {
+    enumerable: true,
+    get() {
+      return this[Symbol.for("dispose")];
+    }
+  },
+  [Symbol.for("clone")]: {
+    enumerable: false,
+    value(env) {
+      const C = this.$C;
+      return new C(this.$h, this.$t, env);
+    }
+  },
+  $clone: {
+    value(env) {
+      return this[Symbol.for("clone")](env);
+    }
+  },
+  [Symbol.for("class")]: {
+    enumerable: false,
+    get() {
+      const env = vm2.getEnv();
+      const h = this.$borrowClassHandle(env);
+      try {
+        const factory = this.$f;
+        return factory.cast(h.value, factory.use("java.lang.Class"));
+      } finally {
+        h.unref(env);
+      }
+    }
+  },
+  class: {
+    enumerable: true,
+    get() {
+      return this[Symbol.for("class")];
+    }
+  },
+  [Symbol.for("className")]: {
+    enumerable: false,
+    get() {
+      const handle = this.$h;
+      if (handle === null) {
+        return this.$n;
+      }
+      return vm2.getEnv().getObjectClassName(handle);
+    }
+  },
+  $className: {
+    enumerable: true,
+    get() {
+      return this[Symbol.for("className")];
+    }
+  },
+  [Symbol.for("ownMembers")]: {
+    enumerable: false,
+    get() {
+      const model = this.$l;
+      return model.list();
+    }
+  },
+  $ownMembers: {
+    enumerable: true,
+    get() {
+      return this[Symbol.for("ownMembers")];
+    }
+  },
+  [Symbol.for("super")]: {
+    enumerable: false,
+    get() {
+      const env = vm2.getEnv();
+      const C = this.$s.$C;
+      return new C(this.$h, STRATEGY_DIRECT, env);
+    }
+  },
+  $super: {
+    enumerable: true,
+    get() {
+      return this[Symbol.for("super")];
+    }
+  },
+  [Symbol.for("s")]: {
+    enumerable: false,
+    get() {
+      const proto = Object.getPrototypeOf(this);
+      let superWrapper = proto.$_s;
+      if (superWrapper === void 0) {
+        const env = vm2.getEnv();
+        const h = this.$borrowClassHandle(env);
+        try {
+          const superHandle = env.getSuperclass(h.value);
+          if (!superHandle.isNull()) {
+            try {
+              const superClassName = env.getClassName(superHandle);
+              const factory = proto.$f;
+              superWrapper = factory._getUsedClass(superClassName);
+              if (superWrapper === void 0) {
+                try {
+                  const getSuperClassHandle = makeSuperHandleGetter(this);
+                  superWrapper = factory._make(superClassName, getSuperClassHandle, env);
+                } finally {
+                  factory._setUsedClass(superClassName, superWrapper);
+                }
+              }
+            } finally {
+              env.deleteLocalRef(superHandle);
+            }
+          } else {
+            superWrapper = null;
+          }
+        } finally {
+          h.unref(env);
+        }
+        proto.$_s = superWrapper;
+      }
+      return superWrapper;
+    }
+  },
+  $s: {
+    get() {
+      return this[Symbol.for("s")];
+    }
+  },
+  [Symbol.for("isSameObject")]: {
+    enumerable: false,
+    value(obj) {
+      const env = vm2.getEnv();
+      return env.isSameObject(obj.$h, this.$h);
+    }
+  },
+  $isSameObject: {
+    value(obj) {
+      return this[Symbol.for("isSameObject")](obj);
+    }
+  },
+  [Symbol.for("getCtor")]: {
+    enumerable: false,
+    value(type) {
+      const slot = this.$c;
+      let ctor = slot[0];
+      if (ctor === null) {
+        const env = vm2.getEnv();
+        const h = this.$borrowClassHandle(env);
+        try {
+          ctor = makeConstructor(h.value, this.$w, env);
+          slot[0] = ctor;
+        } finally {
+          h.unref(env);
+        }
+      }
+      return ctor[type];
+    }
+  },
+  $getCtor: {
+    value(type) {
+      return this[Symbol.for("getCtor")](type);
+    }
+  },
+  [Symbol.for("borrowClassHandle")]: {
+    enumerable: false,
+    value(env) {
+      const className = this.$n;
+      const classHandles = this.$f._classHandles;
+      let handle = classHandles.get(className);
+      if (handle === void 0) {
+        handle = new ClassHandle(this.$gch(env), env);
+        classHandles.set(className, handle, env);
+      }
+      return handle.ref();
+    }
+  },
+  $borrowClassHandle: {
+    value(env) {
+      return this[Symbol.for("borrowClassHandle")](env);
+    }
+  },
+  [Symbol.for("copyClassHandle")]: {
+    enumerable: false,
+    value(env) {
+      const h = this.$borrowClassHandle(env);
+      try {
+        return env.newLocalRef(h.value);
+      } finally {
+        h.unref(env);
+      }
+    }
+  },
+  $copyClassHandle: {
+    value(env) {
+      return this[Symbol.for("copyClassHandle")](env);
+    }
+  },
+  [Symbol.for("getHandle")]: {
+    enumerable: false,
+    value(env) {
+      const handle = this.$h;
+      const isDisposed = handle === void 0;
+      if (isDisposed) {
+        throw new Error("Wrapper is disposed; perhaps it was borrowed from a hook instead of calling Java.retain() to make a long-lived wrapper?");
+      }
+      return handle;
+    }
+  },
+  $getHandle: {
+    value(env) {
+      return this[Symbol.for("getHandle")](env);
+    }
+  },
+  [Symbol.for("list")]: {
+    enumerable: false,
+    value() {
+      const superWrapper = this.$s;
+      const superMembers = superWrapper !== null ? superWrapper.$list() : [];
+      const model = this.$l;
+      return Array.from(new Set(superMembers.concat(model.list())));
+    }
+  },
+  $list: {
+    get() {
+      return this[Symbol.for("list")];
+    }
+  },
+  [Symbol.for("has")]: {
+    enumerable: false,
+    value(member) {
+      const members = this.$m;
+      if (members.has(member)) {
+        return true;
+      }
+      const model = this.$l;
+      if (model.has(member)) {
+        return true;
+      }
+      const superWrapper = this.$s;
+      if (superWrapper !== null && superWrapper.$has(member)) {
+        return true;
+      }
+      return false;
+    }
+  },
+  $has: {
+    value(member) {
+      return this[Symbol.for("has")](member);
+    }
+  },
+  [Symbol.for("find")]: {
+    enumerable: false,
+    value(member) {
+      const members = this.$m;
+      let value = members.get(member);
+      if (value !== void 0) {
+        return value;
+      }
+      const model = this.$l;
+      const spec = model.find(member);
+      if (spec !== null) {
+        const env = vm2.getEnv();
+        const h = this.$borrowClassHandle(env);
+        try {
+          value = makeMember(member, spec, h.value, this.$w, env);
+        } finally {
+          h.unref(env);
+        }
+        members.set(member, value);
+        return value;
+      }
+      const superWrapper = this.$s;
+      if (superWrapper !== null) {
+        return superWrapper.$find(member);
+      }
+      return null;
+    }
+  },
+  $find: {
+    value(member) {
+      return this[Symbol.for("find")](member);
+    }
+  },
+  [Symbol.for("toJSON")]: {
+    enumerable: false,
+    value() {
+      const wrapperName = this.$n;
+      const handle = this.$h;
+      if (handle === null) {
+        return `<class: ${wrapperName}>`;
+      }
+      const actualName = this.$className;
+      if (wrapperName === actualName) {
+        return `<instance: ${wrapperName}>`;
+      }
+      return `<instance: ${wrapperName}, $className: ${actualName}>`;
+    }
+  },
+  toJSON: {
+    get() {
+      return this[Symbol.for("toJSON")];
+    }
+  }
+});
+function ClassHandle(value, env) {
+  this.value = env.newGlobalRef(value);
+  env.deleteLocalRef(value);
+  this.refs = 1;
+}
+ClassHandle.prototype.ref = function() {
+  this.refs++;
+  return this;
+};
+ClassHandle.prototype.unref = function(env) {
+  if (--this.refs === 0) {
+    env.deleteGlobalRef(this.value);
+  }
+};
+function releaseClassHandle(handle, env) {
+  handle.unref(env);
+}
+function makeBasicClassHandleGetter(className) {
+  const canonicalClassName = className.replace(/\./g, "/");
+  return function(env) {
+    const tid = getCurrentThreadId();
+    ignore(tid);
+    try {
+      return env.findClass(canonicalClassName);
+    } finally {
+      unignore(tid);
+    }
+  };
+}
+function makeLoaderClassHandleGetter(className, usedLoader, callerEnv) {
+  if (cachedLoaderMethod === null) {
+    cachedLoaderInvoke = callerEnv.vaMethod("pointer", ["pointer"]);
+    cachedLoaderMethod = usedLoader.loadClass.overload("java.lang.String").handle;
+  }
+  callerEnv = null;
+  return function(env) {
+    const classNameValue = env.newStringUtf(className);
+    const tid = getCurrentThreadId();
+    ignore(tid);
+    try {
+      const result = cachedLoaderInvoke(env.handle, usedLoader.$h, cachedLoaderMethod, classNameValue);
+      env.throwIfExceptionPending();
+      return result;
+    } finally {
+      unignore(tid);
+      env.deleteLocalRef(classNameValue);
+    }
+  };
+}
+function makeSuperHandleGetter(classWrapper) {
+  return function(env) {
+    const h = classWrapper.$borrowClassHandle(env);
+    try {
+      return env.getSuperclass(h.value);
+    } finally {
+      h.unref(env);
+    }
+  };
+}
+function makeConstructor(classHandle, classWrapper, env) {
+  const { $n: className, $f: factory } = classWrapper;
+  const methodName = basename(className);
+  const Class = env.javaLangClass();
+  const Constructor = env.javaLangReflectConstructor();
+  const invokeObjectMethodNoArgs = env.vaMethod("pointer", []);
+  const invokeUInt8MethodNoArgs = env.vaMethod("uint8", []);
+  const jsCtorMethods = [];
+  const jsInitMethods = [];
+  const jsRetType = factory._getType(className, false);
+  const jsVoidType = factory._getType("void", false);
+  const constructors = invokeObjectMethodNoArgs(env.handle, classHandle, Class.getDeclaredConstructors);
+  try {
+    const n = env.getArrayLength(constructors);
+    if (n !== 0) {
+      for (let i = 0; i !== n; i++) {
+        let methodId, types;
+        const constructor = env.getObjectArrayElement(constructors, i);
+        try {
+          methodId = env.fromReflectedMethod(constructor);
+          types = invokeObjectMethodNoArgs(env.handle, constructor, Constructor.getGenericParameterTypes);
+        } finally {
+          env.deleteLocalRef(constructor);
+        }
+        let jsArgTypes;
+        try {
+          jsArgTypes = readTypeNames(env, types).map((name) => factory._getType(name));
+        } finally {
+          env.deleteLocalRef(types);
+        }
+        jsCtorMethods.push(makeMethod(methodName, classWrapper, CONSTRUCTOR_METHOD, methodId, jsRetType, jsArgTypes, env));
+        jsInitMethods.push(makeMethod(methodName, classWrapper, INSTANCE_METHOD, methodId, jsVoidType, jsArgTypes, env));
+      }
+    } else {
+      const isInterface = invokeUInt8MethodNoArgs(env.handle, classHandle, Class.isInterface);
+      if (isInterface) {
+        throw new Error("cannot instantiate an interface");
+      }
+      const defaultClass = env.javaLangObject();
+      const defaultConstructor = env.getMethodId(defaultClass, "<init>", "()V");
+      jsCtorMethods.push(makeMethod(methodName, classWrapper, CONSTRUCTOR_METHOD, defaultConstructor, jsRetType, [], env));
+      jsInitMethods.push(makeMethod(methodName, classWrapper, INSTANCE_METHOD, defaultConstructor, jsVoidType, [], env));
+    }
+  } finally {
+    env.deleteLocalRef(constructors);
+  }
+  if (jsInitMethods.length === 0) {
+    throw new Error("no supported overloads");
+  }
+  return {
+    allocAndInit: makeMethodDispatcher(jsCtorMethods),
+    initOnly: makeMethodDispatcher(jsInitMethods)
+  };
+}
+function makeMember(name, spec, classHandle, classWrapper, env) {
+  if (spec.startsWith("m")) {
+    return makeMethodFromSpec(name, spec, classHandle, classWrapper, env);
+  }
+  return makeFieldFromSpec(name, spec, classHandle, classWrapper, env);
+}
+function makeMethodFromSpec(name, spec, classHandle, classWrapper, env) {
+  const { $f: factory } = classWrapper;
+  const overloads = spec.split(":").slice(1);
+  const Method = env.javaLangReflectMethod();
+  const invokeObjectMethodNoArgs = env.vaMethod("pointer", []);
+  const invokeUInt8MethodNoArgs = env.vaMethod("uint8", []);
+  const methods = overloads.map((params) => {
+    const type = params[0] === "s" ? STATIC_METHOD : INSTANCE_METHOD;
+    const methodId = ptr(params.substr(1));
+    let jsRetType;
+    const jsArgTypes = [];
+    const handle = env.toReflectedMethod(classHandle, methodId, type === STATIC_METHOD ? 1 : 0);
+    try {
+      const isVarArgs = !!invokeUInt8MethodNoArgs(env.handle, handle, Method.isVarArgs);
+      const retType = invokeObjectMethodNoArgs(env.handle, handle, Method.getGenericReturnType);
+      env.throwIfExceptionPending();
+      try {
+        jsRetType = factory._getType(env.getTypeName(retType));
+      } finally {
+        env.deleteLocalRef(retType);
+      }
+      const argTypes = invokeObjectMethodNoArgs(env.handle, handle, Method.getParameterTypes);
+      try {
+        const n = env.getArrayLength(argTypes);
+        for (let i = 0; i !== n; i++) {
+          const t = env.getObjectArrayElement(argTypes, i);
+          let argClassName;
+          try {
+            argClassName = isVarArgs && i === n - 1 ? env.getArrayTypeName(t) : env.getTypeName(t);
+          } finally {
+            env.deleteLocalRef(t);
+          }
+          const argType = factory._getType(argClassName);
+          jsArgTypes.push(argType);
+        }
+      } finally {
+        env.deleteLocalRef(argTypes);
+      }
+    } catch (e) {
+      return null;
+    } finally {
+      env.deleteLocalRef(handle);
+    }
+    return makeMethod(name, classWrapper, type, methodId, jsRetType, jsArgTypes, env);
+  }).filter((m) => m !== null);
+  if (methods.length === 0) {
+    throw new Error("No supported overloads");
+  }
+  if (name === "valueOf") {
+    ensureDefaultValueOfImplemented(methods);
+  }
+  const result = makeMethodDispatcher(methods);
+  return function(receiver) {
+    return result;
+  };
+}
+function makeMethodDispatcher(overloads) {
+  const m = makeMethodDispatcherCallable();
+  Object.setPrototypeOf(m, dispatcherPrototype);
+  m._o = overloads;
+  return m;
+}
+function makeMethodDispatcherCallable() {
+  const m = function() {
+    return m.invoke(this, arguments);
+  };
+  return m;
+}
+dispatcherPrototype = Object.create(Function.prototype, {
+  overloads: {
+    enumerable: true,
+    get() {
+      return this._o;
+    }
+  },
+  overload: {
+    value(...args) {
+      const overloads = this._o;
+      const numArgs = args.length;
+      const signature = args.join(":");
+      for (let i = 0; i !== overloads.length; i++) {
+        const method = overloads[i];
+        const { argumentTypes } = method;
+        if (argumentTypes.length !== numArgs) {
+          continue;
+        }
+        const s = argumentTypes.map((t) => t.className).join(":");
+        if (s === signature) {
+          return method;
+        }
+      }
+      throwOverloadError(this.methodName, this.overloads, "specified argument types do not match any of:");
+    }
+  },
+  methodName: {
+    enumerable: true,
+    get() {
+      return this._o[0].methodName;
+    }
+  },
+  holder: {
+    enumerable: true,
+    get() {
+      return this._o[0].holder;
+    }
+  },
+  type: {
+    enumerable: true,
+    get() {
+      return this._o[0].type;
+    }
+  },
+  handle: {
+    enumerable: true,
+    get() {
+      throwIfDispatcherAmbiguous(this);
+      return this._o[0].handle;
+    }
+  },
+  implementation: {
+    enumerable: true,
+    get() {
+      throwIfDispatcherAmbiguous(this);
+      return this._o[0].implementation;
+    },
+    set(fn) {
+      throwIfDispatcherAmbiguous(this);
+      this._o[0].implementation = fn;
+    }
+  },
+  returnType: {
+    enumerable: true,
+    get() {
+      throwIfDispatcherAmbiguous(this);
+      return this._o[0].returnType;
+    }
+  },
+  argumentTypes: {
+    enumerable: true,
+    get() {
+      throwIfDispatcherAmbiguous(this);
+      return this._o[0].argumentTypes;
+    }
+  },
+  canInvokeWith: {
+    enumerable: true,
+    get(args) {
+      throwIfDispatcherAmbiguous(this);
+      return this._o[0].canInvokeWith;
+    }
+  },
+  clone: {
+    enumerable: true,
+    value(options) {
+      throwIfDispatcherAmbiguous(this);
+      return this._o[0].clone(options);
+    }
+  },
+  invoke: {
+    value(receiver, args) {
+      const overloads = this._o;
+      const isInstance = receiver.$h !== null;
+      for (let i = 0; i !== overloads.length; i++) {
+        const method = overloads[i];
+        if (!method.canInvokeWith(args)) {
+          continue;
+        }
+        if (method.type === INSTANCE_METHOD && !isInstance) {
+          const name = this.methodName;
+          if (name === "toString") {
+            return `<class: ${receiver.$n}>`;
+          }
+          throw new Error(name + ": cannot call instance method without an instance");
+        }
+        return method.apply(receiver, args);
+      }
+      if (this.methodName === "toString") {
+        return `<class: ${receiver.$n}>`;
+      }
+      throwOverloadError(this.methodName, this.overloads, "argument types do not match any of:");
+    }
+  }
+});
+function makeOverloadId(name, returnType, argumentTypes) {
+  return `${returnType.className} ${name}(${argumentTypes.map((t) => t.className).join(", ")})`;
+}
+function throwIfDispatcherAmbiguous(dispatcher) {
+  const methods = dispatcher._o;
+  if (methods.length > 1) {
+    throwOverloadError(methods[0].methodName, methods, "has more than one overload, use .overload(<signature>) to choose from:");
+  }
+}
+function throwOverloadError(name, methods, message) {
+  const methodsSortedByArity = methods.slice().sort((a, b) => a.argumentTypes.length - b.argumentTypes.length);
+  const overloads = methodsSortedByArity.map((m) => {
+    const argTypes = m.argumentTypes;
+    if (argTypes.length > 0) {
+      return ".overload('" + m.argumentTypes.map((t) => t.className).join("', '") + "')";
+    } else {
+      return ".overload()";
+    }
+  });
+  throw new Error(`${name}(): ${message}
+	${overloads.join("\n	")}`);
+}
+function makeMethod(methodName, classWrapper, type, methodId, retType, argTypes, env, invocationOptions) {
+  const rawRetType = retType.type;
+  const rawArgTypes = argTypes.map((t) => t.type);
+  if (env === null) {
+    env = vm2.getEnv();
+  }
+  let callVirtually, callDirectly;
+  if (type === INSTANCE_METHOD) {
+    callVirtually = env.vaMethod(rawRetType, rawArgTypes, invocationOptions);
+    callDirectly = env.nonvirtualVaMethod(rawRetType, rawArgTypes, invocationOptions);
+  } else if (type === STATIC_METHOD) {
+    callVirtually = env.staticVaMethod(rawRetType, rawArgTypes, invocationOptions);
+    callDirectly = callVirtually;
+  } else {
+    callVirtually = env.constructor(rawArgTypes, invocationOptions);
+    callDirectly = callVirtually;
+  }
+  return makeMethodInstance([methodName, classWrapper, type, methodId, retType, argTypes, callVirtually, callDirectly]);
+}
+function makeMethodInstance(params) {
+  const m = makeMethodCallable();
+  Object.setPrototypeOf(m, methodPrototype);
+  m._p = params;
+  return m;
+}
+function makeMethodCallable() {
+  const m = function() {
+    return m.invoke(this, arguments);
+  };
+  return m;
+}
+methodPrototype = Object.create(Function.prototype, {
+  methodName: {
+    enumerable: true,
+    get() {
+      return this._p[0];
+    }
+  },
+  holder: {
+    enumerable: true,
+    get() {
+      return this._p[1];
+    }
+  },
+  type: {
+    enumerable: true,
+    get() {
+      return this._p[2];
+    }
+  },
+  handle: {
+    enumerable: true,
+    get() {
+      return this._p[3];
+    }
+  },
+  implementation: {
+    enumerable: true,
+    get() {
+      const replacement = this._r;
+      return replacement !== void 0 ? replacement : null;
+    },
+    set(fn) {
+      const params = this._p;
+      const holder = params[1];
+      const type = params[2];
+      if (type === CONSTRUCTOR_METHOD) {
+        throw new Error("Reimplementing $new is not possible; replace implementation of $init instead");
+      }
+      const existingReplacement = this._r;
+      if (existingReplacement !== void 0) {
+        holder.$f._patchedMethods.delete(this);
+        const mangler = existingReplacement._m;
+        mangler.revert(vm2);
+        this._r = void 0;
+      }
+      if (fn !== null) {
+        const [methodName, classWrapper, type2, methodId, retType, argTypes] = params;
+        const replacement = implement(methodName, classWrapper, type2, retType, argTypes, fn, this);
+        const mangler = makeMethodMangler3(methodId);
+        replacement._m = mangler;
+        this._r = replacement;
+        mangler.replace(replacement, type2 === INSTANCE_METHOD, argTypes, vm2, api);
+        holder.$f._patchedMethods.add(this);
+      }
+    }
+  },
+  returnType: {
+    enumerable: true,
+    get() {
+      return this._p[4];
+    }
+  },
+  argumentTypes: {
+    enumerable: true,
+    get() {
+      return this._p[5];
+    }
+  },
+  canInvokeWith: {
+    enumerable: true,
+    value(args) {
+      const argTypes = this._p[5];
+      if (args.length !== argTypes.length) {
+        return false;
+      }
+      return argTypes.every((t, i) => {
+        return t.isCompatible(args[i]);
+      });
+    }
+  },
+  clone: {
+    enumerable: true,
+    value(options) {
+      const params = this._p.slice(0, 6);
+      return makeMethod(...params, null, options);
+    }
+  },
+  invoke: {
+    value(receiver, args) {
+      const env = vm2.getEnv();
+      const params = this._p;
+      const type = params[2];
+      const retType = params[4];
+      const argTypes = params[5];
+      const replacement = this._r;
+      const isInstanceMethod = type === INSTANCE_METHOD;
+      const numArgs = args.length;
+      const frameCapacity = 2 + numArgs;
+      env.pushLocalFrame(frameCapacity);
+      let borrowedHandle = null;
+      try {
+        let jniThis;
+        if (isInstanceMethod) {
+          jniThis = receiver.$getHandle();
+        } else {
+          borrowedHandle = receiver.$borrowClassHandle(env);
+          jniThis = borrowedHandle.value;
+        }
+        let methodId;
+        let strategy = receiver.$t;
+        if (replacement === void 0) {
+          methodId = params[3];
+        } else {
+          const mangler = replacement._m;
+          methodId = mangler.resolveTarget(receiver, isInstanceMethod, env, api);
+          if (isArtVm) {
+            const pendingCalls = replacement._c;
+            if (pendingCalls.has(getCurrentThreadId())) {
+              strategy = STRATEGY_DIRECT;
+            }
+          }
+        }
+        const jniArgs = [
+          env.handle,
+          jniThis,
+          methodId
+        ];
+        for (let i = 0; i !== numArgs; i++) {
+          jniArgs.push(argTypes[i].toJni(args[i], env));
+        }
+        let jniCall;
+        if (strategy === STRATEGY_VIRTUAL) {
+          jniCall = params[6];
+        } else {
+          jniCall = params[7];
+          if (isInstanceMethod) {
+            jniArgs.splice(2, 0, receiver.$copyClassHandle(env));
+          }
+        }
+        const jniRetval = jniCall.apply(null, jniArgs);
+        env.throwIfExceptionPending();
+        return retType.fromJni(jniRetval, env, true);
+      } finally {
+        if (borrowedHandle !== null) {
+          borrowedHandle.unref(env);
+        }
+        env.popLocalFrame(NULL);
+      }
+    }
+  },
+  toString: {
+    enumerable: true,
+    value() {
+      return `function ${this.methodName}(${this.argumentTypes.map((t) => t.className).join(", ")}): ${this.returnType.className}`;
+    }
+  }
+});
+function implement(methodName, classWrapper, type, retType, argTypes, handler, fallback = null) {
+  const pendingCalls = /* @__PURE__ */ new Set();
+  const f = makeMethodImplementation([methodName, classWrapper, type, retType, argTypes, handler, fallback, pendingCalls]);
+  const impl = new NativeCallback(f, retType.type, ["pointer", "pointer"].concat(argTypes.map((t) => t.type)));
+  impl._c = pendingCalls;
+  return impl;
+}
+function makeMethodImplementation(params) {
+  return function() {
+    return handleMethodInvocation(arguments, params);
+  };
+}
+function handleMethodInvocation(jniArgs, params) {
+  const env = new Env(jniArgs[0], vm2);
+  const [methodName, classWrapper, type, retType, argTypes, handler, fallback, pendingCalls] = params;
+  const ownedObjects = [];
+  let self;
+  if (type === INSTANCE_METHOD) {
+    const C = classWrapper.$C;
+    self = new C(jniArgs[1], STRATEGY_VIRTUAL, env, false);
+  } else {
+    self = classWrapper;
+  }
+  const tid = getCurrentThreadId();
+  env.pushLocalFrame(3);
+  let haveFrame = true;
+  vm2.link(tid, env);
+  try {
+    pendingCalls.add(tid);
+    let fn;
+    if (fallback === null || !ignoredThreads.has(tid)) {
+      fn = handler;
+    } else {
+      fn = fallback;
+    }
+    const args = [];
+    const numArgs = jniArgs.length - 2;
+    for (let i = 0; i !== numArgs; i++) {
+      const t = argTypes[i];
+      const value = t.fromJni(jniArgs[2 + i], env, false);
+      args.push(value);
+      ownedObjects.push(value);
+    }
+    const retval = fn.apply(self, args);
+    if (!retType.isCompatible(retval)) {
+      throw new Error(`Implementation for ${methodName} expected return value compatible with ${retType.className}`);
+    }
+    let jniRetval = retType.toJni(retval, env);
+    if (retType.type === "pointer") {
+      jniRetval = env.popLocalFrame(jniRetval);
+      haveFrame = false;
+      ownedObjects.push(retval);
+    }
+    return jniRetval;
+  } catch (e) {
+    const jniException = e.$h;
+    if (jniException !== void 0) {
+      env.throw(jniException);
+    } else {
+      Script.nextTick(() => {
+        throw e;
+      });
+    }
+    return retType.defaultValue;
+  } finally {
+    vm2.unlink(tid);
+    if (haveFrame) {
+      env.popLocalFrame(NULL);
+    }
+    pendingCalls.delete(tid);
+    ownedObjects.forEach((obj) => {
+      if (obj === null) {
+        return;
+      }
+      const dispose = obj.$dispose;
+      if (dispose !== void 0) {
+        dispose.call(obj);
+      }
+    });
+  }
+}
+function ensureDefaultValueOfImplemented(methods) {
+  const { holder, type } = methods[0];
+  const hasDefaultValueOf = methods.some((m) => m.type === type && m.argumentTypes.length === 0);
+  if (hasDefaultValueOf) {
+    return;
+  }
+  methods.push(makeValueOfMethod([holder, type]));
+}
+function makeValueOfMethod(params) {
+  const m = makeValueOfCallable();
+  Object.setPrototypeOf(m, valueOfPrototype);
+  m._p = params;
+  return m;
+}
+function makeValueOfCallable() {
+  const m = function() {
+    return this;
+  };
+  return m;
+}
+valueOfPrototype = Object.create(Function.prototype, {
+  methodName: {
+    enumerable: true,
+    get() {
+      return "valueOf";
+    }
+  },
+  holder: {
+    enumerable: true,
+    get() {
+      return this._p[0];
+    }
+  },
+  type: {
+    enumerable: true,
+    get() {
+      return this._p[1];
+    }
+  },
+  handle: {
+    enumerable: true,
+    get() {
+      return NULL;
+    }
+  },
+  implementation: {
+    enumerable: true,
+    get() {
+      return null;
+    },
+    set(fn) {
+    }
+  },
+  returnType: {
+    enumerable: true,
+    get() {
+      const classWrapper = this.holder;
+      return classWrapper.$f.use(classWrapper.$n);
+    }
+  },
+  argumentTypes: {
+    enumerable: true,
+    get() {
+      return [];
+    }
+  },
+  canInvokeWith: {
+    enumerable: true,
+    value(args) {
+      return args.length === 0;
+    }
+  },
+  clone: {
+    enumerable: true,
+    value(options) {
+      throw new Error("Invalid operation");
+    }
+  }
+});
+function makeFieldFromSpec(name, spec, classHandle, classWrapper, env) {
+  const type = spec[2] === "s" ? STATIC_FIELD : INSTANCE_FIELD;
+  const id = ptr(spec.substr(3));
+  const { $f: factory } = classWrapper;
+  let fieldType;
+  const field = env.toReflectedField(classHandle, id, type === STATIC_FIELD ? 1 : 0);
+  try {
+    fieldType = env.vaMethod("pointer", [])(env.handle, field, env.javaLangReflectField().getGenericType);
+    env.throwIfExceptionPending();
+  } finally {
+    env.deleteLocalRef(field);
+  }
+  let rtype;
+  try {
+    rtype = factory._getType(env.getTypeName(fieldType));
+  } finally {
+    env.deleteLocalRef(fieldType);
+  }
+  let getValue, setValue;
+  const rtypeJni = rtype.type;
+  if (type === STATIC_FIELD) {
+    getValue = env.getStaticField(rtypeJni);
+    setValue = env.setStaticField(rtypeJni);
+  } else {
+    getValue = env.getField(rtypeJni);
+    setValue = env.setField(rtypeJni);
+  }
+  return makeFieldFromParams([type, rtype, id, getValue, setValue]);
+}
+function makeFieldFromParams(params) {
+  return function(receiver) {
+    return new Field([receiver].concat(params));
+  };
+}
+function Field(params) {
+  this._p = params;
+}
+Object.defineProperties(Field.prototype, {
+  value: {
+    enumerable: true,
+    get() {
+      const [holder, type, rtype, id, getValue] = this._p;
+      const env = vm2.getEnv();
+      env.pushLocalFrame(4);
+      let borrowedHandle = null;
+      try {
+        let jniThis;
+        if (type === INSTANCE_FIELD) {
+          jniThis = holder.$getHandle();
+          if (jniThis === null) {
+            throw new Error("Cannot access an instance field without an instance");
+          }
+        } else {
+          borrowedHandle = holder.$borrowClassHandle(env);
+          jniThis = borrowedHandle.value;
+        }
+        const jniRetval = getValue(env.handle, jniThis, id);
+        env.throwIfExceptionPending();
+        return rtype.fromJni(jniRetval, env, true);
+      } finally {
+        if (borrowedHandle !== null) {
+          borrowedHandle.unref(env);
+        }
+        env.popLocalFrame(NULL);
+      }
+    },
+    set(value) {
+      const [holder, type, rtype, id, , setValue] = this._p;
+      const env = vm2.getEnv();
+      env.pushLocalFrame(4);
+      let borrowedHandle = null;
+      try {
+        let jniThis;
+        if (type === INSTANCE_FIELD) {
+          jniThis = holder.$getHandle();
+          if (jniThis === null) {
+            throw new Error("Cannot access an instance field without an instance");
+          }
+        } else {
+          borrowedHandle = holder.$borrowClassHandle(env);
+          jniThis = borrowedHandle.value;
+        }
+        if (!rtype.isCompatible(value)) {
+          throw new Error(`Expected value compatible with ${rtype.className}`);
+        }
+        const jniValue = rtype.toJni(value, env);
+        setValue(env.handle, jniThis, id, jniValue);
+        env.throwIfExceptionPending();
+      } finally {
+        if (borrowedHandle !== null) {
+          borrowedHandle.unref(env);
+        }
+        env.popLocalFrame(NULL);
+      }
+    }
+  },
+  holder: {
+    enumerable: true,
+    get() {
+      return this._p[0];
+    }
+  },
+  fieldType: {
+    enumerable: true,
+    get() {
+      return this._p[1];
+    }
+  },
+  fieldReturnType: {
+    enumerable: true,
+    get() {
+      return this._p[2];
+    }
+  },
+  toString: {
+    enumerable: true,
+    value() {
+      const inlineString = `Java.Field{holder: ${this.holder}, fieldType: ${this.fieldType}, fieldReturnType: ${this.fieldReturnType}, value: ${this.value}}`;
+      if (inlineString.length < 200) {
+        return inlineString;
+      }
+      const multilineString = `Java.Field{
 	holder: ${this.holder},
 	fieldType: ${this.fieldType},
 	fieldReturnType: ${this.fieldReturnType},
 	value: ${this.value},
-}`.split(`
-`).map(n=>n.length>200?n.slice(0,n.indexOf(" ")+1)+"...,":n).join(`
-`)}}});var Ht=class t{static fromBuffer(e,n){let r=Xo(n),o=r.getCanonicalPath().toString(),s=new File(o,"w");return s.write(e.buffer),s.close(),Tu(o,n),new t(o,r,n)}constructor(e,n,r){this.path=e,this.file=n,this._factory=r}load(){let{_factory:e}=this,{codeCacheDir:n}=e,r=e.use("dalvik.system.DexClassLoader"),o=e.use("java.io.File"),s=this.file;if(s===null&&(s=e.use("java.io.File").$new(this.path)),!s.exists())throw new Error("File not found");o.$new(n).mkdirs(),e.loader=r.$new(s.getCanonicalPath(),n,null,e.loader),G.preventDetachDueToClassLoader()}getClassNames(){let{_factory:e}=this,n=e.use("dalvik.system.DexFile"),r=Xo(e),o=n.loadDex(this.path,r.getCanonicalPath(),0),s=[],i=o.entries();for(;i.hasMoreElements();)s.push(i.nextElement().toString());return s}};function Xo(t){let{cacheDir:e,tempFileNaming:n}=t,r=t.use("java.io.File"),o=r.$new(e);return o.mkdirs(),r.createTempFile(n.prefix,n.suffix+".dex",o)}function Tu(t,e){e.use("java.io.File").$new(t).setWritable(!1,!1)}function Iu(){switch(pe.state){case"empty":{pe.state="pending";let t=pe.factories[0],e=t.use("java.util.HashMap"),n=t.use("java.lang.Integer");pe.loaders=e.$new(),pe.Integer=n;let r=t.loader;return r!==null&&yr(t,r),pe.state="ready",pe}case"pending":do Thread.sleep(.05);while(pe.state==="pending");return pe;case"ready":return pe}}function yr(t,e){let{factories:n,loaders:r,Integer:o}=pe,s=o.$new(n.indexOf(t));r.put(e,s);for(let i=e.getParent();i!==null&&!r.containsKey(i);i=i.getParent())r.put(i,s)}function cs(t){let e=nt.get(t);e===void 0&&(e=0),e++,nt.set(t,e)}function ds(t){let e=nt.get(t);if(e===void 0)throw new Error(`Thread ${t} is not ignored`);e--,e===0?nt.delete(t):nt.set(t,e)}function Au(t){return t.slice(t.lastIndexOf(".")+1)}function vr(t,e){let n=[],r=t.getArrayLength(e);for(let o=0;o!==r;o++){let s=t.getObjectArrayElement(e,o);try{n.push(t.getTypeName(s))}finally{t.deleteLocalRef(s)}}return n}function Lu(t){let e=t.split(".");return e[e.length-1]+".java"}var xu=4,us=Process.pointerSize,wr=class{constructor(){me(this,"ACC_PUBLIC",1);me(this,"ACC_PRIVATE",2);me(this,"ACC_PROTECTED",4);me(this,"ACC_STATIC",8);me(this,"ACC_FINAL",16);me(this,"ACC_SYNCHRONIZED",32);me(this,"ACC_BRIDGE",64);me(this,"ACC_VARARGS",128);me(this,"ACC_NATIVE",256);me(this,"ACC_ABSTRACT",1024);me(this,"ACC_STRICT",2048);me(this,"ACC_SYNTHETIC",4096);this.classFactory=null,this.ClassFactory=Fe,this.vm=null,this.api=null,this._initialized=!1,this._apiError=null,this._wakeupHandler=null,this._pollListener=null,this._pendingMainOps=[],this._pendingVmOps=[],this._cachedIsAppProcess=null;try{this._tryInitialize()}catch{}}_tryInitialize(){if(this._initialized)return!0;if(this._apiError!==null)throw this._apiError;let e;try{e=ho(),this.api=e}catch(r){throw this._apiError=r,r}if(e===null)return!1;let n=new Ce(e);return this.vm=n,$o(n),Fe._initialize(n,e),this.classFactory=new Fe,this._initialized=!0,!0}_dispose(){if(this.api===null)return;let{vm:e}=this;e.perform(n=>{Fe._disposeAll(n),y.dispose(n)}),Script.nextTick(()=>{Ce.dispose(e)})}get available(){return this._tryInitialize()}get androidVersion(){return ft()}synchronized(e,n){let{$h:r=e}=e;if(!(r instanceof NativePointer))throw new Error("Java.synchronized: the first argument `obj` must be either a pointer or a Java instance");let o=this.vm.getEnv();ue("VM::MonitorEnter",o.monitorEnter(r));try{n()}finally{o.monitorExit(r)}}enumerateLoadedClasses(e){this._checkAvailable();let{flavor:n}=this.api;n==="jvm"?this._enumerateLoadedClassesJvm(e):n==="art"?this._enumerateLoadedClassesArt(e):this._enumerateLoadedClassesDalvik(e)}enumerateLoadedClassesSync(){let e=[];return this.enumerateLoadedClasses({onMatch(n){e.push(n)},onComplete(){}}),e}enumerateClassLoaders(e){this._checkAvailable();let{flavor:n}=this.api;if(n==="jvm")this._enumerateClassLoadersJvm(e);else if(n==="art")this._enumerateClassLoadersArt(e);else throw new Error("Enumerating class loaders is not supported on Dalvik")}enumerateClassLoadersSync(){let e=[];return this.enumerateClassLoaders({onMatch(n){e.push(n)},onComplete(){}}),e}_enumerateLoadedClassesJvm(e){let{api:n,vm:r}=this,{jvmti:o}=n,s=r.getEnv(),i=Memory.alloc(xu),l=Memory.alloc(us);o.getLoadedClasses(i,l);let a=i.readS32(),c=l.readPointer(),d=[];for(let p=0;p!==a;p++)d.push(c.add(p*us).readPointer());o.deallocate(c);try{for(let p of d){let f=s.getClassName(p);e.onMatch(f,p)}e.onComplete()}finally{d.forEach(p=>{s.deleteLocalRef(p)})}}_enumerateClassLoadersJvm(e){this.choose("java.lang.ClassLoader",e)}_enumerateLoadedClassesArt(e){let{vm:n,api:r}=this,o=n.getEnv(),s=r["art::JavaVMExt::AddGlobalRef"],{vm:i}=r;Se(n,o,l=>{let a=Un(c=>{let d=s(i,l,c);try{let p=o.getClassName(d);e.onMatch(p,d)}finally{o.deleteGlobalRef(d)}return!0});r["art::ClassLinker::VisitClasses"](r.artClassLinker.address,a)}),e.onComplete()}_enumerateClassLoadersArt(e){let{classFactory:n,vm:r,api:o}=this,s=r.getEnv(),i=o["art::ClassLinker::VisitClassLoaders"];if(i===void 0)throw new Error("This API is only available on Android >= 7.0");let l=n.use("java.lang.ClassLoader"),a=[],c=o["art::JavaVMExt::AddGlobalRef"],{vm:d}=o;Se(r,s,p=>{let f=Vn(u=>(a.push(c(d,p,u)),!0));Dn(()=>{i(o.artClassLinker.address,f)})});try{a.forEach(p=>{let f=n.cast(p,l);e.onMatch(f)})}finally{a.forEach(p=>{s.deleteGlobalRef(p)})}e.onComplete()}_enumerateLoadedClassesDalvik(e){let{api:n}=this,r=ptr("0xcbcacccd"),o=172,s=8,l=n.gDvm.add(o).readPointer(),a=l.readS32(),d=l.add(12).readPointer(),p=a*s;for(let f=0;f<p;f+=s){let _=d.add(f).add(4).readPointer();if(_.isNull()||_.equals(r))continue;let g=_.add(24).readPointer().readUtf8String();if(g.startsWith("L")){let m=g.substring(1,g.length-1).replace(/\//g,".");e.onMatch(m)}}e.onComplete()}enumerateMethods(e){let{classFactory:n}=this,r=this.vm.getEnv(),o=n.use("java.lang.ClassLoader");return Je.enumerateMethods(e,this.api,r).map(s=>{let i=s.loader;return s.loader=i!==null?n.wrap(i,o,r):null,s})}scheduleOnMainThread(e){this.performNow(()=>{this._pendingMainOps.push(e);let{_wakeupHandler:n}=this;if(n===null){let{classFactory:r}=this,o=r.use("android.os.Handler"),s=r.use("android.os.Looper");n=o.$new(s.getMainLooper()),this._wakeupHandler=n}this._pollListener===null&&(this._pollListener=Interceptor.attach(Process.getModuleByName("libc.so").getExportByName("epoll_wait"),this._makePollHook()),Interceptor.flush()),n.sendEmptyMessage(1)})}_makePollHook(){let e=Process.id,{_pendingMainOps:n}=this;return function(){if(this.threadId!==e)return;let r;for(;(r=n.shift())!==void 0;)try{r()}catch(o){Script.nextTick(()=>{throw o})}}}perform(e){if(this._checkAvailable(),!this._isAppProcess()||this.classFactory.loader!==null)try{this.vm.perform(e)}catch(n){Script.nextTick(()=>{throw n})}else this._pendingVmOps.push(e),this._pendingVmOps.length===1&&this._performPendingVmOpsWhenReady()}performNow(e){return this._checkAvailable(),this.vm.perform(()=>{let{classFactory:n}=this;if(this._isAppProcess()&&n.loader===null){let o=n.use("android.app.ActivityThread").currentApplication();o!==null&&ps(n,o)}return e()})}_performPendingVmOpsWhenReady(){this.vm.perform(()=>{let{classFactory:e}=this,n=e.use("android.app.ActivityThread"),r=n.currentApplication();if(r!==null){ps(e,r),this._performPendingVmOps();return}let o=this,s=!1,i="early",l=n.handleBindApplication;l.implementation=function(d){if(d.instrumentationName.value!==null){i="late";let f=e.use("android.app.LoadedApk").makeApplication;f.implementation=function(u,_){return s||(s=!0,fs(e,this),o._performPendingVmOps()),f.apply(this,arguments)}}l.apply(this,arguments)};let c=n.getPackageInfo.overloads.map(d=>[d.argumentTypes.length,d]).sort(([d],[p])=>p-d).map(([d,p])=>p)[0];c.implementation=function(...d){let p=c.call(this,...d);return!s&&i==="early"&&(s=!0,fs(e,p),o._performPendingVmOps()),p}})}_performPendingVmOps(){let{vm:e,_pendingVmOps:n}=this,r;for(;(r=n.shift())!==void 0;)try{e.perform(r)}catch(o){Script.nextTick(()=>{throw o})}}use(e,n){return this.classFactory.use(e,n)}openClassFile(e){return this.classFactory.openClassFile(e)}choose(e,n){this.classFactory.choose(e,n)}retain(e){return this.classFactory.retain(e)}cast(e,n){return this.classFactory.cast(e,n)}array(e,n){return this.classFactory.array(e,n)}backtrace(e){return zn(this.vm,e)}isMainThread(){let e=this.classFactory.use("android.os.Looper"),n=e.getMainLooper(),r=e.myLooper();return r===null?!1:n.$isSameObject(r)}registerClass(e){return this.classFactory.registerClass(e)}deoptimizeEverything(){let{vm:e}=this;return Gn(e,e.getEnv())}deoptimizeBootImage(){let{vm:e}=this;return Hn(e,e.getEnv())}deoptimizeMethod(e){let{vm:n}=this;return Bn(n,n.getEnv(),e)}_checkAvailable(){if(!this.available)throw new Error("Java API not available")}_isAppProcess(){let e=this._cachedIsAppProcess;if(e===null){if(this.api.flavor==="jvm")return e=!1,this._cachedIsAppProcess=e,e;let n=new NativeFunction(Module.getGlobalExportByName("readlink"),"pointer",["pointer","pointer","pointer"],{exceptions:"propagate"}),r=Memory.allocUtf8String("/proc/self/exe"),o=1024,s=Memory.alloc(o),i=n(r,s,ptr(o)).toInt32();if(i!==-1){let l=s.readUtf8String(i);e=/^\/system\/bin\/app_process/.test(l)}else e=!0;this._cachedIsAppProcess=e}return e}};function ps(t,e){let n=t.use("android.os.Process");t.loader=e.getClassLoader(),n.myUid()===n.SYSTEM_UID.value?(t.cacheDir="/data/system",t.codeCacheDir="/data/dalvik-cache"):"getCodeCacheDir"in e?(t.cacheDir=e.getCacheDir().getCanonicalPath(),t.codeCacheDir=e.getCodeCacheDir().getCanonicalPath()):(t.cacheDir=e.getFilesDir().getCanonicalPath(),t.codeCacheDir=e.getCacheDir().getCanonicalPath())}function fs(t,e){let n=t.use("java.io.File");t.loader=e.getClassLoader();let r=n.$new(e.getDataDir()).getCanonicalPath();t.cacheDir=r,t.codeCacheDir=r+"/cache"}var Cr=new wr;Script.bindWeak(Cr,()=>{Cr._dispose()});var oe=Cr;function Q(t){console.log("[hg] "+t)}oe.perform(function(){Q("direct FS (no pause, no transition anim)");try{oe.use("com.dragon.read.component.shortvideo.api.config.VideoPlayerLandscapeBtnOptV701$a").a.implementation=function(){return!0}}catch{}try{var t=oe.use("android.app.Activity");t.overridePendingTransition.overload("int","int").implementation=function(S,N){this.overridePendingTransition(0,0)},Q("hook overridePendingTransition -> 0")}catch(S){Q("hook transition fail "+S)}try{for(var e=oe.use("android.app.Activity"),n=e.finish.overloads,r=0;r<n.length;r++)(function(S){S.implementation=function(){try{this.overridePendingTransition(0,0)}catch{}return S.apply(this,arguments)}})(n[r]);Q("hook finish -> clear transition")}catch(S){Q("hook finish fail "+S)}var o=oe.use("android.os.Handler"),s=oe.use("android.os.Looper"),i=oe.use("java.lang.Runnable"),l=oe.use("android.view.View"),a=oe.use("java.util.concurrent.CountDownLatch"),c=oe.use("java.util.concurrent.TimeUnit"),d=o.$new(s.getMainLooper()),p=oe.use("r95.b0"),f=a.$new(1),u={ok:!1,via:""};function _(S){try{var N=l.class.getDeclaredMethod("getListenerInfo",[]);N.setAccessible(!0);var v=N.invoke(S,[]);if(v===null)return null;var T=v.getClass().getDeclaredField("mOnClickListener");return T.setAccessible(!0),T.get(v)}catch(M){return Q("reflect "+M),null}}function h(S){try{var N=oe.use("com.dragon.read.component.shortvideo.api.docker.immitview.LandscapeInnerFlowEnterSource"),v=N.OUTER_ENTRANCE.value,T=S.k.value,M=null,w=null;try{M=T.seriesId.value,w=T.vid.value}catch{}Q("video seriesId="+M+" vid="+w);var O=null;try{for(var D=S.getClass();D!==null;){for(var U=D.getDeclaredMethods(),P=0;P<U.length;P++){var V=U[P].getReturnType().getName();if((V.indexOf("is4.e")>=0||V.indexOf("Lis4.e")>=0)&&(U[P].setAccessible(!0),U[P].getParameterTypes().length===0&&(O=U[P].invoke(S,[]),O))){Q("got Lis4/e via "+U[P].getName());break}}if(O)break;D=D.getSuperclass()}}catch(ee){Q("find e "+ee)}if(O&&(M||w)){var Y=oe.cast(O,oe.use("is4.e")),X=M||w;return Y.I2(X,v),Q("I2 OUTER_ENTRANCE key="+X),!0}}catch(ee){Q("I2 path "+ee)}return!1}function g(){try{for(var S=oe.use("android.app.ActivityThread"),N=S.currentActivityThread(),v=N.mActivities.value,T=v.values(),M=T.iterator();M.hasNext();){var w=M.next();try{var O=w.activity.value;O!==null&&O.overridePendingTransition(0,0)}catch{}}}catch(D){Q("clearCurrentTransition "+D)}}var m=[];oe.choose("r95.b0",{onMatch:function(S){m.push(S)},onComplete:function(){}}),Q("holders="+m.length);for(var E=null,I=0;I<m.length;I++)try{var k=m[I].itemView.value;if(k&&k.isShown()&&k.getWidth()>100&&k.getHeight()>100){E=m[I];break}}catch{}if(!E&&m.length&&(E=m[0]),!E){Q("NO_HOLDER");return}var R=oe.registerClass({name:"hg.FsLatch"+Date.now(),implements:[i],methods:{run:function(){try{g();try{p.P4.overload("boolean").call(E,!0)}catch{}var S=E.k3.value;if(!S){Q("NO_K3"),f.countDown();return}S.setVisibility(0),S.setEnabled(!0),S.setClickable(!0),S.setAlpha(1);var N=_(S);if(N!==null)Q("listener="+N.getClass().getName()),oe.cast(N,oe.use("android.view.View$OnClickListener")).onClick(S),u.ok=!0,u.via="listener:"+N.getClass().getName(),Q("onClick OK");else if(Q("no listener on k3 \u2014 try I2 / callOnClick"),h(E))u.ok=!0,u.via="I2";else{try{var v=S.callOnClick();Q("callOnClick="+v),u.ok=!!v,u.via="callOnClick"}catch(T){Q("callOnClick "+T)}try{p.v3.overload().call(E),Q("v3 OK"),u.via=u.via+"+v3"}catch(T){Q("v3 "+T)}}g()}catch(T){Q("main fail "+T)}f.countDown()}}});d.post(R.$new());var j=f.await(8,c.SECONDS.value);Q("await="+j+" ok="+u.ok+" via="+u.via)});})();
-/*! Bundled license information:
+}`;
+      return multilineString.split("\n").map((l) => l.length > 200 ? l.slice(0, l.indexOf(" ") + 1) + "...," : l).join("\n");
+    }
+  }
+});
+var DexFile = class _DexFile {
+  static fromBuffer(buffer, factory) {
+    const fileValue = createTemporaryDex(factory);
+    const filePath = fileValue.getCanonicalPath().toString();
+    const file = new File(filePath, "w");
+    file.write(buffer.buffer);
+    file.close();
+    setReadOnlyDex(filePath, factory);
+    return new _DexFile(filePath, fileValue, factory);
+  }
+  constructor(path, file, factory) {
+    this.path = path;
+    this.file = file;
+    this._factory = factory;
+  }
+  load() {
+    const { _factory: factory } = this;
+    const { codeCacheDir } = factory;
+    const DexClassLoader = factory.use("dalvik.system.DexClassLoader");
+    const JFile = factory.use("java.io.File");
+    let file = this.file;
+    if (file === null) {
+      file = factory.use("java.io.File").$new(this.path);
+    }
+    if (!file.exists()) {
+      throw new Error("File not found");
+    }
+    JFile.$new(codeCacheDir).mkdirs();
+    factory.loader = DexClassLoader.$new(file.getCanonicalPath(), codeCacheDir, null, factory.loader);
+    vm2.preventDetachDueToClassLoader();
+  }
+  getClassNames() {
+    const { _factory: factory } = this;
+    const DexFile2 = factory.use("dalvik.system.DexFile");
+    const optimizedDex = createTemporaryDex(factory);
+    const dx = DexFile2.loadDex(this.path, optimizedDex.getCanonicalPath(), 0);
+    const classNames = [];
+    const enumeratorClassNames = dx.entries();
+    while (enumeratorClassNames.hasMoreElements()) {
+      classNames.push(enumeratorClassNames.nextElement().toString());
+    }
+    return classNames;
+  }
+};
+function createTemporaryDex(factory) {
+  const { cacheDir, tempFileNaming } = factory;
+  const JFile = factory.use("java.io.File");
+  const cacheDirValue = JFile.$new(cacheDir);
+  cacheDirValue.mkdirs();
+  return JFile.createTempFile(tempFileNaming.prefix, tempFileNaming.suffix + ".dex", cacheDirValue);
+}
+function setReadOnlyDex(filePath, factory) {
+  const JFile = factory.use("java.io.File");
+  const file = JFile.$new(filePath);
+  file.setWritable(false, false);
+}
+function getFactoryCache() {
+  switch (factoryCache.state) {
+    case "empty": {
+      factoryCache.state = "pending";
+      const defaultFactory = factoryCache.factories[0];
+      const HashMap = defaultFactory.use("java.util.HashMap");
+      const Integer = defaultFactory.use("java.lang.Integer");
+      factoryCache.loaders = HashMap.$new();
+      factoryCache.Integer = Integer;
+      const loader = defaultFactory.loader;
+      if (loader !== null) {
+        addFactoryToCache(defaultFactory, loader);
+      }
+      factoryCache.state = "ready";
+      return factoryCache;
+    }
+    case "pending":
+      do {
+        Thread.sleep(0.05);
+      } while (factoryCache.state === "pending");
+      return factoryCache;
+    case "ready":
+      return factoryCache;
+  }
+}
+function addFactoryToCache(factory, loader) {
+  const { factories, loaders, Integer } = factoryCache;
+  const index = Integer.$new(factories.indexOf(factory));
+  loaders.put(loader, index);
+  for (let l = loader.getParent(); l !== null; l = l.getParent()) {
+    if (loaders.containsKey(l)) {
+      break;
+    }
+    loaders.put(l, index);
+  }
+}
+function ignore(threadId) {
+  let count = ignoredThreads.get(threadId);
+  if (count === void 0) {
+    count = 0;
+  }
+  count++;
+  ignoredThreads.set(threadId, count);
+}
+function unignore(threadId) {
+  let count = ignoredThreads.get(threadId);
+  if (count === void 0) {
+    throw new Error(`Thread ${threadId} is not ignored`);
+  }
+  count--;
+  if (count === 0) {
+    ignoredThreads.delete(threadId);
+  } else {
+    ignoredThreads.set(threadId, count);
+  }
+}
+function basename(className) {
+  return className.slice(className.lastIndexOf(".") + 1);
+}
+function readTypeNames(env, types) {
+  const names = [];
+  const n = env.getArrayLength(types);
+  for (let i = 0; i !== n; i++) {
+    const t = env.getObjectArrayElement(types, i);
+    try {
+      names.push(env.getTypeName(t));
+    } finally {
+      env.deleteLocalRef(t);
+    }
+  }
+  return names;
+}
+function makeSourceFileName(className) {
+  const tokens = className.split(".");
+  return tokens[tokens.length - 1] + ".java";
+}
 
-ieee754/index.js:
-  (*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> *)
+// node_modules/frida-java-bridge/index.js
+var jsizeSize4 = 4;
+var pointerSize8 = Process.pointerSize;
+var Runtime = class {
+  ACC_PUBLIC = 1;
+  ACC_PRIVATE = 2;
+  ACC_PROTECTED = 4;
+  ACC_STATIC = 8;
+  ACC_FINAL = 16;
+  ACC_SYNCHRONIZED = 32;
+  ACC_BRIDGE = 64;
+  ACC_VARARGS = 128;
+  ACC_NATIVE = 256;
+  ACC_ABSTRACT = 1024;
+  ACC_STRICT = 2048;
+  ACC_SYNTHETIC = 4096;
+  constructor() {
+    this.classFactory = null;
+    this.ClassFactory = ClassFactory;
+    this.vm = null;
+    this.api = null;
+    this._initialized = false;
+    this._apiError = null;
+    this._wakeupHandler = null;
+    this._pollListener = null;
+    this._pendingMainOps = [];
+    this._pendingVmOps = [];
+    this._cachedIsAppProcess = null;
+    try {
+      this._tryInitialize();
+    } catch (e) {
+    }
+  }
+  _tryInitialize() {
+    if (this._initialized) {
+      return true;
+    }
+    if (this._apiError !== null) {
+      throw this._apiError;
+    }
+    let api2;
+    try {
+      api2 = api_default();
+      this.api = api2;
+    } catch (e) {
+      this._apiError = e;
+      throw e;
+    }
+    if (api2 === null) {
+      return false;
+    }
+    const vm3 = new VM(api2);
+    this.vm = vm3;
+    initialize(vm3);
+    ClassFactory._initialize(vm3, api2);
+    this.classFactory = new ClassFactory();
+    this._initialized = true;
+    return true;
+  }
+  _dispose() {
+    if (this.api === null) {
+      return;
+    }
+    const { vm: vm3 } = this;
+    vm3.perform((env) => {
+      ClassFactory._disposeAll(env);
+      Env.dispose(env);
+    });
+    Script.nextTick(() => {
+      VM.dispose(vm3);
+    });
+  }
+  get available() {
+    return this._tryInitialize();
+  }
+  get androidVersion() {
+    return getAndroidVersion();
+  }
+  synchronized(obj, fn) {
+    const { $h: objHandle = obj } = obj;
+    if (!(objHandle instanceof NativePointer)) {
+      throw new Error("Java.synchronized: the first argument `obj` must be either a pointer or a Java instance");
+    }
+    const env = this.vm.getEnv();
+    checkJniResult("VM::MonitorEnter", env.monitorEnter(objHandle));
+    try {
+      fn();
+    } finally {
+      env.monitorExit(objHandle);
+    }
+  }
+  enumerateLoadedClasses(callbacks) {
+    this._checkAvailable();
+    const { flavor } = this.api;
+    if (flavor === "jvm") {
+      this._enumerateLoadedClassesJvm(callbacks);
+    } else if (flavor === "art") {
+      this._enumerateLoadedClassesArt(callbacks);
+    } else {
+      this._enumerateLoadedClassesDalvik(callbacks);
+    }
+  }
+  enumerateLoadedClassesSync() {
+    const classes = [];
+    this.enumerateLoadedClasses({
+      onMatch(c) {
+        classes.push(c);
+      },
+      onComplete() {
+      }
+    });
+    return classes;
+  }
+  enumerateClassLoaders(callbacks) {
+    this._checkAvailable();
+    const { flavor } = this.api;
+    if (flavor === "jvm") {
+      this._enumerateClassLoadersJvm(callbacks);
+    } else if (flavor === "art") {
+      this._enumerateClassLoadersArt(callbacks);
+    } else {
+      throw new Error("Enumerating class loaders is not supported on Dalvik");
+    }
+  }
+  enumerateClassLoadersSync() {
+    const loaders = [];
+    this.enumerateClassLoaders({
+      onMatch(c) {
+        loaders.push(c);
+      },
+      onComplete() {
+      }
+    });
+    return loaders;
+  }
+  _enumerateLoadedClassesJvm(callbacks) {
+    const { api: api2, vm: vm3 } = this;
+    const { jvmti } = api2;
+    const env = vm3.getEnv();
+    const countPtr = Memory.alloc(jsizeSize4);
+    const classesPtr = Memory.alloc(pointerSize8);
+    jvmti.getLoadedClasses(countPtr, classesPtr);
+    const count = countPtr.readS32();
+    const classes = classesPtr.readPointer();
+    const handles = [];
+    for (let i = 0; i !== count; i++) {
+      handles.push(classes.add(i * pointerSize8).readPointer());
+    }
+    jvmti.deallocate(classes);
+    try {
+      for (const handle of handles) {
+        const className = env.getClassName(handle);
+        callbacks.onMatch(className, handle);
+      }
+      callbacks.onComplete();
+    } finally {
+      handles.forEach((handle) => {
+        env.deleteLocalRef(handle);
+      });
+    }
+  }
+  _enumerateClassLoadersJvm(callbacks) {
+    this.choose("java.lang.ClassLoader", callbacks);
+  }
+  _enumerateLoadedClassesArt(callbacks) {
+    const { vm: vm3, api: api2 } = this;
+    const env = vm3.getEnv();
+    const addGlobalReference = api2["art::JavaVMExt::AddGlobalRef"];
+    const { vm: vmHandle } = api2;
+    withRunnableArtThread(vm3, env, (thread) => {
+      const collectClassHandles = makeArtClassVisitor((klass) => {
+        const handle = addGlobalReference(vmHandle, thread, klass);
+        try {
+          const className = env.getClassName(handle);
+          callbacks.onMatch(className, handle);
+        } finally {
+          env.deleteGlobalRef(handle);
+        }
+        return true;
+      });
+      api2["art::ClassLinker::VisitClasses"](api2.artClassLinker.address, collectClassHandles);
+    });
+    callbacks.onComplete();
+  }
+  _enumerateClassLoadersArt(callbacks) {
+    const { classFactory: factory, vm: vm3, api: api2 } = this;
+    const env = vm3.getEnv();
+    const visitClassLoaders = api2["art::ClassLinker::VisitClassLoaders"];
+    if (visitClassLoaders === void 0) {
+      throw new Error("This API is only available on Android >= 7.0");
+    }
+    const ClassLoader = factory.use("java.lang.ClassLoader");
+    const loaderHandles = [];
+    const addGlobalReference = api2["art::JavaVMExt::AddGlobalRef"];
+    const { vm: vmHandle } = api2;
+    withRunnableArtThread(vm3, env, (thread) => {
+      const collectLoaderHandles = makeArtClassLoaderVisitor((loader) => {
+        loaderHandles.push(addGlobalReference(vmHandle, thread, loader));
+        return true;
+      });
+      withAllArtThreadsSuspended(() => {
+        visitClassLoaders(api2.artClassLinker.address, collectLoaderHandles);
+      });
+    });
+    try {
+      loaderHandles.forEach((handle) => {
+        const loader = factory.cast(handle, ClassLoader);
+        callbacks.onMatch(loader);
+      });
+    } finally {
+      loaderHandles.forEach((handle) => {
+        env.deleteGlobalRef(handle);
+      });
+    }
+    callbacks.onComplete();
+  }
+  _enumerateLoadedClassesDalvik(callbacks) {
+    const { api: api2 } = this;
+    const HASH_TOMBSTONE = ptr("0xcbcacccd");
+    const loadedClassesOffset = 172;
+    const hashEntrySize = 8;
+    const ptrLoadedClassesHashtable = api2.gDvm.add(loadedClassesOffset);
+    const hashTable = ptrLoadedClassesHashtable.readPointer();
+    const tableSize = hashTable.readS32();
+    const ptrpEntries = hashTable.add(12);
+    const pEntries = ptrpEntries.readPointer();
+    const end = tableSize * hashEntrySize;
+    for (let offset = 0; offset < end; offset += hashEntrySize) {
+      const pEntryPtr = pEntries.add(offset);
+      const dataPtr = pEntryPtr.add(4).readPointer();
+      if (dataPtr.isNull() || dataPtr.equals(HASH_TOMBSTONE)) {
+        continue;
+      }
+      const descriptionPtr = dataPtr.add(24).readPointer();
+      const description = descriptionPtr.readUtf8String();
+      if (description.startsWith("L")) {
+        const name = description.substring(1, description.length - 1).replace(/\//g, ".");
+        callbacks.onMatch(name);
+      }
+    }
+    callbacks.onComplete();
+  }
+  enumerateMethods(query) {
+    const { classFactory: factory } = this;
+    const env = this.vm.getEnv();
+    const ClassLoader = factory.use("java.lang.ClassLoader");
+    return Model.enumerateMethods(query, this.api, env).map((group) => {
+      const handle = group.loader;
+      group.loader = handle !== null ? factory.wrap(handle, ClassLoader, env) : null;
+      return group;
+    });
+  }
+  scheduleOnMainThread(fn) {
+    this.performNow(() => {
+      this._pendingMainOps.push(fn);
+      let { _wakeupHandler: wakeupHandler } = this;
+      if (wakeupHandler === null) {
+        const { classFactory: factory } = this;
+        const Handler = factory.use("android.os.Handler");
+        const Looper = factory.use("android.os.Looper");
+        wakeupHandler = Handler.$new(Looper.getMainLooper());
+        this._wakeupHandler = wakeupHandler;
+      }
+      if (this._pollListener === null) {
+        this._pollListener = Interceptor.attach(Process.getModuleByName("libc.so").getExportByName("epoll_wait"), this._makePollHook());
+        Interceptor.flush();
+      }
+      wakeupHandler.sendEmptyMessage(1);
+    });
+  }
+  _makePollHook() {
+    const mainThreadId = Process.id;
+    const { _pendingMainOps: pending } = this;
+    return function() {
+      if (this.threadId !== mainThreadId) {
+        return;
+      }
+      let fn;
+      while ((fn = pending.shift()) !== void 0) {
+        try {
+          fn();
+        } catch (e) {
+          Script.nextTick(() => {
+            throw e;
+          });
+        }
+      }
+    };
+  }
+  perform(fn) {
+    this._checkAvailable();
+    if (!this._isAppProcess() || this.classFactory.loader !== null) {
+      try {
+        this.vm.perform(fn);
+      } catch (e) {
+        Script.nextTick(() => {
+          throw e;
+        });
+      }
+    } else {
+      this._pendingVmOps.push(fn);
+      if (this._pendingVmOps.length === 1) {
+        this._performPendingVmOpsWhenReady();
+      }
+    }
+  }
+  performNow(fn) {
+    this._checkAvailable();
+    return this.vm.perform(() => {
+      const { classFactory: factory } = this;
+      if (this._isAppProcess() && factory.loader === null) {
+        const ActivityThread = factory.use("android.app.ActivityThread");
+        const app = ActivityThread.currentApplication();
+        if (app !== null) {
+          initFactoryFromApplication(factory, app);
+        }
+      }
+      return fn();
+    });
+  }
+  _performPendingVmOpsWhenReady() {
+    this.vm.perform(() => {
+      const { classFactory: factory } = this;
+      const ActivityThread = factory.use("android.app.ActivityThread");
+      const app = ActivityThread.currentApplication();
+      if (app !== null) {
+        initFactoryFromApplication(factory, app);
+        this._performPendingVmOps();
+        return;
+      }
+      const runtime2 = this;
+      let initialized = false;
+      let hookpoint = "early";
+      const handleBindApplication = ActivityThread.handleBindApplication;
+      handleBindApplication.implementation = function(data) {
+        if (data.instrumentationName.value !== null) {
+          hookpoint = "late";
+          const LoadedApk = factory.use("android.app.LoadedApk");
+          const makeApplication = LoadedApk.makeApplication;
+          makeApplication.implementation = function(forceDefaultAppClass, instrumentation) {
+            if (!initialized) {
+              initialized = true;
+              initFactoryFromLoadedApk(factory, this);
+              runtime2._performPendingVmOps();
+            }
+            return makeApplication.apply(this, arguments);
+          };
+        }
+        handleBindApplication.apply(this, arguments);
+      };
+      const getPackageInfoCandidates = ActivityThread.getPackageInfo.overloads.map((m) => [m.argumentTypes.length, m]).sort(([arityA], [arityB]) => arityB - arityA).map(([_, method]) => method);
+      const getPackageInfo = getPackageInfoCandidates[0];
+      getPackageInfo.implementation = function(...args) {
+        const apk = getPackageInfo.call(this, ...args);
+        if (!initialized && hookpoint === "early") {
+          initialized = true;
+          initFactoryFromLoadedApk(factory, apk);
+          runtime2._performPendingVmOps();
+        }
+        return apk;
+      };
+    });
+  }
+  _performPendingVmOps() {
+    const { vm: vm3, _pendingVmOps: pending } = this;
+    let fn;
+    while ((fn = pending.shift()) !== void 0) {
+      try {
+        vm3.perform(fn);
+      } catch (e) {
+        Script.nextTick(() => {
+          throw e;
+        });
+      }
+    }
+  }
+  use(className, options) {
+    return this.classFactory.use(className, options);
+  }
+  openClassFile(filePath) {
+    return this.classFactory.openClassFile(filePath);
+  }
+  choose(specifier, callbacks) {
+    this.classFactory.choose(specifier, callbacks);
+  }
+  retain(obj) {
+    return this.classFactory.retain(obj);
+  }
+  cast(obj, C) {
+    return this.classFactory.cast(obj, C);
+  }
+  array(type, elements) {
+    return this.classFactory.array(type, elements);
+  }
+  backtrace(options) {
+    return backtrace(this.vm, options);
+  }
+  // Reference: http://stackoverflow.com/questions/2848575/how-to-detect-ui-thread-on-android
+  isMainThread() {
+    const Looper = this.classFactory.use("android.os.Looper");
+    const mainLooper = Looper.getMainLooper();
+    const myLooper = Looper.myLooper();
+    if (myLooper === null) {
+      return false;
+    }
+    return mainLooper.$isSameObject(myLooper);
+  }
+  registerClass(spec) {
+    return this.classFactory.registerClass(spec);
+  }
+  deoptimizeEverything() {
+    const { vm: vm3 } = this;
+    return deoptimizeEverything(vm3, vm3.getEnv());
+  }
+  deoptimizeBootImage() {
+    const { vm: vm3 } = this;
+    return deoptimizeBootImage(vm3, vm3.getEnv());
+  }
+  deoptimizeMethod(method) {
+    const { vm: vm3 } = this;
+    return deoptimizeMethod(vm3, vm3.getEnv(), method);
+  }
+  _checkAvailable() {
+    if (!this.available) {
+      throw new Error("Java API not available");
+    }
+  }
+  _isAppProcess() {
+    let result = this._cachedIsAppProcess;
+    if (result === null) {
+      if (this.api.flavor === "jvm") {
+        result = false;
+        this._cachedIsAppProcess = result;
+        return result;
+      }
+      const readlink = new NativeFunction(Module.getGlobalExportByName("readlink"), "pointer", ["pointer", "pointer", "pointer"], {
+        exceptions: "propagate"
+      });
+      const pathname = Memory.allocUtf8String("/proc/self/exe");
+      const bufferSize = 1024;
+      const buffer = Memory.alloc(bufferSize);
+      const size = readlink(pathname, buffer, ptr(bufferSize)).toInt32();
+      if (size !== -1) {
+        const exe = buffer.readUtf8String(size);
+        result = /^\/system\/bin\/app_process/.test(exe);
+      } else {
+        result = true;
+      }
+      this._cachedIsAppProcess = result;
+    }
+    return result;
+  }
+};
+function initFactoryFromApplication(factory, app) {
+  const Process2 = factory.use("android.os.Process");
+  factory.loader = app.getClassLoader();
+  if (Process2.myUid() === Process2.SYSTEM_UID.value) {
+    factory.cacheDir = "/data/system";
+    factory.codeCacheDir = "/data/dalvik-cache";
+  } else {
+    if ("getCodeCacheDir" in app) {
+      factory.cacheDir = app.getCacheDir().getCanonicalPath();
+      factory.codeCacheDir = app.getCodeCacheDir().getCanonicalPath();
+    } else {
+      factory.cacheDir = app.getFilesDir().getCanonicalPath();
+      factory.codeCacheDir = app.getCacheDir().getCanonicalPath();
+    }
+  }
+}
+function initFactoryFromLoadedApk(factory, apk) {
+  const JFile = factory.use("java.io.File");
+  factory.loader = apk.getClassLoader();
+  const dataDir = JFile.$new(apk.getDataDir()).getCanonicalPath();
+  factory.cacheDir = dataDir;
+  factory.codeCacheDir = dataDir + "/cache";
+}
+var runtime = new Runtime();
+Script.bindWeak(runtime, () => {
+  runtime._dispose();
+});
+var frida_java_bridge_default = runtime;
 
-buffer/index.js:
-  (*!
-   * The buffer module from node.js, for the browser.
-   *
-   * @author   Feross Aboukhadijeh <https://feross.org>
-   * @license  MIT
-   *)
-*/
+// entry_fullscreen.js
+function log(s) {
+  console.log("[hg] " + s);
+}
+frida_java_bridge_default.perform(function() {
+  log("direct FS v4 (warmup P4, then click, auto-retry)");
+  try {
+    frida_java_bridge_default.use(
+      "com.dragon.read.component.shortvideo.api.config.VideoPlayerLandscapeBtnOptV701$a"
+    ).a.implementation = function() {
+      return true;
+    };
+  } catch (e) {
+  }
+  try {
+    var Activity = frida_java_bridge_default.use("android.app.Activity");
+    Activity.overridePendingTransition.overload("int", "int").implementation = function() {
+      this.overridePendingTransition(0, 0);
+    };
+  } catch (e) {
+  }
+  var Handler = frida_java_bridge_default.use("android.os.Handler");
+  var Looper = frida_java_bridge_default.use("android.os.Looper");
+  var Runnable = frida_java_bridge_default.use("java.lang.Runnable");
+  var View = frida_java_bridge_default.use("android.view.View");
+  var Rect = frida_java_bridge_default.use("android.graphics.Rect");
+  var TextView = frida_java_bridge_default.use("android.widget.TextView");
+  var Latch = frida_java_bridge_default.use("java.util.concurrent.CountDownLatch");
+  var TimeUnit = frida_java_bridge_default.use("java.util.concurrent.TimeUnit");
+  var mainHandler = Handler.$new(Looper.getMainLooper());
+  var B0 = frida_java_bridge_default.use("r95.b0");
+  var latch = Latch.$new(1);
+  var result = { ok: false, via: "" };
+  var seq = Date.now();
+  function getOnClickListener(view) {
+    try {
+      var getLI = View.class.getDeclaredMethod("getListenerInfo", []);
+      getLI.setAccessible(true);
+      var li = getLI.invoke(view, []);
+      if (li === null) return null;
+      var f = li.getClass().getDeclaredField("mOnClickListener");
+      f.setAccessible(true);
+      return f.get(li);
+    } catch (e) {
+      return null;
+    }
+  }
+  function isLandscape() {
+    try {
+      var app = frida_java_bridge_default.use("android.app.ActivityThread").currentApplication();
+      return app.getResources().getConfiguration().orientation.value === 2;
+    } catch (e) {
+      return false;
+    }
+  }
+  function clearTransition() {
+    try {
+      var at = frida_java_bridge_default.use("android.app.ActivityThread").currentActivityThread();
+      var it = at.mActivities.value.values().iterator();
+      while (it.hasNext()) {
+        try {
+          var a = it.next().activity.value;
+          if (a !== null) a.overridePendingTransition(0, 0);
+        } catch (e) {
+        }
+      }
+    } catch (e) {
+    }
+  }
+  function scoreHolder(h) {
+    try {
+      var iv = h.itemView.value;
+      if (!iv || !iv.isShown()) return -1;
+      var w = iv.getWidth();
+      var hgt = iv.getHeight();
+      if (w < 200 || hgt < 200) return -1;
+      var area = w * hgt;
+      var r = Rect.$new();
+      iv.getGlobalVisibleRect(r);
+      var cx = (r.left.value + r.right.value) / 2;
+      var cy = (r.top.value + r.bottom.value) / 2;
+      var dm = iv.getResources().getDisplayMetrics();
+      var dist = Math.abs(cx - dm.widthPixels.value / 2) + Math.abs(cy - dm.heightPixels.value / 2);
+      return area - dist * 20;
+    } catch (e) {
+      return -1;
+    }
+  }
+  function pickBestHolder() {
+    var holders = [];
+    frida_java_bridge_default.choose("r95.b0", {
+      onMatch: function(h) {
+        holders.push(h);
+      },
+      onComplete: function() {
+      }
+    });
+    log("holders=" + holders.length);
+    var best = null;
+    var bestScore = -1;
+    for (var i = 0; i < holders.length; i++) {
+      var sc = scoreHolder(holders[i]);
+      if (sc > bestScore) {
+        bestScore = sc;
+        best = holders[i];
+      }
+    }
+    if (!best && holders.length) best = holders[0];
+    if (best) log("picked score=" + bestScore);
+    return best;
+  }
+  function warmP4(holder2) {
+    try {
+      B0.P4.overload("boolean").call(holder2, true);
+      log("P4 warmup");
+      return true;
+    } catch (e) {
+      log("P4 " + e);
+      return false;
+    }
+  }
+  function clickK3(holder2) {
+    try {
+      var k3 = holder2.k3.value;
+      if (!k3) {
+        log("NO_K3");
+        return false;
+      }
+      k3.setVisibility(0);
+      k3.setEnabled(true);
+      k3.setClickable(true);
+      k3.setAlpha(1);
+      var li = getOnClickListener(k3);
+      if (li !== null) {
+        var lname = li.getClass().getName();
+        log("listener=" + lname);
+        frida_java_bridge_default.cast(li, frida_java_bridge_default.use("android.view.View$OnClickListener")).onClick(k3);
+        result.via = "listener:" + lname;
+        log("onClick OK");
+        return true;
+      }
+      try {
+        if (k3.callOnClick()) {
+          result.via = "callOnClick";
+          return true;
+        }
+      } catch (e) {
+      }
+    } catch (e) {
+      log("clickK3 " + e);
+    }
+    return false;
+  }
+  function clickFullscreenLabel() {
+    try {
+      var found = [];
+      frida_java_bridge_default.choose("w95.e", {
+        onMatch: function(o) {
+          try {
+            if (!o.isShown()) return;
+            o.setVisibility(0);
+            o.setEnabled(true);
+            o.setClickable(true);
+            o.setAlpha(1);
+            var texts = [];
+            var n = o.getChildCount();
+            for (var i2 = 0; i2 < n; i2++) {
+              try {
+                var t = frida_java_bridge_default.cast(o.getChildAt(i2), TextView).getText();
+                if (t) texts.push(t.toString());
+              } catch (e) {
+              }
+            }
+            var blob = texts.join("");
+            found.push({ o, texts: blob, w: o.getWidth(), h: o.getHeight() });
+          } catch (e) {
+          }
+        },
+        onComplete: function() {
+        }
+      });
+      log("w95.e count=" + found.length);
+      var target = null;
+      for (var i = 0; i < found.length; i++) {
+        if (found[i].texts.indexOf("\u5168\u5C4F") >= 0 && found[i].w > 0) {
+          target = found[i];
+          break;
+        }
+      }
+      if (!target) {
+        for (var j = 0; j < found.length; j++) {
+          if (found[j].w > 0 && found[j].h > 0) {
+            target = found[j];
+            break;
+          }
+        }
+      }
+      if (!target) return false;
+      log("click w95.e texts=" + target.texts);
+      var btn = target.o;
+      try {
+        btn.bringToFront();
+      } catch (e) {
+      }
+      var ok = false;
+      try {
+        ok = !!btn.performClick();
+      } catch (e) {
+      }
+      if (!ok) {
+        try {
+          var li = getOnClickListener(btn);
+          if (li) {
+            frida_java_bridge_default.cast(li, frida_java_bridge_default.use("android.view.View$OnClickListener")).onClick(
+              btn
+            );
+            ok = true;
+          }
+        } catch (e) {
+        }
+      }
+      if (ok) {
+        result.via = "w95.e:" + target.texts;
+        log("w95.e click OK");
+      }
+      return ok;
+    } catch (e) {
+      log("clickFullscreenLabel " + e);
+      return false;
+    }
+  }
+  function doClickRound(holder2, tag) {
+    clearTransition();
+    warmP4(holder2);
+    var okLabel = clickFullscreenLabel();
+    var okK3 = false;
+    if (!okLabel) {
+      okK3 = clickK3(holder2);
+    }
+    log("round " + tag + " label=" + okLabel + " k3=" + okK3);
+    return okLabel || okK3;
+  }
+  function postDelay(ms, fn) {
+    var R = frida_java_bridge_default.registerClass({
+      name: "hg.FsD" + seq + "_" + ms + "_" + Math.floor(Math.random() * 1e6),
+      implements: [Runnable],
+      methods: {
+        run: function() {
+          try {
+            fn();
+          } catch (e) {
+            log("delay fn " + e);
+            latch.countDown();
+          }
+        }
+      }
+    });
+    mainHandler.postDelayed(R.$new(), ms);
+  }
+  var holder = pickBestHolder();
+  if (!holder) {
+    log("NO_HOLDER");
+    return;
+  }
+  var Warm = frida_java_bridge_default.registerClass({
+    name: "hg.FsWarm" + seq,
+    implements: [Runnable],
+    methods: {
+      run: function() {
+        try {
+          clearTransition();
+          warmP4(holder);
+          postDelay(220, function() {
+            holder = pickBestHolder() || holder;
+            var clicked = doClickRound(holder, "1");
+            postDelay(450, function() {
+              try {
+                if (isLandscape()) {
+                  result.ok = true;
+                  if (!result.via) result.via = "land-after-1";
+                  log("already landscape");
+                } else {
+                  log("still portrait, auto second click");
+                  holder = pickBestHolder() || holder;
+                  var c2 = doClickRound(holder, "2");
+                  result.ok = c2 || clicked || isLandscape();
+                  if (isLandscape()) {
+                    result.ok = true;
+                    result.via = (result.via || "") + "+land-after-2";
+                  }
+                }
+              } catch (e) {
+                log("phase3 " + e);
+              }
+              clearTransition();
+              latch.countDown();
+            });
+          });
+        } catch (e) {
+          log("warm fail " + e);
+          latch.countDown();
+        }
+      }
+    }
+  });
+  mainHandler.post(Warm.$new());
+  var finished = latch.await(10, TimeUnit.SECONDS.value);
+  if (isLandscape()) {
+    result.ok = true;
+  }
+  log(
+    "await=" + finished + " ok=" + result.ok + " via=" + result.via + " land=" + isLandscape()
+  );
+});

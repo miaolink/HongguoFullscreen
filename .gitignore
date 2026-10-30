@@ -3,6 +3,7 @@
 /app/build/
 /manual_build/
 *.apk
+*.idsig
 !apk/
 !apk/HongguoFullscreen.apk
 !app/src/main/assets/**

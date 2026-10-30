@@ -74,7 +74,7 @@ public final class FullscreenTrigger {
                     + "cat \"$OUT\"";
 
             DebugLog.i("su inject");
-            String log = su(cmd, 15000);
+            String log = su(cmd, 20000);
             if (log == null) {
                 log = "";
             }
